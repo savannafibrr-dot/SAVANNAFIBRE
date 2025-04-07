@@ -7,13 +7,12 @@
   <style>
     body { font-family: Arial, sans-serif; padding: 1rem; }
     .form-group { margin-bottom: 1rem; }
-    label { display: block; margin-bottom: .25rem; }
-    input, button { width: 100%; padding: .5rem; font-size: 1rem; }
+    label { display: block; margin-bottom: 0.25rem; }
+    input, button { width: 100%; padding: 0.5rem; font-size: 1rem; }
     #map { height: 400px; width: 100%; margin-top: 1rem; }
   </style>
 </head>
 <body>
-
   <h1>Add a Shop</h1>
   <form id="shop-form" action="/submit-shop" method="POST">
     <div class="form-group">
@@ -26,6 +25,7 @@
       <input type="text" id="shop-address" name="shopAddress" placeholder="Start typing address…" required>
     </div>
 
+    <!-- Hidden fields to capture latitude & longitude -->
     <input type="hidden" id="lat" name="latitude">
     <input type="hidden" id="lng" name="longitude">
 
@@ -37,24 +37,24 @@
     let map, marker, autocomplete;
 
     function initMap() {
+      // Set a temporary default position (Nairobi)
       const defaultPos = { lat: -1.286389, lng: 36.817223 };
 
       map = new google.maps.Map(document.getElementById("map"), {
         center: defaultPos,
-        zoom: 12,
-        // mapId: "YOUR_MAP_ID_HERE"  // optional if you get a Map ID
+        zoom: 12
       });
 
-      // Use AdvancedMarkerElement if you have a Map ID, else fallback
-      if (google.maps.marker?.AdvancedMarkerElement) {
+      // Use AdvancedMarkerElement if available; else, fallback to Marker
+      if (google.maps.marker && google.maps.marker.AdvancedMarkerElement) {
         marker = new google.maps.marker.AdvancedMarkerElement({
-          map,
+          map: map,
           position: defaultPos,
           draggable: true
         });
       } else {
         marker = new google.maps.Marker({
-          map,
+          map: map,
           position: defaultPos,
           draggable: true
         });
@@ -66,7 +66,31 @@
         document.getElementById("lng").value = pos.lng();
       });
 
-      // Classic Autocomplete
+      // Request high-accuracy geolocation
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            const coords = {
+              lat: pos.coords.latitude,
+              lng: pos.coords.longitude
+            };
+            // Only update if accuracy is within a reasonable threshold (e.g. 5km)
+            if (pos.coords.accuracy <= 5000) {
+              map.setCenter(coords);
+              map.setZoom(14);
+              marker.setPosition(coords);
+              document.getElementById("lat").value = coords.lat;
+              document.getElementById("lng").value = coords.lng;
+            } else {
+              console.warn("Low accuracy:", pos.coords.accuracy);
+            }
+          },
+          (err) => console.warn("Geolocation error:", err.message),
+          { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+        );
+      }
+
+      // Set up the classic Places Autocomplete
       const input = document.getElementById("shop-address");
       autocomplete = new google.maps.places.Autocomplete(input);
       autocomplete.setFields(["geometry", "formatted_address", "name"]);
@@ -76,25 +100,23 @@
         if (!place.geometry || !place.geometry.location) {
           return alert("No details available for: " + place.name);
         }
-
-        // Recenter map & marker
+        // Recenter the map and move the marker
         map.setCenter(place.geometry.location);
         map.setZoom(15);
         marker.setPosition(place.geometry.location);
 
-        // Update hidden fields
+        // Update hidden form fields
         document.getElementById("lat").value = place.geometry.location.lat();
         document.getElementById("lng").value = place.geometry.location.lng();
-        // Optional: overwrite the address field with the formatted address
+        // Optionally, update the address field with the formatted address
         input.value = place.formatted_address;
       });
     }
   </script>
 
+  <!-- Note: This script URL has no extra spaces and uses async defer -->
   <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBV7cqwH-DW9ICtLYjnhV3v_1teQyotZzA
-      &libraries=places,marker
-      &callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBV7cqwH-DW9ICtLYjnhV3v_1teQyotZzA&libraries=places&callback=initMap">
   </script>
 </body>
 </html>
