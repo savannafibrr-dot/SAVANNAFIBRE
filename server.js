@@ -53,6 +53,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Set view engine and pass environment variables to views
+app.set('view engine', 'ejs');
+app.use((req, res, next) => {
+    res.locals.env = {
+        GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY
+    };
+    next();
+});
+
 // Passport Local Strategy
 passport.use(new LocalStrategy({
     usernameField: 'email',
