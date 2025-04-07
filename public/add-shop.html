@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Shop Location</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    body { font-family: Arial, sans-serif; padding: 1rem; }
+    .form-group { margin-bottom: 1rem; }
+    label { display: block; margin-bottom: .25rem; }
+    input, button { width: 100%; padding: .5rem; font-size: 1rem; }
+    #map { height: 400px; width: 100%; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+
+  <h1>Add a Shop</h1>
+  <form id="shop-form" action="/submit-shop" method="POST">
+    <div class="form-group">
+      <label for="shop-name">Shop Name</label>
+      <input type="text" id="shop-name" name="shopName" required>
+    </div>
+
+    <div class="form-group">
+      <label for="shop-address">Address</label>
+      <input type="text" id="shop-address" name="shopAddress" placeholder="Start typing address…" required>
+    </div>
+
+    <input type="hidden" id="lat" name="latitude">
+    <input type="hidden" id="lng" name="longitude">
+
+    <div id="map"></div>
+    <button type="submit">Save Shop Location</button>
+  </form>
+
+  <script>
+    let map, marker, autocomplete;
+
+    function initMap() {
+      const defaultPos = { lat: -1.286389, lng: 36.817223 };
+
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: defaultPos,
+        zoom: 12,
+        // mapId: "YOUR_MAP_ID_HERE"  // optional if you get a Map ID
+      });
+
+      // Use AdvancedMarkerElement if you have a Map ID, else fallback
+      if (google.maps.marker?.AdvancedMarkerElement) {
+        marker = new google.maps.marker.AdvancedMarkerElement({
+          map,
+          position: defaultPos,
+          draggable: true
+        });
+      } else {
+        marker = new google.maps.Marker({
+          map,
+          position: defaultPos,
+          draggable: true
+        });
+      }
+
+      marker.addListener("dragend", () => {
+        const pos = marker.getPosition();
+        document.getElementById("lat").value = pos.lat();
+        document.getElementById("lng").value = pos.lng();
+      });
+
+      // Classic Autocomplete
+      const input = document.getElementById("shop-address");
+      autocomplete = new google.maps.places.Autocomplete(input);
+      autocomplete.setFields(["geometry", "formatted_address", "name"]);
+
+      autocomplete.addListener("place_changed", () => {
+        const place = autocomplete.getPlace();
+        if (!place.geometry || !place.geometry.location) {
+          return alert("No details available for: " + place.name);
+        }
+
+        // Recenter map & marker
+        map.setCenter(place.geometry.location);
+        map.setZoom(15);
+        marker.setPosition(place.geometry.location);
+
+        // Update hidden fields
+        document.getElementById("lat").value = place.geometry.location.lat();
+        document.getElementById("lng").value = place.geometry.location.lng();
+        // Optional: overwrite the address field with the formatted address
+        input.value = place.formatted_address;
+      });
+    }
+  </script>
+
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBV7cqwH-DW9ICtLYjnhV3v_1teQyotZzA
+      &libraries=places,marker
+      &callback=initMap">
+  </script>
+</body>
+</html>
