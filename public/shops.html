@@ -401,6 +401,12 @@
                     const isLocalhost = window.location.hostname === 'localhost' || 
                                       window.location.hostname === '127.0.0.1';
                     
+                    // Check if we're on HTTPS
+                    const isHttps = window.location.protocol === 'https:';
+                    
+                    // Check if we're on a mobile device
+                    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                    
                     // Show loading message with accuracy feedback
                     const loadingMessage = document.createElement('div');
                     loadingMessage.className = 'alert alert-info mt-2';
@@ -425,6 +431,28 @@
                                     <ul class="mb-0">
                                         <li>Use HTTPS or 127.0.0.1 instead of localhost</li>
                                         <li>Test on a mobile device with GPS</li>
+                                        <li>Or search for a location manually</li>
+                                    </ul>
+                                </small>
+                            ` : ''}
+                            ${!isHttps ? `
+                                <small class="text-warning mt-2">
+                                    <i class="bi bi-exclamation-triangle me-2"></i>
+                                    Note: Location accuracy may be limited without HTTPS. For better accuracy:
+                                    <ul class="mb-0">
+                                        <li>Use HTTPS for better location accuracy</li>
+                                        <li>Test on a mobile device with GPS</li>
+                                        <li>Or search for a location manually</li>
+                                    </ul>
+                                </small>
+                            ` : ''}
+                            ${!isMobile ? `
+                                <small class="text-warning mt-2">
+                                    <i class="bi bi-exclamation-triangle me-2"></i>
+                                    Note: Desktop browsers may have limited location accuracy. For better accuracy:
+                                    <ul class="mb-0">
+                                        <li>Test on a mobile device with GPS</li>
+                                        <li>Connect to a stable Wi-Fi network</li>
                                         <li>Or search for a location manually</li>
                                     </ul>
                                 </small>
@@ -463,6 +491,8 @@
                             console.log('Heading:', position.coords.heading);
                             console.log('Speed:', position.coords.speed);
                             console.log('Is Localhost:', isLocalhost);
+                            console.log('Is HTTPS:', isHttps);
+                            console.log('Is Mobile:', isMobile);
                             console.log('Hostname:', window.location.hostname);
                             console.log('Protocol:', window.location.protocol);
 
@@ -531,6 +561,12 @@
                                                     <li>Use HTTPS or 127.0.0.1 instead of localhost</li>
                                                     <li>Test on a mobile device with GPS</li>
                                                 ` : ''}
+                                                ${!isHttps ? `
+                                                    <li>Use HTTPS for better location accuracy</li>
+                                                ` : ''}
+                                                ${!isMobile ? `
+                                                    <li>Test on a mobile device with GPS</li>
+                                                ` : ''}
                                                 <li>Or search for a location manually</li>
                                             </ul>
                                         </small>
@@ -569,6 +605,12 @@
                                                 <li>Use HTTPS or 127.0.0.1 instead of localhost</li>
                                                 <li>Test on a mobile device with GPS</li>
                                             ` : ''}
+                                            ${!isHttps ? `
+                                                <li>Use HTTPS for better location accuracy</li>
+                                            ` : ''}
+                                            ${!isMobile ? `
+                                                <li>Test on a mobile device with GPS</li>
+                                            ` : ''}
                                             <li>Or search for a location manually</li>
                                         </ul>
                                     </small>
@@ -604,6 +646,12 @@
                                             <li>Opening Google Maps first to calibrate GPS</li>
                                             ${isLocalhost ? `
                                                 <li>Using HTTPS or 127.0.0.1 instead of localhost</li>
+                                                <li>Testing on a mobile device with GPS</li>
+                                            ` : ''}
+                                            ${!isHttps ? `
+                                                <li>Using HTTPS for better location accuracy</li>
+                                            ` : ''}
+                                            ${!isMobile ? `
                                                 <li>Testing on a mobile device with GPS</li>
                                             ` : ''}
                                             <li>Or search for a location manually</li>
