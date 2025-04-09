@@ -129,6 +129,7 @@
                     <table class="table mb-0">
                         <thead>
                             <tr>
+                                <th>SHOP IMAGE</th>
                                 <th>SHOP NAME</th>
                                 <th>ADDRESS</th>
                                 <th>CITY</th>
@@ -211,6 +212,16 @@
                                     <i class="bi bi-telephone"></i>
                                 </span>
                                 <input type="tel" class="form-control" id="contactNumber" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Shop Image</label>
+                            <div class="input-group">
+                                <input type="file" class="form-control" id="shopImage" accept="image/*">
+                            </div>
+                            <small class="text-muted">Upload a picture of your shop (optional)</small>
+                            <div id="imagePreview" class="mt-2 d-none">
+                                <img src="" alt="Shop Preview" class="img-thumbnail" style="max-height: 200px;">
                             </div>
                         </div>
                     </form>
@@ -486,15 +497,6 @@
                             console.log('Latitude:', position.coords.latitude);
                             console.log('Longitude:', position.coords.longitude);
                             console.log('Accuracy:', position.coords.accuracy, 'meters');
-                            console.log('Altitude:', position.coords.altitude);
-                            console.log('Altitude Accuracy:', position.coords.altitudeAccuracy);
-                            console.log('Heading:', position.coords.heading);
-                            console.log('Speed:', position.coords.speed);
-                            console.log('Is Localhost:', isLocalhost);
-                            console.log('Is HTTPS:', isHttps);
-                            console.log('Is Mobile:', isMobile);
-                            console.log('Hostname:', window.location.hostname);
-                            console.log('Protocol:', window.location.protocol);
 
                             // Update map with high zoom level for precision
                             map.setCenter(pos);
@@ -516,8 +518,8 @@
                                 }
                             });
 
-                            // Check if accuracy is good enough (less than 50 meters)
-                            if (position.coords.accuracy <= 50) {
+                            // Check if accuracy is good enough (less than 20 meters)
+                            if (position.coords.accuracy <= 20) {
                                 // Stop watching position
                                 navigator.geolocation.clearWatch(watchId);
                                 
@@ -557,16 +559,6 @@
                                                 <li>Move to an open area with clear sky view</li>
                                                 <li>Open Google Maps first to calibrate GPS</li>
                                                 <li>Connect to a stable Wi-Fi network</li>
-                                                ${isLocalhost ? `
-                                                    <li>Use HTTPS or 127.0.0.1 instead of localhost</li>
-                                                    <li>Test on a mobile device with GPS</li>
-                                                ` : ''}
-                                                ${!isHttps ? `
-                                                    <li>Use HTTPS for better location accuracy</li>
-                                                ` : ''}
-                                                ${!isMobile ? `
-                                                    <li>Test on a mobile device with GPS</li>
-                                                ` : ''}
                                                 <li>Or search for a location manually</li>
                                             </ul>
                                         </small>
@@ -600,17 +592,6 @@
                                             <li>Enable precise location in your phone settings</li>
                                             <li>Try opening Google Maps first to calibrate GPS</li>
                                             <li>Move to an open area with clear sky view</li>
-                                            <li>Connect to a stable Wi-Fi network</li>
-                                            ${isLocalhost ? `
-                                                <li>Use HTTPS or 127.0.0.1 instead of localhost</li>
-                                                <li>Test on a mobile device with GPS</li>
-                                            ` : ''}
-                                            ${!isHttps ? `
-                                                <li>Use HTTPS for better location accuracy</li>
-                                            ` : ''}
-                                            ${!isMobile ? `
-                                                <li>Test on a mobile device with GPS</li>
-                                            ` : ''}
                                             <li>Or search for a location manually</li>
                                         </ul>
                                     </small>
@@ -946,11 +927,25 @@
                 
                 const shopsHtml = shops.map(shop => `
                     <tr class="fade-in">
-                        <td>${shop.name}</td>
-                        <td>${shop.address}</td>
-                        <td>${shop.city}</td>
-                        <td>${shop.contactNumber}</td>
-                        <td>
+                        <td style="width: 80px;">
+                            <div class="d-flex align-items-center justify-content-center">
+                                ${shop.imageUrl ? `
+                                    <img src="${shop.imageUrl}" alt="${shop.name}" 
+                                        class="rounded" 
+                                        style="width: 60px; height: 60px; object-fit: cover; border: 1px solid #dee2e6;">
+                                ` : `
+                                    <div class="rounded bg-light d-flex align-items-center justify-content-center" 
+                                        style="width: 60px; height: 60px; border: 1px solid #dee2e6;">
+                                        <i class="bi bi-shop text-secondary fs-4"></i>
+                                    </div>
+                                `}
+                            </div>
+                        </td>
+                        <td class="align-middle">${shop.name}</td>
+                        <td class="align-middle">${shop.address}</td>
+                        <td class="align-middle">${shop.city}</td>
+                        <td class="align-middle">${shop.contactNumber}</td>
+                        <td class="align-middle">
                             <div class="d-flex gap-2">
                                 <button class="btn btn-sm btn-outline-primary" onclick="editShop('${shop._id}')">
                                     <i class="bi bi-pencil"></i>
@@ -980,6 +975,14 @@
                 document.getElementById('streetAddress').value = shop.address;
                 document.getElementById('city').value = shop.city;
                 document.getElementById('contactNumber').value = shop.contactNumber;
+                
+                // Show existing image if available
+                if (shop.imageUrl) {
+                    const preview = document.getElementById('imagePreview');
+                    const img = preview.querySelector('img');
+                    img.src = shop.imageUrl;
+                    preview.classList.remove('d-none');
+                }
                 
                 // Geocode the address and update map
                 geocoder.geocode({ address: `${shop.address}, ${shop.city}` }, (results, status) => {
@@ -1031,6 +1034,7 @@
                 const address = document.getElementById('streetAddress').value.trim();
                 const city = document.getElementById('city').value.trim();
                 const contactNumber = document.getElementById('contactNumber').value.trim();
+                const imageFile = document.getElementById('shopImage').files[0];
 
                 // Validate required fields
                 if (!name) throw new Error('Shop name is required');
@@ -1038,11 +1042,11 @@
                 if (!city) throw new Error('City is required');
                 if (!contactNumber) throw new Error('Contact number is required');
 
-                // Get marker position using the new property
+                // Get marker position
                 const position = marker.position;
                 if (!position) throw new Error('Please select a location on the map');
                 
-                // Prepare shop data
+                // Create shop data object
                 const shopData = {
                     name,
                     address,
@@ -1054,22 +1058,31 @@
                     }
                 };
 
+                // Create FormData
+                const formData = new FormData();
+                formData.append('data', JSON.stringify(shopData));
+                if (imageFile) {
+                    formData.append('image', imageFile);
+                }
+
                 const url = currentShopId ? `/api/shops/${currentShopId}` : '/api/shops';
                 const method = currentShopId ? 'PUT' : 'POST';
 
+                console.log('Sending shop data:', shopData); // Debug log
+
                 const response = await fetch(url, {
                     method,
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(shopData)
+                    body: formData
                 });
 
-                const data = await response.json();
-
                 if (!response.ok) {
-                    throw new Error(data.message || data.error || 'Failed to save shop');
+                    const errorData = await response.json();
+                    console.error('Server error response:', errorData); // Debug log
+                    throw new Error(errorData.message || errorData.error || 'Failed to save shop');
                 }
+
+                const data = await response.json();
+                console.log('Server response:', data); // Debug log
 
                 // Show success message
                 const successAlert = document.createElement('div');
@@ -1112,6 +1125,7 @@
             document.getElementById('locationSearch').value = '';
             document.getElementById('streetAddress').value = '';
             document.getElementById('city').value = '';
+            document.getElementById('imagePreview').classList.add('d-none');
             currentShopId = null;
             
             // Reset map
@@ -1178,6 +1192,21 @@
                 window.location.href = '/login.html';
             } catch (error) {
                 console.error('Error logging out:', error);
+            }
+        });
+
+        // Handle image preview
+        document.getElementById('shopImage').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.getElementById('imagePreview');
+                    const img = preview.querySelector('img');
+                    img.src = e.target.result;
+                    preview.classList.remove('d-none');
+                }
+                reader.readAsDataURL(file);
             }
         });
 

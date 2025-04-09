@@ -51,7 +51,8 @@ app.use(passport.session());
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
+app.use('/uploads', express.static('public/uploads'));
 
 // Set view engine and pass environment variables to views
 app.set('view engine', 'ejs');
