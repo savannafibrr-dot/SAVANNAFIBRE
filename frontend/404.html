@@ -1,0 +1,2279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home One || Savanna Fibre || Broadband TV & Internet</title>
+    <style>
+        /* Wrapper for WhatsApp icons */
+        .whatsapp-icon-wrapper {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 80px;
+            height: 80px;
+            z-index: 9999;
+            perspective: 1000px;
+            /* Add perspective for the 3D effect */
+        }
+
+        /* Base styles for WhatsApp icons */
+        .whatsapp-icon {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #25d366;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 8px 10px rgba(0, 0, 0, 0.4);
+            transform-style: preserve-3d;
+        }
+
+        .whatsapp-icon img {
+            width: 50px;
+            height: 50px;
+            transform: translateZ(20px);
+        }
+
+        /* Keyframes for the first icon's rotation */
+        @keyframes rotateFirstIcon {
+            0% {
+                transform: rotate3d(1, 1, 0, 0deg);
+                z-index: 2;
+                /* First icon in front */
+            }
+
+            50% {
+                transform: rotate3d(1, 1, 0, 180deg);
+                z-index: 1;
+                /* First icon at the back */
+            }
+
+            100% {
+                transform: rotate3d(1, 1, 0, 360deg);
+                z-index: 2;
+                /* First icon back to front */
+            }
+        }
+
+        /* Keyframes for the second icon's rotation */
+        @keyframes rotateSecondIcon {
+            0% {
+                transform: rotate3d(1, 1, 0, 180deg);
+                z-index: 1;
+                /* Start behind the first icon */
+            }
+
+            50% {
+                transform: rotate3d(1, 1, 0, 360deg);
+                z-index: 2;
+                /* Second icon moves to the front */
+            }
+
+            100% {
+                transform: rotate3d(1, 1, 0, 540deg);
+                z-index: 1;
+                /* Second icon back to behind */
+            }
+        }
+
+        /* First icon animation */
+        .whatsapp-icon.first {
+            animation: rotateFirstIcon 3s linear infinite;
+        }
+
+        /* Second icon animation with staggered delay */
+        .whatsapp-icon.second {
+            animation: rotateSecondIcon 3s linear infinite;
+            animation-delay: 1.5s;
+            /* Delay to stagger and swap positions */
+        }
+    </style>
+    <!-- favicons Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/preloader orange.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/preloader orange.svg" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/preloader orange.svg" />
+    <link rel="manifest" href="assets/preloader orange.svg" />
+    <meta name="description" content="" />
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&amp;display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="assets/vendors/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/vendors/bootstrap-select/bootstrap-select.min.css" />
+    <link rel="stylesheet" href="assets/vendors/animate/animate.min.css" />
+    <link rel="stylesheet" href="assets/vendors/fontawesome/css/all.min.css" />
+    <link rel="stylesheet" href="assets/vendors/jquery-ui/jquery-ui.css" />
+    <link rel="stylesheet" href="assets/vendors/jarallax/jarallax.css" />
+    <link rel="stylesheet" href="assets/vendors/jquery-magnific-popup/jquery.magnific-popup.css" />
+    <link rel="stylesheet" href="assets/vendors/nouislider/nouislider.min.css" />
+    <link rel="stylesheet" href="assets/vendors/nouislider/nouislider.pips.css" />
+    <link rel="stylesheet" href="assets/vendors/tiny-slider/tiny-slider.css" />
+    <link rel="stylesheet" href="assets/vendors/ienet-icons/style.css" />
+    <link rel="stylesheet" href="assets/vendors/slick/slick.css">
+    <link rel="stylesheet" href="assets/vendors/owl-carousel/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="assets/vendors/owl-carousel/css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.6.0/css/flag-icon.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+
+
+    <!-- template styles -->
+    <link rel="stylesheet" href="assets/css/ienet.css" />
+    <style>
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-btn {
+            background-color: #F79621;
+            /* Button style */
+            color: white;
+            border: none;
+            padding: 10px 13px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .dropdown-btn:hover {
+            background-color: #0056b3;
+            /* Darker shade on hover */
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            bottom: 100%;
+            /* This positions the dropdown above the button */
+            left: 0;
+            background-color: #fff;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            /* Ensure it appears above other elements */
+            border-radius: 4px;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+
+        /* Styling for Language Dropdown */
+        .main-header__lang {
+            position: relative;
+            display: inline-block;
+            margin-left: 20px;
+            /* Space between language dropdown and other elements */
+        }
+
+        /* Styling the dropdown */
+        .lang-dropdown {
+            font-family: 'Arial', sans-serif;
+            padding: 8px 30px 8px 12px;
+            /* Added padding for better spacing */
+            font-size: 14px;
+            color: #333;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            appearance: none;
+            /* Remove default dropdown arrow */
+            -webkit-appearance: none;
+            /* For Safari */
+            -moz-appearance: none;
+            /* For Firefox */
+            display: flex;
+            align-items: center;
+        }
+
+        /* Custom Dropdown Arrow */
+        .lang-dropdown::after {
+            content: '\2193';
+            /* Unicode for down arrow */
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 16px;
+            color: #333;
+            pointer-events: none;
+        }
+
+        /* Hover effect for dropdown */
+        .lang-dropdown:hover {
+            border-color: #007bff;
+        }
+
+        /* Focused state */
+        .lang-dropdown:focus {
+            border-color: #0056b3;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        /* Styling for options */
+        .lang-dropdown option {
+            padding: 10px;
+            font-size: 14px;
+            color: #333;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Adding flags to options */
+        .lang-dropdown option[class*="flag-icon"] {
+            margin-right: 10px;
+            font-size: 20px;
+            /* Adjust the flag size */
+        }
+
+        /* Hover effect for options */
+        .lang-dropdown option:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media screen and (max-width: 768px) {
+            .main-header__lang {
+                margin-left: 0;
+                margin-top: 10px;
+                /* Add space on top for smaller screens */
+            }
+        }
+
+
+        /* Styling for the Shop and Location Icon */
+        .main-header__nav .shop-location {
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+        }
+
+        /* Small space between the shop name and location icon */
+        .main-header__nav .shop-location span {
+            margin-left: 5px;
+            /* Small space between shop name and location icon */
+        }
+
+        /* Optional: Adjust the location icon size */
+        .main-header__nav .shop-location .icon-location {
+            font-size: 18px;
+            /* Adjust size of the icon if necessary */
+        }
+
+
+
+
+        .packages-three__card__price {
+            text-align: center;
+            /* Center-align the content */
+            font-weight: 600;
+            font-size: 16px;
+            /* Default font size */
+        }
+
+        .packages-three__card__price .top {
+            font-size: 20px;
+            /* Slightly larger font for TSh */
+            color: var(--ienet-base, #F79621);
+            margin-bottom: 5px;
+            /* Add spacing below TSh */
+        }
+
+        .packages-three__card__price .amount {
+            font-size: 28px;
+            /* Larger font for price */
+            color: var(--ienet-base, #F79621);
+            font-weight: bold;
+        }
+
+        .packages-three__card__price .amount span {
+            display: inline-block;
+            /* Keep Month on the same line */
+            font-size: 15px;
+            /* Smaller font for Month */
+            color: var(--ienet-text, #6936d0);
+            font-weight: 500;
+            margin-left: 5px;
+            /* Add slight spacing to the left of Month */
+        }
+
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .packages-three__card {
+            opacity: 1;
+            pointer-events: auto;
+            transition: opacity 0.3s ease;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+
+
+
+
+        /* button*/
+
+        /* Container for the toggle button */
+        .toggle-btn-container {
+            display: flex;
+            position: relative;
+        }
+
+        /* Base style for each button */
+        .toggle-btn {
+            width: 100px;
+            /* Button width */
+            height: 40px;
+            /* Button height */
+            background-color: #e0e0e0;
+            /* Inactive button color */
+            color: black;
+            border: none;
+            border-radius: 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* Active button styling */
+        .toggle-btn.active {
+            background-color: var(--ienet-base, #F79621);
+            /* Active button color */
+            color: white;
+        }
+
+        /* Adjusted styling for the toggle to make it look like a switch */
+        .toggle-btn-container .toggle-btn:first-child {
+            border-radius: 20px 0 0 20px;
+        }
+
+        .toggle-btn-container .toggle-btn:last-child {
+            border-radius: 0 20px 20px 0;
+        }
+
+        .toggle-btn-container .toggle-btn:active {
+            transform: scale(0.98);
+        }
+
+
+/* Smooth transition for the packages */
+.packages-three__card {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    visibility: visible; /* Ensure visible by default */
+}
+
+/* Hide packages when they are not selected */
+.packages-three__card[style*="display: none"] {
+    visibility: hidden; /* Hide elements smoothly */
+    opacity: 0; /* Fade out */
+}
+
+/* Add a hidden class that hides the cards */
+.hidden {
+    visibility: hidden; /* Hide the card */
+    opacity: 0; /* Make it invisible */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Ensure all packages are visible by default */
+.packages-three__card {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Add an active class to the selected button to apply active styles */
+.toggle-btn.active {
+    background-color: #4caf50; /* Green for active button */
+    color: white;
+}
+
+
+
+/*again*/
+
+/* Ensure the buttons are the same width and aligned */
+.toggle-btn-container {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.toggle-btn {
+    flex: 1;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.toggle-btn.active {
+    background-color: #F79621;
+    color: white;
+}
+
+/* Styling for the All Packages button */
+.ienet-btn.packages-three__btn {
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: #F79621;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.ienet-btn.packages-three__btn:hover {
+    background-color: #f0f0f0; /* Light hover effect */
+}
+
+/* Ensures equal height on all buttons */
+.ienet-btn.packages-three__btn, .toggle-btn {
+    height: 50px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    .ienet-btn.packages-three__btn, .toggle-btn {
+        font-size: 14px;
+        padding: 12px 0;
+    }
+}
+.main-header__lang {
+    position: relative;
+    display: inline-block;
+}
+
+.lang-dropdown {
+    position: relative;
+}
+
+.lang-selected {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 10px;
+    background-color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.lang-options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    width: 100%;
+}
+
+.lang-option {
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.lang-option:hover {
+    background-color: #f0f0f0;
+}
+
+.lang-dropdown.open .lang-options {
+    display: block;
+}
+.main-header__lang {
+    position: relative;
+    display: inline-block;
+    font-size: 12px; /* Reduce font size */
+}
+
+.lang-dropdown {
+    position: relative;
+}
+
+.lang-selected {
+    border: 1px solid #ccc;
+    border-radius: 3px; /* Smaller border radius */
+    padding: 3px 8px; /* Reduced padding */
+    background-color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Smaller gap between flag and text */
+    font-size: 12px; /* Smaller font size */
+    line-height: 1.2; /* Tighter line height */
+}
+
+.lang-options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px; /* Match selected button */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    z-index: 100;
+    width: 120px; /* Adjust dropdown width */
+}
+
+.lang-option {
+    padding: 3px 8px; /* Reduced padding */
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Smaller gap between flag and text */
+    cursor: pointer;
+    font-size: 12px; /* Smaller font size */
+}
+
+.lang-option:hover {
+    background-color: #f0f0f0;
+}
+
+.lang-dropdown.open .lang-options {
+    display: block;
+}
+.main-footer__top__social i {
+    font-size: 24px; /* Increase the size of the icons */
+    transition: font-size 0.3s ease; /* Optional: smooth transition on hover */
+}
+
+.main-footer__top__social a {
+    margin: 0 10px; /* Add spacing between icons */
+}
+
+.main-footer__top__social a:hover i {
+    font-size: 28px; /* Optional: Increase size slightly on hover */
+}
+
+.main-footer__top__social i {
+    font-size: 24px; /* Increase the size of the icons */
+    transition: font-size 0.3s ease; /* Optional: smooth transition on hover */
+    color: inherit; /* Preserve the original color of icons */
+}
+
+.main-footer__top__social a {
+    margin: 0 10px; /* Add spacing between icons */
+}
+
+.main-footer__top__social a:hover i {
+    font-size: 28px; /* Optional: Increase size slightly on hover */
+}
+
+/* Floating Icon Container */
+.floating-icons-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+/* Main Floating Icon */
+.floating-icon {
+    background-color: #25D366; /* WhatsApp color */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.floating-icon:hover {
+    background-color: #128C7E; /* WhatsApp hover color */
+}
+
+.floating-icon i {
+    color: white;
+    font-size: 30px;
+}
+
+/* Floating Icons Dropdown (Initially hidden) */
+.floating-icons-dropdown {
+    display: none;
+    position: absolute;
+    bottom: 80px; /* Adjust this to control vertical space */
+    right: 0;
+    background: linear-gradient(135deg, #F79621, #F8A600); /* Gradient using F79621 */
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Floating Icon Items */
+.floating-icon-item {
+    display: block;
+    width: 50px;
+    height: 50px;
+    margin: 10px 0;
+    background-color: transparent;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+/* WhatsApp Icon Color */
+.floating-icon-item .fab.fa-whatsapp {
+    background-color: #25D366;
+}
+
+.floating-icon-item .fab.fa-whatsapp:hover {
+    background-color: #128C7E; /* WhatsApp hover color */
+}
+
+/* TikTok Icon Color */
+.floating-icon-item .fab.fa-tiktok {
+    background-color: #000;
+    color: #69C9D0; /* TikTok's main color */
+}
+
+.floating-icon-item .fab.fa-tiktok:hover {
+    background-color: #69C9D0;
+    color: #000;
+}
+
+/* Instagram Icon Color */
+.floating-icon-item .fab.fa-instagram {
+     /* Instagram's main color */
+}
+
+.floating-icon-item .fab.fa-instagram:hover {
+    
+}
+
+/* Call Icon Color */
+.floating-icon-item .fas.fa-phone-alt {
+    background-color: #4CAF50; /* Call button color */
+}
+
+.floating-icon-item .fas.fa-phone-alt:hover {
+    background-color: #388E3C;
+}
+
+/* Hover effects for all items */
+.floating-icon-item:hover {
+    transform: scale(1.1); /* Slight zoom effect */
+}
+
+
+
+
+
+
+/*css*/
+
+/* Floating Icon Container */
+.floating-icons-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+/* Main Floating Icon */
+.floating-icon {
+    background-color: #25D366; /* WhatsApp color */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.floating-icon:hover {
+    background-color: #128C7E; /* WhatsApp hover color */
+}
+
+.floating-icon i {
+    color: white;
+    font-size: 30px;
+}
+
+/* Floating Icons Dropdown (Initially hidden) */
+.floating-icons-dropdown {
+    display: none;
+    position: absolute;
+    bottom: 80px; /* Adjust this to control vertical space */
+    right: 0;
+    background-color: #333;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Floating Icon Items */
+.floating-icon-item {
+    display: block;
+    width: 50px;
+    height: 50px;
+    margin: 10px 0;
+    background-color: #000;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.floating-icon-item:hover {
+    background-color: #25D366; /* Hover color for all icons */
+}
+
+.floating-icon-item i {
+    color: white;
+    font-size: 24px;
+}
+
+
+
+
+    </style>
+    <script>
+        function toggleIcons() {
+    var dropdown = document.getElementById("floating-icons-dropdown");
+    // Toggle visibility of the dropdown
+    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+}
+
+    </script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+
+
+
+</head>
+
+<body class="custom-cursor">
+
+    <div class="custom-cursor__cursor"></div>
+    <div class="custom-cursor__cursor-two"></div>
+
+    <div class="preloader">
+        <div class="preloader__image" style="background-image: url(assets/preloader\ orange.svg);"></div>
+    </div>
+    <!-- /.preloader -->
+    <div class="page-wrapper">
+        <!-- Floating WhatsApp Icon -->
+        <div class="floating-icons-container">
+            <!-- Main Floating Icon -->
+            <div class="floating-icon" onclick="toggleIcons()">
+                <i class="fas fa-plus"></i>
+            </div>
+        
+            <div class="floating-icons-container">
+                <!-- Main Floating Icon -->
+                <div class="floating-icon" onclick="toggleIcons()">
+                    <i class="fas fa-plus"></i>
+                </div>
+            
+                <!-- Floating Icons Dropdown -->
+                <div class="floating-icons-dropdown" id="floating-icons-dropdown">
+                    <a href="https://wa.me/yourwhatsappnumber" class="floating-icon-item" target="_blank" style="background-color: #25D366;">
+                        <i class="fab fa-whatsapp" style="background-color: transparent;"></i>
+                    </a>
+                    <a href="https://www.instagram.com/yourusername" class="floating-icon-item" target="_blank" style="background-color: #E1306C;">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://m.me/yourfacebook" class="floating-icon-item" target="_blank" style="background-color: #00B2FF
+;">
+                        <i class="fab fa-facebook-messenger"></i>
+                    </a>
+                    <a href="mailto:your-email@example.com" class="floating-icon-item" style="background-color: #17B890;">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="tel:+yourphonenumber" class="floating-icon-item" style="background-color: #228B22;">
+                        <i class="fas fa-phone-alt" style="background-color: transparent;"></i>
+                    </a>
+                </div>
+                
+            </div>
+            
+            
+        </div>
+        
+
+
+
+        <header class="main-header sticky-header sticky-header--normal">
+            <div class="container-fluid">
+                <div class="main-header__inner">
+                    <div class="main-header__logo">
+                        <a href="index.html">
+                            <img src="assets/images/iadded/logo/savanna 1.svg" alt="Ienet HTML" height="170">
+                        </a>
+                    </div><!-- /.main-header__logo -->
+                    <a href="#" class="main-header__toggler"><span class="icon-menu"></span></a>
+                    <nav class="main-header__nav main-menu">
+                        <ul class="main-menu__list">
+                            <li class="dropdown megamenu">
+                                <a href="index.html">Home</a>
+                            </li>
+
+                            <li>
+                                <a href="#">About</a>
+                            </li>
+                            <li>
+                                <a href="#">Packages</a>
+                            </li>
+                            <li>
+                                <a href="#">Support</a>
+                            </li>
+                            <li>
+                                <a href="#">Contact</a>
+                            </li>
+                            <li>
+                                <a href="#">Shops</a>
+                            </li>
+
+                            <!-- Shop with Location Icon as part of Navbar List -->
+                            <!-- Shop with location icon as part of the navbar -->
+                            <li class="shop-location">
+                                <a href="#">Shops <span class="icon-location"></span></a>
+                            </li>
+
+                        </ul>
+                    </nav><!-- /.main-header__nav -->
+
+                    <div class="main-header__right">
+                        <div class="mobile-nav__btn mobile-nav__toggler">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div><!-- /.mobile-nav__toggler -->
+
+                        <div class="main-header__lang">
+                            <div class="lang-dropdown">
+                                <button class="lang-selected">
+                                    <span class="flag-icon flag-icon-gb"></span> English
+                                </button>
+                                <div class="lang-options">
+                                    <div class="lang-option" data-value="en">
+                                        <span class="flag-icon flag-icon-gb"></span> English
+                                    </div>
+                                    <div class="lang-option" data-value="sw">
+                                        <span class="flag-icon flag-icon-tz"></span> Kiswahili
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.main-header__lang -->
+                        
+                        
+                        
+
+
+
+                        <div class="main-header__call">
+                            <div class="main-header__call__icon"><span class="icon-telephone"></span></div>
+                            <div class="main-header__call__title">Call Us</div>
+                            <a class="main-header__call__text" href="tel:+255 699 999 555">+255 699 999 555</a>
+                        </div>
+                    </div><!-- /.main-header__right -->
+                </div><!-- /.main-header__inner -->
+            </div><!-- /.container-fluid -->
+        </header>
+        <!-- /.main-header -->
+        <!-- main-slider-start -->
+        <section class="main-slider-one">
+            <div class="main-slider-one__carousel ienet-owl__carousel owl-carousel" data-owl-options='{
+		"loop": true,
+		"animateOut": "fadeOut",
+		"animateIn": "fadeIn",
+		"items": 1,
+		"autoplay": true,
+		"autoplayTimeout": 7000,
+		"smartSpeed": 1000,
+		"nav": false,
+        "navText": ["<span class=\"icon-left-arrow\"></span>","<span class=\"icon-right-arrow\"></span>"],
+		"dots": true,
+		"margin": 0
+	    }'>
+                <div class="item">
+                    <div class="main-slider-one__item">
+                        <div class="main-slider-one__bg" style="background-image: url(assets/images/iadded/afri.png);">
+                        </div>
+                        <div class="main-slider-one__content">
+                            <h5 class="main-slider-one__sub-title"><span
+                                    class="main-slider-one__sub-title__border"></span>Connecting Tanzania</h5>
+                            <!-- slider-sub-title -->
+                            <h2 class="main-slider-one__title">Your Gateway to the<br> Digital Future in Tanzania</h2>
+                            <!-- slider-title -->
+                            <p class="main-slider-one__text">
+                                Empowering Tanzanians with reliable, high-speed internet connectivity for homes and
+                                businesses. Join us to explore<br>
+                                seamless connections and unmatched digital experiences tailored for you.
+                            </p><!-- slider-tex -->
+                            <div class="main-slider-one__btn">
+                                <a href="services.html" class="ienet-btn main-slider-one__btn__first"><span>our
+                                        service<span class="ienet-btn__icon"><i
+                                                class="fas fa-chevron-right"></i></span></span></a><!-- slider-btn -->
+                                <a href="#packages-section" class="ienet-btn main-slider-one__btn__last"><span><span
+                                            class="ienet-btn__icon ienet-btn__icon--left"><i
+                                                class="fas fa-gem"></i></span>browse plan</span></a><!-- slider-btn -->
+                            </div>
+                        </div>
+                        <div class="main-slider-one__image">
+                            <div class="main-slider-one__image__one">
+                                <img src="assets/images/iadded/afri1.png" alt="ienet">
+                            </div>
+                            <div class="main-slider-one__image__border">
+                                <img src="assets/images/shapes/slider-1-border.png" alt="ienet">
+                            </div>
+                            <div class="main-slider-one__image__user">
+                                <div class="main-slider-one__image__user__text">2.5M satisfied users</div>
+                                <div class="main-slider-one__image__user__image">
+                                    <img src="assets/images/iadded/p4.png" alt="ienet">
+                                    <img src="assets/images/iadded/p5.png" alt="ienet">
+                                    <img src="assets/images/iadded/p6.png" alt="ienet">
+                                    <span class="main-slider-one__image__user__rm">+65</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-slider-one__layer" style="background-image: url(assets/images/iadded/1.png);">
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="main-slider-one__item">
+                        <div class="main-slider-one__bg" style="background-image: url(assets/images/iadded/afri.png);">
+                        </div>
+                        <div class="main-slider-one__content">
+                            <h5 class="main-slider-one__sub-title"><span
+                                    class="main-slider-one__sub-title__border"></span>Empowering Tanzania</h5>
+                            <!-- slider-sub-title -->
+                            <h2 class="main-slider-one__title">Unleashing Potential<br> Through Connectivity</h2>
+                            <!-- slider-title -->
+                            <p class="main-slider-one__text">
+                                Join the fastest-growing digital community in Tanzania. Experience premium internet
+                                services with unmatched<br>
+                                reliability and support, designed for Tanzanian businesses and homes.
+                            </p><!-- slider-tex -->
+                            <div class="main-slider-one__btn">
+                                <a href="services.html" class="ienet-btn main-slider-one__btn__first"><span>our
+                                        service<span class="ienet-btn__icon"><i
+                                                class="fas fa-chevron-right"></i></span></span></a><!-- slider-btn -->
+                                <a href="packages.html" class="ienet-btn main-slider-one__btn__last"><span><span
+                                            class="ienet-btn__icon ienet-btn__icon--left"><i
+                                                class="fas fa-gem"></i></span>browse plan</span></a><!-- slider-btn -->
+                            </div>
+                        </div>
+                        <div class="main-slider-one__image">
+                            <div class="main-slider-one__image__one">
+                                <img src="assets/images/iadded/afri1.png" alt="ienet">
+                            </div>
+                            <div class="main-slider-one__image__border">
+                                <img src="assets/images/shapes/slider-1-border.png" alt="ienet">
+                            </div>
+                            <div class="main-slider-one__image__user">
+                                <div class="main-slider-one__image__user__text">2.5M satisfied users</div>
+                                <div class="main-slider-one__image__user__image">
+                                    <img src="assets/images/iadded/p4.png" alt="ienet">
+                                    <img src="assets/images/iadded/p5.png" alt="ienet">
+                                    <img src="assets/images/iadded/p6.png" alt="ienet">
+                                    <span class="main-slider-one__image__user__rm">+65</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-slider-one__layer" style="background-image: url(assets/images/iadded/2.png);">
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="main-slider-one__item">
+                        <div class="main-slider-one__bg" style="background-image: url(assets/images/iadded/afri.png);">
+                        </div>
+                        <div class="main-slider-one__content">
+                            <h5 class="main-slider-one__sub-title"><span
+                                    class="main-slider-one__sub-title__border"></span>Connecting Tanzania</h5>
+                            <!-- slider-sub-title -->
+                            <h2 class="main-slider-one__title">Seamless Digital Access<br> Across Tanzania</h2>
+                            <!-- slider-title -->
+                            <p class="main-slider-one__text">
+                                Providing Tanzanian homes and businesses with the speed and stability they deserve.
+                                Let's build a connected future<br>
+                                together with innovative solutions just for you.
+                            </p><!-- slider-tex -->
+                            <div class="main-slider-one__btn">
+                                <a href="services.html" class="ienet-btn main-slider-one__btn__first"><span>our
+                                        service<span class="ienet-btn__icon"><i
+                                                class="fas fa-chevron-right"></i></span></span></a><!-- slider-btn -->
+                                <a href="packages.html" class="ienet-btn main-slider-one__btn__last"><span><span
+                                            class="ienet-btn__icon ienet-btn__icon--left"><i
+                                                class="fas fa-gem"></i></span>browse plan</span></a><!-- slider-btn -->
+                            </div>
+                        </div>
+                        <div class="main-slider-one__image">
+                            <div class="main-slider-one__image__one">
+                                <img src="assets/images/iadded/afri1.png" alt="ienet">
+                            </div>
+                            <div class="main-slider-one__image__border">
+                                <img src="assets/images/shapes/slider-1-border.png" alt="ienet">
+                            </div>
+                            <div class="main-slider-one__image__user">
+                                <div class="main-slider-one__image__user__text">2.5M satisfied users</div>
+                                <div class="main-slider-one__image__user__image">
+                                    <img src="assets/images/iadded/p4.png" alt="ienet">
+                                    <img src="assets/images/iadded/p5.png" alt="ienet">
+                                    <img src="assets/images/iadded/p6.png" alt="ienet">
+                                    <span class="main-slider-one__image__user__rm">+65</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-slider-one__layer" style="background-image: url(assets/images/iadded/3.png);">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- main-slider-end -->
+
+        <section class="about-one" style="background-image: url(assets/images/shapes/about-1-bg.png);">
+            <div class="about-one__shape" style="background-image: url(assets/images/iadded/wild.png);">
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="about-one__image wow fadeInLeft" data-wow-delay="300ms">
+                            <div class="about-one__image__one">
+                                <img src="assets/images/resources/about-1-1.jpg" alt="ienet">
+                            </div>
+                            <div class="about-one__image__bg"></div>
+                            <div class="about-one__image__border"
+                                style="background-image: url(assets/images/shapes/about-1-border.png);"></div>
+                            <div class="about-one__image__two">
+                                <div class="about-one__image__two__inner"><img
+                                        src="assets/images/resources/about-1-2.jpg" alt="ienet"></div>
+                            </div>
+                        </div><!-- /.about-one__image -->
+                    </div><!-- /.col-lg-6 -->
+                    <div class="col-xl-6 wow fadeInRight" data-wow-delay="300ms">
+                        <div class="about-one__content">
+                            <div class="sec-title text-left">
+                                <h6 class="sec-title__tagline bw-split-in-right">
+                                    <span class="sec-title__tagline__left-border"></span>
+                                    Who we are:
+                                    <span class="sec-title__tagline__right-border"></span>
+                                </h6><!-- /.sec-title__tagline -->
+
+                                <h3 class="sec-title__title bw-split-in-left">
+                                    We Deliver <span>Reliable</span> Network Services For You.
+                                </h3><!-- /.sec-title__title -->
+                            </div><!-- /.sec-title -->
+                            <p class="about-one__content__text">
+                                Savanna Fibre is an innovative Internet Service Provider (ISP) committed to delivering
+                                fast, easy, reliable, and
+                                affordable fibre-optic Internet services to households across Tanzania. As a company, we
+                                aim to bridge the digital
+                                divide by providing essential internet access to homes, ensuring seamless connectivity
+                                anywhere and everywhere
+
+                            </p>
+                            <ul class="about-one__content__list">
+                                <li><span class="fas fa-check"></span>Premium Service at Affordable Price</li>
+                                <li><span class="fas fa-check"></span>24/7 Rapid Response</li>
+                                <li><span class="fas fa-check"></span>24/7 Call Center English & Swahili</li>
+                                <li><span class="fas fa-check"></span>Fast & Free Installation</li>
+                            </ul>
+                            <a href="about.html" class="ienet-btn">
+                                <span>
+                                    More About Us
+                                    <span class="ienet-btn__icon"><i class="fas fa-chevron-right"></i></span>
+                                </span>
+                            </a>
+                        </div><!-- /.about-one__content -->
+                    </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section><!-- /.about-one -->
+        <div class="thin-strip-container">
+            <!-- Content can be added here if needed -->
+        </div>
+        <section class="mail-one">
+            <div class="mail-one__bg" style="background-image: url(assets/images/iadded/5.png);"></div>
+            <!-- /.movie-one__bg -->
+            <div class="mail-one__shape-left" style="background-image: url(assets/images/resources/mail-shape-1.png);">
+            </div>
+            <div class="mail-one__shape-right" style="background-image: url(assets/images/iadded/);">
+            </div>
+            <div class="container">
+                <div class="mail-one__content">
+                    <div class="sec-title text-left">
+
+                        <h6 class="sec-title__tagline bw-split-in-right"><span
+                                class="sec-title__tagline__left-border"></span>check your area<span
+                                class="sec-title__tagline__right-border"></span></h6><!-- /.sec-title__tagline -->
+
+                        <h3 class="sec-title__title bw-split-in-left">Check Availability In <span>Your City</span></h3>
+                        <!-- /.sec-title__title -->
+                    </div><!-- /.sec-title -->
+                    <form action="#" data-url="MAILCHIMP_FORM_URL" class="mail-one__newsletter mc-form">
+                        <input type="text" name="EMAIL" placeholder="Enter Your Address">
+                        <span class="mail-one__newsletter__icon"><i class="icon-location"></i></span>
+                        <button type="submit" class="ienet-btn"><span>Check Availability</span></button>
+                        <div class="mc-form__response"></div><!-- /.mc-form__response -->
+                    </form><!-- /.footer-widget__newsletter mc-form -->
+                </div>
+            </div>
+        </section>
+        <div class="thin-strip-container">
+            <!-- Content can be added here if needed -->
+        </div>
+
+        <section id="packages-section" class="packages-three">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 wow fadeInUp" data-wow-delay="00ms">
+                        <div class="sec-title text-left">
+                            <h6 class="sec-title__tagline bw-split-in-right">
+                                <span class="sec-title__tagline__left-border"></span>Our Best Packages<span
+                                    class="sec-title__tagline__right-border"></span>
+                            </h6>
+                            <h3 class="sec-title__title bw-split-in-left">
+                                Select Your <span>Best Package</span>
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="col-md-4 wow fadeInUp" data-wow-delay="00ms">
+                        <div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+                            <!-- Link to All Packages -->
+                           
+                            <!-- Toggle Button as a Switch -->
+                            <div class="toggle-btn-container">
+                                <button id="business-btn" class="toggle-btn active">Residential</button>
+                                <button id="residential-btn" class="toggle-btn">Business</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <br>
+        
+                <!-- Package Cards Section -->
+                <div class="packages-three__card business-card wow fadeInUp" data-wow-delay="00ms">
+                    <div class="packages-three__card__image">
+                        <!-- <img src="assets/images/iadded/business-package-1.png" alt="Business Package 1"> -->
+                        <h3 class="packages-three__card__title">Residential 20 Mbps</h3>
+                    </div>
+                    <ul class="packages-three__card__list">
+                        <li><span class="fas fa-check"></span>affordable for everyday connectivity</li>
+                        <li><span class="fas fa-check"></span>reliable speeds for light downloads</li>
+                        <li><span class="fas fa-check"></span>supports video calls & online classes</li>
+                        <li><span class="fas fa-check"></span>Unlimited devices</li>
+                    </ul>
+                    <div class="packages-three__card__price">
+                        <div class="top">TSh</div>
+                        <div class="amount">39,000<span>Month</span></div>
+                    </div>
+                    <div class="packages-three__card__rm">
+                        <a href="contact.html" class="ienet-btn"><span>Choose Package<span class="ienet-btn__icon"><i class="fas fa-chevron-right"></i></span></span></a>
+                    </div>
+                </div>
+        
+                <div class="packages-three__card business-card wow fadeInUp" data-wow-delay="50ms">
+                    <div class="packages-three__card__image">
+                        <!-- <img src="assets/images/iadded/business-package-2.png" alt="Business Package 2"> -->
+                        <h3 class="packages-three__card__title">Residential 40 Mbps</h3>
+                    </div>
+                    <ul class="packages-three__card__list">
+                        <li><span class="fas fa-check"></span>Greater value for faster speeds.</li>
+                        <li><span class="fas fa-check"></span>seamless multitask across multiple devices.</li>
+                        <li><span class="fas fa-check"></span>smooth streaming, gaming and file download.</li>
+                        <li><span class="fas fa-check"></span>Unlimited devices.</li>
+                    </ul>
+                    <div class="packages-three__card__price">
+                        <div class="top">TSh</div>
+                        <div class="amount">49,000<span>Month</span></div>
+                    </div>
+                    <div class="packages-three__card__rm">
+                        <a href="contact.html" class="ienet-btn"><span>Choose Package<span class="ienet-btn__icon"><i class="fas fa-chevron-right"></i></span></span></a>
+                    </div>
+                </div>
+        
+                <div class="packages-three__card corporate-card wow fadeInUp hidden" data-wow-delay="100ms">
+                    <div class="packages-three__card__image">
+                        <!-- <img src="assets/images/iadded/corporate-package-1.png" alt="Residential Package 1"> -->
+                        <h3 class="packages-three__card__title">Business 40 Mbps</h3>
+                    </div>
+                    <ul class="packages-three__card__list">
+                        <li><span class="fas fa-check"></span>Free static IP.</li>
+                        <li><span class="fas fa-check"></span>Cost-effective solution.</li>
+                        <li><span class="fas fa-check"></span>improved productivity no downtimes.</li>
+                        <li><span class="fas fa-check"></span>ensure uninterrupted operations for essential online tasks.</li>
+                    </ul>
+                    <div class="packages-three__card__price">
+                        <div class="top">TSh</div>
+                        <div class="amount">59,000<span>Month</span></div>
+                    </div>
+                    <div class="packages-three__card__rm">
+                        <a href="contact.html" class="ienet-btn"><span>Choose Package<span class="ienet-btn__icon"><i class="fas fa-chevron-right"></i></span></span></a>
+                    </div>
+                </div>
+        
+                <div class="packages-three__card corporate-card wow fadeInUp hidden" data-wow-delay="100ms">
+                    <div class="packages-three__card__image">
+                        <!-- <img src="assets/images/iadded/corporate-package-2.png" alt="Corporate Package 2"> -->
+                        <h3 class="packages-three__card__title">Business 100 Mbps</h3>
+                    </div>
+                    <ul class="packages-three__card__list">
+                        <li><span class="fas fa-check"></span>Free Static IP.</li>
+                        <li><span class="fas fa-check"></span>High speed performance</li>
+                        <li><span class="fas fa-check"></span>future proof investment</li>
+                        <li><span class="fas fa-check"></span>Ensure smooth gaming & content streaming.</li>
+                    </ul>
+                    <div class="packages-three__card__price">
+                        <div class="top">TSh</div>
+                        <div class="amount">159,000<span>Month</span></div>
+                    </div>
+                    <div class="packages-three__card__rm">
+                        <a href="contact.html" class="ienet-btn"><span>Choose Package<span class="ienet-btn__icon"><i class="fas fa-chevron-right"></i></span></span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+
+        <div class="thin-strip-container">
+            <!-- Content can be added here if needed -->
+        </div>
+        <!-- Feature Start -->
+        <section class="feature-one">
+            <div class="container">
+                <div class="sec-title text-center">
+                    <h6 class="sec-title__tagline bw-split-in-right"><span
+                            class="sec-title__tagline__left-border"></span>GET CONNECTED NOW<span
+                            class="sec-title__tagline__right-border"></span></h6><!-- /.sec-title__tagline -->
+                    <h3 class="sec-title__title bw-split-in-left">Why Choose <span>Savanna Fibre</span></h3>
+                    <!-- /.sec-title__title -->
+                </div><!-- /.sec-title -->
+                <div class="row">
+                    <div class="col-lg-4 wow fadeInLeft" data-wow-delay="00ms">
+                        <div class="feature-one__box">
+                            <div class="feature-one__box__icon"><i class="icon-dashboard"></i></div>
+                            <h5 class="feature-one__box__title">Ultra-Speed Internet Connection</h5>
+                            <p class="feature-one__box__text">
+                                We provide fast and reliable internet to keep your business and personal needs
+                                connected, available across Tanzania.
+                            </p>
+                        </div>
+                        <div class="feature-one__box">
+                            <div class="feature-one__box__icon"><i class="icon-support"></i></div>
+                            <h5 class="feature-one__box__title">Fast Support 24/7</h5>
+                            <p class="feature-one__box__text">
+                                Our dedicated customer support team is available round the clock to assist you wherever
+                                you are in Tanzania.
+                            </p>
+                        </div>
+                        <div class="feature-one__box">
+                            <div class="feature-one__box__icon"><i class="icon-dashboard"></i></div>
+                            <h5 class="feature-one__box__title">High-Speed Data Transfer</h5>
+                            <p class="feature-one__box__text">
+                                Enjoy fast and reliable data transfer speeds to keep up with your digital needs across
+                                Tanzania.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 wow fadeInUp" data-wow-delay="100ms">
+                        <div class="feature-one__image">
+                            <div class="feature-one__image__one">
+                                <img src="assets/images/resources/feature-1-1.jpg" alt="ienet">
+                            </div>
+                            <div class="feature-one__image__border">
+                                <img src="assets/images/shapes/feature-shape-1.png" alt="ienet">
+                            </div>
+                            <div class="feature-one__image__router">
+                                <img src="assets/images/resources/feature-1-router.png" alt="ienet">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 wow fadeInRight" data-wow-delay="00ms">
+                        <div class="feature-one__box">
+                            <div class="feature-one__box__icon"><i class="icon-wifi-router"></i></div>
+                            <h5 class="feature-one__box__title">100% Free Installation</h5>
+                            <p class="feature-one__box__text">
+                                Get connected hassle-free with no installation fees across Tanzania. We handle
+                                everything.
+                            </p>
+                        </div>
+
+                        <div class="feature-one__box">
+                            <div class="feature-one__box__icon"><i class="icon-planning"></i></div>
+                            <h5 class="feature-one__box__title">Flexible Subscription Plans</h5>
+                            <p class="feature-one__box__text">
+                                Choose from a variety of plans designed to fit your needs, whether you're in Dar es
+                                Salaam or any other region.
+                            </p>
+                        </div>
+                        <div class="feature-one__box">
+                            <div class="feature-one__box__icon"><i class="icon-4k"></i></div>
+                            <h5 class="feature-one__box__title">4K and 8K Quality Streaming</h5>
+                            <p class="feature-one__box__text">
+                                Experience top-tier 4K and 8K streaming quality on your devices, available for customers
+                                in Tanzania.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature End -->
+        <div class="thin-strip-container">
+            <!-- Content can be added here if needed -->
+        </div>
+
+
+
+
+        <section class="faq-one">
+            <div class="faq-one__shape" style="background-image: url(assets/images/resources/faq-shape-1.png);"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="faq-one__accordion ienet-accrodion" data-grp-name="ienet-accrodion">
+                            <div class="accrodion">
+                                <div class="accrodion-title">
+                                    <h4>
+                                        <span class="accrodion-title__icon"></span><!-- /.accrodion-title__icon -->
+                                        What is an Internet Service Provider (ISP)?
+                                    </h4>
+                                </div><!-- /.accordian-title -->
+                                <div class="accrodion-content">
+                                    <div class="inner">
+                                        <p>
+                                            An Internet Service Provider (ISP) is a company or organization that
+                                            provides individuals, businesses, and other entities with access to the
+                                            internet. Savanna Fibre connects customers to the internet in Tanzania
+                                            through reliable, high-speed wireless connections at an affordable price.
+                                        </p>
+                                    </div><!-- /.accordian-content -->
+                                </div>
+                            </div><!-- /.accordian-item -->
+                            <div class="accrodion active">
+                                <div class="accrodion-title">
+                                    <h4>
+                                        <span class="accrodion-title__icon"></span><!-- /.accrodion-title__icon -->
+                                        Who is the fastest internet service provider in Tanzania?
+                                    </h4>
+                                </div><!-- /.accordian-title -->
+                                <div class="accrodion-content">
+                                    <div class="inner">
+                                        <p>
+                                            Savanna Fibre stands out as Tanzania’s premier internet service provider,
+                                            renowned for its lightning-fast speeds and dependable connectivity. With
+                                            advanced technology and an extensive network infrastructure, Savanna Fibre
+                                            offers unmatched browsing, streaming, and gaming experiences, leading the
+                                            way for digital innovation in the region.
+                                        </p>
+                                    </div><!-- /.accordian-content -->
+                                </div>
+                            </div><!-- /.accordian-item -->
+                            <div class="accrodion">
+                                <div class="accrodion-title">
+                                    <h4>
+                                        <span class="accrodion-title__icon"></span><!-- /.accrodion-title__icon -->
+                                        Where can I get cheap WIFI in Dar es Salaam?
+                                    </h4>
+                                </div><!-- /.accordian-title -->
+                                <div class="accrodion-content">
+                                    <div class="inner">
+                                        <p>
+                                            Savanna Fibre is the top choice for affordable internet in Dar es Salaam,
+                                            offering competitive rates without compromising on quality. With
+                                            budget-friendly packages designed to meet various user needs, Savanna Fibre
+                                            makes high-speed internet accessible to all.
+                                        </p>
+                                    </div><!-- /.accordian-content -->
+                                </div>
+                            </div><!-- /.accordian-item -->
+                            <div class="accrodion">
+                                <div class="accrodion-title">
+                                    <h4>
+                                        <span class="accrodion-title__icon"></span><!-- /.accrodion-title__icon -->
+                                        Fiber Internet Providers in Tanzania?
+                                    </h4>
+                                </div><!-- /.accordian-title -->
+                                <div class="accrodion-content">
+                                    <div class="inner">
+                                        <p>
+                                            Savanna Fibre is at the forefront of fiber internet service in Tanzania,
+                                            combining speed, reliability, and innovation. With a robust network and
+                                            state-of-the-art technology, Savanna Fibre connects individuals, businesses,
+                                            and communities across Tanzania, enabling them to excel in the digital era.
+                                            Whether it’s fast browsing, smooth streaming, or seamless communication,
+                                            Savanna Fibre delivers exceptional internet experiences throughout the
+                                            country.
+                                        </p>
+                                    </div><!-- /.accordian-content -->
+                                </div>
+                            </div><!-- /.accordian-item -->
+                            <div class="accrodion">
+                                <div class="accrodion-title">
+                                    <h4>
+                                        <span class="accrodion-title__icon"></span><!-- /.accrodion-title__icon -->
+                                        What are the main services offered by an Internet service provider?
+                                    </h4>
+                                </div><!-- /.accordian-title -->
+                                <div class="accrodion-content">
+                                    <div class="inner">
+                                        <p>
+                                            Savanna Fibre transforms internet access in Tanzania by providing ultra-fast
+                                            connectivity, as well as complimentary installation and routers for a smooth
+                                            setup experience. This commitment ensures customers can quickly enjoy
+                                            high-speed internet without any upfront costs, making Savanna Fibre the
+                                            preferred provider for easy and reliable connectivity solutions across
+                                            Tanzania.
+                                        </p>
+                                    </div><!-- /.accordian-content -->
+                                </div>
+                            </div><!-- /.accordian-item -->
+                        </div>
+                    </div><!-- /.col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="faq-one__content">
+                            <div class="sec-title text-left">
+                                <h6 class="sec-title__tagline bw-split-in-right"><span
+                                        class="sec-title__tagline__left-border"></span>Frequently Asked Questions<span
+                                        class="sec-title__tagline__right-border"></span></h6>
+                                <!-- /.sec-title__tagline -->
+                                <h3 class="sec-title__title bw-split-in-left">How we can <span>help</span> you?</h3>
+                                <!-- /.sec-title__title -->
+                            </div><!-- /.sec-title -->
+                            <!-- section-title -->
+                            <div class="faq-one__content__box">
+                                <div class="faq-one__content__box__icon"><i class="icon-wifi-router"></i></div>
+                                <h5 class="faq-one__content__box__title">100% Free Installation</h5>
+                                <p class="faq-one__content__box__text">
+                                    Savanna Fibre offers complimentary installation for all our services, ensuring that
+                                    our customers have a seamless, hassle-free experience from day one.
+                                </p>
+                            </div>
+                            <div class="faq-one__video" style="background-image: url(Untitled\ \(470\ x\ 150\ px\).png);">
+                                <!-- <a href="https://www.youtube.com/watch?v=h9MbznbxlLc" class="video-popup">
+                                    <i class="fa fa-play"></i>
+                                    <i class="ripple"></i>
+                                </a> -->
+                            </div>
+                        </div><!-- /.faq-one__contact -->
+                    </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section><!-- /.faq-one-accordion -->
+
+
+        <section class="testimonials-one">
+            <div class="testimonials-one__bg" style="background-image: url(assets/images/shapes/testimonial-bg-1.png);">
+            </div>
+            <div class="testimonials-one__left-color"></div>
+            <div class="testimonials-one__image" style="background-image: url(assets/images/iadded/r6.png);"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="testimonials-one__content">
+                            <div class="sec-title text-left">
+                                <h6 class="sec-title__tagline bw-split-in-right"><span
+                                        class="sec-title__tagline__left-border"></span>Our Testimonials<span
+                                        class="sec-title__tagline__right-border"></span></h6>
+                                <h3 class="sec-title__title bw-split-in-left">What People Are Saying About savanna
+                                    Fibre</h3>
+                            </div>
+                            <p class="testimonials-one__content__text">
+                                savanna Fibre has gained recognition for providing reliable, transparent, and
+                                cost-effective
+                                internet services, and the feedback from our clients speaks volumes.
+                            </p>
+                            <div class="testimonials-one__nav">
+                                <a href="#" class="testimonials-one__nav__prev"><i class="icon-left-chevron"></i></a>
+                                <a href="#" class="testimonials-one__nav__next"><i class="icon-right-chevron"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="ienet-stretch-element-inside-column">
+                            <div class="testimonials-one__carousel ienet-owl__carousel ienet-owl__carousel--custom-nav owl-theme owl-carousel"
+                                data-owl-nav-prev=".testimonials-one__nav__prev"
+                                data-owl-nav-next=".testimonials-one__nav__next" data-owl-options='{
+                            "items": 1,
+                            "margin": 30,
+                            "smartSpeed": 700,
+                            "loop":true,
+                            "autoplay": false,
+                            "stagePadding": 0,
+                            "nav":false,
+                            "dots":false,
+                            "responsive":{
+                                "0":{
+                                    "items": 1
+                                },
+                                "768":{
+                                    "items": 1.4
+                                },
+                                "992":{
+                                    "items": 1.6
+                                },
+                                "1200":{
+                                    "items": 1.1
+                                },
+                                "1360":{
+                                    "items": 1.2
+                                },
+                                "1600":{
+                                    "items": 1.6
+                                }
+                            }
+                        }'>
+                                <div class="item">
+                                    <div class="testimonials-card wow fadeInUp" data-wow-duration='1500ms'
+                                        data-wow-delay='000ms'>
+                                        <div class="testimonials-card__rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="testimonials-card__content">
+                                            savanna Fibre impressed us with their fast and reliable internet. Their
+                                            transparent
+                                            approach to pricing and exceptional customer support have made them a
+                                            trusted partner.
+                                        </div>
+                                        <div class="testimonials-card__author">
+                                            <img src="assets/images/iadded/p1.png" alt="Anthony B. Castillo">
+                                            <h3 class="testimonials-card__name">Anthony B. Castillo</h3>
+                                            <p class="testimonials-card__designation">Managing Director</p>
+                                        </div>
+                                        <div class="testimonials-card__quote">
+                                            <i class="icon-quote"></i>
+                                            <i class="icon-quote"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="testimonials-card wow fadeInUp" data-wow-duration='1500ms'
+                                        data-wow-delay='100ms'>
+                                        <div class="testimonials-card__rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="testimonials-card__content">
+                                            We were thoroughly impressed with the seamless connection and high-speed
+                                            internet
+                                            provided by savanna Fibre. Their consistent service is second to none.
+                                        </div>
+                                        <div class="testimonials-card__author">
+                                            <img src="assets/images/iadded/p2.png" alt="Sarah Albert">
+                                            <h3 class="testimonials-card__name">Sarah Albert</h3>
+                                            <p class="testimonials-card__designation">Founder</p>
+                                        </div>
+                                        <div class="testimonials-card__quote">
+                                            <i class="icon-quote"></i>
+                                            <i class="icon-quote"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="testimonials-card wow fadeInUp" data-wow-duration='1500ms'
+                                        data-wow-delay='200ms'>
+                                        <div class="testimonials-card__rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="testimonials-card__content">
+                                            savanna Fibre's customer service is excellent! Their quick response to
+                                            queries and
+                                            support during installation made the process smooth and easy.
+                                        </div>
+                                        <div class="testimonials-card__author">
+                                            <img src="assets/images/iadded/p3.png" alt="David Cooper">
+                                            <h3 class="testimonials-card__name">David Cooper</h3>
+                                            <p class="testimonials-card__designation">Co-Founder</p>
+                                        </div>
+                                        <div class="testimonials-card__quote">
+                                            <i class="icon-quote"></i>
+                                            <i class="icon-quote"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="blog-one">
+            <div class="container">
+                <div class="sec-title text-center">
+
+                    <h6 class="sec-title__tagline bw-split-in-right"><span
+                            class="sec-title__tagline__left-border"></span>latest blog<span
+                            class="sec-title__tagline__right-border"></span></h6><!-- /.sec-title__tagline -->
+
+                    <h3 class="sec-title__title bw-split-in-left">Our Latest <span>Blog</span> News</h3>
+                    <!-- /.sec-title__title -->
+                </div><!-- /.sec-title -->
+                <div class="blog-one__carousel ienet-owl__carousel ienet-owl__carousel--with-shadow ienet-owl__carousel--basic-nav owl-carousel owl-theme"
+                    data-owl-options='{
+			"items": 1,
+			"margin": 30,
+			"loop": false,
+			"smartSpeed": 700,
+			"nav": false,
+			"navText": ["<span class=\"icon-left-chevron\"></span>","<span class=\"icon-right-chevron\"></span>"],
+			"dots": false,
+			"autoplay": false,
+			"responsive": {
+				"0": {
+					"nav": true,
+					"items": 1
+				},
+				"768": {
+					"nav": true,
+					"items": 2
+				},
+				"992": {
+					"items": 3
+				}
+			}
+			}'>
+                    <div class="item">
+                        <div class="blog-card wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='00ms'>
+                            <div class="blog-card__image">
+                                <img src="assets/images/blog/blog-1-1.png"
+                                    alt="Understanding the Impact of Modern Technology on Business">
+                                <img src="assets/images/blog/blog-1-1.png"
+                                    alt="Understanding the Impact of Modern Technology on Business">
+                                <a href="blog-details-right.html" class="blog-card__image__link"><span
+                                        class="sr-only">Understanding the Impact of Modern Technology on
+                                        Business</span></a>
+                                <div class="blog-card__date">AUG, 04</div><!-- /.blog-card__date -->
+                                <ul class="list-unstyled blog-card__meta">
+                                    <li><a href="blog-list-right.html"><i class="fas fa-user-alt"></i>by Admin</a></li>
+                                </ul><!-- /.list-unstyled blog-card__meta -->
+                            </div><!-- /.blog-card__image -->
+                            <div class="blog-card__content">
+                                <h3 class="blog-card__title"><a href="blog-details-right.html">Understanding the Impact
+                                        of Modern Technology on Business</a></h3><!-- /.blog-card__title -->
+                                <a href="blog-details-right.html" class="blog-card__link">
+                                    <span class="blog-card__link__front"><span
+                                            class="fas fa-angle-double-right"></span></span>
+                                    <span class="blog-card__link__back"><span
+                                            class="fas fa-angle-double-right"></span>Read More</span>
+                                </a><!-- /.blog-card__link -->
+                            </div><!-- /.blog-card__content -->
+                        </div><!-- /.blog-card -->
+                    </div><!-- /.item -->
+                    <div class="item">
+                        <div class="blog-card wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='100ms'>
+                            <div class="blog-card__image">
+                                <img src="assets/images/iadded/blog.png"
+                                    alt="Exploring the Best Practices for Broadband Fiber Internet Usage">
+                                <img src="assets/images/iadded/blog.png"
+                                    alt="Exploring the Best Practices for Broadband Fiber Internet Usage">
+                                <a href="blog-details-right.html" class="blog-card__image__link"><span
+                                        class="sr-only">Exploring the Best Practices for Broadband Fiber Internet
+                                        Usage</span></a>
+                                <div class="blog-card__date">AUG, 04</div><!-- /.blog-card__date -->
+                                <ul class="list-unstyled blog-card__meta">
+                                    <li><a href="blog-list-right.html"><i class="fas fa-user-alt"></i>by Admin</a></li>
+                                </ul><!-- /.list-unstyled blog-card__meta -->
+                            </div><!-- /.blog-card__image -->
+                            <div class="blog-card__content">
+                                <h3 class="blog-card__title"><a href="blog-details-right.html">Exploring the Best
+                                        Practices for Broadband Fiber Internet Usage</a></h3><!-- /.blog-card__title -->
+                                <a href="blog-details-right.html" class="blog-card__link">
+                                    <span class="blog-card__link__front"><span
+                                            class="fas fa-angle-double-right"></span></span>
+                                    <span class="blog-card__link__back"><span
+                                            class="fas fa-angle-double-right"></span>Read More</span>
+                                </a><!-- /.blog-card__link -->
+                            </div><!-- /.blog-card__content -->
+                        </div><!-- /.blog-card -->
+                    </div><!-- /.item -->
+                    <div class="item">
+                        <div class="blog-card wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='200ms'>
+                            <div class="blog-card__image">
+                                <img src="assets/images/blog/blog-1-3.png"
+                                    alt="Effective Strategies for Managing Your Online Presence">
+                                <img src="assets/images/blog/blog-1-3.png"
+                                    alt="Effective Strategies for Managing Your Online Presence">
+                                <a href="blog-details-right.html" class="blog-card__image__link"><span
+                                        class="sr-only">Effective Strategies for Managing Your Online
+                                        Presence</span></a>
+                                <div class="blog-card__date">AUG, 04</div><!-- /.blog-card__date -->
+                                <ul class="list-unstyled blog-card__meta">
+                                    <li><a href="blog-list-right.html"><i class="fas fa-user-alt"></i>by Admin</a></li>
+                                </ul><!-- /.list-unstyled blog-card__meta -->
+                            </div><!-- /.blog-card__image -->
+                            <div class="blog-card__content">
+                                <h3 class="blog-card__title"><a href="blog-details-right.html">Effective Strategies for
+                                        Managing Your Online Presence</a></h3><!-- /.blog-card__title -->
+                                <a href="blog-details-right.html" class="blog-card__link">
+                                    <span class="blog-card__link__front"><span
+                                            class="fas fa-angle-double-right"></span></span>
+                                    <span class="blog-card__link__back"><span
+                                            class="fas fa-angle-double-right"></span>Read More</span>
+                                </a><!-- /.blog-card__link -->
+                            </div><!-- /.blog-card__content -->
+                        </div><!-- /.blog-card -->
+                    </div><!-- /.item -->
+
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section><!-- /.blog-one -->
+        <br>
+
+        <div class="client-carousel " style="display: none;">
+            <div class="container">
+                <div class="client-carousel__one ienet-owl__carousel owl-theme owl-carousel" data-owl-options='{
+            "items": 5,
+            "margin": 65,
+            "smartSpeed": 700,
+            "loop":true,
+            "autoplay": 6000,
+            "nav":false,
+            "dots":false,
+            "navText": ["<span class=\"fa fa-angle-left\"></span>","<span class=\"fa fa-angle-right\"></span>"],
+            "responsive":{
+                "0":{
+                    "items":1,
+                    "margin": 0
+                },
+                "360":{
+                    "items":2,
+                    "margin": 30
+                },
+                "575":{
+                    "items":3,
+                    "margin": 30
+                },
+                "768":{
+                    "items":3,
+                    "margin": 40
+                },
+                "992":{
+                    "items": 4,
+                    "margin": 40
+                },
+                "1200":{
+                    "items": 5,
+                    "margin": 140
+                }
+            }
+            }'>
+                    <div class="client-carousel__one__item">
+                        <img class="client-carousel__one__item__normal" src="assets/images/resources/brand-1-1.png"
+                            alt="ienet">
+                        <img class="client-carousel__one__item__hover" src="assets/images/resources/brand-1-1-hover.png"
+                            alt="ienet">
+                    </div><!-- /.owl-slide-item-->
+                    <div class="client-carousel__one__item">
+                        <img class="client-carousel__one__item__normal" src="assets/images/resources/brand-1-2.png"
+                            alt="ienet">
+                        <img class="client-carousel__one__item__hover" src="assets/images/resources/brand-1-2-hover.png"
+                            alt="ienet">
+                    </div><!-- /.owl-slide-item-->
+                    <div class="client-carousel__one__item">
+                        <img class="client-carousel__one__item__normal" src="assets/images/resources/brand-1-3.png"
+                            alt="ienet">
+                        <img class="client-carousel__one__item__hover" src="assets/images/resources/brand-1-3-hover.png"
+                            alt="ienet">
+                    </div><!-- /.owl-slide-item-->
+                    <div class="client-carousel__one__item">
+                        <img class="client-carousel__one__item__normal" src="assets/images/resources/brand-1-4.png"
+                            alt="ienet">
+                        <img class="client-carousel__one__item__hover" src="assets/images/resources/brand-1-4-hover.png"
+                            alt="ienet">
+                    </div><!-- /.owl-slide-item-->
+                    <div class="client-carousel__one__item">
+                        <img class="client-carousel__one__item__normal" src="assets/images/resources/brand-1-5.png"
+                            alt="ienet">
+                        <img class="client-carousel__one__item__hover" src="assets/images/resources/brand-1-5-hover.png"
+                            alt="ienet">
+                    </div><!-- /.owl-slide-item-->
+                </div><!-- /.thm-owl__slider -->
+            </div><!-- /.container -->
+        </div><!-- /.client-carousel -->
+
+        <footer class="main-footer background-black">
+            <div class="main-footer__bg background-black"
+                style="background-image: url(assets/images/shapes/footer-bg-1-1.png);"></div>
+            <div class="main-footer__shape-one"
+                style="background-image: url(assets/images/resources/footer-shape-1.png);"></div>
+            <div class="main-footer__shape-two" style="background-image: url(assets/images/iadded/wild2.png);"></div>
+            <div class="main-footer__top">
+                <div class="container">
+                    <div class="main-footer__top__inner">
+                        <ul class="list-unstyled main-footer__top__info">
+                            <li class="main-footer__top__info__item">
+                                <span class="main-footer__top__info__icon"><i class="icon-mail"></i></span>
+                                <a href="mailto:support@savannafibre.co.tz">support@savannafibre.co.tz</a>
+                            </li>
+                            <li class="main-footer__top__info__item">
+                                <span class="main-footer__top__info__icon"><i class="icon-maps-and-flags"></i></span>
+                                Makumbusho Wakatibado Street Makumbusho BraiWeb Technologies Ltd Dar es Salaam TZ,
+                                14107, Tanzania
+                            </li>
+                        </ul>
+                        <div class="main-footer__top__right">
+                            <div class="main-footer__top__social">
+                                <a href="https://facebook.com/">
+                                    <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                                    <span class="sr-only">Facebook</span>
+                                </a>
+                                <a href="https://twitter.com/">
+                                    <i class="fa-brands fa-square-x-twitter"></i>
+                        <span class="sr-only">X</span>
+                                </a>
+                                <a href="https://instagram.com/">
+                                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                                    <span class="sr-only">Instagram</span>
+                                </a>
+                                <a href="https://www.youtube.com/">
+                                    <i class="fab fa-youtube" aria-hidden="true"></i>
+                                    <span class="sr-only">Youtube</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="main-footer__middle">
+                    <a href="index.html">
+                        <img src="assets/images/iadded/logo/savanna 1.svg" height="170" alt="savanna Fibre">
+                    </a>
+                    <form action="#" data-url="MAILCHIMP_FORM_URL" class="footer-widget__newsletter mc-form">
+                        <span class="footer-widget__newsletter__icon"><i class="icon-mail"></i></span>
+                        <input type="text" name="EMAIL" placeholder="Enter Email Address">
+                        <button type="submit" class="ienet-btn"><span>Subscribe Now</span></button>
+                        <div class="mc-form__response"></div>
+                    </form>
+                    <div class="main-footer__middle__call">
+                        <div class="main-footer__middle__call__icon"><span class="icon-telephone"></span></div>
+                        <div class="main-footer__middle__call__title">Call Us</div>
+                        <a class="main-footer__middle__call__text" href="tel:+88012365499">+255 699 999 555</a>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-xl-3">
+                        <div class="footer-widget footer-widget--about">
+                            <h2 class="footer-widget__title">About savanna Fibre</h2>
+                            <p class="footer-widget__text">
+                                Connecting lives with reliable, fast, and affordable internet plans, empowering homes
+                                and businesses.
+                            </p>
+                            <a href="about.html" class="ienet-btn"><span>Get In Touch<span class="ienet-btn__icon"><i
+                                            class="fas fa-chevron-right"></i></span></span></a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-3">
+                        <div class="footer-widget footer-widget--links">
+                            <h2 class="footer-widget__title">Our Services</h2>
+                            <ul class="list-unstyled footer-widget__links">
+                                <li><a href="service-d-broadband.html">Fiber & Broadband</a></li>
+                                <li><a href="service-d-cyber-security.html">Cyber Security</a></li>
+                                <li><a href="service-d-tv.html">Amazon Box TV</a></li>
+                                <li><a href="service-d-iptv.html">Smart IPTV</a></li>
+                                <li><a href="service-d-connectivity.html">Smart Connectivity</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-3">
+                        <div class="footer-widget footer-widget--links">
+                            <h2 class="footer-widget__title">Useful Links</h2>
+                            <ul class="list-unstyled footer-widget__links">
+                                <li><a href="about.html">About Us</a></li>
+                                <li><a href="movie.html">Our Movie</a></li>
+                                <li><a href="blog-grid-right.html">News & Blog</a></li>
+                                <li><a href="faq.html">FAQ</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-3">
+                        <div class="footer-widget footer-widget--gallery">
+                            <h2 class="footer-widget__title">Our Gallery</h2>
+                            <div class="footer-widget__gallery">
+                                <a href="gallery.html" class="footer-widget__gallery__link">
+                                    <img src="assets/images/gallery/fg-1.jpg" alt="savanna Fibre">
+                                </a>
+                                <a href="gallery.html" class="footer-widget__gallery__link">
+                                    <img src="assets/images/gallery/fg-2.jpg" alt="savanna Fibre">
+                                </a>
+                                <a href="gallery.html" class="footer-widget__gallery__link">
+                                    <img src="assets/images/gallery/fg-3.jpg" alt="savanna Fibre">
+                                </a>
+                                <a href="gallery.html" class="footer-widget__gallery__link">
+                                    <img src="assets/images/gallery/fg-4.jpg" alt="savanna Fibre">
+                                </a>
+                                <a href="gallery.html" class="footer-widget__gallery__link">
+                                    <img src="assets/images/gallery/fg-5.jpg" alt="savanna Fibre">
+                                </a>
+                                <a href="gallery.html" class="footer-widget__gallery__link">
+                                    <img src="assets/images/gallery/fg-6.jpg" alt="savanna Fibre">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-footer__bottom">
+                <div class="container">
+                    <div class="main-footer__bottom__inner">
+                       <p class="main-footer__copyright" style="color: #fff;">
+                            &copy; Copyright <span class="dynamic-year"></span> Savanna Fibre (Tanzania) Limited by 3TechSoftwares.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+    </div><!-- /.page-wrapper -->
+
+
+
+    <div class="mobile-nav__wrapper">
+        <div class="mobile-nav__overlay mobile-nav__toggler"></div>
+        <!-- /.mobile-nav__overlay -->
+        <div class="mobile-nav__content">
+            <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
+
+            <div class="logo-box">
+                <a href="index.html" aria-label="logo image"><img src="assets/images/iadded/logo/savanna 1.svg"
+                        width="155" alt="" /></a>
+            </div>
+            <!-- /.logo-box -->
+            <div class="mobile-nav__container"></div>
+            <!-- /.mobile-nav__container -->
+
+            <ul class="mobile-nav__contact list-unstyled">
+                <li>
+                    <i class="fa fa-envelope"></i>
+                    <a href="mailto:support@savannafibre.co.tz">support@savannafibre.co.tz</a>
+                </li>
+                <li>
+                    <i class="fa fa-phone-alt"></i>
+                    <a href="tel:+255699999555">+255699999555</a>
+                </li>
+            </ul><!-- /.mobile-nav__contact -->
+            <div class="mobile-nav__social">
+
+                <a href="https://facebook.com/">
+                    <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                    <span class="sr-only">Facebook</span>
+                </a>
+                <a href="https://twitter.com/savannaFibre">
+                    <i class="fa-brands fa-square-x-twitter"></i>
+                    <span class="sr-only">X</span>
+                </a>
+                <a href="https://instagram.com/">
+                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                    <span class="sr-only">Instagram</span>
+                </a>
+                <a href="https://www.youtube.com/">
+                    <i class="fab fa-youtube" aria-hidden="true"></i>
+                    <span class="sr-only">Youtube</span>
+                </a>
+            </div><!-- /.mobile-nav__social -->
+        </div>
+        <!-- /.mobile-nav__content -->
+    </div>
+    <!-- /.mobile-nav__wrapper -->
+    <div class="search-popup">
+        <div class="search-popup__overlay search-toggler"></div>
+        <!-- /.search-popup__overlay -->
+        <div class="search-popup__content">
+            <form role="search" method="get" class="search-popup__form" action="#">
+                <input type="text" id="search" placeholder="Search Here..." />
+                <button type="submit" aria-label="search submit" class="ienet-btn">
+                    <span><i class="icon-location"></i></span>
+                </button>
+            </form>
+        </div>
+        <!-- /.search-popup__content -->
+    </div>
+    <!-- /.search-popup -->
+    <!-- Sidebar One Start -->
+    <aside class="sidebar-one">
+        <div class="sidebar-one__overlay"></div><!-- /.siderbar-overlay -->
+        <div class="sidebar-one__content">
+            <div class="sidebar-one__close"><i class="icon-plus"></i></div><!-- /.sidebar-close -->
+            <div class="sidebar-one__logo">
+                <a href="index.html" aria-label="savanna Fibre logo"><img src="assets/images/iadded/logo/savanna 1.svg"
+                        alt="savanna Fibre Logo" height="170"></a>
+            </div><!-- /.sidebar-one__logo-box -->
+            <p class="sidebar-one__text">
+                Connecting Tanzanians with fast, reliable, and affordable internet solutions. Empowering homes,
+                students, and businesses with cutting-edge technology and 24/7 support.
+            </p>
+            <h4 class="sidebar-one__title">Contact Info:</h4>
+            <ul class="sidebar-one__info">
+                <li>
+                    <span class="fas fa-map-marker-alt"></span>
+                    Makumbusho Wakatibado Street Makumbusho BraiWeb Technologies Ltd Dar es Salaam TZ, 14107, Tanzania
+                </li>
+               <li>
+    <span class="fas fa-clock"></span>
+    Mon - Fri: 8.00 AM - 5.00 PM
+</li>
+<li>
+    <span class="fas fa-clock"></span>
+    Saturday: 9.00 AM - 1.00 PM
+</li>
+
+                <li>
+                    <span class="fas fa-envelope"></span>
+                    <a href="mailto:info@savannafibre.co.tz">info@savannafibre.co.tz</a>
+                </li>
+                <li>
+                    <span class="fas fa-phone-alt"></span>
+                    <a href="tel:+256 200 555500">+256 200 555500</a>
+                </li>
+            </ul>
+            <div class="sidebar-one__social">
+                <a href="https://facebook.com/savannaFibre">
+                    <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                    <span class="sr-only">Facebook</span>
+                </a>
+               <a href="https://twitter.com/savannaFibre">
+                    <i class="fa-brands fa-square-x-twitter"></i>
+                    <span class="sr-only">X</span>
+                </a>
+                <a href="https://instagram.com/savannaFibre">
+                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                    <span class="sr-only">Instagram</span>
+                </a>
+                <a href="https://www.youtube.com/channel/savannaFibre">
+                    <i class="fab fa-youtube" aria-hidden="true"></i>
+                    <span class="sr-only">YouTube</span>
+                </a>
+            </div><!-- /.sidebar-one__social -->
+            <h4 class="sidebar-one__title">Newsletter:</h4>
+            <form action="#" data-url="MAILCHIMP_FORM_URL" class="sidebar-one__newsletter mc-form">
+                <input type="text" name="EMAIL" placeholder="Email address">
+                <button type="submit" class="fas fa-paper-plane">
+                    <span class="sr-only">submit</span><!-- /.sr-only -->
+                </button>
+            </form><!-- /.sidebar-one__newsletter mc-form -->
+        </div><!-- /.sidebar__content -->
+    </aside>
+
+    <!-- Sidebar One Start -->
+
+    <a href="#" data-target="html" class="scroll-to-target scroll-to-top">
+        <span class="scroll-to-top__text">back top</span>
+        <span class="scroll-to-top__wrapper"><span class="scroll-to-top__inner"></span></span>
+    </a>
+    <script>
+    // When the Business button is clicked
+    document.getElementById('business-btn').addEventListener('click', function() {
+        // Set Business Button as Active
+        this.classList.add('active');
+        document.getElementById('residential-btn').classList.remove('active');
+        
+        // Show Business Packages and Hide Residential Packages
+        document.querySelectorAll('.business-card').forEach(function(card) {
+            card.classList.remove('hidden'); // Show business packages
+        });
+        document.querySelectorAll('.corporate-card').forEach(function(card) {
+            card.classList.add('hidden'); // Hide residential packages
+        });
+    });
+    
+    // When the Residential button is clicked
+    document.getElementById('residential-btn').addEventListener('click', function() {
+        // Set Residential Button as Active
+        this.classList.add('active');
+        document.getElementById('business-btn').classList.remove('active');
+        
+        // Show Residential Packages and Hide Business Packages
+        document.querySelectorAll('.business-card').forEach(function(card) {
+            card.classList.add('hidden'); // Hide business packages
+        });
+        document.querySelectorAll('.corporate-card').forEach(function(card) {
+            card.classList.remove('hidden'); // Show residential packages
+        });
+    });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+    const dropdown = document.querySelector(".lang-dropdown");
+    const selected = document.querySelector(".lang-selected");
+    const options = document.querySelectorAll(".lang-option");
+
+    // Toggle dropdown visibility
+    selected.addEventListener("click", () => {
+        dropdown.classList.toggle("open");
+    });
+
+    // Handle language selection
+    options.forEach(option => {
+        option.addEventListener("click", () => {
+            const value = option.getAttribute("data-value");
+            const flag = option.querySelector("span").outerHTML;
+            const text = option.textContent.trim();
+
+            // Update the selected button
+            selected.innerHTML = `${flag} ${text}`;
+
+            // Close the dropdown
+            dropdown.classList.remove("open");
+
+            // Add any additional logic for language switching here
+            console.log(`Selected language: ${value}`);
+        });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", (e) => {
+        if (!dropdown.contains(e.target)) {
+            dropdown.classList.remove("open");
+        }
+    });
+});
+
+    </script>
+
+
+    <!-- <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    const businessPackages = document.querySelectorAll(".business-card");
+    const corporatePackages = document.querySelectorAll(".corporate-card");
+    const businessBtn = document.getElementById("business-package");
+    const corporateBtn = document.getElementById("corporate-package");
+
+    // Function to toggle visibility using classes
+    function togglePackages(showPackages, hidePackages) {
+        showPackages.forEach(card => {
+            card.classList.remove("hidden"); // Remove the "hidden" class to show the element
+        });
+        hidePackages.forEach(card => {
+            card.classList.add("hidden"); // Add the "hidden" class to hide the element
+        });
+    }
+
+    // Initially show business packages and hide residential ones
+    togglePackages(businessPackages, corporatePackages);
+
+    // Add click event for "Business Packages" button
+    businessBtn.addEventListener("click", function(event) {
+        event.preventDefault(); // Prevent page reload
+        togglePackages(businessPackages, corporatePackages); // Show business packages, hide residential
+    });
+
+    // Add click event for "Residential Packages" button
+    corporateBtn.addEventListener("click", function(event) {
+        event.preventDefault(); // Prevent page reload
+        togglePackages(corporatePackages, businessPackages); // Show residential packages, hide business
+    });
+}); -->
+
+    </script>
+
+
+    <script src="assets/vendors/jquery/jquery-3.7.0.min.js"></script>
+    <script src="assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendors/bootstrap-select/bootstrap-select.min.js"></script>
+    <script src="assets/vendors/jarallax/jarallax.min.js"></script>
+    <script src="assets/vendors/jquery-ui/jquery-ui.js"></script>
+    <script src="assets/vendors/jquery-ajaxchimp/jquery.ajaxchimp.min.js"></script>
+    <script src="assets/vendors/jquery-appear/jquery.appear.min.js"></script>
+    <script src="assets/vendors/jquery-circle-progress/jquery.circle-progress.min.js"></script>
+    <script src="assets/vendors/jquery-magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="assets/vendors/jquery-validate/jquery.validate.min.js"></script>
+    <script src="assets/vendors/nouislider/nouislider.min.js"></script>
+    <script src="assets/vendors/tiny-slider/tiny-slider.js"></script>
+    <script src="assets/vendors/wnumb/wNumb.min.js"></script>
+    <script src="assets/vendors/owl-carousel/js/owl.carousel.min.js"></script>
+    <script src="assets/vendors/wow/wow.js"></script>
+    <script src="assets/vendors/imagesloaded/imagesloaded.min.js"></script>
+    <script src="assets/vendors/isotope/isotope.js"></script>
+    <script src="assets/vendors/slick/slick.min.js"></script>
+    <script src="assets/vendors/countdown/countdown.min.js"></script>
+    <script src="assets/vendors/jquery-circleType/jquery.circleType.js"></script>
+    <script src="assets/vendors/jquery-lettering/jquery.lettering.min.js"></script>
+    <!-- gsap js -->
+    <script src="assets/vendors/gsap/gsap.js"></script>
+    <script src="assets/vendors/gsap/scrolltrigger.min.js"></script>
+    <script src="assets/vendors/gsap/splittext.min.js"></script>
+    <script src="assets/vendors/gsap/ienet-split.js"></script>
+    <!-- template js -->
+    <script src="assets/js/ienet.js"></script>
+</body>
+
+
+</html>

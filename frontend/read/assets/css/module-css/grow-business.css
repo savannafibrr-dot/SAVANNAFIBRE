@@ -1,0 +1,54 @@
+/*==============================================
+    Grow Busicess
+===============================================*/
+.grow-business {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    background-color: var(--tedlife-black);
+    padding: 111px 0 120px;
+    z-index: 1;
+}
+
+.grow-business__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    mix-blend-mode: luminosity;
+    opacity: .20;
+    z-index: -1;
+}
+
+.grow-business__inner {
+    position: relative;
+    display: block;
+    text-align: center;
+}
+
+.grow-business__title {
+    font-size: 80px;
+    line-height: 85px;
+    color: var(--tedlife-white);
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.grow-business__btn-box {
+    position: relative;
+    display: block;
+    margin-top: 39px;
+}
+
+
+
+
+
+
+/*--------------------------------------------------------------
+# End
+--------------------------------------------------------------*/

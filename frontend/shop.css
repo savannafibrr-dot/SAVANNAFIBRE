@@ -1,0 +1,759 @@
+/* ============================================================
+    [Master Stylesheet]
+
+    Theme Name  : iTop        
+    Description : iTop- Recharge & Bill Payment, Booking Responsive HTML5 Template.
+    Author      : coUI         
+    Author URL  : https://themeforest.net/user/coui  
+    Version     : 1.0.0
+
+============================================================== */
+/*
+========================================
+*********** TABLE OF CONTENTS **********
+
+    00. Fonts
+    01. Css Variables
+    02. Common Class 
+    03. Common Typography
+    04. Custom Classes
+    05. Common Button 
+    06. Cursor
+    07. Colors
+    08. margin css
+    09. padding css
+    10. Accordion Css
+    11. Custom Input
+    12. Table Css
+    13. Preloader Css
+    14. Header Css
+    15. Footer css
+    16. Scroll to Top
+    17. Template Selection
+    18. Banner Section
+    19. Pagination Section
+    20. Hero Section
+    21. Recommendation Section
+    22. Service Section
+    23. Payment Section
+    24. Feature Section
+    25. Counter Section
+    26. Testimonial Section
+    27. FAQ Section
+    28. App Section
+    29. Brand Section
+    30. Blog Section
+    31. Blog Details Section
+    32. About Section
+    33. Contact Section
+    34. Sign Page
+    35. Privacy Page
+
+========================================
+*/
+
+/* ========================= Fonts Start ======================== */
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&amp;family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap");
+
+/* ========================= Fonts End ======================== */
+
+/* ========================= Css Variables Start ======================== */
+:root {
+    /* Font Family */
+    --heading-font: "ClashDisplay-Variable";
+    --body-font: "Poppins", sans-serif;
+    /* ========================= Theme Color Start ============================= */
+    /* Base Color */
+    --base-h: 150;
+    --base-s: 100%;
+    --base-l: 54%;
+    --base: var(--base-h) var(--base-s) var(--base-l);
+    --base-d-100: var(--base-h) var(--base-s) calc(var(--base-l) - var(--base-l) * 0.1);
+    --base-d-200: var(--base-h) var(--base-s) calc(var(--base-l) - var(--base-l) * 0.2);
+    --base-d-300: var(--base-h) var(--base-s) calc(var(--base-l) - var(--base-l) * 0.3);
+    --base-d-400: var(--base-h) var(--base-s) calc(var(--base-l) - var(--base-l) * 0.4);
+    --base-d-500: var(--base-h) var(--base-s) calc(var(--base-l) - var(--base-l) * 0.5);
+    --base-d-600: var(--base-h) var(--base-s) calc(var(--base-l) - var(--base-l) * 0.6);
+    --base-d-700: var(--base-h) var(--base-s) calc(var(--base-l) - var(--base-l) * 0.7);
+    --base-d-800: var(--base-h) var(--base-s) calc(var(--base-l) - var(--base-l) * 0.8);
+    --base-d-900: var(--base-h) var(--base-s) calc(var(--base-l) - var(--base-l) * 0.9);
+    --base-d-1000: var(--base-h) var(--base-s) calc(var(--base-l) - var(--base-l) * 1);
+    --base-l-100: var(--base-h) calc(var(--base-s)) calc(var(--base-l) + (100% - var(--base-l)) * 0.1);
+    --base-l-200: var(--base-h) calc(var(--base-s)) calc(var(--base-l) + (100% - var(--base-l)) * 0.2);
+    --base-l-300: var(--base-h) calc(var(--base-s)) calc(var(--base-l) + (100% - var(--base-l)) * 0.3);
+    --base-l-400: var(--base-h) calc(var(--base-s)) calc(var(--base-l) + (100% - var(--base-l)) * 0.4);
+    --base-l-500: var(--base-h) calc(var(--base-s)) calc(var(--base-l) + (100% - var(--base-l)) * 0.5);
+    --base-l-600: var(--base-h) calc(var(--base-s)) calc(var(--base-l) + (100% - var(--base-l)) * 0.6);
+    --base-l-700: var(--base-h) calc(var(--base-s)) calc(var(--base-l) + (100% - var(--base-l)) * 0.7);
+    --base-l-800: var(--base-h) calc(var(--base-s)) calc(var(--base-l) + (100% - var(--base-l)) * 0.8);
+    --base-l-900: var(--base-h) calc(var(--base-s)) calc(var(--base-l) + (100% - var(--base-l)) * 0.9);
+    --base-l-1000: var(--base-h) calc(var(--base-s)) calc(var(--base-l) + (100% - var(--base-l)) * 1);
+    /* Base Two Color */
+    --base-two-h: 69;
+    --base-two-s: 100%;
+    --base-two-l: 50%;
+    --base-two: var(--base-two-h) var(--base-two-s) var(--base-two-l);
+    --base-two-d-100: var(--base-two-h) var(--base-two-s) calc(var(--base-two-l) - var(--base-two-l) * 0.1);
+    --base-two-d-200: var(--base-two-h) var(--base-two-s) calc(var(--base-two-l) - var(--base-two-l) * 0.2);
+    --base-two-d-300: var(--base-two-h) var(--base-two-s) calc(var(--base-two-l) - var(--base-two-l) * 0.3);
+    --base-two-d-400: var(--base-two-h) var(--base-two-s) calc(var(--base-two-l) - var(--base-two-l) * 0.4);
+    --base-two-d-500: var(--base-two-h) var(--base-two-s) calc(var(--base-two-l) - var(--base-two-l) * 0.5);
+    --base-two-d-600: var(--base-two-h) var(--base-two-s) calc(var(--base-two-l) - var(--base-two-l) * 0.6);
+    --base-two-d-700: var(--base-two-h) var(--base-two-s) calc(var(--base-two-l) - var(--base-two-l) * 0.7);
+    --base-two-d-800: var(--base-two-h) var(--base-two-s) calc(var(--base-two-l) - var(--base-two-l) * 0.8);
+    --base-two-d-900: var(--base-two-h) var(--base-two-s) calc(var(--base-two-l) - var(--base-two-l) * 0.9);
+    --base-two-d-1000: var(--base-two-h) var(--base-two-s) calc(var(--base-two-l) - var(--base-two-l) * 1);
+    --base-two-l-100: var(--base-two-h) calc(var(--base-two-s)) calc(var(--base-two-l) + (100% - var(--base-two-l)) * 0.1);
+    --base-two-l-200: var(--base-two-h) calc(var(--base-two-s)) calc(var(--base-two-l) + (100% - var(--base-two-l)) * 0.2);
+    --base-two-l-300: var(--base-two-h) calc(var(--base-two-s)) calc(var(--base-two-l) + (100% - var(--base-two-l)) * 0.3);
+    --base-two-l-400: var(--base-two-h) calc(var(--base-two-s)) calc(var(--base-two-l) + (100% - var(--base-two-l)) * 0.4);
+    --base-two-l-500: var(--base-two-h) calc(var(--base-two-s)) calc(var(--base-two-l) + (100% - var(--base-two-l)) * 0.5);
+    --base-two-l-600: var(--base-two-h) calc(var(--base-two-s)) calc(var(--base-two-l) + (100% - var(--base-two-l)) * 0.6);
+    --base-two-l-700: var(--base-two-h) calc(var(--base-two-s)) calc(var(--base-two-l) + (100% - var(--base-two-l)) * 0.7);
+    --base-two-l-800: var(--base-two-h) calc(var(--base-two-s)) calc(var(--base-two-l) + (100% - var(--base-two-l)) * 0.8);
+    --base-two-l-900: var(--base-two-h) calc(var(--base-two-s)) calc(var(--base-two-l) + (100% - var(--base-two-l)) * 0.9);
+    --base-two-l-1000: var(--base-two-h) calc(var(--base-two-s)) calc(var(--base-two-l) + (100% - var(--base-two-l)) * 1);
+    /* ========================= Theme Color End ============================= */
+    /* ========================= Color Variables Start =========================== */
+    --white: 0 0% 100%;
+    --body-color: 0 0% 100%;
+    --heading-color: 0 0% 16%;
+    --text-color: 0 0% 33%;
+    --black: 0 0% 0%;
+    --border-color: 0 0% 88%;
+    --section-bg: 0 0% 98%;
+    --background-color: var(--white);
+    /* ================================ Box Shadow Start =============================== */
+    --header-box-shadow: 0px -1px 15px 3px hsl(var(--black) / 0.3);
+    --mobile-box-shadow: 0px -1px 5px 0px hsl(var(--black) / 0.92);
+    --box-shadow: 0px 2px 15px hsl(var(--black) / 0.05);
+    /* ================================ Box Shadow End =============================== */
+    /* ============================== Bootstrap Modifier Start ============================== */
+    /* Primary Color */
+    --primary-h: 238;
+    --primary-s: 100%;
+    --primary-l: 40%;
+    --primary: var(--primary-h) var(--primary-s) var(--primary-l);
+    --primary-d-100: var(--primary-h) var(--primary-s) calc(var(--primary-l) - var(--primary-l) * 0.1);
+    --primary-d-200: var(--primary-h) var(--primary-s) calc(var(--primary-l) - var(--primary-l) * 0.2);
+    --primary-d-300: var(--primary-h) var(--primary-s) calc(var(--primary-l) - var(--primary-l) * 0.3);
+    --primary-d-400: var(--primary-h) var(--primary-s) calc(var(--primary-l) - var(--primary-l) * 0.4);
+    --primary-d-500: var(--primary-h) var(--primary-s) calc(var(--primary-l) - var(--primary-l) * 0.5);
+    --primary-l-100: var(--primary-h) calc(var(--primary-s)) calc(var(--primary-l) + (100% - var(--primary-l)) * 0.1);
+    --primary-l-200: var(--primary-h) calc(var(--primary-s)) calc(var(--primary-l) + (100% - var(--primary-l)) * 0.2);
+    --primary-l-300: var(--primary-h) calc(var(--primary-s)) calc(var(--primary-l) + (100% - var(--primary-l)) * 0.3);
+    --primary-l-400: var(--primary-h) calc(var(--primary-s)) calc(var(--primary-l) + (100% - var(--primary-l)) * 0.4);
+    --primary-l-500: var(--primary-h) calc(var(--primary-s)) calc(var(--primary-l) + (100% - var(--primary-l)) * 0.5);
+    /* Secondary Color */
+    --secondary-h: 208;
+    --secondary-s: 7%;
+    --secondary-l: 46%;
+    --secondary: var(--secondary-h) var(--secondary-s) var(--secondary-l);
+    --secondary-d-100: var(--secondary-h) var(--secondary-s) calc(var(--secondary-l) - var(--secondary-l) * 0.1);
+    --secondary-d-200: var(--secondary-h) var(--secondary-s) calc(var(--secondary-l) - var(--secondary-l) * 0.2);
+    --secondary-d-300: var(--secondary-h) var(--secondary-s) calc(var(--secondary-l) - var(--secondary-l) * 0.3);
+    --secondary-d-400: var(--secondary-h) var(--secondary-s) calc(var(--secondary-l) - var(--secondary-l) * 0.4);
+    --secondary-d-500: var(--secondary-h) var(--secondary-s) calc(var(--secondary-l) - var(--secondary-l) * 0.5);
+    --secondary-l-100: var(--secondary-h) calc(var(--secondary-s)) calc(var(--secondary-l) + (100% - var(--secondary-l)) * 0.1);
+    --secondary-l-200: var(--secondary-h) calc(var(--secondary-s)) calc(var(--secondary-l) + (100% - var(--secondary-l)) * 0.2);
+    --secondary-l-300: var(--secondary-h) calc(var(--secondary-s)) calc(var(--secondary-l) + (100% - var(--secondary-l)) * 0.3);
+    --secondary-l-400: var(--secondary-h) calc(var(--secondary-s)) calc(var(--secondary-l) + (100% - var(--secondary-l)) * 0.4);
+    --secondary-l-500: var(--secondary-h) calc(var(--secondary-s)) calc(var(--secondary-l) + (100% - var(--secondary-l)) * 0.5);
+    /* Success Color */
+    --success-h: 112;
+    --success-s: 100%;
+    --success-l: 40%;
+    --success: var(--success-h) var(--success-s) var(--success-l);
+    --success-d-100: var(--success-h) var(--success-s) calc(var(--success-l) - var(--success-l) * 0.1);
+    --success-d-200: var(--success-h) var(--success-s) calc(var(--success-l) - var(--success-l) * 0.2);
+    --success-d-300: var(--success-h) var(--success-s) calc(var(--success-l) - var(--success-l) * 0.3);
+    --success-d-400: var(--success-h) var(--success-s) calc(var(--success-l) - var(--success-l) * 0.4);
+    --success-d-500: var(--success-h) var(--success-s) calc(var(--success-l) - var(--success-l) * 0.5);
+    --success-l-100: var(--success-h) calc(var(--success-s)) calc(var(--success-l) + (100% - var(--success-l)) * 0.1);
+    --success-l-200: var(--success-h) calc(var(--success-s)) calc(var(--success-l) + (100% - var(--success-l)) * 0.2);
+    --success-l-300: var(--success-h) calc(var(--success-s)) calc(var(--success-l) + (100% - var(--success-l)) * 0.3);
+    --success-l-400: var(--success-h) calc(var(--success-s)) calc(var(--success-l) + (100% - var(--success-l)) * 0.4);
+    --success-l-500: var(--success-h) calc(var(--success-s)) calc(var(--success-l) + (100% - var(--success-l)) * 0.5);
+    /* Danger Color */
+    --danger-h: 0;
+    --danger-s: 96%;
+    --danger-l: 63%;
+    --danger: var(--danger-h) var(--danger-s) var(--danger-l);
+    --danger-d-100: var(--danger-h) var(--danger-s) calc(var(--danger-l) - var(--danger-l) * 0.1);
+    --danger-d-200: var(--danger-h) var(--danger-s) calc(var(--danger-l) - var(--danger-l) * 0.2);
+    --danger-d-300: var(--danger-h) var(--danger-s) calc(var(--danger-l) - var(--danger-l) * 0.3);
+    --danger-d-400: var(--danger-h) var(--danger-s) calc(var(--danger-l) - var(--danger-l) * 0.4);
+    --danger-d-500: var(--danger-h) var(--danger-s) calc(var(--danger-l) - var(--danger-l) * 0.5);
+    --danger-l-100: var(--danger-h) calc(var(--danger-s)) calc(var(--danger-l) + (100% - var(--danger-l)) * 0.1);
+    --danger-l-200: var(--danger-h) calc(var(--danger-s)) calc(var(--danger-l) + (100% - var(--danger-l)) * 0.2);
+    --danger-l-300: var(--danger-h) calc(var(--danger-s)) calc(var(--danger-l) + (100% - var(--danger-l)) * 0.3);
+    --danger-l-400: var(--danger-h) calc(var(--danger-s)) calc(var(--danger-l) + (100% - var(--danger-l)) * 0.4);
+    --danger-l-500: var(--danger-h) calc(var(--danger-s)) calc(var(--danger-l) + (100% - var(--danger-l)) * 0.5);
+    /* Warning Color */
+    --warning-h: 40;
+    --warning-s: 100%;
+    --warning-l: 46%;
+    --warning: var(--warning-h) var(--warning-s) var(--warning-l);
+    --warning-d-100: var(--warning-h) var(--warning-s) calc(var(--warning-l) - var(--warning-l) * 0.1);
+    --warning-d-200: var(--warning-h) var(--warning-s) calc(var(--warning-l) - var(--warning-l) * 0.2);
+    --warning-d-300: var(--warning-h) var(--warning-s) calc(var(--warning-l) - var(--warning-l) * 0.3);
+    --warning-d-400: var(--warning-h) var(--warning-s) calc(var(--warning-l) - var(--warning-l) * 0.4);
+    --warning-d-500: var(--warning-h) var(--warning-s) calc(var(--warning-l) - var(--warning-l) * 0.5);
+    --warning-l-100: var(--warning-h) calc(var(--warning-s)) calc(var(--warning-l) + (100% - var(--warning-l)) * 0.1);
+    --warning-l-200: var(--warning-h) calc(var(--warning-s)) calc(var(--warning-l) + (100% - var(--warning-l)) * 0.2);
+    --warning-l-300: var(--warning-h) calc(var(--warning-s)) calc(var(--warning-l) + (100% - var(--warning-l)) * 0.3);
+    --warning-l-400: var(--warning-h) calc(var(--warning-s)) calc(var(--warning-l) + (100% - var(--warning-l)) * 0.4);
+    --warning-l-500: var(--warning-h) calc(var(--warning-s)) calc(var(--warning-l) + (100% - var(--warning-l)) * 0.5);
+    /* Info Color */
+    --info-h: 196;
+    --info-s: 100%;
+    --info-l: 50%;
+    --info: var(--info-h) var(--info-s) var(--info-l);
+    --info-d-100: var(--info-h) var(--info-s) calc(var(--info-l) - var(--info-l) * 0.1);
+    --info-d-200: var(--info-h) var(--info-s) calc(var(--info-l) - var(--info-l) * 0.2);
+    --info-d-300: var(--info-h) var(--info-s) calc(var(--info-l) - var(--info-l) * 0.3);
+    --info-d-400: var(--info-h) var(--info-s) calc(var(--info-l) - var(--info-l) * 0.4);
+    --info-d-500: var(--info-h) var(--info-s) calc(var(--info-l) - var(--info-l) * 0.5);
+    --info-l-100: var(--info-h) calc(var(--info-s)) calc(var(--info-l) + (100% - var(--info-l)) * 0.1);
+    --info-l-200: var(--info-h) calc(var(--info-s)) calc(var(--info-l) + (100% - var(--info-l)) * 0.2);
+    --info-l-300: var(--info-h) calc(var(--info-s)) calc(var(--info-l) + (100% - var(--info-l)) * 0.3);
+    --info-l-400: var(--info-h) calc(var(--info-s)) calc(var(--info-l) + (100% - var(--info-l)) * 0.4);
+    --info-l-500: var(--info-h) calc(var(--info-s)) calc(var(--info-l) + (100% - var(--info-l)) * 0.5);
+    /* ============================== Bootstrap Modifier End ============================== */
+}
+
+/* =========================== Service Section Start Here ========================= */
+.service__area {
+    position: relative;
+    z-index: 1;
+    padding-top: 6.25rem;
+    padding-bottom: 6.25rem;
+}
+
+@media screen and (max-width: 1399px) {
+    .service__area {
+        padding-top: 4.625rem;
+        padding-bottom: 5.25rem;
+    }
+}
+
+@media screen and (max-width: 1199px) {
+    .service__area {
+        padding-top: 3.5rem;
+        padding-bottom: 3.875rem;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .service__area {
+        padding-top: 3.0625rem;
+        padding-bottom: 3.5rem;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .service__area {
+        padding-bottom: 2.8125rem;
+    }
+}
+
+.service__area .service__main {
+    position: relative;
+    z-index: 1;
+}
+
+@media screen and (max-width: 575px) {
+    .service__area .service__main {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+}
+
+.service__area .service__main__single {
+    margin-bottom: 1.5625rem;
+    max-width: 37.5rem;
+}
+
+@media screen and (max-width: 767px) {
+    .service__area .service__main__single {
+        margin-bottom: 0.9375rem;
+    }
+}
+
+.service__area .service__main__single:last-child {
+    margin-bottom: 0;
+}
+
+.service__area .service__main__single__thumb {
+    position: absolute;
+    right: 0;
+    top: 70%;
+    -webkit-transform: translateY(-50%) scale(0.95);
+    transform: translateY(-50%) scale(0.95);
+    z-index: 1;
+    max-width: 32.5rem;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: 0.8s;
+    transition: 0.8s;
+    text-align: end;
+}
+
+@media screen and (max-width: 1399px) {
+    .service__area .service__main__single__thumb {
+        max-width: 28.5rem;
+    }
+}
+
+@media screen and (max-width: 1199px) {
+    .service__area .service__main__single__thumb {
+        max-width: 25rem;
+    }
+}
+
+@media screen and (max-width: 1199px) {
+    .service__area .service__main__single__thumb {
+        max-width: 25rem;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .service__area .service__main__single__thumb {
+        max-width: 18.75rem;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .service__area .service__main__single__thumb {
+        max-width: 12.5rem;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .service__area .service__main__single__thumb {
+        max-width: 100%;
+        position: unset;
+        -webkit-transform: unset;
+        transform: unset;
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.service__area .service__main__single__thumb img {
+    width: 100%;
+    border-radius: 1.875rem;
+}
+
+@media screen and (max-width: 991px) {
+    .service__area .service__main__single__thumb img {
+        border-radius: 1.25rem;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .service__area .service__main__single__thumb img {
+        border-radius: 0.9375rem;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .service__area .service__main__single__thumb img {
+        border-radius: 0.625rem;
+    }
+}
+
+.service__area .service__main__single__title a {
+    font-size: 3rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: hsl(var(--text-color)/0.22);
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    display: block;
+    font-family: var(--heading-font);
+}
+
+@media screen and (max-width: 1399px) {
+    .service__area .service__main__single__title a {
+        font-size: 2.5rem;
+    }
+}
+
+@media screen and (max-width: 1199px) {
+    .service__area .service__main__single__title a {
+        font-size: 2.125rem;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .service__area .service__main__single__title a {
+        font-size: 1.75rem;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .service__area .service__main__single__title a {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .service__area .service__main__single__title a {
+        font-size: 24px;
+        color: hsl(var(--text-color));
+        font-weight: 600;
+        margin-bottom: 0.625rem;
+        max-width: 10rem;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media screen and (max-width: 424px) {
+    .service__area .service__main__single__title a {
+        font-size: 20px;
+        max-width: 8.4375rem;
+    }
+}
+
+.service__area .service__main__single.active .service__main__single__title a {
+    color: hsl(var(--heading-color));
+    font-weight: 700;
+}
+
+@media screen and (max-width: 575px) {
+    .service__area .service__main__single.active .service__main__single__title a {
+        font-weight: 600;
+        color: hsl(var(--text-color));
+    }
+}
+
+.service__area .service__main__single.active .service__main__single__thumb {
+    opacity: 1;
+    visibility: visible;
+    top: 50%;
+    -webkit-transform: translateY(-50%) scale(1);
+    transform: translateY(-50%) scale(1);
+}
+
+@media screen and (max-width: 575px) {
+    .service__area .service__main__single.active .service__main__single__thumb {
+        -webkit-transform: unset;
+        transform: unset;
+    }
+}
+
+.service__brand {
+    padding-top: 1.25rem;
+    padding-bottom: 4.375rem;
+    position: relative;
+    z-index: 1;
+}
+
+@media screen and (max-width: 767px) {
+    .service__brand {
+        padding-top: 0rem;
+        padding-bottom: 3.75rem;
+    }
+}
+
+.service__brand__main__single {
+    min-height: 6.25rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 0.875rem;
+}
+
+.service__details {
+    border-top: 0.0625rem solid hsl(var(--black)/0.08);
+    border-bottom: 0.0625rem solid hsl(var(--black)/0.08);
+    margin-bottom: 6.25rem;
+    position: relative;
+    z-index: 1;
+}
+
+@media screen and (max-width: 767px) {
+    .service__details {
+        margin-bottom: 1.875rem;
+    }
+}
+
+.service__details .service__dsp {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -2;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: none;
+    width: 100%;
+}
+
+.service__details .service__dsp img {
+    width: 100%;
+}
+
+.service__details__left {
+    padding-top: 12.5rem;
+}
+
+@media screen and (max-width: 991px) {
+    .service__details__left {
+        padding-top: 5.625rem;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .service__details__left {
+        padding-top: 3.125rem;
+        padding-bottom: 1.875rem;
+        text-align: center;
+    }
+}
+
+.service__details__left h4 {
+    font-size: 4rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+}
+
+@media screen and (max-width: 1199px) {
+    .service__details__left h4 {
+        font-size: 3rem;
+        margin-bottom: 1.875rem;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .service__details__left h4 {
+        font-size: 2rem;
+        margin-bottom: 1.25rem;
+    }
+}
+
+.service__details__left h4 span {
+    display: block;
+    font-weight: 300;
+}
+
+.service__details__left .about__mission__wrap__curtomers {
+    border-left: none;
+    border-right: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    padding: 0;
+    text-align: left;
+}
+
+@media screen and (max-width: 767px) {
+    .service__details__left .about__mission__wrap__curtomers {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+    }
+}
+
+.service__details__content p {
+    font-size: 1.125rem;
+    color: hsl(var(--text-color)/0.6);
+}
+
+@media screen and (max-width: 1199px) {
+    .service__details__content p {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .service__details__content p {
+        font-size: 0.875rem;
+    }
+}
+
+.service__details__content>img {
+    width: 100%;
+    margin-top: 2.1875rem;
+    padding-bottom: 2.1875rem;
+}
+
+@media screen and (max-width: 991px) {
+    .service__details__content>img {
+        margin-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+}
+
+.service__details__content ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+@media screen and (max-width: 991px) {
+    .service__details__content ul {
+        gap: 0.625rem;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .service__details__content ul {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .service__details__content ul {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+.service__details__content ul li {
+    font-size: 1rem;
+    font-weight: 400;
+    color: hsl(var(--text-color));
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-transform: capitalize;
+    gap: 0.625rem;
+}
+
+@media screen and (max-width: 1199px) {
+    .service__details__content ul li {
+        font-size: 0.875rem;
+    }
+}
+
+.service__details__content ul li span {
+    max-width: 0.9375rem;
+    margin-top: -0.1875rem;
+}
+
+.service__details__main {
+    border-left: 0.0625rem solid hsl(var(--black)/0.08);
+    border-right: 0.0625rem solid hsl(var(--black)/0.08);
+}
+
+@media screen and (max-width: 767px) {
+    .service__details__main {
+        border-top: 0.0625rem solid hsl(var(--black)/0.08);
+    }
+}
+
+.service__details__main .accordion-button {
+    padding: 2.25rem;
+    font-size: 2.5rem;
+    color: hsl(var(--heading-color));
+    font-weight: 700;
+    text-transform: uppercase;
+    background-color: transparent;
+}
+
+@media screen and (max-width: 1199px) {
+    .service__details__main .accordion-button {
+        padding: 2.25rem;
+        font-size: 2.125rem;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .service__details__main .accordion-button {
+        font-size: 1.5rem;
+        padding: 1.875rem 1.875rem;
+    }
+}
+
+.service__details__main .accordion-item:nth-child(even) .accordion-button {
+    color: hsl(var(--text-color)/0.3);
+}
+
+.service__details__main .accordion-button:not(.collapsed) {
+    color: hsl(var(--heading-color));
+    background-color: transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.service__details__main .accordion-item:first-of-type .accordion-button {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.service__details__main .accordion-item:first-of-type {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.service__details__main .accordion-item {
+    color: hsl(var(--heading-color));
+    background-color: transparent;
+    border: none;
+    border-bottom: 0.0625rem solid hsl(var(--black)/0.08) !important;
+}
+
+.service__details__main .accordion-item:last-child {
+    color: hsl(var(--heading-color));
+    background-color: transparent;
+    border: none;
+    border-bottom: none !important;
+}
+
+.service__details__main .accordion-button:focus {
+    border-color: transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.service__details__main .accordion-button::after {
+    display: none;
+}
+
+.service__details__main .accordion-body {
+    padding: 0rem 2.1875rem 2.8125rem 2.1875rem;
+}
+
+@media screen and (max-width: 1199px) {
+    .service__details__main .accordion-body {
+        padding: 0rem 2.5rem 2.8125rem 2.5rem;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .service__details__main .accordion-body {
+        padding: 0rem 1.875rem 2.8125rem 1.875rem;
+    }
+}
+
+.service__details__main .accordion-item:last-of-type .accordion-button.collapsed {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+/* =========================== Service Section End Here ========================= */

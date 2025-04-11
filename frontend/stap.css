@@ -1,0 +1,648 @@
+
+/* 
+
+/* Styling for Language Dropdown */
+.main-header__lang {
+    position: relative;
+    display: inline-block;
+    margin-left: 20px;
+    /* Space between language dropdown and other elements */
+}
+
+/* Styling the dropdown */
+.lang-dropdown {
+    font-family: 'Arial', sans-serif;
+    padding: 8px 30px 8px 12px;
+    /* Added padding for better spacing */
+    font-size: 14px;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    appearance: none;
+    /* Remove default dropdown arrow */
+    -webkit-appearance: none;
+    /* For Safari */
+    -moz-appearance: none;
+    /* For Firefox */
+    display: flex;
+    align-items: center;
+}
+
+/* Custom Dropdown Arrow */
+.lang-dropdown::after {
+    content: '\2193';
+    /* Unicode for down arrow */
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #333;
+    pointer-events: none;
+}
+
+/* Hover effect for dropdown */
+.lang-dropdown:hover {
+    border-color: #007bff;
+}
+
+/* Focused state */
+.lang-dropdown:focus {
+    border-color: #0056b3;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Styling for options */
+.lang-dropdown option {
+    padding: 10px;
+    font-size: 14px;
+    color: #333;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+/* Adding flags to options */
+.lang-dropdown option[class*="flag-icon"] {
+    margin-right: 10px;
+    font-size: 20px;
+    /* Adjust the flag size */
+}
+
+/* Hover effect for options */
+.lang-dropdown option:hover {
+    background-color: #f1f1f1;
+}
+
+/* Responsive adjustments for smaller screens */
+@media screen and (max-width: 768px) {
+    .main-header__lang {
+        margin-left: 0;
+        margin-top: 10px;
+        /* Add space on top for smaller screens */
+    }
+}
+
+
+/* Styling for the Shop and Location Icon */
+.main-header__nav .shop-location {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+
+/* Small space between the shop name and location icon */
+.main-header__nav .shop-location span {
+    margin-left: 5px;
+    /* Small space between shop name and location icon */
+}
+
+/* Optional: Adjust the location icon size */
+.main-header__nav .shop-location .icon-location {
+    font-size: 18px;
+    /* Adjust size of the icon if necessary */
+}
+
+
+
+
+.packages-three__card__price {
+    text-align: center;
+    /* Center-align the content */
+    font-weight: 600;
+    font-size: 16px;
+    /* Default font size */
+}
+
+.packages-three__card__price .top {
+    font-size: 20px;
+    /* Slightly larger font for TSh */
+    color: var(--ienet-base, #F79621);
+    margin-bottom: 5px;
+    /* Add spacing below TSh */
+}
+
+.packages-three__card__price .amount {
+    font-size: 28px;
+    /* Larger font for price */
+    color: var(--ienet-base, #F79621);
+    font-weight: bold;
+}
+
+.packages-three__card__price .amount span {
+    display: inline-block;
+    /* Keep Month on the same line */
+    font-size: 15px;
+    /* Smaller font for Month */
+    color: var(--ienet-text, #6936d0);
+    font-weight: 500;
+    margin-left: 5px;
+    /* Add slight spacing to the left of Month */
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.packages-three__card {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.3s ease;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+
+
+
+/* button*/
+
+/* Container for the toggle button */
+.toggle-btn-container {
+    display: flex;
+    position: relative;
+}
+
+/* Base style for each button */
+.toggle-btn {
+    width: 100px;
+    /* Button width */
+    height: 40px;
+    /* Button height */
+    background-color: #e0e0e0;
+    /* Inactive button color */
+    color: black;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Active button styling */
+.toggle-btn.active {
+    background-color: var(--ienet-base, #F79621);
+    /* Active button color */
+    color: white;
+}
+
+/* Adjusted styling for the toggle to make it look like a switch */
+.toggle-btn-container .toggle-btn:first-child {
+    border-radius: 20px 0 0 20px;
+}
+
+.toggle-btn-container .toggle-btn:last-child {
+    border-radius: 0 20px 20px 0;
+}
+
+.toggle-btn-container .toggle-btn:active {
+    transform: scale(0.98);
+}
+
+
+/* Smooth transition for the packages */
+.packages-three__card {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    visibility: visible;
+    /* Ensure visible by default */
+}
+
+/* Hide packages when they are not selected */
+.packages-three__card[style*="display: none"] {
+    visibility: hidden;
+    /* Hide elements smoothly */
+    opacity: 0;
+    /* Fade out */
+}
+
+/* Add a hidden class that hides the cards */
+.hidden {
+    visibility: hidden;
+    /* Hide the card */
+    opacity: 0;
+    /* Make it invisible */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Ensure all packages are visible by default */
+.packages-three__card {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Add an active class to the selected button to apply active styles */
+.toggle-btn.active {
+    background-color: #4caf50;
+    /* Green for active button */
+    color: white;
+}
+
+
+
+/*again*/
+
+/* Ensure the buttons are the same width and aligned */
+.toggle-btn-container {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.toggle-btn {
+    flex: 1;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.toggle-btn.active {
+    background-color: #F79621;
+    color: white;
+}
+
+/* Styling for the All Packages button */
+.ienet-btn.packages-three__btn {
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: #F79621;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.ienet-btn.packages-three__btn:hover {
+    background-color: #f0f0f0;
+    /* Light hover effect */
+}
+
+/* Ensures equal height on all buttons */
+.ienet-btn.packages-three__btn,
+.toggle-btn {
+    height: 50px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+
+    .ienet-btn.packages-three__btn,
+    .toggle-btn {
+        font-size: 14px;
+        padding: 12px 0;
+    }
+}
+
+.main-header__lang {
+    position: relative;
+    display: inline-block;
+}
+
+.lang-dropdown {
+    position: relative;
+}
+
+.lang-selected {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 10px;
+    background-color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.lang-options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    width: 100%;
+}
+
+.lang-option {
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.lang-option:hover {
+    background-color: #f0f0f0;
+}
+
+.lang-dropdown.open .lang-options {
+    display: block;
+}
+
+.main-header__lang {
+    position: relative;
+    display: inline-block;
+    font-size: 12px;
+    /* Reduce font size */
+}
+
+.lang-dropdown {
+    position: relative;
+}
+
+.lang-selected {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    /* Smaller border radius */
+    padding: 3px 8px;
+    /* Reduced padding */
+    background-color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    /* Smaller gap between flag and text */
+    font-size: 12px;
+    /* Smaller font size */
+    line-height: 1.2;
+    /* Tighter line height */
+}
+
+.lang-options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    /* Match selected button */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+    z-index: 100;
+    width: 120px;
+    /* Adjust dropdown width */
+}
+
+.lang-option {
+    padding: 3px 8px;
+    /* Reduced padding */
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    /* Smaller gap between flag and text */
+    cursor: pointer;
+    font-size: 12px;
+    /* Smaller font size */
+}
+
+.lang-option:hover {
+    background-color: #f0f0f0;
+}
+
+.lang-dropdown.open .lang-options {
+    display: block;
+}
+
+.main-footer__top__social i {
+    font-size: 24px;
+    /* Increase the size of the icons */
+    transition: font-size 0.3s ease;
+    /* Optional: smooth transition on hover */
+}
+
+.main-footer__top__social a {
+    margin: 0 10px;
+    /* Add spacing between icons */
+}
+
+.main-footer__top__social a:hover i {
+    font-size: 28px;
+    /* Optional: Increase size slightly on hover */
+}
+
+.main-footer__top__social i {
+    font-size: 24px;
+    /* Increase the size of the icons */
+    transition: font-size 0.3s ease;
+    /* Optional: smooth transition on hover */
+    color: inherit;
+    /* Preserve the original color of icons */
+}
+
+.main-footer__top__social a {
+    margin: 0 10px;
+    /* Add spacing between icons */
+}
+
+.main-footer__top__social a:hover i {
+    font-size: 28px;
+    /* Optional: Increase size slightly on hover */
+}
+
+/* Floating Icon Container */
+.floating-icons-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+/* Main Floating Icon */
+.floating-icon {
+    background-color: #F79621;
+    /* WhatsApp color */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.floating-icon:hover {
+    background-color: #128C7E;
+    /* WhatsApp hover color */
+}
+
+.floating-icon i {
+    color: white;
+    font-size: 30px;
+}
+
+/* Floating Icons Dropdown (Initially hidden) */
+.floating-icons-dropdown {
+    display: none;
+    position: absolute;
+    bottom: 80px;
+    /* Adjust this to control vertical space */
+    right: 0;
+    background: transparent;
+    /* Gradient using F79621 */
+    border-radius: 10px;
+    padding: 10px;
+}
+
+/* Floating Icon Items */
+.floating-icon-item {
+    display: block;
+    width: 50px;
+    height: 50px;
+    margin: 10px 0;
+    background-color: transparent;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+/* WhatsApp Icon Color */
+.floating-icon-item .fab.fa-whatsapp {
+    background-color: #F79621;
+}
+
+.floating-icon-item .fab.fa-whatsapp:hover {
+    background-color: #F79621;
+    /* WhatsApp hover color */
+}
+
+/* TikTok Icon Color */
+.floating-icon-item .fab.fa-tiktok {
+    background-color: #000;
+    color: #69C9D0;
+    /* TikTok's main color */
+}
+
+.floating-icon-item .fab.fa-tiktok:hover {
+    background-color: #69C9D0;
+    color: #000;
+}
+
+/* Instagram Icon Color */
+.floating-icon-item .fab.fa-instagram {
+    /* Instagram's main color */
+}
+
+.floating-icon-item .fab.fa-instagram:hover {}
+
+/* Call Icon Color */
+.floating-icon-item .fas.fa-phone-alt {
+    background-color: #F79621;
+    /* Call button color */
+}
+
+.floating-icon-item .fas.fa-phone-alt:hover {
+    background-color: #F79621;
+}
+
+/* Hover effects for all items */
+.floating-icon-item:hover {
+    transform: scale(1.1);
+    /* Slight zoom effect */
+}
+
+
+
+
+
+
+/*css*/
+
+/* Floating Icon Container */
+.floating-icons-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+/* Main Floating Icon */
+.floating-icon {
+    background-color: transparent;
+    /* WhatsApp color */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.floating-icon:hover {
+    background-color: #F79621;
+    /* WhatsApp hover color */
+}
+
+.floating-icon i {
+    color: white;
+    font-size: 30px;
+}
+
+/* Floating Icons Dropdown (Initially hidden) */
+.floating-icons-dropdown {
+    display: none;
+    position: absolute;
+    bottom: 80px;
+    /* Adjust this to control vertical space */
+    right: 0;
+    /* background-color: transparent;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); */
+}
+
+/* Floating Icon Items */
+.floating-icon-item {
+    display: block;
+    width: 50px;
+    height: 50px;
+    margin: 10px 0;
+    background-color: #000;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.floating-icon-item:hover {
+    background-color: #F79621;
+    /* Hover color for all icons */
+}
+
+.floating-icon-item i {
+    color: white;
+    font-size: 24px;
+}

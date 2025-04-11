@@ -1,0 +1,1213 @@
+/*==============================================
+    Site Footer
+===============================================*/
+.site-footer {
+    position: relative;
+    display: block;
+    background-color: #121212;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.site-footer-top-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+.site-footer__shape-1 {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    opacity: .10;
+    z-index: -1;
+}
+
+.site-footer__shape-1 img {
+    width: auto;
+}
+
+.site-footer__shape-2 {
+    position: absolute;
+    top: 0;
+    left: -50px;
+    opacity: .10;
+    z-index: -1;
+}
+
+.site-footer__shape-2 img {
+    width: auto;
+}
+
+.site-footer__shape-3 {
+    position: absolute;
+    bottom: 0;
+    left: -100px;
+    z-index: -1;
+}
+
+.site-footer__shape-3 img {
+    width: auto;
+    filter: invert(1);
+    opacity: .10;
+}
+
+.site-footer__top {
+    position: relative;
+    display: block;
+    z-index: 1;
+}
+
+.site-footer__newsletter {
+    position: relative;
+    display: block;
+    border-bottom: 1px solid rgba(var(--tedlife-white-rgb), .10);
+    padding-top: 120px;
+    padding-bottom: 120px;
+}
+
+.site-footer__newsletter-inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background-color: var(--tedlife-base);
+    border-radius: var(--tedlife-bdr-radius);
+    padding: 50px 50px 50px;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.site-footer__newsletter-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: -30px;
+    opacity: 0.10;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
+
+.site-footer__newsletter-left {
+    position: relative;
+    display: block;
+    top: 2px;
+}
+
+.site-footer__newsletter-title-box {
+    position: relative;
+    display: block;
+}
+
+.site-footer__newsletter-title {
+    font-size: 30px;
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 40px;
+}
+
+.site-footer__newsletter-right {
+    position: relative;
+    display: block;
+    max-width: 650px;
+    width: 100%;
+}
+
+.site-footer__newsletter-content {
+    position: relative;
+    display: block;
+}
+
+.site-footer__newsletter-form {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.site-footer__newsletter-input {
+    position: relative;
+    display: block;
+    max-width: 360px;
+    width: 100%;
+}
+
+.site-footer__newsletter-input:before {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: "";
+    height: 1px;
+    background-color: #e09617;
+}
+
+.site-footer__newsletter-input input[type="text"] {
+    font-size: 14px;
+    color: var(--tedlife-black);
+    font-weight: 400;
+    height: 60px;
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    outline: none;
+}
+
+.site-footer__middle {
+    position: relative;
+    display: block;
+    padding-top: 92px;
+    padding-bottom: 90px;
+}
+
+.site-footer__middle-inner {
+    position: relative;
+    display: block;
+}
+
+.footer-widget__about {
+    position: relative;
+    display: block;
+    padding-top: 6px;
+}
+
+.footer-widget__about-logo {
+    position: relative;
+    display: inline-block;
+}
+
+.footer-widget__about-text {
+    margin: 0;
+    color: #bababa;
+    padding-top: 49px;
+    padding-bottom: 37px;
+}
+
+.footer-widget__about-address {
+    margin: 0;
+    color: #bababa;
+}
+
+.footer-widget__categories {
+    position: relative;
+    display: block;
+}
+
+.footer-widget__title {
+    position: relative;
+    display: inline-block;
+    font-size: 24px;
+    color: var(--tedlife-white);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    line-height: 34px;
+    margin-bottom: 46px;
+}
+
+.footer-widget__title:before {
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    height: 2px;
+    width: 15px;
+    background-color: var(--tedlife-base);
+    content: "";
+}
+
+.footer-widget__categories-list {
+    position: relative;
+    display: block;
+}
+
+.footer-widget__categories-list li+li {
+    margin-top: 19px;
+}
+
+.footer-widget__categories-list li a {
+    color: #bababa;
+    position: relative;
+    display: inline-block;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.footer-widget__categories-list li a:hover {
+    color: var(--tedlife-base);
+}
+
+.footer-widget__categories-list li a:before {
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    height: 2px;
+    width: 15px;
+    background-color: var(--tedlife-base);
+    content: "";
+    transition: transform 500ms ease;
+    transform: scale(0, 1);
+    transform-origin: left center;
+}
+
+.footer-widget__categories-list li a:hover:before {
+    transform: scale(1, 1);
+    transform-origin: right center;
+}
+
+.footer-widget__community {
+    position: relative;
+    display: block;
+}
+
+.footer-widget__community-list {
+    position: relative;
+    display: block;
+}
+
+.footer-widget__community-list li+li {
+    margin-top: 19px;
+}
+
+.footer-widget__community-list li a {
+    color: #bababa;
+    position: relative;
+    display: inline-block;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.footer-widget__community-list li a:hover {
+    color: var(--tedlife-base);
+}
+
+.footer-widget__community-list li a:before {
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    height: 2px;
+    width: 15px;
+    background-color: var(--tedlife-base);
+    content: "";
+    transition: transform 500ms ease;
+    transform: scale(0, 1);
+    transform-origin: left center;
+}
+
+.footer-widget__community-list li a:hover:before {
+    transform: scale(1, 1);
+    transform-origin: right center;
+}
+
+.footer-widget__business-hours {
+    position: relative;
+    display: block;
+}
+
+.footer-widget__business-hours-list {
+    position: relative;
+    display: block;
+}
+
+.footer-widget__business-hours-list li+li {
+    margin-top: 17px;
+}
+
+.footer-widget__business-hours-day {
+    margin: 0;
+    color: #bababa;
+    line-height: 25px;
+}
+
+.footer-widget__business-time {
+    margin: 0;
+    color: #bababa;
+}
+
+.footer-widget__business-number {
+    position: relative;
+    display: block;
+    color: #bababa;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.footer-widget__business-number:hover {
+    color: var(--tedlife-base);
+}
+
+.footer-widget__business-mail {
+    position: relative;
+    display: block;
+    color: #bababa;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.footer-widget__business-mail:hover {
+    color: var(--tedlife-base);
+}
+
+.site-footer__bottom {
+    position: relative;
+    display: block;
+    background-color: #121212;
+    padding: 30px 0;
+}
+
+.site-footer__bottom-inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.site-footer__social {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.site-footer__social a {
+    position: relative;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--tedlife-white);
+    background-color: #202021;
+    border-radius: var(--tedlife-bdr-radius);
+    font-size: 16px;
+    height: 35px;
+    width: 35px;
+    transform: rotate(0);
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+    z-index: 1;
+}
+
+.site-footer__social a:hover {
+    color: var(--tedlife-black);
+    transform: rotate(360deg);
+}
+
+.site-footer__social a:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: "";
+    background-color: var(--tedlife-base);
+    border-radius: var(--tedlife-bdr-radius);
+    transform: scale(0.0);
+    transform-origin: center;
+    transform-style: preserve-3d;
+    transition: all 0.4s cubic-bezier(0.62, 0.21, 0.45, 1.52);
+    z-index: -1;
+}
+
+.site-footer__social a:hover:before {
+    transform: scaleX(1.0);
+}
+
+.site-footer__social a+a {
+    margin-left: 15px;
+}
+
+.site-footer__copyright {
+    position: relative;
+    display: block;
+    top: 3px;
+}
+
+.site-footer__copyright-text {
+    font-size: 16px;
+    color: #bababa;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+}
+
+.site-footer__copyright-text a {
+    color: var(--tedlife-base);
+}
+
+.site-footer__copyright-text a:hover {
+    color: var(--tedlife-white);
+}
+
+.site-footer__bottom-menu-box {
+    position: relative;
+    display: block;
+    top: 3px;
+}
+
+.site-footer__bottom-menu {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.site-footer__bottom-menu li {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.site-footer__bottom-menu li+li {
+    margin-left: 45px;
+}
+
+.site-footer__bottom-menu li a {
+    position: relative;
+    display: inline-block;
+    color: #bababa;
+    font-family: var(--tedlife-font-two);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.site-footer__bottom-menu li a:hover {
+    color: var(--tedlife-base);
+}
+
+.site-footer__bottom-menu li a:before {
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    right: 0;
+    content: "";
+    height: 1px;
+    background-color: #949494;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.site-footer__bottom-menu li a:hover:before {
+    background-color: var(--tedlife-base);
+}
+
+
+/*--------------------------------------------------------------
+# Site Footer Two
+--------------------------------------------------------------*/
+.site-footer-two {
+    position: relative;
+    display: block;
+    background-color: var(--tedlife-black);
+    margin-top: -105px;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.site-footer-two__shape-1 {
+    position: absolute;
+    left: 30px;
+    top: 0;
+    opacity: .3;
+    z-index: -1;
+}
+
+.site-footer-two__shape-1 img {
+    width: auto;
+    transform: rotate(45deg);
+}
+
+.site-footer-two__shape-2 {
+    position: absolute;
+    right: -100px;
+    bottom: -100px;
+    opacity: .3;
+    z-index: -1;
+}
+
+.site-footer-two__shape-2 img {
+    width: auto;
+}
+
+.site-footer-two__top {
+    position: relative;
+    display: block;
+    padding: 205px 0 76px;
+}
+
+.footer-widget-two__about {
+    position: relative;
+    display: block;
+}
+
+.footer-widget-two__logo {
+    position: relative;
+    display: block;
+}
+
+.footer-widget-two__about-text {
+    margin-top: 25px;
+    margin-bottom: 36px;
+    color: #bababa;
+}
+
+.site-footer-two__social {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.site-footer-two__social a {
+    position: relative;
+    height: 42px;
+    width: 42px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--tedlife-white);
+    background-color: #202021;
+    font-size: 16px;
+    border-radius: var(--tedlife-bdr-radius);
+    overflow: hidden;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+    z-index: 1;
+}
+
+.site-footer-two__social a:hover {
+    color: var(--tedlife-white);
+    background-color: var(--tedlife-base);
+}
+
+.site-footer-two__social a:after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background-color: var(--tedlife-base);
+    -webkit-transition-delay: .1s;
+    transition-delay: .1s;
+    -webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
+    -webkit-transition-duration: .4s;
+    transition-duration: .4s;
+    -webkit-transition-property: all;
+    transition-property: all;
+    opacity: 1;
+    -webkit-transform-origin: top;
+    transform-origin: top;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transform: scaleY(0);
+    transform: scaleY(0);
+    z-index: -1;
+}
+
+.site-footer-two__social a:hover:after {
+    opacity: 1;
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+}
+
+.site-footer-two__social a+a {
+    margin-left: 10px;
+}
+
+.footer-widget-two__title-box {
+    position: relative;
+    display: block;
+    margin-bottom: 30px;
+}
+
+.footer-widget-two__title {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0.1em;
+    color: var(--tedlife-white);
+    text-transform: uppercase;
+}
+
+.footer-widget-two__usefull-link {
+    position: relative;
+    display: block;
+    margin-left: 30px;
+}
+
+.footer-widget-two__link-box {
+    position: relative;
+    display: flex;
+}
+
+.footer-widget-two__link {
+    position: relative;
+    display: block;
+}
+
+.footer-widget-two__link li {
+    position: relative;
+    display: block;
+}
+
+.footer-widget-two__link li+li {
+    margin-top: 10px;
+}
+
+.footer-widget-two__link li a {
+    color: #bababa;
+    text-transform: capitalize;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.footer-widget-two__link li a:hover {
+    color: var(--tedlife-base);
+}
+
+.footer-widget-two__link-2 {
+    margin-left: 55px;
+}
+
+.footer-widget-two__services {
+    position: relative;
+    display: block;
+}
+
+.footer-widget-two__instagram {
+    position: relative;
+    display: block;
+}
+
+.footer-widget-two__instagram-list {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-right: -5px;
+    margin-left: -5px;
+    padding-top: 9px;
+}
+
+.footer-widget-two__instagram-list li {
+    position: relative;
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+    width: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-bottom: 10px;
+}
+
+.footer-widget-two__instagram-img {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: var(--tedlife-bdr-radius);
+    z-index: 1;
+}
+
+.footer-widget-two__instagram-img:before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: "";
+    background-color: rgba(var(--tedlife-black-rgb), .50);
+    transition: all 700ms ease;
+    transform: translateY(-100%);
+    z-index: 1;
+}
+
+.footer-widget-two__instagram-list li:hover .footer-widget-two__instagram-img:before {
+    transform: translateY(0%);
+}
+
+.footer-widget-two__instagram-img img {
+    width: 100%;
+    border-radius: var(--tedlife-bdr-radius);
+    filter: grayscale(100%);
+    transition-delay: .1s;
+    transition-timing-function: ease-in-out;
+    transition-duration: .7s;
+    transition-property: all;
+}
+
+.footer-widget-two__instagram-list li:hover .footer-widget-two__instagram-img img {
+    transform: scale(1.1) rotate(2deg);
+}
+
+.footer-widget-two__instagram-img a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    color: var(--tedlife-white);
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 700ms ease;
+    z-index: 2;
+}
+
+.footer-widget-two__instagram-list li:hover .footer-widget-two__instagram-img a {
+    transform: translateY(0px);
+    opacity: 1;
+    transition-delay: 0.3s;
+}
+
+.footer-widget-two__instagram-list li .footer-widget-two__instagram-img a:hover {
+    color: var(--tedlife-base);
+}
+
+.site-footer-two__bottom {
+    position: relative;
+    display: block;
+    border-top: 1px solid rgba(var(--tedlife-white-rgb), .10);
+}
+
+.site-footer-two__bottom-inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 32px 0 28px;
+}
+
+.site-footer-two__bottom-text {
+    color: #bababa;
+    font-family: var(--tedlife-font-two);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.site-footer-two__bottom-text a {
+    font-weight: 500;
+    color: var(--tedlife-base);
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.site-footer-two__bottom-text a:hover {
+    color: var(--tedlife-white);
+}
+
+.site-footer-two__bottom-menu {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.site-footer-two__bottom-menu li {
+    position: relative;
+    display: block;
+}
+
+.site-footer-two__bottom-menu li:before {
+    content: "";
+    position: absolute;
+    top: 6px;
+    bottom: 9px;
+    left: -10px;
+    width: 1px;
+    background-color: #bababa;
+}
+
+.site-footer-two__bottom-menu li:first-child:before {
+    display: none;
+}
+
+.site-footer-two__bottom-menu li+li {
+    margin-left: 20px;
+}
+
+.site-footer-two__bottom-menu li a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #bababa;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: var(--tedlife-font-two);
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.site-footer-two__bottom-menu li a:hover {
+    color: var(--tedlife-base);
+}
+
+/*--------------------------------------------------------------
+# Site Footer Three
+--------------------------------------------------------------*/
+.site-footer-three {
+    position: relative;
+    display: block;
+    background-color: var(--tedlife-black);
+    overflow: hidden;
+    z-index: 1;
+}
+
+.site-footer-three-shape-1 {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1323px;
+    height: 586px;
+    transform: translateX(-50%);
+    z-index: -1;
+}
+
+.site-footer-three__top {
+    position: relative;
+    display: block;
+    padding: 117px 0 110px;
+}
+
+.footer-widget-three__about {
+    position: relative;
+    display: block;
+    margin-right: 85px;
+    margin-top: 4px;
+}
+
+.footer-widget-three__logo {
+    position: relative;
+    display: block;
+}
+
+.footer-widget-three__about-text-box {
+    position: relative;
+    display: block;
+    padding-top: 40px;
+    padding-bottom: 21px;
+}
+
+.footer-widget-three__about-text {
+    font-size: 16px;
+    color: #bababa;
+}
+
+.footer-widget-three__social-box {
+    position: relative;
+    display: block;
+}
+
+.footer-widget-three__social-title {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0.1em;
+    color: var(--tedlife-white);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.site-footer-three__social {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.site-footer-three__social a {
+    position: relative;
+    height: 40px;
+    width: 40px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--tedlife-white);
+    background-color: #1c1d21;
+    font-size: 15px;
+    border-radius: var(--tedlife-bdr-radius);
+    overflow: hidden;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+    z-index: 1;
+}
+
+.site-footer-three__social a:hover {
+    color: var(--tedlife-white);
+    background-color: var(--tedlife-base);
+}
+
+.site-footer-three__social a:after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background-color: var(--tedlife-base);
+    -webkit-transition-delay: .1s;
+    transition-delay: .1s;
+    -webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
+    -webkit-transition-duration: .4s;
+    transition-duration: .4s;
+    -webkit-transition-property: all;
+    transition-property: all;
+    opacity: 1;
+    -webkit-transform-origin: top;
+    transform-origin: top;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transform: scaleY(0);
+    transform: scaleY(0);
+    z-index: -1;
+}
+
+.site-footer-three__social a:hover:after {
+    opacity: 1;
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+}
+
+.site-footer-three__social a+a {
+    margin-left: 10px;
+}
+
+.footer-widget-three__links {
+    position: relative;
+    display: block;
+}
+
+.footer-widget-three__title-box {
+    position: relative;
+    display: block;
+    margin-bottom: 30px;
+}
+
+.footer-widget-three__title {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0.1em;
+    color: var(--tedlife-white);
+    text-transform: uppercase;
+}
+
+.footer-widget-three__Explore-list {
+    position: relative;
+    display: block;
+}
+
+.footer-widget-three__Explore-list li {
+    position: relative;
+    display: block;
+}
+
+.footer-widget-three__Explore-list li+li {
+    margin-top: 16px;
+}
+
+.footer-widget-three__Explore-list li a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #bababa;
+    padding-left: 15px;
+    transition: all 500ms ease;
+}
+
+.footer-widget-three__Explore-list li a:hover {
+    color: var(--tedlife-base);
+}
+
+.footer-widget-three__Explore-list li a:before {
+    content: "\f0da";
+    position: absolute;
+    top: 51%;
+    left: 0;
+    transform: translateY(-50%);
+    font-family: "Font Awesome 5 Pro";
+    font-weight: 900;
+    font-size: 15px;
+    color: var(--tedlife-base);
+    transition: all 500ms ease;
+}
+
+.footer-widget-three__services {
+    position: relative;
+    display: block;
+}
+
+.footer-widget-three__services-list {
+    position: relative;
+    display: block;
+}
+
+.footer-widget-three__services-list li {
+    position: relative;
+    display: block;
+}
+
+.footer-widget-three__services-list li+li {
+    margin-top: 16px;
+}
+
+.footer-widget-three__services-list li a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #bababa;
+    padding-left: 15px;
+    transition: all 500ms ease;
+}
+
+.footer-widget-three__services-list li a:hover {
+    color: var(--tedlife-base);
+}
+
+.footer-widget-three__services-list li a:before {
+    content: "\f0da";
+    position: absolute;
+    top: 51%;
+    left: 0;
+    transform: translateY(-50%);
+    font-family: "Font Awesome 5 Pro";
+    font-weight: 900;
+    font-size: 15px;
+    color: var(--tedlife-base);
+    transition: all 500ms ease;
+}
+
+.footer-widget-three__Contact {
+    position: relative;
+    display: block;
+}
+
+.footer-widget-three__Contact-list {
+    position: relative;
+    display: block;
+}
+
+.footer-widget-three__Contact-list li {
+    position: relative;
+    display: flex;
+}
+
+.footer-widget-three__Contact-list li+li {
+    margin-top: 15px;
+}
+
+.footer-widget-three__Contact-list li .icon {
+    position: relative;
+    display: flex;
+    top: 9px;
+}
+
+.footer-widget-three__Contact-list li .icon span {
+    position: relative;
+    display: inline-block;
+    font-size: 15px;
+    color: var(--tedlife-base);
+}
+
+.footer-widget-three__Contact-list li .text {
+    margin-left: 10px;
+}
+
+.footer-widget-three__Contact-list li .text p {
+    font-size: 16px;
+    color: #bababa;
+}
+
+.footer-widget-three__Contact-list li .text p a {
+    position: relative;
+    display: block;
+    color: #bababa;
+    transition: all 500ms ease;
+}
+
+.footer-widget-three__Contact-list li .text p a:hover {
+    color: var(--tedlife-base);
+}
+
+.site-footer-three__bottom {
+    position: relative;
+    display: block;
+    padding: 37px 0 37px;
+    background-color: #131518;
+}
+
+.site-footer-three__bottom-inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.site-footer-three__bottom-text {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 26px;
+    color: var(--tedlife-white);
+}
+
+.site-footer-three__bottom-text a {
+    color: var(--tedlife-base);
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.site-footer-three__bottom-text a:hover {
+    color: var(--tedlife-white);
+}
+
+.site-footer-three .site-footer__bottom {
+    background-color: #1c1d21;
+}
+
+
+
+
+
+/*--------------------------------------------------------------
+# End
+--------------------------------------------------------------*/

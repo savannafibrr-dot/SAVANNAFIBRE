@@ -1,0 +1,116 @@
+body,
+.mail-one,
+.testimonials-one,
+.testimonials-card,
+.packages-one__wrapper,
+body.boxed-wrapper .page-wrapper {
+  background-color: var(--ienet-black);
+}
+
+body {
+  color: var(--ienet-border-color);
+}
+
+.faq-one__accordion .accrodion-title h4,
+.about-one__content__list li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--ienet-white);
+}
+
+.about-one {
+  background-color: var(--ienet-black);
+  background-blend-mode: overlay;
+}
+
+.packages-one__bg::after {
+  background-color: rgba(var(--ienet-black-rgb), 0.78);
+}
+
+.packages-one__item:not(:first-of-type)::before {
+  opacity: 0.1;
+}
+
+.feature-one__box + .feature-one__box {
+  border-color: rgba(var(--ienet-border-color-rgb), 0.1);
+}
+
+.packages-one__list li,
+.packages-one__item__list li {
+  color: var(--ienet-text);
+}
+
+.mail-one__bg {
+  mix-blend-mode: multiply;
+}
+.mail-one__bg::after {
+  display: none;
+}
+
+.mail-one {
+  z-index: 2;
+}
+.mail-one__overlay {
+  position: absolute;
+  right: 17%;
+  top: 0;
+  background-position: right center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  content: "";
+  z-index: -1;
+}
+@media (max-width: 1600px) {
+  .mail-one__overlay {
+    right: 15%;
+  }
+}
+
+.mail-one__newsletter .ienet-btn:hover,
+.cta-one .ienet-btn:hover {
+  color: var(--ienet-base);
+}
+
+.mail-one__newsletter .ienet-btn::after,
+.mail-one__newsletter .ienet-btn::before,
+.cta-one .ienet-btn::after,
+.cta-one .ienet-btn::before {
+  border-top-color: var(--ienet-white);
+  border-bottom-color: var(--ienet-white);
+}
+
+.faq-one__accordion .accrodion {
+  background-color: transparent;
+  border: 1px solid rgba(var(--ienet-border-color-rgb), 0.15);
+}
+
+.faq-one__accordion .accrodion-title__icon {
+  background-color: var(--ienet-base);
+}
+
+.testimonials-one__bg {
+  mix-blend-mode: screen;
+  opacity: 0.1;
+}
+
+.testimonials-card__author::after {
+  background-color: var(--ienet-black3);
+}
+
+.testimonials-card:hover .testimonials-card__quote i:first-child {
+  -webkit-text-stroke-color: var(--ienet-black3);
+}
+
+.testimonials-card:hover .testimonials-card__quote {
+  color: var(--ienet-black3);
+}
+
+.blog-card__title {
+  color: var(--ienet-black);
+}
+/*# sourceMappingURL=ienet-dark.css.map */

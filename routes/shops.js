@@ -49,7 +49,7 @@ const isAuthenticated = (req, res, next) => {
 };
 
 // Get all shops
-router.get('/', isAuthenticated, async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const shops = await Shop.find().sort({ createdAt: -1 });
         res.json(shops);

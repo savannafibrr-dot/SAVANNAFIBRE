@@ -1,0 +1,2847 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home One || Savanna Fibre || Broadband TV & Internet</title>
+
+    <!-- favicons Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/preloader orange.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/preloader orange.svg" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/preloader orange.svg" />
+    <link rel="manifest" href="assets/preloader orange.svg" />
+    <meta name="description" content="" />
+
+
+
+
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&amp;display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="assets/vendors/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/vendors/bootstrap-select/bootstrap-select.min.css" />
+    <link rel="stylesheet" href="assets/vendors/animate/animate.min.css" />
+    <link rel="stylesheet" href="assets/vendors/fontawesome/css/all.min.css" />
+    <link rel="stylesheet" href="assets/vendors/jquery-ui/jquery-ui.css" />
+    <link rel="stylesheet" href="assets/vendors/jarallax/jarallax.css" />
+    <link rel="stylesheet" href="assets/vendors/jquery-magnific-popup/jquery.magnific-popup.css" />
+    <link rel="stylesheet" href="assets/vendors/nouislider/nouislider.min.css" />
+    <link rel="stylesheet" href="assets/vendors/nouislider/nouislider.pips.css" />
+    <link rel="stylesheet" href="assets/vendors/tiny-slider/tiny-slider.css" />
+    <link rel="stylesheet" href="assets/vendors/ienet-icons/style.css" />
+    <link rel="stylesheet" href="assets/vendors/slick/slick.css">
+    <link rel="stylesheet" href="assets/vendors/owl-carousel/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="assets/vendors/owl-carousel/css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.6.0/css/flag-icon.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+
+
+    <!-- template styles -->
+    <link rel="stylesheet" href="assets/css/ienet.css" />
+    <link rel="stylesheet" href="stap.css">
+    <script>
+        function toggleIcons() {
+            var dropdown = document.getElementById("floating-icons-dropdown");
+            // Toggle visibility of the dropdown
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        }
+
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+    <style>
+        @media (max-width: 768px) {
+
+            /* Target devices with a width of 768px or less */
+            .about-one__shape {
+                display: none;
+            }
+        }
+
+
+
+
+        .thin-strip-container {
+            background-color: #0A121D;
+            background-image: url(https://savannafibre.com/wp-content/uploads/2024/01/pattern.png);
+            background-position: center center;
+            background-repeat: repeat;
+            background-size: contain;
+            height: 20px;
+            /* This controls the thickness of the strip */
+            width: 100%;
+            /* Ensures it stretches across the screen */
+            display: flex;
+            justify-content: center;
+            /* Centers the content horizontally */
+            align-items: center;
+            /* Centers the content vertically (if needed) */
+            flex-direction: row;
+        }
+
+        @media (max-width: 767px) {
+            .thin-strip-container {
+                height: 15px;
+                /* Adjust height for smaller screens */
+            }
+        }
+    </style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ffffff;
+            --text: #272727;
+            --accent: #5057fd;
+            --accent-light: #eff3ff;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            min-height: 100vh;
+            color: var(--text);
+            background: var(--primary);
+        }
+
+        a {
+            text-decoration: none;
+            color: currentColor;
+        }
+
+        li {
+            list-style: none;
+            line-height: 2;
+        }
+
+        span {
+            font-size: 14px;
+        }
+
+        p {
+            font-weight: 500;
+        }
+
+        .pricing__section {
+            margin-block: 3rem;
+        }
+
+        .wrapper {
+            max-width: 1240px;
+            margin-inline: auto;
+            padding-inline: 1rem;
+        }
+
+        .title {
+            text-align: center;
+            display: grid;
+            gap: 1rem;
+            place-items: center;
+        }
+
+        .title h2 {
+            font-size: 40px;
+        }
+
+        .toggle__section {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .toggle__section input {
+            display: none;
+        }
+
+        .toggle__section .toggle__btn {
+            display: flex;
+            padding: 4px;
+            background: #F79621;
+            border-radius: 2rem;
+            width: 2.35rem;
+        }
+
+        .toggle__section .toggle__btn span {
+            display: block;
+            width: 1rem;
+            height: 1rem;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        input:checked~.toggle__btn {
+            justify-content: end;
+        }
+
+        .price__cards {
+            margin-block: 2rem;
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+
+        .price__card {
+            padding: 1.5rem 1rem;
+            /* Reduced padding */
+            box-shadow: 0 0 15px rgba(255, 165, 0, 0.8), 0 0 30px rgba(255, 140, 0, 0.6);
+            border-radius: 1rem;
+            display: inline-flex;
+            gap: 0.5rem;
+            /* Reduced gap */
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .price__card:hover {
+            transform: translateY(-8px);
+            /* Slight elevation effect */
+            box-shadow: 0 0 15px rgba(255, 165, 0, 0.8), 0 0 30px rgba(255, 140, 0, 0.6);
+            border-color: rgba(255, 140, 0, 0.9);
+            /* Neon orange border color */
+        }
+
+        .price__details {
+            flex: 1 1 auto;
+        }
+
+        .price__details h3 {
+            font-size: 24px;
+            /* Reduced font size */
+            line-height: 1.2;
+            /* Reduced line height */
+        }
+
+        .price__details ul {
+            margin-block: 0.5rem;
+            /* Reduced margin */
+        }
+
+        .price__details ul li::before {
+            content: ">";
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        hr {
+            border: none;
+            height: 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .price__card .price {
+            font-size: 24px;
+            /* Reduced font size */
+            font-weight: 600;
+            letter-spacing: -1.5px;
+            /* Slight adjustment */
+        }
+
+        /* .price__card .price:before {
+          content: "$";
+        } */
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            /* padding: 1rem 2rem;
+          border-radius: 2rem; */
+            transition: 0.3s ease-in-out;
+            padding: 0.75rem 1.5rem;
+            /* Reduced button size */
+            border-radius: 1.5rem;
+            /* Adjusted border radius */
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            background: var(--accent);
+            /* Default background */
+            color: var(--primary);
+            /* Default text color */
+        }
+
+        .bg__accent {
+            background: #ffffff;
+            color: var(--primary);
+        }
+
+        .bg__accent-2 {
+            background: #F79621;
+            color: var(--accent);
+        }
+
+        .bg__primary {
+            background: var(--primary);
+            color: var(--accent);
+        }
+
+        .btn:hover {
+            background-color: var(--accent-light);
+            /* Change background color on hover */
+            color: var(--accent);
+            /* Change text color on hover */
+            transform: scale(1.05);
+            /* Slight zoom effect */
+        }
+
+        .card-image {
+            max-width: 100px;
+            margin-bottom: 1rem;
+        }
+    </style>
+
+
+    <style>
+        .tech-card {
+            background: linear-gradient(to bottom, #1e293b, #0f172a);
+            border-radius: 20px;
+            overflow: hidden;
+            color: #fff;
+            padding: 20px;
+            max-width: 300px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .tech-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .tech-card h3.price-title {
+            font-size: 28px;
+            color: #F79621;
+            margin-bottom: 10px;
+        }
+
+        .tech-card .price {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .tech-card .price-image img {
+            max-width: 80px;
+            margin: 20px auto;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.5));
+        }
+
+        .tech-card .price-details {
+            text-align: left;
+            list-style: none;
+            padding: 0;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .tech-card .price-btn {
+            display: inline-block;
+            background: #F79621;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .tech-card .price-btn:hover {
+            background: #000;
+            color: #F79621;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+    <style>
+        .tech-card {
+            background: linear-gradient(to bottom, #1e293b, #0f172a);
+            border-radius: 20px;
+            overflow: hidden;
+            color: #fff;
+            padding: 20px;
+            max-width: 300px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .tech-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .tech-card h3.price-title {
+            font-size: 28px;
+            color: #F79621;
+            margin-bottom: 10px;
+        }
+
+        .tech-card .price-image img {
+            max-width: 100px;
+            margin: 20px auto;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.5));
+        }
+
+        .price-pop {
+            background: url('assets/images/patch-bg.svg') no-repeat center;
+            background-size: cover;
+            margin: 20px auto;
+            width: 180px;
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .price-pop .price-amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: #F79621;
+        }
+
+        .price-pop .price-duration {
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .tech-card .price-details {
+            text-align: left;
+            list-style: none;
+            padding: 0;
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+
+        .tech-card .price-btn {
+            display: inline-block;
+            background: #F79621;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .tech-card .price-btn:hover {
+            background: #000;
+            color: #F79621;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Star List Styling */
+        .star-list {
+            list-style: none;
+            padding: 0;
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 20px 0;
+            color: #ffffff;
+        }
+
+        .star-list li {
+            position: relative;
+            padding-left: 25px;
+            /* Space for the star icon */
+            margin-bottom: 10px;
+        }
+
+        .star-list li::before {
+            content: "★";
+            /* Star icon */
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #F79621;
+            /* Gold color for the star */
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        /* Tech Card Styling */
+        .tech-card {
+            background: linear-gradient(to bottom, #1e293b, #0f172a);
+            border-radius: 20px;
+            overflow: hidden;
+            color: #fff;
+            padding: 20px;
+            max-width: 300px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .tech-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .price-pop {
+            background: url('assets/images/patch-bg.svg') no-repeat center;
+            background-size: cover;
+            margin: 20px auto;
+            width: 180px;
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .price-pop .price-amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: #F79621;
+        }
+
+        .price-pop .price-duration {
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .price-btn {
+            display: inline-block;
+            background: #F79621;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .price-btn:hover {
+            background: #000;
+            color: #F79621;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+
+
+        .tech-card {
+            background: linear-gradient(to bottom, #1e293b, #0f172a);
+            border-radius: 20px;
+            overflow: hidden;
+            color: #fff;
+            padding: 20px;
+            max-width: 360px;
+            /* Increased width */
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .tech-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Target only the specific stars inside the .specific-stars class */
+        .specific-stars li::before {
+            color: #ffffff;
+            /* Change star color to white */
+        }
+
+
+
+        /* Other CSS remains the same */
+    </style>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ffffff;
+            --text: #272727;
+            --accent: #5057fd;
+            --accent-light: #eff3ff;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            min-height: 100vh;
+            color: var(--text);
+            background: var(--primary);
+        }
+
+        a {
+            text-decoration: none;
+            color: currentColor;
+        }
+
+        li {
+            list-style: none;
+            line-height: 2;
+        }
+
+        span {
+            font-size: 14px;
+        }
+
+        p {
+            font-weight: 500;
+        }
+
+        .pricing__section {
+            margin-block: 3rem;
+        }
+
+        .wrapper {
+            max-width: 1240px;
+            margin-inline: auto;
+            padding-inline: 1rem;
+        }
+
+        .title {
+            text-align: center;
+            display: grid;
+            gap: 1rem;
+            place-items: center;
+        }
+
+        .title h2 {
+            font-size: 40px;
+        }
+
+        .toggle__section {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .toggle__section input {
+            display: none;
+        }
+
+        .toggle__section .toggle__btn {
+            display: flex;
+            padding: 4px;
+            background: #F79621;
+            border-radius: 2rem;
+            width: 2.35rem;
+        }
+
+        .toggle__section .toggle__btn span {
+            display: block;
+            width: 1rem;
+            height: 1rem;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        input:checked~.toggle__btn {
+            justify-content: end;
+        }
+
+        .price__cards {
+            margin-block: 2rem;
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+
+        .price__card {
+            padding: 1.5rem 1rem;
+            /* Reduced padding */
+            box-shadow: 0 0 15px rgba(255, 165, 0, 0.8), 0 0 30px rgba(255, 140, 0, 0.6);
+            border-radius: 1rem;
+            display: inline-flex;
+            gap: 0.5rem;
+            /* Reduced gap */
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .price__card:hover {
+            transform: translateY(-8px);
+            /* Slight elevation effect */
+            box-shadow: 0 0 15px rgba(255, 165, 0, 0.8), 0 0 30px rgba(255, 140, 0, 0.6);
+            border-color: rgba(255, 140, 0, 0.9);
+            /* Neon orange border color */
+        }
+
+        .price__details {
+            flex: 1 1 auto;
+        }
+
+        .price__details h3 {
+            font-size: 24px;
+            /* Reduced font size */
+            line-height: 1.2;
+            /* Reduced line height */
+        }
+
+        .price__details ul {
+            margin-block: 0.5rem;
+            /* Reduced margin */
+        }
+
+        .price__details ul li::before {
+            content: ">";
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        hr {
+            border: none;
+            height: 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .price__card .price {
+            font-size: 24px;
+            /* Reduced font size */
+            font-weight: 600;
+            letter-spacing: -1.5px;
+            /* Slight adjustment */
+        }
+
+        /* .price__card .price:before {
+      content: "$";
+    } */
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            /* padding: 1rem 2rem;
+      border-radius: 2rem; */
+            transition: 0.3s ease-in-out;
+            padding: 0.75rem 1.5rem;
+            /* Reduced button size */
+            border-radius: 1.5rem;
+            /* Adjusted border radius */
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            background: var(--accent);
+            /* Default background */
+            color: var(--primary);
+            /* Default text color */
+        }
+
+        .bg__accent {
+            background: #ffffff;
+            color: var(--primary);
+        }
+
+        .bg__accent-2 {
+            background: #F79621;
+            color: var(--accent);
+        }
+
+        .bg__primary {
+            background: var(--primary);
+            color: var(--accent);
+        }
+
+        .btn:hover {
+            background-color: var(--accent-light);
+            /* Change background color on hover */
+            color: var(--accent);
+            /* Change text color on hover */
+            transform: scale(1.05);
+            /* Slight zoom effect */
+        }
+
+        .card-image {
+            max-width: 100px;
+            margin-bottom: 1rem;
+        }
+    </style>
+    <style>
+        .main-slider-one {
+            margin-top: 0;
+            /* Remove any default margin */
+            padding-top: 0;
+            /* Remove any default padding */
+            position: relative;
+            /* Ensure it's relative to the flow of the document */
+            top: 0;
+            /* Prevent it from overlapping with the navbar */
+        }
+
+        .main-header {
+            margin-bottom: 0;
+            /* Remove margin below the navbar */
+        }
+
+        body {
+            padding: 0;
+            /* Remove default body padding */
+            margin: 0;
+            /* Remove default body margin */
+        }
+    </style>
+    <style>
+        .main-slider-one {
+            margin-top: 0;
+            padding-top: 0;
+            position: relative;
+            top: 0;
+        }
+
+        .main-header {
+            margin-bottom: 0;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .main-slider-one__item {
+            height: 600px;
+            /* Set to desired height */
+            display: flex;
+            /* Align content properly */
+            align-items: center;
+        }
+    </style>
+    <style>
+        .tech-card {
+            background: linear-gradient(to bottom, #1e293b, #0f172a);
+            border-radius: 20px;
+            overflow: hidden;
+            color: #fff;
+            padding: 20px;
+            max-width: 300px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .tech-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .tech-card h3.price-title {
+            font-size: 28px;
+            color: #F79621;
+            margin-bottom: 10px;
+        }
+
+        .tech-card .price {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .tech-card .price-image img {
+            max-width: 80px;
+            margin: 20px auto;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.5));
+        }
+
+        .tech-card .price-details {
+            text-align: left;
+            list-style: none;
+            padding: 0;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .tech-card .price-btn {
+            display: inline-block;
+            background: #F79621;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .tech-card .price-btn:hover {
+            background: #000;
+            color: #F79621;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+    <style>
+        .tech-card {
+            background: linear-gradient(to bottom, #1e293b, #0f172a);
+            border-radius: 20px;
+            overflow: hidden;
+            color: #fff;
+            padding: 20px;
+            max-width: 300px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .tech-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .tech-card h3.price-title {
+            font-size: 28px;
+            color: #F79621;
+            margin-bottom: 10px;
+        }
+
+        .tech-card .price-image img {
+            max-width: 100px;
+            margin: 20px auto;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.5));
+        }
+
+        .price-pop {
+            background: url('assets/images/patch-bg.svg') no-repeat center;
+            background-size: cover;
+            margin: 20px auto;
+            width: 180px;
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .price-pop .price-amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: #F79621;
+        }
+
+        .price-pop .price-duration {
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .tech-card .price-details {
+            text-align: left;
+            list-style: none;
+            padding: 0;
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+
+        .tech-card .price-btn {
+            display: inline-block;
+            background: #F79621;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .tech-card .price-btn:hover {
+            background: #000;
+            color: #F79621;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Star List Styling */
+        .star-list {
+            list-style: none;
+            padding: 0;
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 20px 0;
+            color: #ffffff;
+        }
+
+        .star-list li {
+            position: relative;
+            padding-left: 25px;
+            /* Space for the star icon */
+            margin-bottom: 10px;
+        }
+
+        .star-list li::before {
+            content: "★";
+            /* Star icon */
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #F79621;
+            /* Gold color for the star */
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        /* Tech Card Styling */
+        .tech-card {
+            background: linear-gradient(to bottom, #1e293b, #0f172a);
+            border-radius: 20px;
+            overflow: hidden;
+            color: #fff;
+            padding: 20px;
+            max-width: 300px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .tech-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .price-pop {
+            background: url('assets/images/patch-bg.svg') no-repeat center;
+            background-size: cover;
+            margin: 20px auto;
+            width: 180px;
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .price-pop .price-amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: #F79621;
+        }
+
+        .price-pop .price-duration {
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .price-btn {
+            display: inline-block;
+            background: #F79621;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .price-btn:hover {
+            background: #000;
+            color: #F79621;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+
+
+        .tech-card {
+            background: linear-gradient(to bottom, #1e293b, #0f172a);
+            border-radius: 20px;
+            overflow: hidden;
+            color: #fff;
+            padding: 20px;
+            max-width: 360px;
+            /* Increased width */
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .tech-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Target only the specific stars inside the .specific-stars class */
+        .specific-stars li::before {
+            color: #ffffff;
+            /* Change star color to white */
+        }
+
+
+
+        /* Other CSS remains the same */
+    </style>
+
+
+    <style>
+        /* Dropdown Styling for Shops */
+        .main-menu__list>li>ul {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: linear-gradient(145deg, #F79621, #e5891f);
+            /* Gradient using logo color */
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+            list-style: none;
+            padding: 10px 0;
+            margin: 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .main-menu__list>li:hover>ul {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Dropdown Menu Items */
+        .main-menu__list>li>ul li {
+            padding: 0;
+            margin: 0;
+        }
+
+        .main-menu__list>li>ul li a {
+            color: #ffffff;
+            /* White text for contrast */
+            padding: 10px 20px;
+            display: block;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .main-menu__list>li>ul li a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            /* Subtle hover effect */
+            color: #000;
+            /* Black text on hover */
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Add spacing for icons */
+        .main-menu__list>li>ul li a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            /* Space between icon and text */
+            color: #ffffff;
+            /* White text for contrast */
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+        }
+
+        /* Hover effect for menu items with icons */
+        .main-menu__list>li>ul li a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            /* Subtle hover effect */
+            color: #000;
+            /* Black text on hover */
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Icon Styling */
+        .main-menu__list>li>ul li a i {
+            font-size: 1.2rem;
+            color: #ffffff;
+            /* Icon color matches text */
+            transition: all 0.3s ease;
+        }
+
+        .main-menu__list>li>ul li a:hover i {
+            color: #000;
+            /* Icon color changes on hover */
+        }
+
+        /* Dropdown Menu Styling */
+        .main-menu__list>li>ul {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: linear-gradient(145deg, #F79621, #e5891f);
+            /* Gradient using logo color */
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+            list-style: none;
+            padding: 10px 0;
+            margin: 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .main-menu__list>li:hover>ul {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Dropdown Items Styling */
+        .main-menu__list>li>ul li {
+            padding: 0;
+            margin: 0;
+        }
+
+        .main-menu__list>li>ul li a {
+            color: #ffffff;
+            /* White text */
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            /* Spacing between icon and text */
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .main-menu__list>li>ul li a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            /* Subtle hover effect */
+            color: #000;
+            /* Black text on hover */
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Icon Styling */
+        .main-menu__list>li>ul li a i {
+            font-size: 1.2rem;
+            color: #ffffff;
+            /* Match text color */
+            transition: all 0.3s ease;
+        }
+
+        .main-menu__list>li>ul li a:hover i {
+            color: #000;
+            /* Change icon color on hover */
+        }
+    </style>
+
+
+    <style>
+        /* Container styling */
+        .button-switcher {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        /* Button styling */
+        .switch-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: 2px solid #f79621;
+            /* Use the provided logo color */
+            background-color: white;
+            color: #f79621;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* Active button styling */
+        .switch-button.active {
+            background-color: #f79621;
+            color: white;
+        }
+
+        /* Hover effect */
+        .switch-button:hover {
+            background-color: #f79621;
+            color: white;
+        }
+    </style>
+
+
+
+
+
+<style>
+    /* Responsive Adjustments for Phones */
+    @media (max-width: 768px) {
+        .main-slider-one__btn {
+            display: flex;
+            flex-direction: column; /* Stack buttons vertically */
+            align-items: center;
+            gap: 10px; /* Add spacing between buttons */
+        }
+  
+        .main-slider-one__btn a {
+            font-size: 0.85rem; /* Smaller font size */
+            padding: 8px 12px; /* Reduce padding for smaller buttons */
+            border-radius: 20px; /* Maintain rounded corners */
+            text-align: center;
+        }
+    }
+  
+    @media (max-width: 480px) {
+        .main-slider-one__btn a {
+            width: 90%; /* Full-width buttons with slight margins */
+            font-size: 0.8rem; /* Even smaller font size */
+            padding: 6px 10px; /* Further reduce padding for very small screens */
+        }
+    }
+  </style>
+
+<!--iadded-->
+<style>
+    /* Button Styling */
+    .check-btn {
+        display: inline-block;
+        padding: 12px 24px;
+        font-size: 16px;
+        font-weight: bold;
+        color: white;
+        background-color: #F79621; /* User's logo color */
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        text-align: center;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        text-decoration: none;
+        width: 100%;
+        max-width: 250px;
+    }
+
+    .check-btn:hover {
+        background-color: #d67c1a;
+        transform: scale(1.05);
+    }
+
+    /* Centering the button */
+    .btn-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f5f5f5;
+    }
+    
+    /* Responsive for smaller screens */
+    @media (max-width: 480px) {
+        .check-btn {
+            font-size: 14px;
+            padding: 10px 20px;
+        }
+    }
+</style>
+
+
+    <link rel="stylesheet" href="uswer/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="uswer/assets/css/animate.css">
+    <link rel="stylesheet" href="uswer/assets/css/swiper-bundle.css">
+    <link rel="stylesheet" href="uswer/assets/css/slick.css">
+    <link rel="stylesheet" href="uswer/assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="uswer/assets/css/flaticon_broadx.css">
+    <link rel="stylesheet" href="uswer/assets/css/font-awesome-pro.css">
+    <link rel="stylesheet" href="uswer/assets/css/spacing.css">
+    <link rel="stylesheet" href="uswer/assets/css/custom-animation.css">
+    <link rel="stylesheet" href="uswer/assets/css/main.css">
+  
+<style>
+    /* General Styling for Laptops */
+    .elementor-element {
+        width: 100%;
+        margin: 0 auto;
+        padding: 0;
+    }
+  
+    .elementor-heading h5 {
+        text-align: center;
+        margin: 0 0 10px;
+        line-height: 1.5;
+    }
+  
+    .elementor-form {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: nowrap; /* Keep inputs and button in one line */
+    }
+  
+    .elementor-form input,
+    .elementor-form select {
+        flex: 1 1 25%;
+        min-width: 150px;
+        font-size: 1rem;
+        padding: 10px;
+        border: none;
+        border-bottom: 1px solid #ccc;
+        outline: none;
+    }
+  
+    .elementor-form button {
+        flex-shrink: 0;
+        min-width: 120px; /* Smaller button */
+        padding: 8px 15px; /* Reduced padding */
+        font-size: 0.9rem; /* Smaller font size */
+        background-color: #E5891F;
+        color: white;
+        border-radius: 15px; /* Softer corners */
+        border: none;
+        cursor: pointer;
+        text-align: center;
+    }
+  
+    /* Hover Effect for Button */
+    .elementor-form button:hover {
+        background-color: #3C1800;
+    }
+  
+    /* Responsive Styling for Tablets */
+    @media (max-width: 1024px) {
+        .elementor-form {
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+  
+        .elementor-form input,
+        .elementor-form select,
+        .elementor-form button {
+            flex: 1 1 45%; /* Two columns on tablets */
+        }
+  
+        .elementor-heading h5 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+    }
+  
+    /* Custom Styling for Phones */
+    @media (max-width: 768px) {
+        .elementor-element {
+            flex-wrap: wrap;
+            padding: 20px;
+            border-radius: 15px;
+        }
+  
+        .elementor-heading h5 {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            color: #E5891F;
+        }
+  
+        .elementor-form {
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+  
+        .elementor-form input,
+        .elementor-form select,
+        .elementor-form button {
+            flex: 1 1 100%;
+            font-size: 1rem;
+            padding: 12px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+  
+        button {
+            background-color: #3C1800;
+            color: white;
+            font-size: 1.2rem;
+            padding: 12px 20px;
+            cursor: pointer;
+        }
+  
+        button:hover {
+            background-color: #E5891F;
+            color: #fff;
+        }
+    }
+   
+  .popular-label {
+      position: absolute;
+      top: -20px; /* Adjust to fine-tune label position */
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #1f2f46; /* Dark blue */
+      color: white;
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 5px 15px;
+      border-radius: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+      z-index: 2;
+  }
+  .price__card {
+      overflow: visible;
+  }
+  
+  
+  .popular-label {
+      position: absolute;
+      top: -15px; /* Adjust to move further outside */
+      left: 50%;
+      transform: translateX(-50%);
+      background: red; /* Adjust color if needed */
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-weight: bold;
+      z-index: 10; /* Ensure it appears on top */
+  }
+  
+  .price-image img {
+      transform: scale(1.1); /* Increase size slightly */
+      transition: transform 0.3s ease; /* Smooth scaling effect */
+  }
+
+
+  /* Slight slider height adjustment for better fit */
+.tp-slider-height {
+    min-height: 600px; /* Kept large */
+    max-height: 650px; /* Ensures no excess reduction */
+}
+
+/* Ensure 'Get Savanna Internet today!' is visible */
+.elementor-element {
+    position: relative;
+    z-index: 10;
+    margin-top: -10px; /* Small lift to improve visibility */
+}
+
+/* Slight adjustments for large screens */
+@media (min-width: 1024px) {
+    .tp-slider-height {
+        min-height: 580px; /* Only slightly smaller */
+        max-height: 630px;
+    }
+
+    .elementor-element {
+        margin-top: 0px; /* Prevents overlapping while keeping visibility */
+    }
+}
+
+  
+  </style>
+  
+
+</head>
+
+<body class="custom-cursor">
+
+    <div class="custom-cursor__cursor"></div>
+    <div class="custom-cursor__cursor-two"></div>
+
+    <div class="preloader">
+        <div class="preloader__image" style="background-image: url(assets/preloader\ orange.svg);"></div>
+    </div>
+    <!-- /.preloader -->
+    <div class="page-wrapper">
+        <!-- Floating WhatsApp Icon -->
+        <div class="floating-icons-container">
+            <!-- Main Floating Icon -->
+            <div class="floating-icon" onclick="toggleIcons()">
+                <i class="fas fa-plus"></i>
+            </div>
+
+            <div class="floating-icons-container">
+                <!-- Main Floating Icon -->
+                <div class="floating-icon" onclick="toggleIcons()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 16 16">
+                        <g fill="none">
+                            <path fill="url(#fluentColorChatBubblesQuestion163)"
+                                d="M9 4a5 5 0 0 1 4.533 7.113l.457 2.289a.5.5 0 0 1-.588.588l-2.288-.457A5 5 0 1 1 9 4" />
+                            <path fill="url(#fluentColorChatBubblesQuestion160)"
+                                d="M7 2a5 5 0 0 0-4.533 7.113l-.457 2.289a.5.5 0 0 0 .588.588l2.288-.457A5 5 0 1 0 7 2" />
+                            <path fill="url(#fluentColorChatBubblesQuestion161)"
+                                d="M6.379 9.501a.625.625 0 1 1 1.249 0a.625.625 0 0 1-1.25 0" />
+                            <path fill="url(#fluentColorChatBubblesQuestion162)"
+                                d="M5.15 5.954C5.14 4.817 5.955 4 7.003 4c1.031 0 1.854.846 1.854 1.95c0 .585-.215.907-.728 1.318l-.277.214c-.246.195-.328.3-.345.449l-.012.156a.5.5 0 0 1-.992-.09c0-.571.21-.884.716-1.289l.278-.215c.289-.229.36-.342.36-.544c0-.557-.381-.949-.854-.949c-.493 0-.859.366-.853.945a.5.5 0 1 1-1 .01" />
+                            <defs>
+                                <linearGradient id="fluentColorChatBubblesQuestion160" x1="2" x2="12" y1="2" y2="12"
+                                    gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#0fafff" />
+                                    <stop offset="1" stop-color="#2764e7" />
+                                </linearGradient>
+                                <linearGradient id="fluentColorChatBubblesQuestion161" x1="5.474" x2="7.092" y1="4.108"
+                                    y2="10.417" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#fdfdfd" />
+                                    <stop offset="1" stop-color="#cceaff" />
+                                </linearGradient>
+                                <linearGradient id="fluentColorChatBubblesQuestion162" x1="5.474" x2="7.092" y1="4.108"
+                                    y2="10.417" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#fdfdfd" />
+                                    <stop offset="1" stop-color="#cceaff" />
+                                </linearGradient>
+                                <radialGradient id="fluentColorChatBubblesQuestion163" cx="0" cy="0" r="1"
+                                    gradientTransform="matrix(4.60184 5.3384 -5.34296 4.60577 6.684 6.67)"
+                                    gradientUnits="userSpaceOnUse">
+                                    <stop offset=".63" stop-color="#3d35b1" />
+                                    <stop offset=".85" stop-color="#6553c9" />
+                                    <stop offset="1" stop-color="#7660d3" />
+                                </radialGradient>
+                            </defs>
+                        </g>
+                    </svg>
+                </div>
+
+                <!-- Floating Icons Dropdown -->
+                <div class="floating-icons-dropdown" id="floating-icons-dropdown">
+
+                    <a href="https://www.instagram.com/yourusername" class="floating-icon-item" target="_blank"
+                        style="background-color: #E1306C;">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://m.me/yourfacebook" class="floating-icon-item" target="_blank"
+                        style="background-color: #00B2FF;">
+                        <i class="fab fa-facebook-messenger"></i>
+                    </a>
+
+                    <a href="tel:+yourphonenumber" class="floating-icon-item" style="background-color: #228B22;">
+                        <i class="fas fa-phone-alt" style="background-color: transparent;"></i>
+                    </a>
+                    <a href="mailto:your-email@example.com" class="floating-icon-item"
+                        style="background-color: #17B890;">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://wa.me/yourwhatsappnumber" class="floating-icon-item" target="_blank"
+                        style="background-color: #25D366;">
+                        <i class="fab fa-whatsapp" style="background-color: transparent;"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+        <header class="main-header sticky-header sticky-header--normal">
+            <div class="container-fluid">
+                <div class="main-header__inner">
+                    <div class="main-header__logo">
+                        <a href="index.html">
+                            <img src="Logo savanna6.svg" alt="Ienet HTML" height="100">
+                        </a>
+                    </div>
+                    <a href="#" class="main-header__toggler"><span class="icon-menu"></span></a>
+                    <nav class="main-header__nav main-menu">
+                        <ul class="main-menu__list">
+                            <li class="dropdown megamenu">
+                                <a href="index.html" style="color: #fff;"><strong>Home</strong></a>
+                            </li>
+                            <li>
+                            <a href="#" style="color: #fff;">Packages</a>
+                            <ul>
+                                <li>
+                                    <a href="index.html?package=residential">
+                                        <i class="fas fa-box"></i> Residential Packages
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="index.html?package=business">
+                                        <i class="fas fa-network-wired"></i> Business Packages
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                            <li>
+                                <a href="coverage.html" style="color: #fff;">
+                                     Coverage
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" style="color: #fff;">Shops</a>
+                                <ul>
+                                    <li>
+                                        <a href="shops.html">
+                                            <i class="fas fa-map-marker-alt"></i> Shop Location
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="accessories.html">
+                                            <i class="fas fa-headphones-alt"></i> Accessories
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" style="color: #fff;">Support</a>
+                                <ul>
+                                    <li>
+                                        <a href="payments.html">
+                                            <i class="fas fa-credit-card"></i> How to Make Payments
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fas fa-tools"></i> Self Care
+                                        </a>
+                                    </li>
+                                    <li>
+                                       <a href="https://www.speedtest.net/">
+                                            <i class="fas fa-tachometer-alt"></i> Speedtest
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="about.html" style="color: #fff;">
+                                     About
+                                </a>
+                            </li>
+                            <li>
+                                <a href="contact.html" style="color: #fff;">
+                                     Contact
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="main-header__right">
+                        <div class="mobile-nav__btn mobile-nav__toggler">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="main-header__lang">
+                            <div class="lang-dropdown">
+                                <button class="lang-selected">
+                                    <span class="flag-icon flag-icon-gb"></span> EN
+                                </button>
+                                <div class="lang-options">
+                                    <div class="lang-option" data-value="en">
+                                        <span class="flag-icon flag-icon-gb"></span> EN
+                                    </div>
+                                    <div class="lang-option" data-value="sw">
+                                        <span class="flag-icon flag-icon-tz"></span> SW
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-header__call">
+                            <div class="main-header__call__icon">
+                                <span class="icon-telephone"></span>
+                            </div>
+                            <div class="main-header__call__title">Call Us</div>
+                            <a class="main-header__call__text" href="tel:+255699999555">+255 699 999 555</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- /.main-header -->
+        <!-- main-slider-start -->
+        <div class="tp-slider-area">
+            <div class="tp-slider-wrapper p-relative">
+               <div class="tp-slider-arrow-wrap d-none d-xxl-block">
+                  <div class="tp-slider-arrow-box">
+                     <button class="slider-next">
+                        <i class="fa-regular fa-arrow-right"></i>
+                     </button>
+                     <button class="slider-prev active">
+                        <i class="fa-regular fa-arrow-left"></i>
+                     </button>
+                  </div>
+               </div>
+               <div class="swiper-container tp-slider-active">
+                  <div class="swiper-wrapper">
+                     <div class="swiper-slide">
+                        <div class="tp-slider-height tp-slider-overlay p-relative">
+                           <div class="tp-slider-shape-1 d-none d-lg-block">
+                              <a href="#"><img src="assets/img/slider/shape-1.png" alt=""></a>
+                           </div>
+                           <div class="tp-slider-shape-2">
+                              <img src="assets/img/slider/shape-2.png" alt="">
+                           </div>
+                           <div class="tp-slider-shape-3 d-none d-lg-block">
+                              <img src="assets/img/slider/shape-3.png" alt="">
+                           </div>
+                           <div class="tp-slider-play-box">
+                              <!-- <a class="popup-video" href="https://www.youtube.com/watch?v=K527oNxtO7o"><i
+                                    class="fa-sharp fa-light fa-play"></i></a> -->
+                              <img src="assets/img/slider/shape-4.png" alt="">
+                           </div>
+                           <div class="tp-slider-bg" data-background="assets/new-bg/2.svg"></div>
+                           <div class="container" style="margin-top: 150px;">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="tp-slider-content z-index">
+                                        <div class="tp-slider-title-box mb-30">
+                                            <h4 class="tp-slider-subtitle">Empowering Tanzanians with reliable internet</h4>
+                                            <h1 class="tp-slider-title">Experience <br> blazing-fast, <br>unlimited internet</h1>
+                                        </div>
+                                        <div class="tp-slider-button d-flex align-items-center">
+                                            <!-- <div class="tp-slider-price d-none d-sm-block">
+                                                <span><b><i>$</i>39/</b>Per Month</span>
+                                            </div> -->
+                                            <a class="tp-btn" href="#" style="border-radius: 10px; background-color: #221301">
+                                                <span style="color: #ffffff; font-family: poppins;">Browse Packages</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        </div>
+                     </div>
+                     <div class="swiper-slide">
+                        <div class="tp-slider-height tp-slider-overlay p-relative">
+                           <div class="tp-slider-shape-1 d-none d-lg-block">
+                              <a href="#"><img src="assets/img/slider/shape-1.png" alt=""></a>
+                           </div>
+                           <div class="tp-slider-shape-2">
+                              <img src="assets/img/slider/shape-2.png" alt="">
+                           </div>
+                           <!-- <div class="tp-slider-shape-3 d-none d-lg-block">
+                              <img src="assets/hero resized.png" alt="">
+                           </div> -->
+                           <div class="tp-slider-play-box">
+                              <!-- <a class="popup-video" href="https://www.youtube.com/watch?v=K527oNxtO7o"><i
+                                    class="fa-sharp fa-light fa-play"></i></a> -->
+                              <img src="assets/img/slider/shape-4.png" alt="">
+                           </div>
+                           <div class="tp-slider-bg" data-background="assets/bg1.svg"></div>
+                           <div class="container" style="margin-top: 150px;">
+                              <div class="row">
+                                 <div class="col-xl-12">
+                                    <div class="tp-slider-content z-index">
+                                       <div class="tp-slider-title-box mb-30">
+                                          <h4 class="tp-slider-subtitle">Join the fastest-growing digital community in Tanzania.</h4>
+                                          <h1 class="tp-slider-title">Unleashing Potential <br>Through Connectivity</h1>
+                                       </div>
+                                       <div class="tp-slider-button d-flex align-items-center">
+                                          <!-- <div class="tp-slider-price d-none d-sm-block">
+                                             <span><b><i>$</i>39/</b>Per Month</span>
+                                          </div> -->
+                                          <a class="tp-btn" href="#" style="border-radius: 10px; background-color: #221301"><span style="color: #ffffff; font-family: poppins;">Browse Packages</span></a>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="swiper-slide">
+                        <div class="tp-slider-height tp-slider-overlay p-relative">
+                           <div class="tp-slider-shape-1 d-none d-lg-block">
+                              <a href="#"><img src="assets/img/slider/shape-1.png" alt=""></a>
+                           </div>
+                           <div class="tp-slider-shape-2">
+                              <img src="assets/img/slider/shape-2.png" alt="">
+                           </div>
+                           <div class="tp-slider-shape-3 d-none d-lg-block">
+                              <img src="assets/img/slider/shape-3.png" alt="">
+                           </div>
+                           <!-- <div class="tp-slider-play-box">
+                              <a class="popup-video" href="https://www.youtube.com/watch?v=K527oNxtO7o"><i 
+                                    class="fa-sharp fa-light fa-play"></i></a>
+                              <img src="assets/img/slider/shape-4.png" alt="">
+                           </div> -->
+                           <div class="tp-slider-bg" data-background="assets/new-bg/1.svg"></div>
+                           <div class="container" style="margin-top: 150px;">
+                              <div class="row">
+                                 <div class="col-xl-12">
+                                    <div class="tp-slider-content z-index">
+                                       <div class="tp-slider-title-box mb-30">
+                                          <h4 class="tp-slider-subtitle"> Providing Tanzanian homes and businesses with the speed and stability they deserve.</h4>
+                                          <h1 class="tp-slider-title">Seamless Digital Access <br>Across Tanzania</h1>
+                                       </div>
+                                       <div class="tp-slider-button d-flex align-items-center">
+                                          <!-- <div class="tp-slider-price d-none d-sm-block">
+                                             <span><b><i>$</i>39/</b>Per Month</span>
+                                          </div> -->
+                                          <a class="tp-btn" href="#" style="border-radius: 10px; background-color: #221301"><span style="color: #ffffff; font-family: poppins;">Browse Packages</span></a>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+        </div>
+
+        <div class="elementor-element elementor-element-bb4521c"
+    style="background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 10px; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; gap: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); flex-wrap: wrap; width: 100%;">
+    <!-- Heading -->
+    <div class="elementor-heading">
+        <h5 style="color: #3C1800; font-size: 1.2rem; font-weight: bold; margin: 0; text-align: center;">
+            Get Savanna Internet<br> today!
+        </h5>
+    </div>
+    <!-- Form -->
+    <form class="elementor-form"
+        style="display: flex; flex: 1; gap: 10px; align-items: center; justify-content: space-between; flex-wrap: wrap; width: 100%;">
+        <!-- Name Field -->
+        <input type="text" name="form_fields[name]" placeholder="Name"
+            style="flex: 1; border: none; border-bottom: 1px solid #ccc; padding: 10px; font-size: 1rem; outline: none; min-width: 150px;">
+        <!-- Phone Number Field -->
+        <input type="text" name="form_fields[phone]" placeholder="Phone Number"
+            style="flex: 1; border: none; border-bottom: 1px solid #ccc; padding: 10px; font-size: 1rem; outline: none; min-width: 150px;">
+        <!-- Location Field -->
+        <select name="form_fields[location]"
+            style="flex: 1; border: none; border-bottom: 1px solid #ccc; padding: 10px; font-size: 1rem; outline: none; background: transparent; min-width: 150px;">
+            <option value="Arusha">Arusha</option>
+            <option value="Dodoma">Dodoma</option>
+            <!-- Add other options here -->
+        </select>
+        <!-- Submit Button -->
+        <button type="submit"
+            style="flex-shrink: 0; background-color: #E5891F; color: white; padding: 8px 15px; border-radius: 15px; font-size: 0.9rem; border: none; cursor: pointer; min-width: 120px;">
+            Get Connected
+        </button>
+    </form>
+</div>
+
+
+        <!--IADDED-->
+        <section class="pricing__section"
+            style="padding: 50px 20px; background-image: url(assets/images/shapes/about-1-bg.png) ; color: white;">
+            <div class="wrapper" style="max-width: 1200px; margin: 0 auto; text-align: center;">
+                <!-- Title and Toggle -->
+                <div class="title" style="margin-bottom: 30px;">
+                    <h2 style="font-size: 36px; color: #F79621; margin-bottom: 20px;">Choose Your Package</h2>
+                    <div class="toggle__section"
+                        style="display: inline-flex; align-items: center; gap: 10px; color: white;">
+                        <div class="button-switcher">
+                            <button class="switch-button active"
+                                onclick="toggleCards(this, 'residential')">Residential</button>
+                            <button class="switch-button" onclick="toggleCards(this, 'business')">Business</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pricing Cards -->
+                <div class="price__cards" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+                    <!-- Residential Packages -->
+                    <div class="price__card residential tech-card" style=" background: #ffffff; /* White background */">
+                        <div class="price__card-inner">
+                            <h3 class="price-title">F20</h3>
+                            <div class="price-image">
+                                <img src="assets/images/iadded/MBPS CARDS/1.svg" alt="F20 Plan">
+                            </div>
+                            <div class="price-pop">
+                                <span class="price-amount">TZS 49,000</span>
+                                <span class="price-duration" style="color:#F79621;">/ Per Month</span>
+                            </div>
+                            <ul class="price-details star-list" style="color: black;">
+                                <li>Streaming SD/HD on 1-2 Devices</li>
+                                <li>Smooth browsing on Social media usage</li>
+                                <li>Reliable speed for light downloads</li>
+                            </ul>
+                            <a href="#" class="price-btn">Get Connected</a>
+                        </div>
+                    </div>
+
+                    <div class="price__card residential tech-card" style="background: #F79621; position: relative;">
+                        <div class="popular-label" style="font-family: poppins;" >favourite</div>
+                        <div class="price__card-inner">
+                            <h3 class="price-title" style="color: white;">F40</h3>
+                            <div class="price-image">
+                                <img src="assets/images/iadded/MBPS CARDS/2.svg" alt="F40 Plan">
+                            </div>
+                            <div class="price-pop">
+                                <span class="price-amount" style="color: white;">TZS 59,000</span>
+                                <span class="price-duration">/ Per Month</span>
+                            </div>
+                            <ul class="price-details star-list specific-stars">
+                                <li>Streaming HD content on 3-5 Devices</li>
+                                <li>Seamless multitask devices</li>
+                                <li>Smooth streaming, gaming & downloads</li>
+                            </ul>
+                            <a href="#" class="price-btn" style="background-color: white;">Get Connected</a>
+                        </div>
+                    </div>
+                    
+                    
+
+                    <div class="price__card residential tech-card" style=" background: #ffffff; /* White background */">
+                        <div class="price__card-inner">
+                            <h3 class="price-title">F100</h3>
+                            <div class="price-image">
+                                <img src="assets/images/iadded/MBPS CARDS/3.svg" alt="F100 Plan">
+                            </div>
+                            <div class="price-pop">
+                                <span class="price-amount">TZS 149,000</span>
+                                <span class="price-duration" style="color: #F79621;">/ Per Month</span>
+                            </div>
+                            <ul class="price-details star-list" style="color: black;">
+                                <li>Blazing-fast speeds for demanding tasks</li>
+                                <li>Handles simultaneous high-speed usage</li>
+                                <li>Unlimited devices</li>
+                            </ul>
+                            <a href="#" class="price-btn">Get Connected</a>
+                        </div>
+                    </div>
+
+                    <!-- Business Packages -->
+                    <div class="price__card business tech-card hidden"
+                        style=" background: #F79621; /* White background */">
+                        <div class="price__card-inner">
+                            <h3 class="price-title" style="color: white;">SBIZ 40</h3>
+                            <div class="price-image">
+                                <img src="assets/images/iadded/MBPS CARDS/2.svg" alt="SBIZ 40 Plan">
+                            </div>
+                            <div class="price-pop">
+                                <span class="price-amount" style="color: white;">TZS 69,000</span>
+                                <span class="price-duration">/ Per Month</span>
+                            </div>
+                            <ul class="price-details star-list specific-stars">
+                                <li>Small to medium-sized (SMBs)</li>
+                                <li>Free static IP</li>
+                                <li>Ensure operations for essential  tasks</li>
+                            </ul>
+                            <a href="#" class="price-btn" style="background-color: white;">Get Connected</a>
+                        </div>
+                    </div>
+
+                    <div class="price__card business tech-card hidden"
+                        style=" background: #ffffff; /* White background */">
+                        <div class="price__card-inner">
+                            <h3 class="price-title">SBIZ 100</h3>
+                            <div class="price-image">
+                                <img src="assets/images/iadded/MBPS CARDS/3.svg" alt="SBIZ 100 Plan">
+                            </div>
+                            <div class="price-pop">
+                                <span class="price-amount">TZS 169,000</span>
+                                <span class="price-duration" style="color: #F79621;">/ Per Month</span>
+                            </div>
+                            <ul class="price-details star-list" style="color: black;">
+                                <li>Medium to large-sized businesses</li>
+                                <li>Free Static IP</li>
+                                <li>Running multiple cloud-based systems</li>
+                            </ul>
+                            <a href="#" class="price-btn">Get Connected</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <script>
+            function toggleCards(button, type) {
+                // Remove 'active' class from all buttons
+                document.querySelectorAll(".switch-button").forEach(btn => btn.classList.remove("active"));
+
+                // Add 'active' class to the clicked button
+                button.classList.add("active");
+
+                // Toggle visibility of cards based on type
+                const showBusiness = type === "business";
+                document.querySelectorAll(".residential").forEach(card => {
+                    card.classList.toggle("hidden", showBusiness);
+                });
+                document.querySelectorAll(".business").forEach(card => {
+                    card.classList.toggle("hidden", !showBusiness);
+                });
+            }
+        </script>
+
+
+
+
+
+
+
+        <div class="thin-strip-container">
+            <!-- Content can be added here if needed -->
+        </div>
+
+
+        <!-- <section class="mail-one" id="available">
+            <div class="mail-one__bg" style="background-image: url(assets/images/iadded/5.png);"></div>
+            
+            <div class="mail-one__shape-left" style="background-image: url(assets/images/resources/mail-shape-1.png);">
+            </div>
+            <div class="mail-one__shape-right" style="background-image: url(assets/images/iadded/);">
+            </div>
+            <div class="container">
+                <div class="mail-one__content">
+                    <div class="sec-title text-left">
+
+                        <h6 class="sec-title__tagline bw-split-in-right"><span
+                                class="sec-title__tagline__left-border"></span>check your area<span
+                                class="sec-title__tagline__right-border"></span></h6>
+
+                        <h3 class="sec-title__title bw-split-in-left">Check Availability In <span>Your City</span></h3>
+                        
+                    </div>
+                    <form action="#" data-url="" class="mail-one__newsletter mc-form">
+                        <input type="text" name="EMAIL" placeholder="Enter Your Address">
+                        <span class="mail-one__newsletter__icon"><i class="icon-location"></i></span>
+                        <button type="submit" class="ienet-btn"><span>Check Availability</span></button>
+                        <div class="mc-form__response"></div>
+                    </form>
+                </div>
+            </div>
+        </section> -->
+
+
+
+
+        <section class="about-one" style="background-image: url(assets/images/shapes/about-1-bg.png);">
+            <div class="about-one__shape" style="background-image: url(assets/images/iadded/wild.png);">
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="about-one__image wow fadeInLeft" data-wow-delay="300ms">
+                            <div class="about-one__image__one">
+                                <img src="assets/images/resources/about-1-1.jpg" alt="ienet">
+                            </div>
+                            <div class="about-one__image__bg"></div>
+
+                        </div><!-- /.about-one__image -->
+                    </div><!-- /.col-lg-6 -->
+                    <div class="col-xl-6 wow fadeInRight" data-wow-delay="300ms"style="background-image: url(assets/images/shapes/about-1-bg.png)">
+                        <div class="about-one__content">
+                            <div class="sec-title text-left">
+                                <h6 class="sec-title__tagline bw-split-in-right">
+                                    <span class="sec-title__tagline__left-border"></span>
+                                    Who we are:
+                                    <span class="sec-title__tagline__right-border"></span>
+                                </h6><!-- /.sec-title__tagline -->
+
+                                <h3 class="sec-title__title bw-split-in-left" style="font-size: 36px;">
+                                    We Deliver <span style="font-size: 34px;">Reliable</span> Internet Services,
+                                    Tailored for You
+                                </h3><!-- /.sec-title__title -->
+                            </div><!-- /.sec-title -->
+                            <p class="about-one__content__text">
+                                Savanna Fibre is an innovative Internet Service Provider (ISP) committed to delivering
+                                fast, easy, reliable, and affordable fibre-optic Internet services to households across
+                                Tanzania. As a company, we aim to bridge the digital divide by providing essential
+                                internet access to homes, ensuring seamless connectivity anywhere and everywhere
+
+                            </p>
+                            <ul class="about-one__content__list">
+                                <li><span class="fas fa-check"></span>Premium Service at Affordable Price</li>
+                                <li><span class="fas fa-check"></span>24/7 Rapid Response</li>
+                                <li><span class="fas fa-check"></span>24/7 Call Center English & Swahili</li>
+                                <li><span class="fas fa-check"></span>Fast Installations</li>
+                            </ul>
+                            <a href="about.html" class="ienet-btn">
+                                <span>
+                                    More About Us
+                                    <span class="ienet-btn__icon"><i class="fas fa-chevron-right"></i></span>
+                                </span>
+                            </a>
+                        </div><!-- /.about-one__content -->
+                    </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section><!-- /.about-one -->
+
+
+
+
+
+
+
+        <!-- Feature End -->
+        <div class="thin-strip-container">
+            <!-- Content can be added here if needed -->
+        </div>
+
+
+
+
+        <section class="faq-one"style="background-image: url(assets/images/shapes/about-1-bg.png);">
+            <div class="faq-one__shape" style="background-image: url(assets/images/resources/faq-shape-1.png);"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="faq-one__accordion ienet-accrodion" data-grp-name="ienet-accrodion">
+                            <div class="accrodion">
+                                <div class="accrodion-title">
+                                    <h4>
+                                        <span class="accrodion-title__icon"></span><!-- /.accrodion-title__icon -->
+                                        How do I join Savanna Fibre?
+                                    </h4>
+                                </div><!-- /.accordian-title -->
+                                <div class="accrodion-content">
+                                    <div class="inner">
+                                        <p>
+                                            To join Savanna Fibre network, you can click on the link provided and fill
+                                            in a request form. After the form is filled,
+                                            a Savanna telesales representative will reach out and assist you to complete
+                                            the process. You can also call us for assistance.
+                                        </p>
+                                    </div><!-- /.accordian-content -->
+                                </div>
+                            </div><!-- /.accordian-item -->
+                            <div class="accrodion active">
+                                <div class="accrodion-title">
+                                    <h4>
+                                        <span class="accrodion-title__icon"></span><!-- /.accrodion-title__icon -->
+                                        Billing and Payment
+                                    </h4>
+                                </div><!-- /.accordian-title -->
+                                <div class="accrodion-content">
+                                    <div class="inner">
+                                        <h5>How do I know my account number?</h5>
+                                        <p>
+                                            How do I know my account number? You can use USSD or the Savanna App/Adopt
+                                            App.</p>
+                                        <h5>How do I pay for my monthly subscription?</h5>
+                                        <p> Payment can be made via Mpesa, Tigo Pesa, Airtel Money, or through our
+                                            website.
+                                            How do I upgrade or downgrade my package? A request can be made through the
+                                            USSD code, Savanna App, or Adopt App.
+                                        </p>
+                                    </div><!-- /.accordian-content -->
+                                </div>
+                            </div><!-- /.accordian-item -->
+                            <div class="accrodion">
+                                <div class="accrodion-title">
+                                    <h4>
+                                        <span class="accrodion-title__icon"></span><!-- /.accrodion-title__icon -->
+                                        How do I change my WiFi username and password?
+                                    </h4>
+                                </div><!-- /.accordian-title -->
+                                <div class="accrodion-content">
+                                    <div class="inner">
+                                        <p>
+                                            Login to the modem via cable using a laptop. Default IP is normally
+                                            192.168.0.1. If changed, use 'ipconfig' in a terminal to find the default
+                                            gateway IP. Change credentials via the Adopt App or browser.
+                                        </p>
+                                    </div><!-- /.accordian-content -->
+                                </div>
+                            </div><!-- /.accordian-item -->
+                            <div class="accrodion">
+                                <div class="accrodion-title">
+                                    <h4>
+                                        <span class="accrodion-title__icon"></span><!-- /.accrodion-title__icon -->
+                                        Internet Service Issues
+                                    </h4>
+                                </div><!-- /.accordian-title -->
+                                <div class="accrodion-content">
+                                    <div class="inner">
+                                        <p>
+                                            If experiencing issues, ensure cables are tightly plugged, IP addresses are
+                                            set to obtain automatically, and Wi-Fi keys are entered correctly. Restart
+                                            the modem if necessary.
+                                        </p>
+                                    </div><!-- /.accordian-content -->
+                                </div>
+                            </div><!-- /.accordian-item -->
+                            <div class="accrodion">
+                                <div class="accrodion-title">
+                                    <h4>
+                                        <span class="accrodion-title__icon"></span><!-- /.accrodion-title__icon -->
+                                        Installation and Setup
+                                    </h4>
+                                </div><!-- /.accordian-title -->
+                                <div class="accrodion-content">
+                                    <div class="inner">
+                                        <p>
+                                            Installation is completed the same day after approval. Provided equipment
+                                            includes a router and necessary cables, with no installation fee.
+                                        </p>
+                                    </div><!-- /.accordian-content -->
+                                </div>
+                            </div><!-- /.accordian-item -->
+                        </div>
+                    </div><!-- /.col-lg-6 -->
+                    <div class="col-lg-6" style="background-image: url(assets/images/shapes/about-1-bg.png);">
+                        <div class="faq-one__content">
+                            <div class="sec-title text-left">
+                                <h6 class="sec-title__tagline bw-split-in-right"><span
+                                        class="sec-title__tagline__left-border"></span>Frequently Asked Questions<span
+                                        class="sec-title__tagline__right-border"></span></h6>
+                                <!-- /.sec-title__tagline -->
+                                <h3 class="sec-title__title bw-split-in-left">How we can <span style="font-size: 44px;">help</span> you?</h3>
+                                <!-- /.sec-title__title -->
+                            </div><!-- /.sec-title -->
+                            <!-- section-title -->
+                            <div class="faq-one__content__box">
+                                <div class="faq-one__content__box__icon"><i class="icon-dashboard"></i></div>
+                                <h5 class="faq-one__content__box__title">Reliable High-Speed Internet</h5>
+                                <p class="faq-one__content__box__text">
+                                    Experience lightning-fast internet speeds with Savanna Fibre, designed to keep you
+                                    connected without interruptions.
+                                </p>
+                            </div>
+
+                            <div class="faq-one__video"
+                                style="background-image: url(Untitled\ \(470\ x\ 150\ px\).png);">
+                                <!-- <a href="https://www.youtube.com/watch?v=h9MbznbxlLc" class="video-popup">
+                                    <i class="fa fa-play"></i>
+                                    <i class="ripple"></i>
+                                </a> -->
+                            </div>
+                        </div><!-- /.faq-one__contact -->
+                    </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section><!-- /.faq-one-accordion -->
+
+
+
+
+
+
+        <div class="client-carousel " style="display: none;">
+            <div class="container">
+                <div class="client-carousel__one ienet-owl__carousel owl-theme owl-carousel" data-owl-options='{
+            "items": 5,
+            "margin": 65,
+            "smartSpeed": 700,
+            "loop":true,
+            "autoplay": 6000,
+            "nav":false,
+            "dots":false,
+            "navText": ["<span class=\"fa fa-angle-left\"></span>","<span class=\"fa fa-angle-right\"></span>"],
+            "responsive":{
+                "0":{
+                    "items":1,
+                    "margin": 0
+                },
+                "360":{
+                    "items":2,
+                    "margin": 30
+                },
+                "575":{
+                    "items":3,
+                    "margin": 30
+                },
+                "768":{
+                    "items":3,
+                    "margin": 40
+                },
+                "992":{
+                    "items": 4,
+                    "margin": 40
+                },
+                "1200":{
+                    "items": 5,
+                    "margin": 140
+                }
+            }
+            }'>
+                    <div class="client-carousel__one__item">
+                        <img class="client-carousel__one__item__normal" src="assets/images/resources/brand-1-1.png"
+                            alt="ienet">
+                        <img class="client-carousel__one__item__hover" src="assets/images/resources/brand-1-1-hover.png"
+                            alt="ienet">
+                    </div><!-- /.owl-slide-item-->
+                    <div class="client-carousel__one__item">
+                        <img class="client-carousel__one__item__normal" src="assets/images/resources/brand-1-2.png"
+                            alt="ienet">
+                        <img class="client-carousel__one__item__hover" src="assets/images/resources/brand-1-2-hover.png"
+                            alt="ienet">
+                    </div><!-- /.owl-slide-item-->
+                    <div class="client-carousel__one__item">
+                        <img class="client-carousel__one__item__normal" src="assets/images/resources/brand-1-3.png"
+                            alt="ienet">
+                        <img class="client-carousel__one__item__hover" src="assets/images/resources/brand-1-3-hover.png"
+                            alt="ienet">
+                    </div><!-- /.owl-slide-item-->
+                    <div class="client-carousel__one__item">
+                        <img class="client-carousel__one__item__normal" src="assets/images/resources/brand-1-4.png"
+                            alt="ienet">
+                        <img class="client-carousel__one__item__hover" src="assets/images/resources/brand-1-4-hover.png"
+                            alt="ienet">
+                    </div><!-- /.owl-slide-item-->
+                    <div class="client-carousel__one__item">
+                        <img class="client-carousel__one__item__normal" src="assets/images/resources/brand-1-5.png"
+                            alt="ienet">
+                        <img class="client-carousel__one__item__hover" src="assets/images/resources/brand-1-5-hover.png"
+                            alt="ienet">
+                    </div><!-- /.owl-slide-item-->
+                </div><!-- /.thm-owl__slider -->
+            </div><!-- /.container -->
+        </div><!-- /.client-carousel -->
+
+        <footer class="main-footer background-black">
+            <div class="main-footer__bg background-black"
+                style="background-image: url(assets/images/shapes/footer-bg-1-1.png);"></div>
+            <div class="main-footer__shape-one"
+                style="background-image: url(assets/images/resources/footer-shape-1.png);"></div>
+            <div class="main-footer__shape-two" style="background-image: url(assets/images/iadded/wild2.png);"></div>
+            <div class="main-footer__top">
+                <div class="container">
+                    <div class="main-footer__top__inner">
+                        <ul class="list-unstyled main-footer__top__info">
+                            <li class="main-footer__top__info__item">
+                                <span class="main-footer__top__info__icon"><i class="icon-mail"></i></span>
+                                <a href="mailto:support@savannafibre.co.tz">support@savannafibre.co.tz</a>
+                            </li>
+                            <li class="main-footer__top__info__item">
+                                <span class="main-footer__top__info__icon"><i class="icon-maps-and-flags"></i></span>
+                                Makumbusho Wakatibado Street Makumbusho BraiWeb Technologies Ltd Dares Salaam TZ,
+                                14107, Tanzania
+                            </li>
+                        </ul>
+                        <div class="main-footer__top__right">
+                            <div class="main-footer__top__social">
+                                <a href="https://facebook.com/" style="
+                                text-decoration: none; 
+                                color: #4267B2; 
+                                font-size: 18px; /* Smaller icon size */
+                                width: 30px; /* Reduce width of the circle */
+                                height: 30px; /* Reduce height of the circle */
+                                display: flex; 
+                                align-items: center; 
+                                justify-content: center; 
+                                border-radius: 50%; 
+                                background-color: #E9ECEF;
+                                transition: all 0.3s ease;
+                            " onmouseover="this.style.backgroundColor='#4267B2'; this.style.color='#fff';"
+                                    onmouseout="this.style.backgroundColor='#E9ECEF'; this.style.color='#4267B2';">
+                                    <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                                    <span class="sr-only">Facebook</span>
+                                </a>
+                                <a href="https://twitter.com/" style="
+                                text-decoration: none; 
+                                color: #1DA1F2; 
+                                font-size: 18px; 
+                                width: 30px; 
+                                height: 30px; 
+                                display: flex; 
+                                align-items: center; 
+                                justify-content: center; 
+                                border-radius: 50%; 
+                                background-color: #E9ECEF;
+                                transition: all 0.3s ease;
+                            " onmouseover="this.style.backgroundColor='#1DA1F2'; this.style.color='#fff';"
+                                    onmouseout="this.style.backgroundColor='#E9ECEF'; this.style.color='#1DA1F2';">
+
+                                    <i class="fa-brands fa-square-x-twitter"></i>
+                        <span class="sr-only">X</span>
+                                </a>
+                                <a href="https://instagram.com/" style="
+                                text-decoration: none; 
+                                color: #E1306C; 
+                                font-size: 18px; 
+                                width: 30px; 
+                                height: 30px; 
+                                display: flex; 
+                                align-items: center; 
+                                justify-content: center; 
+                                border-radius: 50%; 
+                                background-color: #E9ECEF;
+                                transition: all 0.3s ease;
+                            " onmouseover="this.style.backgroundColor='#E1306C'; this.style.color='#fff';"
+                                    onmouseout="this.style.backgroundColor='#E9ECEF'; this.style.color='#E1306C';">
+                                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                                    <span class="sr-only">Instagram</span>
+                                </a>
+                                <a href="https://www.youtube.com/" style="
+                                text-decoration: none; 
+                                color: #FF0000; 
+                                font-size: 18px; 
+                                width: 30px; 
+                                height: 30px; 
+                                display: flex; 
+                                align-items: center; 
+                                justify-content: center; 
+                                border-radius: 50%; 
+                                background-color: #E9ECEF;
+                                transition: all 0.3s ease;
+                            " onmouseover="this.style.backgroundColor='#FF0000'; this.style.color='#fff';"
+                                    onmouseout="this.style.backgroundColor='#E9ECEF'; this.style.color='#FF0000';">
+                                    <i class="fab fa-youtube" aria-hidden="true"></i>
+                                    <span class="sr-only">Youtube</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="main-footer__middle">
+                    <a href="index.html">
+                        <img src="assets/images/iadded/logo/savanna 1.svg" height="170" alt="savanna Fibre">
+                    </a>
+                    <form action="#" data-url="MAILCHIMP_FORM_URL" class="footer-widget__newsletter mc-form">
+                        <span class="footer-widget__newsletter__icon"><i class="icon-mail"></i></span>
+                        <input type="text" name="EMAIL" placeholder="Enter Email Address">
+                        <button type="submit" class="ienet-btn"><span>Subscribe Now</span></button>
+                        <div class="mc-form__response"></div>
+                    </form>
+                    <div class="main-footer__middle__call">
+                        <div class="main-footer__middle__call__icon"><span class="icon-telephone"></span></div>
+                        <div class="main-footer__middle__call__title">Call Us</div>
+                        <a class="main-footer__middle__call__text" href="tel:+88012365499">+255699999555</a>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-xl-3">
+                        <div class="footer-widget footer-widget--about">
+                            <h2 class="footer-widget__title">About savanna Fibre</h2>
+                            <p class="footer-widget__text">
+                                Connecting lives with reliable, fast, and affordable internet plans, empowering homes
+                                and businesses.
+                            </p>
+                            <a href="about.html" class="ienet-btn"><span>Get In Touch<span class="ienet-btn__icon"><i
+                                            class="fas fa-chevron-right"></i></span></span></a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-3">
+                        <div class="footer-widget footer-widget--links">
+                            <h2 class="footer-widget__title">Our Services</h2>
+                            <ul class="list-unstyled footer-widget__links">
+                                <li><a href="service-d-broadband.html">Fiber & Broadband</a></li>
+                                <li><a href="service-d-cyber-security.html">Cyber Security</a></li>
+                                <li><a href="service-d-tv.html">Amazon Box TV</a></li>
+                                <li><a href="service-d-iptv.html">Smart IPTV</a></li>
+                                <li><a href="service-d-connectivity.html">Smart Connectivity</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-3">
+                        <div class="footer-widget footer-widget--links">
+                            <h2 class="footer-widget__title">Useful Links</h2>
+                            <ul class="list-unstyled footer-widget__links">
+                                <li><a href="about.html">About Us</a></li>
+                                <li><a href="coverage.html">Coverage</a></li>
+                                <li><a href="index.html?scroll=faq">FAQs</a></li>
+
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-3">
+                        <div class="footer-widget footer-widget--gallery">
+                            <h2 class="footer-widget__title">Our Gallery</h2>
+                            <div class="footer-widget__gallery">
+                                <a href="gallery.html" class="footer-widget__gallery__link">
+                                    <img src="assets/images/new gallery/1.png" alt="savanna Fibre">
+                                </a>
+                                <a href="gallery.html" class="footer-widget__gallery__link">
+                                    <img src="assets/images/new gallery/2.png" alt="savanna Fibre">
+                                </a>
+                                <a href="gallery.html" class="footer-widget__gallery__link">
+                                    <img src="assets/images/new gallery/3.png" alt="savanna Fibre">
+                                </a>
+                                <a href="gallery.html" class="footer-widget__gallery__link">
+                                    <img src="assets/images/new gallery/4.png" alt="savanna Fibre">
+                                </a>
+                                <a href="gallery.html" class="footer-widget__gallery__link">
+                                    <img src="assets/images/new gallery/5.png" alt="savanna Fibre">
+                                </a>
+                                <a href="gallery.html" class="footer-widget__gallery__link">
+                                    <img src="assets/images/new gallery/6.png" alt="savanna Fibre">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-footer__bottom">
+                <div class="container">
+                    <div class="main-footer__bottom__inner">
+                       <p class="main-footer__copyright" style="color: #fff;">
+                            &copy; Copyright <span class="dynamic-year"></span> Savanna Fibre (Tanzania) Limited by 3TechSoftwares.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+    </div><!-- /.page-wrapper -->
+
+
+
+    <div class="mobile-nav__wrapper">
+        <div class="mobile-nav__overlay mobile-nav__toggler"></div>
+        <!-- /.mobile-nav__overlay -->
+        <div class="mobile-nav__content">
+            <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
+
+            <div class="logo-box">
+                <a href="index.html" aria-label="logo image"><img src="assets/images/iadded/logo/savanna 1.svg"
+                        width="155" alt="" /></a>
+            </div>
+            <!-- /.logo-box -->
+            <div class="mobile-nav__container"></div>
+            <!-- /.mobile-nav__container -->
+
+            <ul class="mobile-nav__contact list-unstyled">
+                <li>
+                    <i class="fa fa-envelope"></i>
+                    <a href="mailto:support@savannafibre.co.tz">support@savannafibre.co.tz</a>
+                </li>
+                <li>
+                    <i class="fa fa-phone-alt"></i>
+                    <a href="tel:+255699999555">+255699999555</a>
+                </li>
+            </ul><!-- /.mobile-nav__contact -->
+            <div class="mobile-nav__social">
+
+                <a href="https://facebook.com/">
+                    <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                    <span class="sr-only">Facebook</span>
+                </a>
+                <a href="https://twitter.com/savannaFibre">
+                    <i class="fa-brands fa-square-x-twitter"></i>
+                    <span class="sr-only">X</span>
+                </a>
+                <a href="https://instagram.com/">
+                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                    <span class="sr-only">Instagram</span>
+                </a>
+                <a href="https://www.youtube.com/">
+                    <i class="fab fa-youtube" aria-hidden="true"></i>
+                    <span class="sr-only">Youtube</span>
+                </a>
+            </div><!-- /.mobile-nav__social -->
+        </div>
+        <!-- /.mobile-nav__content -->
+    </div>
+    <!-- /.mobile-nav__wrapper -->
+    <div class="search-popup">
+        <div class="search-popup__overlay search-toggler"></div>
+        <!-- /.search-popup__overlay -->
+        <div class="search-popup__content">
+            <form role="search" method="get" class="search-popup__form" action="#">
+                <input type="text" id="search" placeholder="Search Here..." />
+                <button type="submit" aria-label="search submit" class="ienet-btn">
+                    <span><i class="icon-location"></i></span>
+                </button>
+            </form>
+        </div>
+        <!-- /.search-popup__content -->
+    </div>
+    <!-- /.search-popup -->
+    <!-- Sidebar One Start -->
+    <aside class="sidebar-one">
+        <div class="sidebar-one__overlay"></div><!-- /.siderbar-overlay -->
+        <div class="sidebar-one__content">
+            <div class="sidebar-one__close"><i class="icon-plus"></i></div><!-- /.sidebar-close -->
+            <div class="sidebar-one__logo">
+                <a href="index.html" aria-label="savanna Fibre logo"><img src="assets/images/iadded/logo/savanna 1.svg"
+                        alt="savanna Fibre Logo" height="170"></a>
+            </div><!-- /.sidebar-one__logo-box -->
+            <p class="sidebar-one__text">
+                Connecting Tanzanians with fast, reliable, and affordable internet solutions. Empowering homes,
+                students, and businesses with cutting-edge technology and 24/7 support.
+            </p>
+            <h4 class="sidebar-one__title">Contact Info:</h4>
+            <ul class="sidebar-one__info">
+                <li>
+                    <span class="fas fa-map-marker-alt"></span>
+                    Makumbusho Wakatibado Street Makumbusho BraiWeb Technologies Ltd Dar es Salaam TZ, 14107, Tanzania
+                </li>
+               <li>
+    <span class="fas fa-clock"></span>
+    Mon - Fri: 8.00 AM - 5.00 PM
+</li>
+<li>
+    <span class="fas fa-clock"></span>
+    Saturday: 9.00 AM - 1.00 PM
+</li>
+
+                <li>
+                    <span class="fas fa-envelope"></span>
+                    <a href="mailto:info@savannafibre.co.tz">info@savannafibre.co.tz</a>
+                </li>
+                <li>
+                    <span class="fas fa-phone-alt"></span>
+                    <a href="tel:+256 200 555500">+256 200 555500</a>
+                </li>
+            </ul>
+            <div class="sidebar-one__social">
+                <a href="https://facebook.com/savannaFibre">
+                    <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                    <span class="sr-only">Facebook</span>
+                </a>
+               <a href="https://twitter.com/savannaFibre">
+                    <i class="fa-brands fa-square-x-twitter"></i>
+                    <span class="sr-only">X</span>
+                </a>
+                <a href="https://instagram.com/savannaFibre">
+                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                    <span class="sr-only">Instagram</span>
+                </a>
+                <a href="https://www.youtube.com/channel/savannaFibre">
+                    <i class="fab fa-youtube" aria-hidden="true"></i>
+                    <span class="sr-only">YouTube</span>
+                </a>
+            </div><!-- /.sidebar-one__social -->
+            <h4 class="sidebar-one__title">Newsletter:</h4>
+            <form action="#" data-url="MAILCHIMP_FORM_URL" class="sidebar-one__newsletter mc-form">
+                <input type="text" name="EMAIL" placeholder="Email address">
+                <button type="submit" class="fas fa-paper-plane">
+                    <span class="sr-only">submit</span><!-- /.sr-only -->
+                </button>
+            </form><!-- /.sidebar-one__newsletter mc-form -->
+        </div><!-- /.sidebar__content -->
+    </aside>
+
+    <!-- Sidebar One Start -->
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const dropdown = document.querySelector(".lang-dropdown");
+            const selected = document.querySelector(".lang-selected");
+            const options = document.querySelectorAll(".lang-option");
+
+            // Toggle dropdown visibility
+            selected.addEventListener("click", () => {
+                dropdown.classList.toggle("open");
+            });
+
+            // Handle language selection
+            options.forEach(option => {
+                option.addEventListener("click", () => {
+                    const value = option.getAttribute("data-value");
+                    const flag = option.querySelector("span").outerHTML;
+                    const text = option.textContent.trim();
+
+                    // Update the selected button
+                    selected.innerHTML = `${flag} ${text}`;
+
+                    // Close the dropdown
+                    dropdown.classList.remove("open");
+
+                    // Add any additional logic for language switching here
+                    console.log(`Selected language: ${value}`);
+                });
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener("click", (e) => {
+                if (!dropdown.contains(e.target)) {
+                    dropdown.classList.remove("open");
+                }
+            });
+        });
+
+    </script>
+   <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="uswer/assets/js/vendor/jquery.js"></script>
+   <script src="uswer/assets/js/vendor/waypoints.js"></script>
+   <script src="uswer/assets/js/bootstrap-bundle.js"></script>
+   <script src="uswer/assets/js/ajax-form.js"></script>
+   <script src="uswer/assets/js/imagesloaded-pkgd.js"></script>
+   <script src="uswer/assets/js/isotope-pkgd.js"></script>
+   <script src="uswer/assets/js/jarallax.js"></script>
+   <script src="uswer/assets/js/magnific-popup.js"></script>
+   <script src="uswer/assets/js/nice-select.js"></script>
+   <script src="uswer/assets/js/purecounter.js"></script>
+   <script src="uswer/assets/js/range-slider.js"></script>
+   <script src="uswer/assets/js/wow.js"></script>
+   <script src="uswer/assets/js/slick.js"></script>
+   <script src="uswer/assets/js/swiper-bundle.js"></script>
+   <script src="uswer/assets/js/main.js"></script>
+
+    <!-- <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    const businessPackages = document.querySelectorAll(".business-card");
+    const corporatePackages = document.querySelectorAll(".corporate-card");
+    const businessBtn = document.getElementById("business-package");
+    const corporateBtn = document.getElementById("corporate-package");
+
+    // Function to toggle visibility using classes
+    function togglePackages(showPackages, hidePackages) {
+        showPackages.forEach(card => {
+            card.classList.remove("hidden"); // Remove the "hidden" class to show the element
+        });
+        hidePackages.forEach(card => {
+            card.classList.add("hidden"); // Add the "hidden" class to hide the element
+        });
+    }
+
+    // Initially show business packages and hide residential ones
+    togglePackages(businessPackages, corporatePackages);
+
+    // Add click event for "Business Packages" button
+    businessBtn.addEventListener("click", function(event) {
+        event.preventDefault(); // Prevent page reload
+        togglePackages(businessPackages, corporatePackages); // Show business packages, hide residential
+    });
+
+    // Add click event for "Residential Packages" button
+    corporateBtn.addEventListener("click", function(event) {
+        event.preventDefault(); // Prevent page reload
+        togglePackages(corporatePackages, businessPackages); // Show residential packages, hide business
+    });
+}); -->
+
+    </script>
+
+
+    <script src="assets/vendors/jquery/jquery-3.7.0.min.js"></script>
+    <script src="assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendors/bootstrap-select/bootstrap-select.min.js"></script>
+    <script src="assets/vendors/jarallax/jarallax.min.js"></script>
+    <script src="assets/vendors/jquery-ui/jquery-ui.js"></script>
+    <script src="assets/vendors/jquery-ajaxchimp/jquery.ajaxchimp.min.js"></script>
+    <script src="assets/vendors/jquery-appear/jquery.appear.min.js"></script>
+    <script src="assets/vendors/jquery-circle-progress/jquery.circle-progress.min.js"></script>
+    <script src="assets/vendors/jquery-magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="assets/vendors/jquery-validate/jquery.validate.min.js"></script>
+    <script src="assets/vendors/nouislider/nouislider.min.js"></script>
+    <script src="assets/vendors/tiny-slider/tiny-slider.js"></script>
+    <script src="assets/vendors/wnumb/wNumb.min.js"></script>
+    <script src="assets/vendors/owl-carousel/js/owl.carousel.min.js"></script>
+    <script src="assets/vendors/wow/wow.js"></script>
+    <script src="assets/vendors/imagesloaded/imagesloaded.min.js"></script>
+    <script src="assets/vendors/isotope/isotope.js"></script>
+    <script src="assets/vendors/slick/slick.min.js"></script>
+    <script src="assets/vendors/countdown/countdown.min.js"></script>
+    <script src="assets/vendors/jquery-circleType/jquery.circleType.js"></script>
+    <script src="assets/vendors/jquery-lettering/jquery.lettering.min.js"></script>
+    <!-- gsap js -->
+    <script src="assets/vendors/gsap/gsap.js"></script>
+    <script src="assets/vendors/gsap/scrolltrigger.min.js"></script>
+    <script src="assets/vendors/gsap/splittext.min.js"></script>
+    <script src="assets/vendors/gsap/ienet-split.js"></script>
+    <!-- template js -->
+    <script src="assets/js/ienet.js"></script>
+</body>
+
+
+</html>

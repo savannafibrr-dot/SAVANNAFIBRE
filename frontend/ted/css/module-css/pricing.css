@@ -1,0 +1,319 @@
+/*--------------------------------------------------------------
+# Pricing One
+--------------------------------------------------------------*/
+.pricing-one {
+    position: relative;
+    display: block;
+    padding: 120px 0 0px;
+    z-index: 2;
+}
+
+.pricing-one__shape-1 {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    opacity: .10;
+    z-index: -1;
+}
+
+.pricing-one__shape-1 img {
+    width: auto;
+}
+
+.pricing-one__shape-2 {
+    position: absolute;
+    top: 50px;
+    right: 0px;
+    z-index: -1;
+}
+
+.pricing-one__shape-2 img {
+    width: auto;
+}
+
+.pricing-one__shape-3 {
+    position: absolute;
+    bottom: -135px;
+    right: 100px;
+    opacity: .10;
+    z-index: -1;
+}
+
+.pricing-one__shape-3 img {
+    width: auto;
+}
+
+.pricing-one .section-title {
+    margin-top: 0;
+}
+
+.pricing-one__main-tab-box {
+    position: relative;
+    display: block;
+}
+
+.pricing-one__main-tab-box .tab-buttons {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 60px;
+}
+
+.pricing-one__main-tab-box .tab-buttons .tab-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.pricing-one__main-tab-box .tab-buttons .tab-btn+.tab-btn {
+    margin-left: 10px;
+}
+
+.pricing-one__main-tab-box .tab-buttons .tab-btn span {
+    position: relative;
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    line-height: 16px;
+    color: var(--tedlife-gray);
+    background-color: var(--tedlife-primary);
+    border: 1px solid rgba(var(--tedlife-black-rgb), .05);
+    padding: 12px 25px 12px;
+    font-weight: 400;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: var(--tedlife-bdr-radius);
+    transition: all 0.5s linear;
+    z-index: 1;
+}
+
+.pricing-one__main-tab-box .tab-buttons .tab-btn.active-btn span {
+    color: var(--tedlife-black);
+    border: 1px solid var(--tedlife-base);
+}
+
+.pricing-one__main-tab-box .tab-buttons .tab-btn span:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 0%;
+    background-color: var(--tedlife-base);
+    border-radius: var(--tedlife-bdr-radius);
+    transition: all 0.3s ease;
+    z-index: -1;
+}
+
+.pricing-one__main-tab-box .tab-buttons .tab-btn.active-btn span:before {
+    height: 100%;
+}
+
+.pricing-one__main-tab-box .tabs-content {
+    position: relative;
+    display: block;
+}
+
+.pricing-one__main-tab-box .tabs-content .tab {
+    position: relative;
+    display: none;
+    -webkit-transform: translateY(35px);
+    -ms-transform: translateY(35px);
+    transform: translateY(35px);
+    -webkit-transition: all 600ms ease;
+    -moz-transition: all 600ms ease;
+    -ms-transition: all 600ms ease;
+    -o-transition: all 600ms ease;
+    transition: all 600ms ease;
+    z-index: 10;
+}
+
+.pricing-one__main-tab-box .tabs-content .tab.active-tab {
+    display: block;
+    margin-top: 0px;
+    -webkit-transform: translateY(0px);
+    -ms-transform: translateY(0px);
+    transform: translateY(0px);
+}
+
+.pricing-one__single {
+    position: relative;
+    display: block;
+    margin-bottom: 30px;
+    border-radius: var(--tedlife-bdr-radius);
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+    z-index: 1;
+}
+
+.pricing-one__single:hover {
+    background-color: var(--tedlife-white);
+    box-shadow: 0px 20px 30px 0px rgba(16, 24, 40, 0.08);
+}
+
+.pricing-one__single-inner {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    text-align: center;
+    border-radius: var(--tedlife-bdr-radius);
+    border: 2px solid rgba(var(--tedlife-black-rgb), .05);
+    border-top: 1px solid rgba(var(--tedlife-black-rgb), .05);
+    border-bottom: 1px solid rgba(var(--tedlife-black-rgb), .05);
+    background-color: var(--tedlife-white);
+    box-shadow: 0px 10px 60px 0px rgb(0 0 0 / 7%);
+    padding: 37px 30px 38px;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+    z-index: 1;
+}
+
+.pricing-one__single:hover .pricing-one__single-inner {
+    border: 2px solid transparent;
+    border-top: 1px solid var(--tedlife-base);
+    border-bottom: 1px solid transparent;
+}
+
+.pricing-one__price-box {
+    position: relative;
+    display: block;
+    text-align: left;
+    padding-bottom: 22px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(var(--tedlife-black-rgb), .05);
+}
+
+.pricing-one__price-title {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32px;
+    text-transform: uppercase;
+    font-family: var(--tedlife-font-two);
+    color: var(--tedlife-black);
+}
+
+.pricing-one__price {
+    font-size: 65px;
+    font-weight: 600;
+    line-height: 65px;
+    color: var(--tedlife-base);
+    margin-top: 18px;
+    text-transform: uppercase;
+}
+
+.pricing-one__price span {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.pricing-one__text {
+    font-size: 16px;
+    line-height: 28px;
+}
+
+.pricing-one__points-list {
+    position: relative;
+    display: block;
+    margin-bottom: 38px;
+    padding-left: 18px;
+}
+
+.pricing-one__points-list li {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.pricing-one__points-list li+li {
+    margin-top: 16px;
+}
+
+.pricing-one__points-list li .icon {
+    position: relative;
+    display: inline-block;
+}
+
+.pricing-one__points-list li .icon i {
+    position: relative;
+    display: inline-block;
+    font-size: 19px;
+    color: var(--tedlife-gray);
+}
+
+.pricing-one__points-list li:first-child i {
+    color: var(--tedlife-base);
+}
+
+.pricing-one__points-list li:nth-child(2) i {
+    color: var(--tedlife-base);
+}
+
+.pricing-one__single-2 .pricing-one__points-list li:nth-child(3) i {
+    color: var(--tedlife-base);
+}
+
+.pricing-one__single-3 .pricing-one__points-list li:nth-child(3) i {
+    color: var(--tedlife-base);
+}
+
+.pricing-one__single-3 .pricing-one__points-list li:nth-child(4) i {
+    color: var(--tedlife-base);
+}
+
+.pricing-one__points-list li .text {
+    margin-left: 20px;
+}
+
+.pricing-one__points-list li .text p {
+    font-size: 16px;
+}
+
+.pricing-one__most-popular {
+    position: absolute;
+    top: 0;
+    border-radius: 0px 0px 15px 15px;
+    background: rgba(var(--tedlife-black-rgb), 1);
+    left: 50%;
+    padding: 2px 17px 3px;
+    visibility: hidden;
+    -webkit-transform-origin: top center;
+    transform-origin: top center;
+    -webkit-transform: scaleY(0) translateZ(100px);
+    transform: scaleY(0) translateZ(100px);
+    -webkit-transition: opacity 500ms ease, visibility 500ms ease, -webkit-transform 700ms ease;
+    transition: opacity 500ms ease, visibility 500ms ease,
+        -webkit-transform 700ms ease;
+    transition: opacity 500ms ease, visibility 500ms ease, transform 700ms ease;
+    transition: opacity 500ms ease, visibility 500ms ease, transform 700ms ease,
+        -webkit-transform 700ms ease;
+}
+
+.pricing-one__single:hover .pricing-one__most-popular {
+    visibility: visible;
+    -webkit-transform: scaleY(1) translateZ(0px);
+    transform: scaleY(1) translateZ(0px) translateX(-50%);
+}
+
+.pricing-one__most-popular p {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    color: var(--tedlife-base);
+}
+
+/*--------------------------------------------------------------
+# Pricing Page
+--------------------------------------------------------------*/
+.pricing-page {
+    padding-bottom: 90px;
+}
+
+
+
+
+
+/*--------------------------------------------------------------
+# End
+--------------------------------------------------------------*/

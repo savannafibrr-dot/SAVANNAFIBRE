@@ -1,0 +1,2970 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from savannahtzfibre.web.app/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 01 Apr 2025 17:59:04 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home || Savanna Fibre</title>
+
+    <!-- favicons Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/preloader orange.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/preloader orange.svg" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/preloader orange.svg" />
+    <link rel="manifest" href="assets/preloader orange.svg" />
+    <meta name="description" content="" />
+    <script src="protection.js"></script>
+
+
+
+
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&amp;display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="assets/vendors/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/vendors/bootstrap-select/bootstrap-select.min.css" />
+    <link rel="stylesheet" href="assets/vendors/animate/animate.min.css" />
+    <link rel="stylesheet" href="assets/vendors/fontawesome/css/all.min.css" />
+    <link rel="stylesheet" href="assets/vendors/jquery-ui/jquery-ui.css" />
+    <link rel="stylesheet" href="assets/vendors/jarallax/jarallax.css" />
+    <link rel="stylesheet" href="assets/vendors/jquery-magnific-popup/jquery.magnific-popup.css" />
+    <link rel="stylesheet" href="assets/vendors/nouislider/nouislider.min.css" />
+    <link rel="stylesheet" href="assets/vendors/nouislider/nouislider.pips.css" />
+    <link rel="stylesheet" href="assets/vendors/tiny-slider/tiny-slider.css" />
+    <link rel="stylesheet" href="assets/vendors/ienet-icons/style.css" />
+    <link rel="stylesheet" href="assets/vendors/slick/slick.css">
+    <link rel="stylesheet" href="assets/vendors/owl-carousel/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="assets/vendors/owl-carousel/css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="../cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.6.0/css/flag-icon.min.html">
+    <link rel="stylesheet" href="../cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+
+
+    <!-- template styles -->
+    <link rel="stylesheet" href="assets/css/ienet.css" />
+    <link rel="stylesheet" href="stap.css">
+    <script>
+        function toggleIcons() {
+            var dropdown = document.getElementById("floating-icons-dropdown");
+            // Toggle visibility of the dropdown
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        }
+
+    </script>
+
+    <link rel="stylesheet" href="../cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+    <style>
+        @media (max-width: 768px) {
+
+            /* Target devices with a width of 768px or less */
+            .about-one__shape {
+                display: none;
+            }
+        }
+
+
+
+
+        .thin-strip-container {
+            background-color: #0A121D;
+            background-image: url(../savannafibre.com/wp-content/uploads/2024/01/pattern.png);
+            background-position: center center;
+            background-repeat: repeat;
+            background-size: contain;
+            height: 20px;
+            /* This controls the thickness of the strip */
+            width: 100%;
+            /* Ensures it stretches across the screen */
+            display: flex;
+            justify-content: center;
+            /* Centers the content horizontally */
+            align-items: center;
+            /* Centers the content vertically (if needed) */
+            flex-direction: row;
+        }
+
+        @media (max-width: 767px) {
+            .thin-strip-container {
+                height: 15px;
+                /* Adjust height for smaller screens */
+            }
+        }
+    </style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ffffff;
+            --text: #272727;
+            --accent: #5057fd;
+            --accent-light: #eff3ff;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            min-height: 100vh;
+            color: var(--text);
+            background: var(--primary);
+        }
+
+        a {
+            text-decoration: none;
+            color: currentColor;
+        }
+
+        li {
+            list-style: none;
+            line-height: 2;
+        }
+
+        span {
+            font-size: 14px;
+        }
+
+        p {
+            font-weight: 500;
+        }
+
+        .pricing__section {
+            margin-block: 3rem;
+        }
+
+        .wrapper {
+            max-width: 1240px;
+            margin-inline: auto;
+            padding-inline: 1rem;
+        }
+
+        .title {
+            text-align: center;
+            display: grid;
+            gap: 1rem;
+            place-items: center;
+        }
+
+        .title h2 {
+            font-size: 40px;
+        }
+
+        .toggle__section {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .toggle__section input {
+            display: none;
+        }
+
+        .toggle__section .toggle__btn {
+            display: flex;
+            padding: 4px;
+            background: #F79621;
+            border-radius: 2rem;
+            width: 2.35rem;
+        }
+
+        .toggle__section .toggle__btn span {
+            display: block;
+            width: 1rem;
+            height: 1rem;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        input:checked~.toggle__btn {
+            justify-content: end;
+        }
+
+        .price__cards {
+            margin-block: 2rem;
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+
+        .price__card {
+            padding: 1.5rem 1rem;
+            /* Reduced padding */
+            box-shadow: 0 0 15px rgba(255, 165, 0, 0.8), 0 0 30px rgba(255, 140, 0, 0.6);
+            border-radius: 1rem;
+            display: inline-flex;
+            gap: 0.5rem;
+            /* Reduced gap */
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .price__card:hover {
+            transform: translateY(-8px);
+            /* Slight elevation effect */
+            box-shadow: 0 0 15px rgba(255, 165, 0, 0.8), 0 0 30px rgba(255, 140, 0, 0.6);
+            border-color: rgba(255, 140, 0, 0.9);
+            /* Neon orange border color */
+        }
+
+        .price__details {
+            flex: 1 1 auto;
+        }
+
+        .price__details h3 {
+            font-size: 24px;
+            /* Reduced font size */
+            line-height: 1.2;
+            /* Reduced line height */
+        }
+
+        .price__details ul {
+            margin-block: 0.5rem;
+            /* Reduced margin */
+        }
+
+        .price__details ul li::before {
+            content: ">";
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        hr {
+            border: none;
+            height: 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .price__card .price {
+            font-size: 24px;
+            /* Reduced font size */
+            font-weight: 600;
+            letter-spacing: -1.5px;
+            /* Slight adjustment */
+        }
+
+        /* .price__card .price:before {
+          content: "$";
+        } */
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            /* padding: 1rem 2rem;
+          border-radius: 2rem; */
+            transition: 0.3s ease-in-out;
+            padding: 0.75rem 1.5rem;
+            /* Reduced button size */
+            border-radius: 1.5rem;
+            /* Adjusted border radius */
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            background: var(--accent);
+            /* Default background */
+            color: var(--primary);
+            /* Default text color */
+        }
+
+        .bg__accent {
+            background: #ffffff;
+            color: var(--primary);
+        }
+
+        .bg__accent-2 {
+            background: #F79621;
+            color: var(--accent);
+        }
+
+        .bg__primary {
+            background: var(--primary);
+            color: var(--accent);
+        }
+
+        .btn:hover {
+            background-color: var(--accent-light);
+            /* Change background color on hover */
+            color: var(--accent);
+            /* Change text color on hover */
+            transform: scale(1.05);
+            /* Slight zoom effect */
+        }
+
+        .card-image {
+            max-width: 100px;
+            margin-bottom: 1rem;
+        }
+    </style>
+
+
+    <style>
+        .tech-card {
+            background: linear-gradient(to bottom, #1e293b, #0f172a);
+            border-radius: 20px;
+            overflow: hidden;
+            color: #fff;
+            padding: 20px;
+            max-width: 300px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .tech-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .tech-card h3.price-title {
+            font-size: 28px;
+            color: #F79621;
+            margin-bottom: 10px;
+        }
+
+        .tech-card .price {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .tech-card .price-image img {
+            max-width: 80px;
+            margin: 20px auto;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.5));
+        }
+
+        .tech-card .price-details {
+            text-align: left;
+            list-style: none;
+            padding: 0;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .tech-card .price-btn {
+            display: inline-block;
+            background: #F79621;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .tech-card .price-btn:hover {
+            background: #000;
+            color: #F79621;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+    <style>
+        .tech-card {
+            background: linear-gradient(to bottom, #1e293b, #0f172a);
+            border-radius: 20px;
+            overflow: hidden;
+            color: #fff;
+            padding: 20px;
+            max-width: 300px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .tech-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .tech-card h3.price-title {
+            font-size: 28px;
+            color: #F79621;
+            margin-bottom: 10px;
+        }
+
+        .tech-card .price-image img {
+            max-width: 100px;
+            margin: 20px auto;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.5));
+        }
+
+        .price-pop {
+            background: url('assets/images/patch-bg.html') no-repeat center;
+            background-size: cover;
+            margin: 20px auto;
+            width: 180px;
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .price-pop .price-amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: #F79621;
+        }
+
+        .price-pop .price-duration {
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .tech-card .price-details {
+            text-align: left;
+            list-style: none;
+            padding: 0;
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+
+        .tech-card .price-btn {
+            display: inline-block;
+            background: #F79621;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .tech-card .price-btn:hover {
+            background: #000;
+            color: #F79621;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Star List Styling */
+        .star-list {
+            list-style: none;
+            padding: 0;
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 20px 0;
+            color: #ffffff;
+        }
+
+        .star-list li {
+            position: relative;
+            padding-left: 25px;
+            /* Space for the star icon */
+            margin-bottom: 10px;
+        }
+
+        .star-list li::before {
+            content: "★";
+            /* Star icon */
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #F79621;
+            /* Gold color for the star */
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        /* Tech Card Styling */
+        .tech-card {
+            background: linear-gradient(to bottom, #1e293b, #0f172a);
+            border-radius: 20px;
+            overflow: hidden;
+            color: #fff;
+            padding: 20px;
+            max-width: 300px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .tech-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .price-pop {
+            background: url('assets/images/patch-bg.html') no-repeat center;
+            background-size: cover;
+            margin: 20px auto;
+            width: 180px;
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .price-pop .price-amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: #F79621;
+        }
+
+        .price-pop .price-duration {
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .price-btn {
+            display: inline-block;
+            background: #F79621;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .price-btn:hover {
+            background: #000;
+            color: #F79621;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+
+
+        .tech-card {
+            background: linear-gradient(to bottom, #1e293b, #0f172a);
+            border-radius: 20px;
+            overflow: hidden;
+            color: #fff;
+            padding: 20px;
+            max-width: 360px;
+            /* Increased width */
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .tech-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Target only the specific stars inside the .specific-stars class */
+        .specific-stars li::before {
+            color: #ffffff;
+            /* Change star color to white */
+        }
+
+
+
+        /* Other CSS remains the same */
+    </style>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ffffff;
+            --text: #272727;
+            --accent: #5057fd;
+            --accent-light: #eff3ff;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            min-height: 100vh;
+            color: var(--text);
+            background: var(--primary);
+        }
+
+        a {
+            text-decoration: none;
+            color: currentColor;
+        }
+
+        li {
+            list-style: none;
+            line-height: 2;
+        }
+
+        span {
+            font-size: 14px;
+        }
+
+        p {
+            font-weight: 500;
+        }
+
+        .pricing__section {
+            margin-block: 3rem;
+        }
+
+        .wrapper {
+            max-width: 1240px;
+            margin-inline: auto;
+            padding-inline: 1rem;
+        }
+
+        .title {
+            text-align: center;
+            display: grid;
+            gap: 1rem;
+            place-items: center;
+        }
+
+        .title h2 {
+            font-size: 40px;
+        }
+
+        .toggle__section {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .toggle__section input {
+            display: none;
+        }
+
+        .toggle__section .toggle__btn {
+            display: flex;
+            padding: 4px;
+            background: #F79621;
+            border-radius: 2rem;
+            width: 2.35rem;
+        }
+
+        .toggle__section .toggle__btn span {
+            display: block;
+            width: 1rem;
+            height: 1rem;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        input:checked~.toggle__btn {
+            justify-content: end;
+        }
+
+        .price__cards {
+            margin-block: 2rem;
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+
+        .price__card {
+            padding: 1.5rem 1rem;
+            /* Reduced padding */
+            box-shadow: 0 0 15px rgba(255, 165, 0, 0.8), 0 0 30px rgba(255, 140, 0, 0.6);
+            border-radius: 1rem;
+            display: inline-flex;
+            gap: 0.5rem;
+            /* Reduced gap */
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .price__card:hover {
+            transform: translateY(-8px);
+            /* Slight elevation effect */
+            box-shadow: 0 0 15px rgba(255, 165, 0, 0.8), 0 0 30px rgba(255, 140, 0, 0.6);
+            border-color: rgba(255, 140, 0, 0.9);
+            /* Neon orange border color */
+        }
+
+        .price__details {
+            flex: 1 1 auto;
+        }
+
+        .price__details h3 {
+            font-size: 24px;
+            /* Reduced font size */
+            line-height: 1.2;
+            /* Reduced line height */
+        }
+
+        .price__details ul {
+            margin-block: 0.5rem;
+            /* Reduced margin */
+        }
+
+        .price__details ul li::before {
+            content: ">";
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        hr {
+            border: none;
+            height: 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .price__card .price {
+            font-size: 24px;
+            /* Reduced font size */
+            font-weight: 600;
+            letter-spacing: -1.5px;
+            /* Slight adjustment */
+        }
+
+        /* .price__card .price:before {
+      content: "$";
+    } */
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            /* padding: 1rem 2rem;
+      border-radius: 2rem; */
+            transition: 0.3s ease-in-out;
+            padding: 0.75rem 1.5rem;
+            /* Reduced button size */
+            border-radius: 1.5rem;
+            /* Adjusted border radius */
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            background: var(--accent);
+            /* Default background */
+            color: var(--primary);
+            /* Default text color */
+        }
+
+        .bg__accent {
+            background: #ffffff;
+            color: var(--primary);
+        }
+
+        .bg__accent-2 {
+            background: #F79621;
+            color: var(--accent);
+        }
+
+        .bg__primary {
+            background: var(--primary);
+            color: var(--accent);
+        }
+
+        .btn:hover {
+            background-color: var(--accent-light);
+            /* Change background color on hover */
+            color: var(--accent);
+            /* Change text color on hover */
+            transform: scale(1.05);
+            /* Slight zoom effect */
+        }
+
+        .card-image {
+            max-width: 100px;
+            margin-bottom: 1rem;
+        }
+    </style>
+    <style>
+        .main-slider-one {
+            margin-top: 0;
+            /* Remove any default margin */
+            padding-top: 0;
+            /* Remove any default padding */
+            position: relative;
+            /* Ensure it's relative to the flow of the document */
+            top: 0;
+            /* Prevent it from overlapping with the navbar */
+        }
+
+        .main-header {
+            margin-bottom: 0;
+            /* Remove margin below the navbar */
+        }
+
+        body {
+            padding: 0;
+            /* Remove default body padding */
+            margin: 0;
+            /* Remove default body margin */
+        }
+    </style>
+    <style>
+        .main-slider-one {
+            margin-top: 0;
+            padding-top: 0;
+            position: relative;
+            top: 0;
+        }
+
+        .main-header {
+            margin-bottom: 0;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .main-slider-one__item {
+            height: 800px;
+            /* Set to desired height */
+            display: flex;
+            /* Align content properly */
+            align-items: center;
+        }
+    </style>
+    <style>
+        .tech-card {
+            background: linear-gradient(to bottom, #1e293b, #0f172a);
+            border-radius: 20px;
+            overflow: hidden;
+            color: #fff;
+            padding: 20px;
+            max-width: 300px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .tech-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .tech-card h3.price-title {
+            font-size: 28px;
+            color: #F79621;
+            margin-bottom: 10px;
+        }
+
+        .tech-card .price {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .tech-card .price-image img {
+            max-width: 80px;
+            margin: 20px auto;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.5));
+        }
+
+        .tech-card .price-details {
+            text-align: left;
+            list-style: none;
+            padding: 0;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .tech-card .price-btn {
+            display: inline-block;
+            background: #F79621;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .tech-card .price-btn:hover {
+            background: #000;
+            color: #F79621;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+    <style>
+        .tech-card {
+            background: linear-gradient(to bottom, #1e293b, #0f172a);
+            border-radius: 20px;
+            overflow: hidden;
+            color: #fff;
+            padding: 20px;
+            max-width: 300px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .tech-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .tech-card h3.price-title {
+            font-size: 28px;
+            color: #F79621;
+            margin-bottom: 10px;
+        }
+
+        .tech-card .price-image img {
+            max-width: 100px;
+            margin: 20px auto;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.5));
+        }
+
+        .price-pop {
+            background: url('assets/images/patch-bg.html') no-repeat center;
+            background-size: cover;
+            margin: 20px auto;
+            width: 180px;
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .price-pop .price-amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: #F79621;
+        }
+
+        .price-pop .price-duration {
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .tech-card .price-details {
+            text-align: left;
+            list-style: none;
+            padding: 0;
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+
+        .tech-card .price-btn {
+            display: inline-block;
+            background: #F79621;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .tech-card .price-btn:hover {
+            background: #000;
+            color: #F79621;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Star List Styling */
+        .star-list {
+            list-style: none;
+            padding: 0;
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 20px 0;
+            color: #ffffff;
+        }
+
+        .star-list li {
+            position: relative;
+            padding-left: 25px;
+            /* Space for the star icon */
+            margin-bottom: 10px;
+        }
+
+        .star-list li::before {
+            content: "★";
+            /* Star icon */
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #F79621;
+            /* Gold color for the star */
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        /* Tech Card Styling */
+        .tech-card {
+            background: linear-gradient(to bottom, #1e293b, #0f172a);
+            border-radius: 20px;
+            overflow: hidden;
+            color: #fff;
+            padding: 20px;
+            max-width: 300px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .tech-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .price-pop {
+            background: url('assets/images/patch-bg.html') no-repeat center;
+            background-size: cover;
+            margin: 20px auto;
+            width: 180px;
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .price-pop .price-amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: #F79621;
+        }
+
+        .price-pop .price-duration {
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .price-btn {
+            display: inline-block;
+            background: #F79621;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .price-btn:hover {
+            background: #000;
+            color: #F79621;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+
+
+        .tech-card {
+            background: linear-gradient(to bottom, #1e293b, #0f172a);
+            border-radius: 20px;
+            overflow: hidden;
+            color: #fff;
+            padding: 20px;
+            max-width: 360px;
+            /* Increased width */
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .tech-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Target only the specific stars inside the .specific-stars class */
+        .specific-stars li::before {
+            color: #ffffff;
+            /* Change star color to white */
+        }
+
+
+
+        /* Other CSS remains the same */
+    </style>
+
+
+    <style>
+        /* Dropdown Styling for Shops */
+        .main-menu__list>li>ul {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: linear-gradient(145deg, #F79621, #e5891f);
+            /* Gradient using logo color */
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+            list-style: none;
+            padding: 10px 0;
+            margin: 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .main-menu__list>li:hover>ul {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Dropdown Menu Items */
+        .main-menu__list>li>ul li {
+            padding: 0;
+            margin: 0;
+        }
+
+        .main-menu__list>li>ul li a {
+            color: #ffffff;
+            /* White text for contrast */
+            padding: 10px 20px;
+            display: block;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .main-menu__list>li>ul li a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            /* Subtle hover effect */
+            color: #000;
+            /* Black text on hover */
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Add spacing for icons */
+        .main-menu__list>li>ul li a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            /* Space between icon and text */
+            color: #ffffff;
+            /* White text for contrast */
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+        }
+
+        /* Hover effect for menu items with icons */
+        .main-menu__list>li>ul li a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            /* Subtle hover effect */
+            color: #000;
+            /* Black text on hover */
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Icon Styling */
+        .main-menu__list>li>ul li a i {
+            font-size: 1.2rem;
+            color: #ffffff;
+            /* Icon color matches text */
+            transition: all 0.3s ease;
+        }
+
+        .main-menu__list>li>ul li a:hover i {
+            color: #000;
+            /* Icon color changes on hover */
+        }
+
+        /* Dropdown Menu Styling */
+        .main-menu__list>li>ul {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: linear-gradient(145deg, #F79621, #e5891f);
+            /* Gradient using logo color */
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+            list-style: none;
+            padding: 10px 0;
+            margin: 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .main-menu__list>li:hover>ul {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Dropdown Items Styling */
+        .main-menu__list>li>ul li {
+            padding: 0;
+            margin: 0;
+        }
+
+        .main-menu__list>li>ul li a {
+            color: #ffffff;
+            /* White text */
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            /* Spacing between icon and text */
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .main-menu__list>li>ul li a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            /* Subtle hover effect */
+            color: #000;
+            /* Black text on hover */
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Icon Styling */
+        .main-menu__list>li>ul li a i {
+            font-size: 1.2rem;
+            color: #ffffff;
+            /* Match text color */
+            transition: all 0.3s ease;
+        }
+
+        .main-menu__list>li>ul li a:hover i {
+            color: #000;
+            /* Change icon color on hover */
+        }
+    </style>
+
+
+    <style>
+        /* Container styling */
+        .button-switcher {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        /* Button styling */
+        .switch-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: 2px solid #f79621;
+            /* Use the provided logo color */
+            background-color: white;
+            color: #f79621;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* Active button styling */
+        .switch-button.active {
+            background-color: #f79621;
+            color: white;
+        }
+
+        /* Hover effect */
+        .switch-button:hover {
+            background-color: #f79621;
+            color: white;
+        }
+    </style>
+
+
+
+
+
+    <style>
+        /* Responsive Adjustments for Phones */
+        @media (max-width: 768px) {
+            .main-slider-one__btn {
+                display: flex;
+                flex-direction: column;
+                /* Stack buttons vertically */
+                align-items: center;
+                gap: 10px;
+                /* Add spacing between buttons */
+            }
+
+            .main-slider-one__btn a {
+                font-size: 0.85rem;
+                /* Smaller font size */
+                padding: 8px 12px;
+                /* Reduce padding for smaller buttons */
+                border-radius: 20px;
+                /* Maintain rounded corners */
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-slider-one__btn a {
+                width: 90%;
+                /* Full-width buttons with slight margins */
+                font-size: 0.8rem;
+                /* Even smaller font size */
+                padding: 6px 10px;
+                /* Further reduce padding for very small screens */
+            }
+        }
+    </style>
+
+
+</head>
+
+<body class="custom-cursor">
+
+    <div class="custom-cursor__cursor"></div>
+    <div class="custom-cursor__cursor-two"></div>
+
+    <div class="preloader">
+        <div class="preloader__image" style="background-image: url(assets/preloader.html\ orange.svg);"></div>
+    </div>
+    <!-- /.preloader -->
+    <div class="page-wrapper">
+        <!-- Floating WhatsApp Icon -->
+        <script src="../uae.fw-cdn.com/40150458/90775.js" chat="true"></script>
+        <!-- Web Chat Script -->
+
+
+
+
+        <header class="main-header sticky-header sticky-header--normal">
+            <div class="container-fluid">
+                <div class="main-header__inner">
+                    <div class="main-header__logo">
+                        <a href="index.html">
+                            <img src="Logo%20savanna6.svg" alt="Ienet HTML" height="100">
+                        </a>
+                    </div>
+                    <a href="#" class="main-header__toggler"><span class="icon-menu"></span></a>
+                    <nav class="main-header__nav main-menu">
+                        <ul class="main-menu__list">
+                            <li>
+                                <a href="index.html" style="color: #fff;"><strong>Home</strong></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" style="color: #fff;">Packages</a>
+                                <ul>
+                                    <li>
+                                        <a href="index.html?package=residential">
+                                            <i class="fas fa-box"></i> Residential Packages
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="index.html?package=business">
+                                            <i class="fas fa-network-wired"></i> Business Packages
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="coverage.html" style="color: #fff;">
+                                    Coverage
+                                </a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" style="color: #fff;">Shops</a>
+                                <ul class="dropdown">
+                                    <li>
+                                        <a href="shops.html">
+                                            <i class="fas fa-map-marker-alt"></i> Shop Location
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="accessories.html">
+                                            <i class="fas fa-headphones-alt"></i> Accessories
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" style="color: #fff;">Support</a>
+                                <ul>
+                                    <li>
+                                        <a href="payments.html">
+                                            <i class="fas fa-credit-card"></i> How to Make Payments
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="selfCare.html">
+                                            <i class="fas fa-tools"></i> Self Care
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.speedtest.net/">
+                                            <i class="fas fa-tachometer-alt"></i> Speedtest
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="about.html" style="color: #fff;">
+                                    About
+                                </a>
+                            </li>
+                            <li>
+                                <a href="contact.html" style="color: #fff;">
+                                    Contact
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="main-header__right">
+                        <div class="mobile-nav__btn mobile-nav__toggler">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <!-- <div class="main-header__lang">
+                            <div class="lang-dropdown">
+                                <button class="lang-selected">
+                                    <span class="flag-icon flag-icon-gb"></span> EN
+                                </button>
+                                <div class="lang-options">
+                                    <div class="lang-option" data-value="en">
+                                        <span class="flag-icon flag-icon-gb"></span> EN
+                                    </div>
+                                    <div class="lang-option" data-value="sw">
+                                        <span class="flag-icon flag-icon-tz"></span> SW
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="main-header__call">
+                            <div class="main-header__call__icon">
+                                <span class="icon-telephone"></span>
+                            </div>
+                            <div class="main-header__call__title">Call Us</div>
+                            <a class="main-header__call__text" href="tel:+255699999555">+255 699 999 555</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- /.main-header -->
+        <!-- main-slider-start -->
+        <section class="main-slider-one" style="">
+
+
+            <div class="main-slider-one__carousel ienet-owl__carousel owl-carousel" data-owl-options='{
+		"loop": true,
+		"animateOut": "fadeOut",
+		"animateIn": "fadeIn",
+		"items": 1,
+		"autoplay": true,
+		"autoplayTimeout": 7000,
+		"smartSpeed": 5000,
+		"nav": false,
+        "navText": ["<span class=\"icon-left-arrow\"></span>","<span class=\"icon-right-arrow\"></span>"],
+		"dots": true,
+		"margin": 0
+	    }'>
+                <div class="item">
+                    <div class="main-slider-one__item">
+                        <div class="main-slider-one__bg"
+                            style="background-image: url(assets/images/iadded/gradient.png);">
+                        </div>
+                        <div class="main-slider-one__content">
+                            <h5 class="main-slider-one__sub-title" style="display: none;"><span
+                                    class="main-slider-one__sub-title__border"></span>Unlock Limitless Opportunities,
+                            </h5>
+                            <!-- slider-sub-title -->
+                            <h2 class="main-slider-one__title">Experience blazing-fast,<br> unlimited internet
+                            </h2>
+                            <!-- slider-title -->
+                            <p class="main-slider-one__text">
+                                Empowering Tanzanians with reliable, high-speed internet connectivity for homes and
+                                businesses.
+                            </p><!-- slider-tex -->
+                            <div class="main-slider-one__btn">
+                                <!-- <a href="#available" class="ienet-btn main-slider-one__btn__first"><span>Check
+                                        Availability in your city<span class="ienet-btn__icon"><i
+                                                class="fas fa-chevron-right"></i></span></span></a> -->
+                                <a href="coverage.html" class="ienet-btn main-slider-one__btn__last"><span><span
+                                            class="ienet-btn__icon ienet-btn__icon--left"><i
+                                                class="fas fa-chevron-right"></i></span>Check
+                                        Availability in your city</span></a>
+                                <a href="index.html?package=residential"
+                                    class="ienet-btn main-slider-one__btn__last"><span><span
+                                            class="ienet-btn__icon ienet-btn__icon--left"><i
+                                                class="fas fa-gem"></i></span>browse packages</span></a>
+                            </div>
+                        </div>
+                        <div class="main-slider-one__image">
+                            <div class="main-slider-one__image__one">
+                                <img src="assets/images/iadded/afri1.png" alt="ienet">
+                            </div>
+                            <div class="main-slider-one__image__border">
+                                <img src="assets/images/shapes/slider-1-border.png" alt="ienet">
+                            </div>
+                            
+                        </div>
+                   <div class="main-slider-one__layer"
+                            style="background-image: url(assets/images/iadded/3.png);">
+                        </div>
+                        
+
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="main-slider-one__item">
+                        <div class="main-slider-one__bg"
+                            style="background-image: url(assets/images/iadded/gradient.png);">
+                        </div>
+                        <div class="main-slider-one__content">
+                            <h5 class="main-slider-one__sub-title" style="display: none;"><span
+                                    class="main-slider-one__sub-title__border"></span>Empowering Tanzania</h5>
+                            <!-- slider-sub-title -->
+                            <h2 class="main-slider-one__title">Unleashing Potential<br> Through Connectivity</h2>
+                            <!-- slider-title -->
+                            <p class="main-slider-one__text">
+                                Join the fastest-growing digital community in Tanzania.
+                            </p><!-- slider-tex -->
+                            <div class="main-slider-one__btn">
+                                <a href="coverage.html" class="ienet-btn main-slider-one__btn__last"><span><span
+                                            class="ienet-btn__icon ienet-btn__icon--left"><i
+                                                class="fas fa-chevron-right"></i></span>Check
+                                        Availability in your city</span></a>
+                                <a href="index.html?package=residential"
+                                    class="ienet-btn main-slider-one__btn__last"><span><span
+                                            class="ienet-btn__icon ienet-btn__icon--left"><i
+                                                class="fas fa-gem"></i></span>browse packages</span></a>
+                            </div>
+                        </div>
+                        <div class="main-slider-one__image">
+                            <div class="main-slider-one__image__one">
+                                <img src="assets/images/iadded/afri1.png" alt="ienet">
+                            </div>
+                            <div class="main-slider-one__image__border">
+                                <img src="assets/images/shapes/slider-1-border.png" alt="ienet">
+                            </div>
+                           
+                        </div>
+
+           <div class="main-slider-one__layer"
+                            style="background-image: url(assets/images/iadded/1.png)">
+                        </div> 
+
+                      
+
+
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="main-slider-one__item">
+                        <div class="main-slider-one__bg"
+                            style="background-image: url(assets/images/iadded/gradient.png);">
+                        </div>
+                        <div class="main-slider-one__content">
+                            <h5 class="main-slider-one__sub-title" style="display: none;"><span
+                                    class="main-slider-one__sub-title__border"></span>Connecting Tanzania</h5>
+                            <!-- slider-sub-title -->
+                            <h2 class="main-slider-one__title">Seamless Digital Access<br> Across Tanzania</h2>
+                            <!-- slider-title -->
+                            <p class="main-slider-one__text">
+                                Providing Tanzanian homes and businesses with the speed and stability they deserve.
+                            </p><!-- slider-tex -->
+                            <div class="main-slider-one__btn">
+                                <a href="coverage.html" class="ienet-btn main-slider-one__btn__last"><span><span
+                                            class="ienet-btn__icon ienet-btn__icon--left"><i
+                                                class="fas fa-chevron-right"></i></span>Check
+                                        Availability in your city</span></a>
+                                <a href="index.html?package=residential"
+                                    class="ienet-btn main-slider-one__btn__last"><span><span
+                                            class="ienet-btn__icon ienet-btn__icon--left"><i
+                                                class="fas fa-gem"></i></span>browse packages</span></a>
+                            </div>
+                        </div>
+                        <div class="main-slider-one__image">
+                            <div class="main-slider-one__image__one">
+                                <img src="assets/images/iadded/afri1.png" alt="ienet">
+                            </div>
+                            <div class="main-slider-one__image__border">
+                                <img src="assets/images/shapes/slider-1-border.png" alt="ienet">
+                            </div>
+                           
+                        </div>
+                   <div class="main-slider-one__layer"
+                            style="background-image: url(assets/images/iadded/2.png);">
+                        </div>  
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+        <div class="elementor-element elementor-element-bb4521c"
+        style="background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 10px; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; gap: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); flex-wrap: wrap; width: 100%;">
+        <!-- Heading -->
+        <div class="elementor-heading">
+            <h5 style="color: #3C1800; font-size: 1.2rem; font-weight: bold; margin: 0; text-align: center;">
+                Get Savanna Internet<br> today!
+            </h5>
+        </div>
+        <p id="messageBox" style="display: none; font-size: 16px; text-align: center; font-weight: bold;"></p>
+        <!-- Form -->
+        <form id="savannaForm" class="elementor-form"
+            style="display: flex; flex: 1; gap: 10px; align-items: center; justify-content: space-between; flex-wrap: wrap; width: 100%;">
+            <!-- Name Field -->
+            <input type="text" name="name" placeholder="Name" required
+                style="flex: 1; border: none; border-bottom: 1px solid #ccc; padding: 10px; font-size: 1rem; outline: none; min-width: 150px;">
+            <!-- Phone Number Field -->
+            <input type="text" name="phone" placeholder="Phone Number" required
+                style="flex: 1; border: none; border-bottom: 1px solid #ccc; padding: 10px; font-size: 1rem; outline: none; min-width: 150px;">
+            <!-- Location Field -->
+            <select name="location" required
+                style="flex: 1; border: none; border-bottom: 1px solid #ccc; padding: 10px; font-size: 1rem; outline: none; background: transparent; min-width: 150px;">
+                <option value="Dar es Salaam">Dar es Salaam</option>
+                <!-- Add other options here -->
+            </select>
+            <!-- Submit Button -->
+            <button type="submit"
+                style="flex-shrink: 0; background-color: #E5891F; color: white; padding: 8px 15px; border-radius: 15px; font-size: 0.9rem; border: none; cursor: pointer; min-width: 120px;">
+                Get Connected
+            </button>
+        </form>
+    </div>
+
+        <style>
+            /* General Styling for Laptops */
+            .elementor-element {
+                width: 100%;
+                margin: 0 auto;
+                padding: 0;
+            }
+
+            .elementor-heading h5 {
+                text-align: center;
+                margin: 0 0 10px;
+                line-height: 1.5;
+            }
+
+            .elementor-form {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                justify-content: space-between;
+                flex-wrap: nowrap;
+                /* Keep inputs and button in one line */
+            }
+
+            .elementor-form input,
+            .elementor-form select {
+                flex: 1 1 25%;
+                min-width: 150px;
+                font-size: 1rem;
+                padding: 10px;
+                border: none;
+                border-bottom: 1px solid #ccc;
+                outline: none;
+            }
+
+            .elementor-form button {
+                flex-shrink: 0;
+                min-width: 120px;
+                /* Smaller button */
+                padding: 8px 15px;
+                /* Reduced padding */
+                font-size: 0.9rem;
+                /* Smaller font size */
+                background-color: #E5891F;
+                color: white;
+                border-radius: 15px;
+                /* Softer corners */
+                border: none;
+                cursor: pointer;
+                text-align: center;
+            }
+
+            /* Hover Effect for Button */
+            .elementor-form button:hover {
+                background-color: #3C1800;
+            }
+
+            /* Responsive Styling for Tablets */
+            @media (max-width: 1024px) {
+                .elementor-form {
+                    gap: 10px;
+                    flex-wrap: wrap;
+                }
+
+                .elementor-form input,
+                .elementor-form select,
+                .elementor-form button {
+                    flex: 1 1 45%;
+                    /* Two columns on tablets */
+                }
+
+                .elementor-heading h5 {
+                    text-align: center;
+                    margin-bottom: 10px;
+                }
+            }
+
+            /* Custom Styling for Phones */
+            @media (max-width: 768px) {
+                .elementor-element {
+                    flex-wrap: wrap;
+                    padding: 20px;
+                    border-radius: 15px;
+                }
+
+                .elementor-heading h5 {
+                    width: 100%;
+                    text-align: center;
+                    margin-bottom: 15px;
+                    font-size: 1.5rem;
+                    color: #E5891F;
+                }
+
+                .elementor-form {
+                    flex-wrap: wrap;
+                    gap: 15px;
+                    justify-content: center;
+                }
+
+                .elementor-form input,
+                .elementor-form select,
+                .elementor-form button {
+                    flex: 1 1 100%;
+                    font-size: 1rem;
+                    padding: 12px;
+                    border-radius: 10px;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                }
+
+                button {
+                    background-color: #3C1800;
+                    color: white;
+                    font-size: 1.2rem;
+                    padding: 12px 20px;
+                    cursor: pointer;
+                }
+
+                button:hover {
+                    background-color: #E5891F;
+                    color: #fff;
+                }
+            }
+
+            .popular-label {
+                position: absolute;
+                top: -5px;
+                /* Adjust to fine-tune label position */
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: #1f2f46;
+                /* Dark blue */
+                color: white;
+                font-size: 12px;
+                font-weight: bold;
+                text-transform: uppercase;
+                padding: 5px 15px;
+                border-radius: 20px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+                z-index: 2;
+            }
+            .popular-label {
+    position: absolute;
+    top: -10px; /* Adjust the height above the card */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: red; /* Label background */
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 5px 15px; /* Padding for the label */
+    border-radius: 20px; /* Rounded edges */
+    z-index: 10; /* Ensures it appears above the card */
+    white-space: nowrap; /* Prevents text from wrapping */
+}
+.price__card { /* This makes `.popular-label` position relative to it */
+    overflow: visible; /* Ensures the label is not clipped */
+   /* Background color of the card */
+    /* Matches the card's rounded corners */
+}
+/* Container for the pricing cards */
+.price__cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.price__card {
+  flex: 1 1 270px; /* Grow and shrink, but no card smaller than ~300px */
+  box-sizing: border-box;
+}
+
+        </style>
+
+
+
+
+
+        <!--IADDED-->
+        <section class="pricing__section"
+            style="padding: 50px 20px; background-image: url(assets/images/shapes/about-1-bg.png) ; color: white;">
+            <div class="wrapper" style="max-width: 1200px; margin: 0 auto; text-align: center;">
+                <!-- Title and Toggle -->
+                <div class="title" style="margin-bottom: 30px;">
+                    <h2 style="font-size: 36px; color: #F79621; margin-bottom: 20px;">Choose Your Package</h2>
+                    <div class="toggle__section"
+                        style="display: inline-flex; align-items: center; gap: 10px; color: white;">
+                        <div class="button-switcher">
+                            <button class="switch-button active"
+                                onclick="toggleCards(this, 'residential')">Residential</button>
+                            <button class="switch-button" onclick="toggleCards(this, 'business')">Business</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pricing Cards -->
+                <div class="price__cards" id="priceCards" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+                    <!-- Plans will be dynamically added here -->
+                </div>
+            </div>
+        </section>
+
+        <script>
+            // Function to fetch and display plans
+            function fetchPlans() {
+                fetch('/api/plans')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (!data || !Array.isArray(data)) {
+                            throw new Error('Invalid data format received');
+                        }
+
+                        const priceCards = document.getElementById('priceCards');
+                        if (!priceCards) {
+                            console.error('Price cards container not found');
+                            return;
+                        }
+
+                        // Clear existing cards
+                        priceCards.innerHTML = '';
+
+                        // Create cards for each plan
+                        data.forEach(plan => {
+                            const card = document.createElement('div');
+                            card.className = `price__card ${plan.type || 'residential'} tech-card`;
+                            card.style.background = plan.isPopular ? '#F79621' : '#ffffff';
+                            card.style.position = 'relative';
+                            
+                            // Add hidden class if it's a business plan
+                            if (plan.type === 'business') {
+                                card.classList.add('hidden');
+                            }
+
+                            if (plan.isPopular) {
+                                card.innerHTML += '<div class="popular-label" style="background-color: red;">favourite</div>';
+                            }
+
+                            card.innerHTML += `
+                                <div class="price__card-inner">
+                                    <h3 class="price-title" style="${plan.isPopular ? 'color: white; margin-top: 10px;' : ''}">${plan.name}</h3>
+                                    <div class="price-image">
+                                        <img src="${plan.imageUrl || '/assets/MBPS CARDS/1.svg'}" alt="${plan.name} Plan">
+                                    </div>
+                                    <div class="price-pop">
+                                        <span class="price-amount" style="${plan.isPopular ? 'color: white;' : ''}">TZS ${plan.price.toLocaleString()}</span>
+                                        <span class="price-duration" style="${plan.isPopular ? '' : 'color: #F79621;'}">/ Per Month</span>
+                                    </div>
+                                    <ul class="price-details star-list ${plan.isPopular ? 'specific-stars' : ''}" style="${plan.isPopular ? 'color: white;' : 'color: black;'}">
+                                        ${plan.features.map(feature => `<li>${feature}</li>`).join('')}
+                                    </ul>
+                                    <a href="contact.html" class="price-btn" style="${plan.isPopular ? 'background-color: white;' : ''}">Get Connected</a>
+                                </div>
+                            `;
+
+                            priceCards.appendChild(card);
+                        });
+
+                        // Initialize toggle functionality
+                        initializeToggle();
+                    })
+                    .catch(error => {
+                        console.error('Error fetching plans:', error);
+                        // Show error message to user
+                        const errorDiv = document.createElement('div');
+                        errorDiv.className = 'alert alert-danger';
+                        errorDiv.textContent = 'Failed to load plans. Please try again later.';
+                        const priceCards = document.getElementById('priceCards');
+                        if (priceCards) {
+                            priceCards.innerHTML = '';
+                            priceCards.appendChild(errorDiv);
+                        }
+                    });
+            }
+
+            // Function to toggle between residential and business plans
+            function toggleCards(button, type) {
+                // Update active state of buttons
+                document.querySelectorAll('.switch-button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                button.classList.add('active');
+
+                // Show/hide cards based on type
+                document.querySelectorAll('.price__card').forEach(card => {
+                    if (type === 'all') {
+                        card.classList.remove('hidden');
+                    } else if (type === 'residential') {
+                        if (card.classList.contains('residential')) {
+                            card.classList.remove('hidden');
+                        } else {
+                            card.classList.add('hidden');
+                        }
+                    } else if (type === 'business') {
+                        if (card.classList.contains('business')) {
+                            card.classList.remove('hidden');
+                        } else {
+                            card.classList.add('hidden');
+                        }
+                    }
+                });
+            }
+
+            // Initialize toggle functionality
+            function initializeToggle() {
+                const buttons = document.querySelectorAll('.switch-button');
+                if (buttons.length > 0) {
+                    buttons.forEach(button => {
+                        button.addEventListener('click', function() {
+                            const type = this.getAttribute('onclick').match(/'([^']+)'/)[1];
+                            toggleCards(this, type);
+                        });
+                    });
+                }
+            }
+
+            // Load plans when the page loads
+            document.addEventListener('DOMContentLoaded', function() {
+                fetchPlans();
+            });
+        </script>
+
+        <div class="thin-strip-container">
+            <!-- Content can be added here if needed -->
+        </div>
+
+
+        <!-- <section class="mail-one" id="available">
+            <div class="mail-one__bg" style="background-image: url(assets/images/iadded/5.png);"></div>
+            
+            <div class="mail-one__shape-left" style="background-image: url(assets/images/resources/mail-shape-1.png);">
+            </div>
+            <div class="mail-one__shape-right" style="background-image: url(assets/images/iadded/);">
+            </div>
+            <div class="container">
+                <div class="mail-one__content">
+                    <div class="sec-title text-left">
+
+                        <h6 class="sec-title__tagline bw-split-in-right"><span
+                                class="sec-title__tagline__left-border"></span>check your area<span
+                                class="sec-title__tagline__right-border"></span></h6>
+
+                        <h3 class="sec-title__title bw-split-in-left">Check Availability In <span>Your City</span></h3>
+                        
+                    </div>
+                    <form action="#" data-url="" class="mail-one__newsletter mc-form">
+                        <input type="text" name="EMAIL" placeholder="Enter Your Address">
+                        <span class="mail-one__newsletter__icon"><i class="icon-location"></i></span>
+                        <button type="submit" class="ienet-btn"><span>Check Availability</span></button>
+                        <div class="mc-form__response"></div>
+                    </form>
+                </div>
+            </div>
+        </section> -->
+
+
+
+
+        <section class="about-one" style="background-image: url(assets/images/shapes/about-1-bg.png);">
+            <div class="about-one__shape" style="background-image: url(assets/images/iadded/wild.png);">
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="about-one__image wow fadeInLeft" data-wow-delay="300ms">
+                            <div class="about-one__image__one">
+                                <img src="assets/images/resources/about-1-1.jpg" alt="ienet">
+                            </div>
+                            <div class="about-one__image__bg"></div>
+
+                        </div><!-- /.about-one__image -->
+                    </div><!-- /.col-lg-6 -->
+                    <div class="col-xl-6 wow fadeInRight" data-wow-delay="300ms"
+                        style="background-image: url(assets/images/shapes/about-1-bg.png)">
+                        <div class="about-one__content">
+                            <div class="sec-title text-left">
+                                <h6 class="sec-title__tagline bw-split-in-right">
+                                    <span class="sec-title__tagline__left-border"></span>
+                                    Who we are:
+                                    <span class="sec-title__tagline__right-border"></span>
+                                </h6><!-- /.sec-title__tagline -->
+
+                                <h3 class="sec-title__title bw-split-in-left" style="font-size: 36px;">
+                                    We Deliver <span style="font-size: 34px;">Reliable</span> Internet Services,
+                                    Tailored for You
+                                </h3><!-- /.sec-title__title -->
+                            </div><!-- /.sec-title -->
+                            <p class="about-one__content__text">
+                                Savanna Fibre is an innovative Internet Service Provider (ISP) committed to delivering
+                                fast, easy, reliable, and affordable fibre-optic Internet services to households across
+                                Tanzania. As a company, we aim to bridge the digital divide by providing essential
+                                internet access to homes, ensuring seamless connectivity anywhere and everywhere
+
+                            </p>
+                            <ul class="about-one__content__list">
+                                <li><span class="fas fa-check"></span>Premium Service at Affordable Price</li>
+                                <li><span class="fas fa-check"></span>24/7 Rapid Response</li>
+                                <li><span class="fas fa-check"></span>24/7 Call Center English & Swahili</li>
+                                <li><span class="fas fa-check"></span>Fast Installations</li>
+                            </ul>
+                            <a href="about.html" class="ienet-btn">
+                                <span>
+                                    More About Us
+                                    <span class="ienet-btn__icon"><i class="fas fa-chevron-right"></i></span>
+                                </span>
+                            </a>
+                        </div><!-- /.about-one__content -->
+                    </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section><!-- /.about-one -->
+
+
+
+
+
+
+
+        <!-- Feature End -->
+        <div class="thin-strip-container">
+            <!-- Content can be added here if needed -->
+        </div>
+
+
+
+        <section class="faq-one" style="background-image: url(assets/images/shapes/about-1-bg.png);">
+            <div class="faq-one__shape" style="background-image: url(assets/images/resources/faq-shape-1.png);"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="faq-one__accordion ienet-accrodion" data-grp-name="ienet-accrodion">
+                            <div class="accrodion">
+                                <div class="accrodion-title">
+                                    <h4>
+                                        <span class="accrodion-title__icon"></span>
+                                        Billing and Payment
+                                    </h4>
+                                </div>
+                                <div class="accrodion-content">
+                                    <div class="inner">
+                                        <h5>How do I know my account number?</h5>
+                                        <p>• You can use USSD *148*65# and follow the process as indicated.</p>
+                                        <p>• You can use Savanna App which can be downloaded from play store or a link provided at sales point.</p>
+                                        <br>
+                                        <h5>How do I pay for my monthly subscription?</h5>
+                                        <p>• Payment can be made via (Mpesa, Mix by Yas & Airtel Money) for more information check the how to pay link.</p>
+                                        <p>• Payment can be made through our Savanna App.</p>
+                                        <br>
+                                        <h5>How do I Upgrade or Downgrade my Package?</h5>
+                                        <p>• For a package change a request can be made through the USSD *148*65# and follow the process as indicated.</p>
+                                        <p>• You can also request an upgrade by creating a ticket in our Savanna App after which our support team will be able to call and advice within 1hr.</p>
+                                        <p>• A request can also be made via our email support@savannafibre.co.tz.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accrodion active">
+                                <div class="accrodion-title">
+                                    <h4>
+                                        <span class="accrodion-title__icon"></span>
+                                        How do I change my WiFi username and password?
+                                    </h4>
+                                </div>
+                                <div class="accrodion-content">
+                                    <div class="inner">
+                                        <p>• Login to modem via cable using a laptop machine. Default IP is normally set to 192.168.0.1.</p>
+                                        <p>• If you have previously changed this IP, then run ipconfig on a terminal window to get the IP of your default gateway. The IP address is typed on any web browser.</p>
+                                        <p>• You can also change the credentials by login into your Savanna App and following the steps provided.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accrodion">
+                                <div class="accrodion-title">
+                                    <h4>
+                                        <span class="accrodion-title__icon"></span>
+                                        Internet Service Issues
+                                    </h4>
+                                </div>
+                                <div class="accrodion-content">
+                                    <div class="inner">
+                                        <h5>I am getting no connectivity on my device. (A yellow Triangle)</h5>
+                                        <p>• Ensure you have automatically set your IP to acquire IP address automatically. This can be done on Network and Internet->Network and Sharing Center->Change Adapter Setting-> Local Area Connection.</p>
+                                        <p>• Right click on Local Area Connection->Properties. Select on Internet Protocol (TCP/IPv4) and click on properties.</p>
+                                        <p>• Select option for Obtain IP Address Automatically and Obtain DNS server address automatically.</p>
+                                        <p>• If you are connecting via Wi-Fi check if your wireless network key is correct. (Wi-Fi key is case-sensitive).</p>
+                                        <p>• If you are connecting via Wi-Fi check if you have good Wi-Fi strength to your device.</p>
+                                        <p>• Use the "Troubleshoot problems" option by right-clicking on the network icon. This may reset your adapter.</p>
+                                        <p>• If you are using cable, ensure the cable is tightly plugged in on your computer and router. You can also test service with another cable or network device.</p>
+                                        <p>• Restart the Modem (power off/on).</p>
+                                        <br>
+                                        <h5>I am getting poor Wi-Fi- signal</h5>
+                                        <p>• Poor Wi-Fi signals might be due to but not limited to the below factors:</p>
+                                        <p>• Home constructions i.e. thick walls, steel structures.</p>
+                                        <p>• Interference from other gadgets e.g. neighbouring routers (channel interference), microwave ovens.</p>
+                                        <p>• Poor placement.</p>
+                                        <p>• The router/modem should be placed in a central location, elevated, not locked in glass compartments, the antennae should be in a vertical position.</p>
+                                        <p>• If all the above factors have been considered, then you may have to invest in a Wi-Fi extender to boost the signals.</p>
+                                        <br>
+                                        <h5>I am getting slow speed on my connection.</h5>
+                                        <p>• Ensure you have good Wi-Fi strength if you are connecting via Wi-Fi.</p>
+                                        <p>• Ensure you have no background bandwidth consuming programs active. E.g. automatic updates, program updates, antivirus updates.</p>
+                                        <p>• Stop all heavy activity e.g. streaming music/ downloading movies/ uploading huge files.</p>
+                                        <p>• Stop all torrent activity i.e. downloading and seeding.</p>
+                                        <p>• Close all tabs on your internet browser.</p>
+                                        <p>• Disconnect all other users from the network (Both Wi-Fi and Cable).</p>
+                                        <p>• It's important to ensure you keep your Wi-Fi password safe to make sure no unwanted guests are piggybacking on your network.</p>
+                                        <p>• At times, and especially after an upgrade, a Reset on the modem may improve the speeds. The reset button is mostly located behind the modem. Remember to save any settings before resetting the modem. This button is almost always sunk but you should be able to access it with a straightened-out paper clip.</p>
+                                        <p>• Run a speed test preferably on cable connection on <a href="http://speedtest.com/" target="_blank">Speedtest.com</a>. The speed test will give more accurate results if all the above factors have been observed.</p>
+                                        <br>
+                                        <h5>I am unable to access internet on my devices.</h5>
+                                        <p>• If you are using a cable, ensure the cable is tightly plugged in to your computer and the modem/router.</p>
+                                        <p>• If you are using Wi-Fi ensure the Wi-Fi button is switched on. (Some buttons are physically located on the device e.g. on a laptop. For phones and hand-held devices, this setting is normally under the settings menu.</p>
+                                        <p>• If you are connecting via Wi-Fi check if your wireless network key (password) is correct. (Wi-Fi key is case-sensitive).</p>
+                                        <p>• If you are using a computer, ensure you have automatically set your IP to acquire IP address automatically. This can be done on Network and Internet->Network and Sharing Center->Change Adapter Setting-> Local Area Connection-> Properties-> Internet Protocol Version 4(TCP/IPv4)-> Select obtain IP address automatically.</p>
+                                        <p>• If using a phone or handheld device, also ensure the device is on DHCP. This can be located under Advanced Options.</p>
+                                        <p>• If you are using an Ethernet cable, ensure you have not looped any cables (Plugging the cable from one port of the modem to the other) on your modem/router or decoder.</p>
+                                        <p>• Restart the Modem (power off/on).</p>
+                                        <br>
+                                        <h5>My Modem is not powering</h5>
+                                        <p>• Check if the power adapter is plugged into the power outlet and that the outlet is switched on.</p>
+                                        <p>• If you are using a power extension cable, try a different slot on the power extension.</p>
+                                        <p>• Ensure the power button on the modem is switched on. Some modems have a power switch at the back of the modem.</p>
+                                        <p>• Try a different power outlet in the office or house.</p>
+                                        <p>• It is advisable to only use adapters that have been bought at our Savanna shops to avoid damaging the equipment or causing a short circuit.</p>
+                                        <p>• If all the above have been confirmed, then visit one of our shops with the adapter for testing. The adapter or modem might be faulty.</p>
+                                        <br>
+                                        <h5>I am not able to open some websites</h5>
+                                        <p>• Ensure you have no proxy setup on your browser.</p>
+                                        <p>• Mozilla Firefox Browser: Tools->Options->Advanced->Network->Connection. Click on Settings and select Use system proxy Settings.</p>
+                                        <p>• Safari Browser: Select "Preferences" from the "Safari" menu of the browser toolbar. Click on the "Advanced" tab, then click on the "Change Settings" button. Click on Automatic Proxy Configuration. Click on Apply.</p>
+                                        <p>• Google Chrome Browser: Settings->Advanced Settings->Network->Change proxy settings->Connections->LAN Settings->Select Automatically detect settings.</p>
+                                        <p>• Confirm the website you are unable to access is correctly typed. You can do a ping and a traceroute to the site. (Ping and trace route can be done on windows or mac terminal window).</p>
+                                        <p>• Ensure the DNS and IP settings have been set to automatically obtain IP settings and DNS settings respectively.</p>
+                                        <p>• If the website is hosted externally, check with the domain host to ensure your public I.P address has not been blacklisted.(This normally happens when there are too many requests/ wrong logins to manage the site.)</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accrodion">
+                                <div class="accrodion-title">
+                                    <h4>
+                                        <span class="accrodion-title__icon"></span>
+                                        Savanna USSD
+                                    </h4>
+                                </div>
+                                <div class="accrodion-content">
+                                    <div class="inner">
+                                        <h5>What are the benefits?</h5>
+                                        <p>• It helps customers check several things easier and faster. Things like:</p>
+                                        <p>• Account balance</p>
+                                        <p>• Account number</p>
+                                        <p>• Due Date</p>
+                                        <p>• Account Status</p>
+                                        <br>
+                                        <h5>How do I register?</h5>
+                                        <p>• No Registration is required. All customers must do is to dial *148*65# and select any one of the transactions.</p>
+                                        <br>
+                                        <h5>Are there any charges for this service?</h5>
+                                        <p>• No charges for this service.</p>
+                                        <br>
+                                        <h5>Is the service available on all networks?</h5>
+                                        <p>• Yes, the service is currently available on Airtel, Vodacom and Tigo.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accrodion">
+                                <div class="accrodion-title">
+                                    <h4>
+                                        <span class="accrodion-title__icon"></span>
+                                        Shifting Process
+                                    </h4>
+                                </div>
+                                <div class="accrodion-content">
+                                    <div class="inner">
+                                        <h5>What is the procedure for Moving?</h5>
+                                        <p>• Shifting forms can be filled in our website or using our Savanna App. Once the form is filled in and submitted our support team will respond within 2hrs.</p>
+                                        <br>
+                                        <h5>How long does the process take?</h5>
+                                        <p>• Process takes a max of 48hrs.</p>
+                                        <br>
+                                        <h5>How much does it cost to shift my services?</h5>
+                                        <p>• Savanna will do the shifting process for free.</p>
+                                        <br>
+                                        <h5>Who is authorized to shift my service?</h5>
+                                        <p>• Accredited Savanna Technician or installer who visits the promises with a copy of the shifting form.</p>
+                                        <br>
+                                        <h5>Can I get my own Technician to shift my service?</h5>
+                                        <p>• No. All you need to carry is the ONU and its power cable.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accrodion">
+                                <div class="accrodion-title">
+                                    <h4>
+                                        <span class="accrodion-title__icon"></span>
+                                        Installation and Set Up
+                                    </h4>
+                                </div>
+                                <div class="accrodion-content">
+                                    <div class="inner">
+                                        <h5>How long does installation take?</h5>
+                                        <p>• Once your registration is approved, installation is completed within same day.</p>
+                                        <br>
+                                        <h5>What equipment is provided during installation?</h5>
+                                        <p>• We provide a router and necessary cables to ensure seamless connection.</p>
+                                        <br>
+                                        <h5>Is there a fee for installation?</h5>
+                                        <p>• No installation fee, it's free.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" style="background-image: url(assets/images/shapes/about-1-bg.png);">
+                        <div class="faq-one__content">
+                            <div class="sec-title text-left">
+                                <h6 class="sec-title__tagline bw-split-in-right"><span class="sec-title__tagline__left-border"></span>Frequently Asked Questions<span class="sec-title__tagline__right-border"></span></h6>
+                                <h3 class="sec-title__title bw-split-in-left">How we can <span style="font-size: 44px;">help</span> you?</h3>
+                            </div>
+                            <div class="faq-one__content__box">
+                                <div class="faq-one__content__box__icon"><i class="icon-dashboard"></i></div>
+                                <h5 class="faq-one__content__box__title">Reliable High-Speed Internet</h5>
+                                <p class="faq-one__content__box__text">
+                                    Experience lightning-fast internet speeds with Savanna Fibre, designed to keep you connected without interruptions.
+                                </p>
+                            </div>
+                            <div class="faq-one__video" style="background-image: url(Untitled.html\ \(470\ x\ 150\ px\).png);"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+
+        <div class="client-carousel " style="display: none;">
+            <div class="container">
+                <div class="client-carousel__one ienet-owl__carousel owl-theme owl-carousel" data-owl-options='{
+            "items": 5,
+            "margin": 65,
+            "smartSpeed": 700,
+            "loop":true,
+            "autoplay": 6000,
+            "nav":false,
+            "dots":false,
+            "navText": ["<span class=\"fa fa-angle-left\"></span>","<span class=\"fa fa-angle-right\"></span>"],
+            "responsive":{
+                "0":{
+                    "items":1,
+                    "margin": 0
+                },
+                "360":{
+                    "items":2,
+                    "margin": 30
+                },
+                "575":{
+                    "items":3,
+                    "margin": 30
+                },
+                "768":{
+                    "items":3,
+                    "margin": 40
+                },
+                "992":{
+                    "items": 4,
+                    "margin": 40
+                },
+                "1200":{
+                    "items": 5,
+                    "margin": 140
+                }
+            }
+            }'>
+                    <div class="client-carousel__one__item">
+                        <img class="client-carousel__one__item__normal" src="assets/images/resources/brand-1-1.png"
+                            alt="ienet">
+                        <img class="client-carousel__one__item__hover" src="assets/images/resources/brand-1-1-hover.png"
+                            alt="ienet">
+                    </div><!-- /.owl-slide-item-->
+                    <div class="client-carousel__one__item">
+                        <img class="client-carousel__one__item__normal" src="assets/images/resources/brand-1-2.png"
+                            alt="ienet">
+                        <img class="client-carousel__one__item__hover" src="assets/images/resources/brand-1-2-hover.png"
+                            alt="ienet">
+                    </div><!-- /.owl-slide-item-->
+                    <div class="client-carousel__one__item">
+                        <img class="client-carousel__one__item__normal" src="assets/images/resources/brand-1-3.png"
+                            alt="ienet">
+                        <img class="client-carousel__one__item__hover" src="assets/images/resources/brand-1-3-hover.png"
+                            alt="ienet">
+                    </div><!-- /.owl-slide-item-->
+                    <div class="client-carousel__one__item">
+                        <img class="client-carousel__one__item__normal" src="assets/images/resources/brand-1-4.png"
+                            alt="ienet">
+                        <img class="client-carousel__one__item__hover" src="assets/images/resources/brand-1-4-hover.png"
+                            alt="ienet">
+                    </div><!-- /.owl-slide-item-->
+                    <div class="client-carousel__one__item">
+                        <img class="client-carousel__one__item__normal" src="assets/images/resources/brand-1-5.png"
+                            alt="ienet">
+                        <img class="client-carousel__one__item__hover" src="assets/images/resources/brand-1-5-hover.png"
+                            alt="ienet">
+                    </div><!-- /.owl-slide-item-->
+                </div><!-- /.thm-owl__slider -->
+            </div><!-- /.container -->
+        </div><!-- /.client-carousel -->
+
+        <footer class="main-footer background-black">
+            <div class="main-footer__bg background-black"
+                style="background-image: url(assets/images/shapes/footer-bg-1-1.png);"></div>
+            <div class="main-footer__shape-one"
+                style="background-image: url(assets/images/resources/footer-shape-1.png);"></div>
+           <!-- <div class="main-footer__shape-two" style="background-image: url(assets/images/iadded/wild2.png);"></div> -->
+            <div class="main-footer__top">
+                <div class="container">
+                    <div class="main-footer__top__inner">
+                        <ul class="list-unstyled main-footer__top__info">
+                            <li class="main-footer__top__info__item">
+                                <span class="main-footer__top__info__icon"><i class="icon-mail"></i></span>
+                                <a href="mailto:support@savannafibre.co.tz">support@savannafibre.co.tz</a>
+                            </li>
+                            <li class="main-footer__top__info__item">
+                                <span class="main-footer__top__info__icon"><i class="icon-maps-and-flags"></i></span>
+                                14th Floor, Derm Plaza Plot 18 Block 45A. Bagamoyo Road, Makumbusho. P. O Box 11692 Dar
+                                Es Salaam
+                            </li>
+                        </ul>
+                        <div class="main-footer__top__right">
+                            <div class="main-footer__top__social">
+                                <a href="https://www.facebook.com/savannafibretz" style="
+                                text-decoration: none; 
+                                color: #4267B2; 
+                                font-size: 18px; /* Smaller icon size */
+                                width: 30px; /* Reduce width of the circle */
+                                height: 30px; /* Reduce height of the circle */
+                                display: flex; 
+                                align-items: center; 
+                                justify-content: center; 
+                                border-radius: 50%; 
+                                background-color: #E9ECEF;
+                                transition: all 0.3s ease;
+                            " onmouseover="this.style.backgroundColor='#4267B2'; this.style.color='#fff';"
+                                    onmouseout="this.style.backgroundColor='#E9ECEF'; this.style.color='#4267B2';">
+                                    <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                                    <span class="sr-only">Facebook</span>
+                                    <!-- </a>
+                                <a href="https://x.com/savannafibretz" style="
+                                text-decoration: none; 
+                                color: #1DA1F2; 
+                                font-size: 18px; 
+                                width: 30px; 
+                                height: 30px; 
+                                display: flex; 
+                                align-items: center; 
+                                justify-content: center; 
+                                border-radius: 50%; 
+                                background-color: #E9ECEF;
+                                transition: all 0.3s ease;
+                            " onmouseover="this.style.backgroundColor='#1DA1F2'; this.style.color='#fff';"
+                                    onmouseout="this.style.backgroundColor='#E9ECEF'; this.style.color='#1DA1F2';">
+
+                                    <i class="fa-brands fa-square-x-twitter"></i>
+                        <span class="sr-only">X</span>
+                                </a> -->
+                                    <a href="https://x.com/savannafibretz" target="_blank">
+                                        <img src="assets/x-twitter-brands-solid.svg" alt="TikTok"
+                                            style="width: 24px; height: 24px;">
+                                        <span class="sr-only">Twitter</span>
+                                    </a>
+                                    <a href="https://www.instagram.com/savannafibretz/" style="
+                                text-decoration: none; 
+                                color: #E1306C; 
+                                font-size: 18px; 
+                                width: 30px; 
+                                height: 30px; 
+                                display: flex; 
+                                align-items: center; 
+                                justify-content: center; 
+                                border-radius: 50%; 
+                                background-color: #E9ECEF;
+                                transition: all 0.3s ease;
+                            " onmouseover="this.style.backgroundColor='#E1306C'; this.style.color='#fff';"
+                                        onmouseout="this.style.backgroundColor='#E9ECEF'; this.style.color='#E1306C';">
+                                        <i class="fab fa-instagram" aria-hidden="true"></i>
+                                        <span class="sr-only">Instagram</span>
+                                    </a>
+                                    <a href="https://www.youtube.com/@savannafibretz" style="
+                                text-decoration: none; 
+                                color: #FF0000; 
+                                font-size: 18px; 
+                                width: 30px; 
+                                height: 30px; 
+                                display: flex; 
+                                align-items: center; 
+                                justify-content: center; 
+                                border-radius: 50%; 
+                                background-color: #E9ECEF;
+                                transition: all 0.3s ease;
+                            " onmouseover="this.style.backgroundColor='#FF0000'; this.style.color='#fff';"
+                                        onmouseout="this.style.backgroundColor='#E9ECEF'; this.style.color='#FF0000';">
+                                        <i class="fab fa-youtube" aria-hidden="true"></i>
+                                        <span class="sr-only">Youtube</span>
+                                    </a>
+                                    <a href="https://www.tiktok.com/@savannafibretz" target="_blank">
+                                        <img src="assets/tiktok-brands-solid.svg" alt="TikTok"
+                                            style="width: 24px; height: 24px;">
+                                        <span class="sr-only">TikTok</span>
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="main-footer__middle">
+                    <a href="index.html">
+                        <img src="assets/images/iadded/logo/savanna%201.svg" height="170" alt="savanna Fibre">
+                    </a>
+                    <form action="#" data-url="MAILCHIMP_FORM_URL" class="footer-widget__newsletter mc-form">
+                        <span class="footer-widget__newsletter__icon"><i class="icon-mail"></i></span>
+                        <input type="text" name="EMAIL" placeholder="Enter Email Address">
+                        <button type="submit" class="ienet-btn"><span>Subscribe Now</span></button>
+                        <div class="mc-form__response"></div>
+                    </form>
+                    <div class="main-footer__middle__call">
+                        <div class="main-footer__middle__call__icon"><span class="icon-telephone"></span></div>
+                        <div class="main-footer__middle__call__title">Call Us</div>
+                        <a class="main-footer__middle__call__text" href="tel:+88012365499">+255699999555</a>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-xl-3">
+                        <div class="footer-widget footer-widget--about">
+                            <h2 class="footer-widget__title">About savanna Fibre</h2>
+                            <p class="footer-widget__text">
+                                Connecting lives with reliable, fast, and affordable internet plans, empowering homes
+                                and businesses.
+                            </p>
+                            <a href="contact.html" class="ienet-btn"><span>Get In Touch<span class="ienet-btn__icon"><i
+                                            class="fas fa-chevron-right"></i></span></span></a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-3">
+                        <div class="footer-widget footer-widget--links">
+                            <h2 class="footer-widget__title">Our Services</h2>
+                            <ul class="list-unstyled footer-widget__links">
+                                <li><a href="index.html?package=residential">Residential Packages</a></li>
+                                <li><a href="index.html?package=business">Business Packages</a></li>
+                                <li><a href="accessories.html">UPS</a></li>
+                                <li><a href="accessories.html">Wi-Fi Extenders</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-3">
+                        <div class="footer-widget footer-widget--links">
+                            <h2 class="footer-widget__title">Useful Links</h2>
+                            <ul class="list-unstyled footer-widget__links">
+                                <li><a href="about.html">About Us</a></li>
+                                <li><a href="coverage.html">Coverage</a></li>
+                                <li><a href="index9620.html?scroll=faq">FAQs</a></li>
+
+                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="shops.html">Shop</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-3">
+                        <div class="footer-widget footer-widget--gallery">
+                            <h2 class="footer-widget__title">Our Gallery</h2>
+                            <div class="footer-widget__gallery">
+                                <img src="assets/website%20gallery/website%20gallery/POSTERS%20RESIZED%2084px%2084px/connecting%20moments.jpg"
+                                    data-large="assets/website gallery/website gallery/HIGH RESOLUTION/connecting moments-HIGH RES.jpg"
+                                    alt="Connecting Moments" onclick="openLightbox(this)">
+
+                                <img src="assets/website%20gallery/website%20gallery/POSTERS%20RESIZED%2084px%2084px/Connecting%20Tanzania.jpg"
+                                    data-large="assets/website gallery/website gallery/HIGH RESOLUTION/Connecting Tanzania-HIGH RES..jpg"
+                                    alt="Connecting Tanzania" onclick="openLightbox(this)">
+
+                                <img src="assets/website%20gallery/website%20gallery/POSTERS%20RESIZED%2084px%2084px/Customer%20Support.jpg"
+                                    data-large="assets/website gallery/website gallery/HIGH RESOLUTION/Customer Support-HIGH RES.jpg"
+                                    alt="Customer Support" onclick="openLightbox(this)">
+
+                                <img src="assets/website%20gallery/website%20gallery/POSTERS%20RESIZED%2084px%2084px/Fish%20Without%20Water.jpg"
+                                    data-large="assets/website gallery/website gallery/HIGH RESOLUTION/Fish Without Water-HIGH RES..jpg"
+                                    alt="Fish Without Water" onclick="openLightbox(this)">
+
+                                <img src="assets/website%20gallery/website%20gallery/POSTERS%20RESIZED%2084px%2084px/Stay%20Connected.jpg"
+                                    data-large="assets/website gallery/website gallery/HIGH RESOLUTION/Stay Connected-HIGH RES.jpg"
+                                    alt="Stay Connected" onclick="openLightbox(this)">
+
+                                <img src="assets/website%20gallery/website%20gallery/POSTERS%20RESIZED%2084px%2084px/Thirsty%20for%20Speed.jpg"
+                                    data-large="assets/website gallery/website gallery/HIGH RESOLUTION/Thirsty for Speed-HIGH RES..jpg"
+                                    alt="Thirsty for Speed" onclick="openLightbox(this)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lightbox -->
+                    <div class="lightbox" id="lightbox">
+                        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+                        <img id="lightbox-img" src="#">
+                    </div>
+
+                    <!-- Lightbox Styles -->
+                    <style>
+                        .footer-widget__gallery img {
+                            width: 84px;
+                            height: 84px;
+                            cursor: pointer;
+                            transition: transform 0.2s;
+                        }
+
+                        .footer-widget__gallery img:hover {
+                            transform: scale(1.1);
+                        }
+
+                        /* Lightbox styling */
+                        .lightbox {
+                            position: fixed;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background: rgba(0, 0, 0, 0.8);
+                            display: none;
+                            justify-content: center;
+                            align-items: center;
+                            z-index: 1000;
+                        }
+
+                        .lightbox img {
+                            max-width: 90%;
+                            max-height: 90%;
+                            border-radius: 10px;
+                        }
+
+                        .lightbox.active {
+                            display: flex;
+                        }
+
+                        .lightbox-close {
+                            position: absolute;
+                            top: 20px;
+                            right: 30px;
+                            font-size: 30px;
+                            color: white;
+                            cursor: pointer;
+                        }
+                    </style>
+
+                    <!-- Lightbox Script -->
+                    <script>
+                        function openLightbox(img) {
+                            // Get the larger image from the "data-large" attribute
+                            const largeImage = img.getAttribute("data-large");
+                            document.getElementById("lightbox-img").src = largeImage;
+                            document.getElementById("lightbox").classList.add("active");
+                        }
+
+                        function closeLightbox() {
+                            document.getElementById("lightbox").classList.remove("active");
+                        }
+                    </script>
+
+                </div>
+            </div>
+            <div class="main-footer__bottom">
+                <div class="container">
+                    <div class="main-footer__bottom__inner">
+                        <p class="main-footer__copyright" style="color: #fff;">
+                            &copy; Copyright <span class="dynamic-year"></span>
+                            <strong style="color: #F79621;">Savanna Fibre</strong> (Tanzania) Limited. All rights
+                            reserved.
+                            
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                document.querySelector(".dynamic-year").textContent = new Date().getFullYear();
+            </script>
+
+
+        </footer>
+
+
+    </div><!-- /.page-wrapper -->
+
+
+
+    <div class="mobile-nav__wrapper">
+        <div class="mobile-nav__overlay mobile-nav__toggler"></div>
+        <!-- /.mobile-nav__overlay -->
+        <div class="mobile-nav__content">
+            <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
+
+            <div class="logo-box">
+                <a href="index.html" aria-label="logo image"><img src="assets/images/iadded/logo/savanna%201.svg"
+                        width="155" alt="" /></a>
+            </div>
+            <!-- /.logo-box -->
+            <div class="mobile-nav__container"></div>
+            <!-- /.mobile-nav__container -->
+
+            <ul class="mobile-nav__contact list-unstyled">
+                <li>
+                    <i class="fa fa-envelope"></i>
+                    <a href="mailto:support@savannafibre.co.tz">support@savannafibre.co.tz</a>
+                </li>
+                <li>
+                    <i class="fa fa-phone-alt"></i>
+                    <a href="tel:+255699999555">+255699999555</a>
+                </li>
+            </ul><!-- /.mobile-nav__contact -->
+            <div class="mobile-nav__social">
+
+                <a href="https://www.facebook.com/savannafibretz">
+                    <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                    <span class="sr-only">Facebook</span>
+                </a>
+                <a href="https://x.com/savannafibretz">
+                    <img src="assets/x-twitter%20white.svg" alt="TikTok" style="width: 16px; height: 16px;">
+                    <span class="sr-only">Twitter</span>
+                </a>
+                <a href="https://www.instagram.com/savannafibretz/">
+                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                    <span class="sr-only">Instagram</span>
+                </a>
+                <a href="https://www.youtube.com/@savannafibretz">
+                    <i class="fab fa-youtube" aria-hidden="true"></i>
+                    <span class="sr-only">YouTube</span>
+                </a>
+                <a href="https://www.tiktok.com/@savannafibretz" target="_blank">
+                    <img src="assets/tiktok%20white.svg" alt="TikTok" style="width: 18px; height: 18px;">
+                    <span class="sr-only">TikTok</span>
+                </a>
+
+
+            </div><!-- /.mobile-nav__social -->
+        </div>
+        <!-- /.mobile-nav__content -->
+    </div>
+    <!-- /.mobile-nav__wrapper -->
+    <div class="search-popup">
+        <div class="search-popup__overlay search-toggler"></div>
+        <!-- /.search-popup__overlay -->
+        <div class="search-popup__content">
+            <form role="search" method="get" class="search-popup__form" action="#">
+                <input type="text" id="search" placeholder="Search Here..." />
+                <button type="submit" aria-label="search submit" class="ienet-btn">
+                    <span><i class="icon-location"></i></span>
+                </button>
+            </form>
+        </div>
+        <!-- /.search-popup__content -->
+    </div>
+    <!-- /.search-popup -->
+    <!-- Sidebar One Start -->
+    <aside class="sidebar-one">
+        <div class="sidebar-one__overlay"></div><!-- /.siderbar-overlay -->
+        <div class="sidebar-one__content">
+            <div class="sidebar-one__close"><i class="icon-plus"></i></div><!-- /.sidebar-close -->
+            <div class="sidebar-one__logo">
+                <a href="index.html" aria-label="savanna Fibre logo"><img src="assets/images/iadded/logo/savanna%201.svg"
+                        alt="savanna Fibre Logo" height="170"></a>
+            </div><!-- /.sidebar-one__logo-box -->
+            <p class="sidebar-one__text">
+                Connecting Tanzanians with fast, reliable, and affordable internet solutions. Empowering homes,
+                students, and businesses with cutting-edge technology and 24/7 support.
+            </p>
+            <h4 class="sidebar-one__title">Contact Info:</h4>
+            <ul class="sidebar-one__info">
+                <li>
+                    <span class="fas fa-map-marker-alt"></span>
+                    14th Floor, Derm Plaza Plot 18 Block 45A. Bagamoyo Road, Makumbusho. P. O Box 11692 Dar Es Salaam
+                </li>
+                <li>
+                    <span class="fas fa-clock"></span>
+                    Mon - Fri: 8.00 AM - 5.00 PM
+                </li>
+                <li>
+                    <span class="fas fa-clock"></span>
+                    Saturday: 9.00 AM - 1.00 PM
+                </li>
+
+                <li>
+                    <span class="fas fa-envelope"></span>
+                    <a href="mailto:info@savannafibre.co.tz">support@savannafibre.co.tz</a>
+                </li>
+                <li>
+                    <span class="fas fa-phone-alt"></span>
+                    <a href="tel:+255699999555">+255699999555</a>
+                </li>
+            </ul>
+            <div class="sidebar-one__social">
+                <a href="https://facebook.com/savannaFibre">
+                    <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                    <span class="sr-only">Facebook</span>
+                </a>
+                <a href="https://twitter.com/savannaFibre">
+                    <i class="fa-brands fa-square-x-twitter"></i>
+                    <span class="sr-only">X</span>
+                </a>
+
+                <a href="https://instagram.com/savannaFibre">
+                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                    <span class="sr-only">Instagram</span>
+                </a>
+                <a href="https://www.youtube.com/channel/savannaFibre">
+                    <i class="fab fa-youtube" aria-hidden="true"></i>
+                    <span class="sr-only">YouTube</span>
+                </a>
+            </div><!-- /.sidebar-one__social -->
+            <h4 class="sidebar-one__title">Newsletter:</h4>
+            <form action="#" data-url="MAILCHIMP_FORM_URL" class="sidebar-one__newsletter mc-form">
+                <input type="text" name="EMAIL" placeholder="Email address">
+                <button type="submit" class="fas fa-paper-plane">
+                    <span class="sr-only">submit</span><!-- /.sr-only -->
+                </button>
+            </form><!-- /.sidebar-one__newsletter mc-form -->
+        </div><!-- /.sidebar__content -->
+    </aside>
+
+    <!-- Sidebar One Start -->
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const dropdown = document.querySelector(".lang-dropdown");
+            const selected = document.querySelector(".lang-selected");
+            const options = document.querySelectorAll(".lang-option");
+
+            // Toggle dropdown visibility
+            selected.addEventListener("click", () => {
+                dropdown.classList.toggle("open");
+            });
+
+            // Handle language selection
+            options.forEach(option => {
+                option.addEventListener("click", () => {
+                    const value = option.getAttribute("data-value");
+                    const flag = option.querySelector("span").outerHTML;
+                    const text = option.textContent.trim();
+
+                    // Update the selected button
+                    selected.innerHTML = `${flag} ${text}`;
+
+                    // Close the dropdown
+                    dropdown.classList.remove("open");
+
+                    // Add any additional logic for language switching here
+                    console.log(`Selected language: ${value}`);
+                });
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener("click", (e) => {
+                if (!dropdown.contains(e.target)) {
+                    dropdown.classList.remove("open");
+                }
+            });
+        });
+
+    </script>
+   
+    <script>
+        function toggleCards(button, type) {
+            // Remove 'active' class from all buttons
+            document.querySelectorAll(".switch-button").forEach(btn => btn.classList.remove("active"));
+
+            // Add 'active' class to the clicked button
+            button.classList.add("active");
+
+            // Toggle visibility of cards based on type
+            const showBusiness = type === "business";
+            document.querySelectorAll(".residential").forEach(card => {
+                card.classList.toggle("hidden", showBusiness);
+            });
+            document.querySelectorAll(".business").forEach(card => {
+                card.classList.toggle("hidden", !showBusiness);
+            });
+        }
+
+        // ✅ Use a single window.onload to handle both cases
+        window.onload = function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const packageType = urlParams.get("package");
+            const scrollToFAQ = urlParams.get("scroll");
+
+            // ✅ Check if package query exists, switch tabs & scroll to pricing
+            if (packageType === "business" || packageType === "residential") {
+                if (packageType === "business") {
+                    toggleCards(document.querySelector('.switch-button:nth-child(2)'), "business");
+                } else {
+                    toggleCards(document.querySelector('.switch-button:nth-child(1)'), "residential");
+                }
+
+                // Scroll to the pricing section smoothly
+                setTimeout(() => {
+                    const pricingSection = document.querySelector('.pricing__section');
+                    if (pricingSection) {
+                        pricingSection.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }
+                }, 500);
+            }
+
+            // ✅ Check if scroll=faq exists, scroll to FAQ
+            if (scrollToFAQ === "faq") {
+                setTimeout(() => {
+                    const faqSection = document.querySelector('.faq-one');
+                    if (faqSection) {
+                        faqSection.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }
+                }, 500);
+            }
+        };
+    </script>
+
+<script>
+    document.getElementById('savannaForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData.entries());
+
+        const messageBox = document.getElementById('messageBox'); // ✅ Message container
+
+        try {
+            const response = await fetch('/send-email', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            });
+
+            if (!response.ok) {
+                throw new Error(`Server error! Status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            
+            // ✅ Show success message
+            messageBox.textContent = result.message || "Email sent successfully!";
+            messageBox.style.color = "green";
+            messageBox.style.display = "block";
+
+            // ✅ Clear form after successful submission
+            e.target.reset();
+
+        } catch (error) {
+            console.error("❌ Fetch Error: ", error);
+
+            // ✅ Show error message
+            messageBox.textContent = "Failed to send email. Try again.";
+            messageBox.style.color = "red";
+            messageBox.style.display = "block";
+        }
+
+        // ✅ Hide message after 3 seconds
+        setTimeout(() => {
+            messageBox.style.display = "none";
+        }, 3000);
+    });
+</script>
+
+
+    <script src="assets/vendors/jquery/jquery-3.7.0.min.js"></script>
+    <script src="assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendors/bootstrap-select/bootstrap-select.min.js"></script>
+    <script src="assets/vendors/jarallax/jarallax.min.js"></script>
+    <script src="assets/vendors/jquery-ui/jquery-ui.js"></script>
+    <script src="assets/vendors/jquery-ajaxchimp/jquery.ajaxchimp.min.js"></script>
+    <script src="assets/vendors/jquery-appear/jquery.appear.min.js"></script>
+    <script src="assets/vendors/jquery-circle-progress/jquery.circle-progress.min.js"></script>
+    <script src="assets/vendors/jquery-magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="assets/vendors/jquery-validate/jquery.validate.min.js"></script>
+    <script src="assets/vendors/nouislider/nouislider.min.js"></script>
+    <script src="assets/vendors/tiny-slider/tiny-slider.js"></script>
+    <script src="assets/vendors/wnumb/wNumb.min.js"></script>
+    <script src="assets/vendors/owl-carousel/js/owl.carousel.min.js"></script>
+    <script src="assets/vendors/wow/wow.js"></script>
+    <script src="assets/vendors/imagesloaded/imagesloaded.min.js"></script>
+    <script src="assets/vendors/isotope/isotope.js"></script>
+    <script src="assets/vendors/slick/slick.min.js"></script>
+    <script src="assets/vendors/countdown/countdown.min.js"></script>
+    <script src="assets/vendors/jquery-circleType/jquery.circleType.js"></script>
+    <script src="assets/vendors/jquery-lettering/jquery.lettering.min.js"></script>
+    <!-- gsap js -->
+    <script src="assets/vendors/gsap/gsap.js"></script>
+    <script src="assets/vendors/gsap/scrolltrigger.min.js"></script>
+    <script src="assets/vendors/gsap/splittext.min.js"></script>
+    <script src="assets/vendors/gsap/ienet-split.js"></script>
+    <!-- template js -->
+    <script src="assets/js/ienet.js"></script>
+</body>
+
+
+
+<!-- Mirrored from savannahtzfibre.web.app/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 01 Apr 2025 18:00:19 GMT -->
+</html>

@@ -1,0 +1,1139 @@
+/*==============================================
+    Team One Sec
+===============================================*/
+.team-one-sec {
+    position: relative;
+    display: block;
+    padding: 120px 0 90px;
+    z-index: 1;
+}
+
+.team-one-sec__shape-1 {
+    position: absolute;
+    top: 0;
+    left: -350px;
+    opacity: .2;
+    z-index: -1;
+}
+
+.team-one-sec__shape-1 img {
+    width: auto;
+}
+
+.team-one-sec__shape-2 {
+    position: absolute;
+    bottom: 100px;
+    right: -475px;
+    z-index: -1;
+}
+
+.team-one-sec__shape-2 img {
+    width: auto;
+}
+
+.team-one-sec__single {
+    position: relative;
+    display: block;
+    margin-bottom: 30px;
+}
+
+.team-one-sec__img {
+    position: relative;
+    display: block;
+    border-top-left-radius: var(--tedlife-bdr-radius);
+    border-top-right-radius: var(--tedlife-bdr-radius);
+    overflow: hidden;
+    z-index: 1;
+}
+
+.team-one-sec__img::after {
+    background: rgba(var(--tedlife-primary-rgb), .80);
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 0;
+    opacity: 1;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.team-one-sec__single:hover .team-one-sec__img::after {
+    height: 100%;
+    opacity: 0;
+    transition: all 0.6s linear;
+}
+
+.team-one-sec__img img {
+    width: 100%;
+    filter: grayscale(1);
+    border-top-left-radius: var(--tedlife-bdr-radius);
+    border-top-right-radius: var(--tedlife-bdr-radius);
+    transition: all 1s ease-in-out;
+}
+
+.team-one-sec__single:hover .team-one-sec__img img {
+    transform: scale(1.1);
+}
+
+.team-one-sec__social {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    justify-content: center;
+    background-position: center bottom;
+    transition-delay: .1s;
+    transition-timing-function: ease-in-out;
+    transition-duration: .5s;
+    transition-property: all;
+    transform-origin: bottom;
+    transform-style: preserve-3d;
+    transform: scaleY(0);
+    z-index: 2;
+}
+
+.team-one-sec__single:hover .team-one-sec__social {
+    transform: scaleY(1.0);
+}
+
+.team-one-sec__social a {
+    position: relative;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--tedlife-black);
+    background-color: var(--tedlife-white);
+    border-radius: var(--tedlife-bdr-radius);
+    font-size: 18px;
+    height: 40px;
+    width: 40px;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.team-one-sec__social a:hover {
+    color: var(--tedlife-base);
+}
+
+.team-one-sec__social a:after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    border-radius: var(--tedlife-bdr-radius);
+    background-color: var(--tedlife-black);
+    -webkit-transition-delay: .1s;
+    transition-delay: .1s;
+    -webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
+    -webkit-transition-duration: .4s;
+    transition-duration: .4s;
+    -webkit-transition-property: all;
+    transition-property: all;
+    opacity: 0;
+    -webkit-transform-origin: top;
+    transform-origin: top;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transform: scaleY(0);
+    transform: scaleY(0);
+    z-index: -1;
+}
+
+.team-one-sec__social a:hover:after {
+    opacity: 1;
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+}
+
+.team-one-sec__social a+a {
+    margin-left: 10px;
+}
+
+.team-one-sec__content {
+    position: relative;
+    display: block;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    padding: 32px 0 25px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom: 3px solid transparent;
+    transition: all 500ms ease;
+}
+
+.team-one-sec__single:hover .team-one-sec__content {
+    box-shadow: 0px 10px 60px 0px rgb(0 0 0 / 7%);
+    border-bottom: 3px solid var(--tedlife-base);
+}
+
+.team-one-sec__name {
+    font-size: 30px;
+    text-transform: uppercase;
+    line-height: 30px;
+    margin-bottom: 3px;
+}
+
+.team-one-sec__name a {
+    color: var(--tedlife-black);
+}
+
+.team-one-sec__name a:hover {
+    color: var(--tedlife-base);
+}
+
+.team-one-sec__title {
+    margin: 0;
+}
+
+/*--------------------------------------------------------------
+# Team Two
+--------------------------------------------------------------*/
+.team-two {
+    position: relative;
+    display: block;
+    padding: 0px 0 90px;
+    z-index: 1;
+}
+
+.team-two__shape-1 {
+    position: absolute;
+    top: -300px;
+    right: -150px;
+    opacity: .50;
+    z-index: -1;
+}
+
+.team-two__shape-1 img {
+    width: auto;
+}
+
+.team-two__single {
+    position: relative;
+    display: block;
+    margin-bottom: 30px;
+}
+
+.team-two__img {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-top-left-radius: var(--tedlife-bdr-radius);
+    border-top-right-radius: var(--tedlife-bdr-radius);
+}
+
+.team-two__img:before {
+    position: absolute;
+    content: '';
+    left: 0px;
+    bottom: 0px;
+    width: 50%;
+    height: 100%;
+    background-color: rgba(var(--tedlife-black-rgb), .60);
+    visibility: hidden;
+    opacity: 0;
+    transform-style: preserve-3d;
+    transform: perspective(370px) translateY(100%);
+    transform-origin: left;
+    transition: all 900ms ease;
+    -moz-transition: all 900ms ease;
+    -webkit-transition: all 900ms ease;
+    -ms-transition: all 900ms ease;
+    -o-transition: all 900ms ease;
+    z-index: 1;
+}
+
+.team-two__single:hover .team-two__img:before {
+    visibility: visible;
+    opacity: 1;
+    transform: perspective(370px) translateY(0%);
+}
+
+.team-two__img:after {
+    position: absolute;
+    content: '';
+    top: 0px;
+    right: 0px;
+    width: 50%;
+    height: 100%;
+    background-color: rgba(var(--tedlife-black-rgb), .60);
+    visibility: hidden;
+    opacity: 0;
+    transform-style: preserve-3d;
+    transform: perspective(370px) translateY(-100%);
+    transform-origin: top;
+    transition: all 900ms ease;
+    -moz-transition: all 900ms ease;
+    -webkit-transition: all 900ms ease;
+    -ms-transition: all 900ms ease;
+    -o-transition: all 900ms ease;
+    z-index: 1;
+}
+
+.team-two__single:hover .team-two__img:after {
+    visibility: visible;
+    opacity: 1;
+    transform: perspective(370px) translateY(0%);
+}
+
+.team-two__img img {
+    width: 100%;
+    filter: grayscale(1);
+    object-fit: cover;
+    width: 100%;
+    transition: all 1s ease-in-out;
+    border-top-left-radius: var(--tedlife-bdr-radius);
+    border-top-right-radius: var(--tedlife-bdr-radius);
+}
+
+.team-two__single:hover .team-two__img img {
+    transform: scale(1.1);
+}
+
+.team-two__content {
+    position: relative;
+    display: block;
+    text-align: center;
+    padding: 33px 0 35px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: -20px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 10px 60px 0px rgb(0 0 0 / 7%);
+    border-radius: var(--tedlife-bdr-radius);
+    z-index: 2;
+}
+
+.team-two__name {
+    font-size: 30px;
+    line-height: 30px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.team-two__name a {
+    color: var(--tedlife-black);
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.team-two__name a:hover {
+    color: var(--tedlife-base);
+}
+
+.team-two__social {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-top: 13px;
+}
+
+.team-two__social a {
+    position: relative;
+    height: 40px;
+    width: 40px;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--tedlife-gray);
+    border-radius: var(--tedlife-bdr-radius);
+    font-size: 15px;
+    overflow: hidden;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+    border: 1px solid #cccccc;
+    z-index: 1;
+}
+
+.team-two__social a:hover {
+    color: var(--tedlife-white);
+    border: 1px solid var(--tedlife-base);
+}
+
+.team-two__social a:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: "";
+    background-color: var(--tedlife-base);
+    border-radius: 0%;
+    transform: scale(0);
+    transform-origin: center;
+    transform-style: preserve-3d;
+    transition: all 0.4s cubic-bezier(0.62, 0.21, 0.45, 1.52);
+    z-index: -1;
+}
+
+.team-two__social a:hover:before {
+    transform: scaleX(1);
+}
+
+.team-two__social a+a {
+    margin-left: 15px;
+}
+
+/*--------------------------------------------------------------
+# Team Three
+--------------------------------------------------------------*/
+.team-three {
+    position: relative;
+    display: block;
+    padding: 120px 0 120px;
+    z-index: 1;
+}
+
+.team-three__shape-1 {
+    position: absolute;
+    top: 0;
+    left: -390px;
+    opacity: .40;
+    z-index: -1;
+}
+
+.team-three__shape-1 img {
+    width: auto;
+}
+
+.team-three__left {
+    position: relative;
+    display: block;
+    z-index: 2;
+}
+
+.team-three__left .section-title {
+    margin-bottom: 23px;
+}
+
+.team-three__text {
+    color: var(--tedlife-black);
+}
+
+.team-three__right {
+    position: relative;
+    display: block;
+    margin-right: -375px;
+}
+
+.team-three__carousel {
+    position: relative;
+    display: block;
+}
+
+.team-three__single {
+    position: relative;
+    display: block;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 10px 60px 0px rgb(0 0 0 / 7%);
+    border-radius: var(--tedlife-bdr-radius);
+    padding: 29px 28px 40px;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.team-three__img-box {
+    position: relative;
+    display: block;
+}
+
+.team-three__img {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: var(--tedlife-bdr-radius);
+    z-index: 1;
+}
+
+.team-three__img::before {
+    background: rgba(var(--karoons-white-rgb, 255, 255, 255), 0.3);
+    bottom: 50%;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    z-index: 1;
+    top: 51%;
+    opacity: 1;
+    pointer-events: none;
+    transition: all 400ms linear;
+}
+
+.team-three__single:hover .team-three__img::before {
+    bottom: 0;
+    top: 0;
+    opacity: 0;
+    transition: all 400ms linear;
+}
+
+.team-three__img::after {
+    background: rgba(var(--karoons-white-rgb, 255, 255, 255), 0.3);
+    bottom: 0;
+    content: "";
+    left: 50%;
+    position: absolute;
+    right: 51%;
+    top: 0;
+    opacity: 1;
+    pointer-events: none;
+    transition: all 400ms linear;
+}
+
+.team-three__single:hover .team-three__img::after {
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transition: all 400ms linear;
+}
+
+.team-three__img img {
+    width: 100%;
+    border-radius: var(--tedlife-bdr-radius);
+    transform: scale3d(1, 1, 1);
+    transition: transform 1s ease-in-out;
+    filter: grayscale(1);
+}
+
+.team-three__single:hover .team-three__img img {
+    transform: scale(1.05) rotate(0deg);
+}
+
+.team-three__content {
+    position: relative;
+    display: block;
+    margin-top: 37px;
+}
+
+.team-three__name-box {
+    position: relative;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.team-three__name {
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 30px;
+    text-transform: uppercase;
+}
+
+.team-three__name a {
+    color: var(--tedlife-black);
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.team-three__name a:hover {
+    color: var(--tedlife-base);
+}
+
+.team-three__social {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.team-three__social a {
+    position: relative;
+    height: 40px;
+    width: 40px;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--tedlife-gray);
+    border-radius: var(--tedlife-bdr-radius);
+    font-size: 15px;
+    overflow: hidden;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+    border: 1px solid #cccccc;
+    z-index: 1;
+}
+
+.team-three__social a:hover {
+    color: var(--tedlife-white);
+    border: 1px solid var(--tedlife-base);
+}
+
+.team-three__social a:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: "";
+    background-color: var(--tedlife-base);
+    border-radius: 0%;
+    transform: scale(0);
+    transform-origin: center;
+    transform-style: preserve-3d;
+    transition: all 0.4s cubic-bezier(0.62, 0.21, 0.45, 1.52);
+    z-index: -1;
+}
+
+.team-three__social a:hover:before {
+    transform: scaleX(1);
+}
+
+.team-three__social a+a {
+    margin-left: 10px;
+}
+
+.team-three__carousel.owl-carousel .owl-stage-outer {
+    overflow: visible;
+}
+
+.team-three__carousel.owl-carousel .owl-item {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 500ms ease, visibility 500ms ease;
+}
+
+.team-three__carousel.owl-carousel .owl-item.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.team-three__carousel.owl-theme .owl-nav {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    left: -400px;
+    bottom: 180px;
+}
+
+.team-three__carousel.owl-theme .owl-nav .owl-next {
+    height: 50px;
+    width: 50px;
+    line-height: 50px;
+    border-radius: 50%;
+    color: var(--tedlife-white);
+    background-color: rgba(var(--tedlife-black-rgb), 1);
+    font-size: 18px;
+    margin: 0;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.team-three__carousel.owl-theme .owl-nav .owl-prev {
+    height: 50px;
+    width: 50px;
+    line-height: 50px;
+    border-radius: 50%;
+    color: var(--tedlife-white);
+    background-color: rgba(var(--tedlife-black-rgb), 1);
+    font-size: 18px;
+    margin: 0;
+    transform: rotate(180deg);
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.team-three__carousel.owl-theme .owl-nav .owl-next {
+    margin-left: 5px;
+}
+
+.team-three__carousel.owl-theme .owl-nav .owl-prev {
+    margin-right: 5px;
+}
+
+.team-three__carousel.owl-theme .owl-nav .owl-next span,
+.team-three__carousel.owl-theme .owl-nav .owl-prev span {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.team-three__carousel.owl-theme .owl-nav .owl-next:hover,
+.team-three__carousel.owl-theme .owl-nav .owl-prev:hover {
+    color: var(--tedlife-black);
+    background-color: var(--tedlife-base);
+}
+
+/*--------------------------------------------------------------
+# Team Four
+--------------------------------------------------------------*/
+.team-four {
+    position: relative;
+    display: block;
+    padding: 120px 0 0px;
+    z-index: 1;
+}
+
+.team-four__shape-1 {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    opacity: .60;
+    z-index: -1;
+}
+
+.team-four__shape-1 img {
+    width: auto;
+}
+
+.team-four__shape-2 {
+    position: absolute;
+    bottom: -146px;
+    right: 0px;
+    z-index: -1;
+}
+
+.team-four__shape-2 img {
+    width: auto;
+}
+
+.team-four__single {
+    position: relative;
+    display: block;
+    margin-bottom: 30px;
+}
+
+.team-four__img-box {
+    position: relative;
+    display: block;
+    overflow: hidden;
+}
+
+.team-four__img {
+    position: relative;
+    display: block;
+    border-radius: var(--tedlife-bdr-radius);
+    background-color: var(--tedlife-black);
+    overflow: hidden;
+    z-index: 1;
+}
+
+.team-four__img:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(var(--tedlife-black-rgb), .40);
+    visibility: hidden;
+    -webkit-transform-origin: bottom center;
+    transform-origin: bottom center;
+    -webkit-transform: scaleY(0) translateZ(100px);
+    transform: scaleY(0) translateZ(100px);
+    -webkit-transition: opacity 500ms ease, visibility 500ms ease, -webkit-transform 700ms ease;
+    transition: opacity 500ms ease, visibility 500ms ease, -webkit-transform 700ms ease;
+    transition: opacity 500ms ease, visibility 500ms ease, transform 700ms ease;
+    transition: opacity 500ms ease, visibility 500ms ease, transform 700ms ease, -webkit-transform 700ms ease;
+    z-index: 1;
+}
+
+.team-four__single:hover .team-four__img:before {
+    visibility: visible;
+    -webkit-transform: scaleY(1) translateZ(0px);
+    transform: scaleY(1) translateZ(0px);
+}
+
+.team-four__img img {
+    width: 100%;
+    transition: all 500ms ease;
+    border-radius: var(--tedlife-bdr-radius);
+    mix-blend-mode: luminosity;
+}
+
+.team-four__content {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: rgba(var(--tedlife-base-rgb), .90);
+    padding: 17px 10px 12px;
+    opacity: 0;
+    transform: perspective(400px) rotateY(0deg) translateY(-80px);
+    transform-origin: bottom;
+    -webkit-transition: all 0.9s ease;
+    -o-transition: all 0.9 ease;
+    transition: all 0.9s ease;
+    z-index: 2;
+}
+
+.team-four__single:hover .team-four__content {
+    opacity: 1;
+    transform: perspective(400px) rotateY(0deg) translateY(0px);
+    transition: all .6s ease-in-out .1s;
+}
+
+.team-four__name {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 24px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+}
+
+.team-four__name a {
+    color: var(--tedlife-black);
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.team-four__name a:hover {
+    color: var(--tedlife-white);
+}
+
+.team-four__sub-title {
+    font-size: 16px;
+    line-height: 26px;
+    color: var(--tedlife-white);
+}
+
+.team-four__social {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0;
+    transform: perspective(400px) rotateY(0deg) translateX(-70px);
+    transform-origin: bottom;
+    -webkit-transition: all 0.9s ease;
+    -o-transition: all 0.9 ease;
+    transition: all 0.9s ease;
+}
+
+.team-four__single:hover .team-four__social {
+    opacity: 1;
+    transform: perspective(400px) rotateY(0deg) translateX(0px);
+    transition: all .4s ease-in-out .1s;
+    transition-delay: 300ms;
+}
+
+.team-four__social a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+    border-radius: var(--tedlife-bdr-radius);
+    color: var(--tedlife-white);
+    background-color: var(--tedlife-base);
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.team-four__social a:hover {
+    background-color: var(--tedlife-black);
+    color: var(--tedlife-white);
+}
+
+.team-four__social a+a {
+    margin-top: 8px;
+}
+
+.team-four__btn-box {
+    position: relative;
+    display: block;
+    text-align: center;
+    margin-top: 30px;
+}
+
+/*--------------------------------------------------------------
+# Team Page V2
+--------------------------------------------------------------*/
+.team-page-v2 {
+    padding-top: 120px;
+}
+
+/*--------------------------------------------------------------
+# Team Page V3
+--------------------------------------------------------------*/
+.team-page-v3 {
+    position: relative;
+    display: block;
+    padding: 120px 0 90px;
+    z-index: 5;
+}
+
+.team-page-v3 .team-three__single {
+    margin-bottom: 30px;
+}
+
+/*--------------------------------------------------------------
+# Team Page V4
+--------------------------------------------------------------*/
+.team-page-v4 {
+    padding: 120px 0 90px;
+}
+
+
+/*--------------------------------------------------------------
+# Team Details
+--------------------------------------------------------------*/
+.team-details {
+    position: relative;
+    display: block;
+    padding: 120px 0 120px;
+    z-index: 5;
+}
+
+.team-details__inner {
+    position: relative;
+    display: block;
+}
+
+.team-details__left {
+    position: relative;
+    display: block;
+    margin-left: 55px;
+    margin-right: 55px;
+    background-color: var(--tedlife-white);
+    box-shadow: 0px 10px 60px 0px rgb(0 0 0 / 7%);
+    border-radius: var(--tedlife-bdr-radius);
+}
+
+.team-details__img {
+    position: relative;
+    display: block;
+}
+
+.team-details__img img {
+    width: 100%;
+    border-radius: var(--tedlife-bdr-radius);
+    filter: grayscale(1);
+}
+
+.team-details__contact-box {
+    position: relative;
+    display: block;
+    padding: 28px 30px 28px;
+}
+
+.team-details__contact-title {
+    position: relative;
+    display: block;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 34px;
+    text-transform: uppercase;
+}
+
+.team-details__contact-title::before {
+    content: "";
+    position: absolute;
+    bottom: -13px;
+    left: 0;
+    width: 30px;
+    height: 1px;
+    background-color: var(--tedlife-base);
+}
+
+.team-details__contact-list {
+    position: relative;
+    display: block;
+    margin-top: 34px;
+    margin-bottom: 17px;
+}
+
+.team-details__contact-list li {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.team-details__contact-list li+li {
+    margin-top: 10px;
+}
+
+.team-details__contact-list li .icon {
+    position: relative;
+    display: inline-block;
+}
+
+.team-details__contact-list li .icon span {
+    position: relative;
+    display: inline-block;
+    font-size: 15px;
+    color: var(--tedlife-base);
+}
+
+.team-details__contact-list li p {
+    margin-left: 17px;
+}
+
+.team-details__contact-list li p a {
+    color: var(--tedlife-gray);
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.team-details__contact-list li p a:hover {
+    color: var(--tedlife-base);
+}
+
+.team-details__social {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.team-details__social a {
+    font-size: 19px;
+    color: var(--tedlife-black);
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.team-details__social a:hover {
+    color: var(--tedlife-base);
+}
+
+.team-details__social a+a {
+    margin-left: 20px;
+}
+
+.team-details__right {
+    position: relative;
+    display: block;
+    margin-top: -8px;
+    margin-left: -8px;
+}
+
+.team-details__title-1 {
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 46px;
+    text-transform: uppercase;
+}
+
+.team-details__sub-title {
+    margin-top: 2px;
+    margin-bottom: 17px;
+}
+
+.team-details__title-2 {
+    font-size: 36px;
+    font-weight: 500;
+    text-transform: uppercase;
+    line-height: 46px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.team-details__progress-list {
+    position: relative;
+    display: block;
+    max-width: 570px;
+    margin-top: 29px;
+}
+
+.team-details__progress {
+    position: relative;
+    display: block;
+}
+
+.team-details__progress+.team-details__progress {
+    margin-top: 33px;
+}
+
+.team-details__progress-title {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 28px;
+    margin-bottom: 11px;
+    color: var(--tedlife-black);
+    text-transform: uppercase;
+}
+
+.team-details__progress .bar {
+    position: relative;
+    width: 100%;
+    height: 12px;
+    background-color: var(--tedlife-primary);
+    border-radius: 6px;
+}
+
+.team-details__progress .bar-inner {
+    position: relative;
+    display: block;
+    width: 0px;
+    height: 12px;
+    border-radius: 6px;
+    background-color: var(--tedlife-base);
+    -webkit-transition: all 1500ms ease;
+    -ms-transition: all 1500ms ease;
+    -o-transition: all 1500ms ease;
+    -moz-transition: all 1500ms ease;
+    transition: all 1500ms ease;
+}
+
+.team-details__progress .count-box {
+    position: absolute;
+    right: 0;
+    bottom: 23px;
+    color: var(--tedlife-black);
+    line-height: 24px;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    font-family: var(--tedlife-font-two);
+    opacity: 0;
+    -webkit-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.team-details__progress .bar-inner.counted .count-box {
+    opacity: 1;
+}
+
+.team-details__progress .bar.marb-0 {
+    margin-bottom: 0;
+}
+
+/*--------------------------------------------------------------
+# Team Carousel Page
+--------------------------------------------------------------*/
+.team-carousel-page {
+    position: relative;
+    display: block;
+    padding: 120px 0 170px;
+}
+
+.team-carousel-page .team-two__single {
+    margin-bottom: 0;
+}
+
+
+
+
+
+/*--------------------------------------------------------------
+# End
+--------------------------------------------------------------*/

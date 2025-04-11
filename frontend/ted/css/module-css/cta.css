@@ -1,0 +1,142 @@
+/*==============================================
+    CTA One Sec 
+===============================================*/
+.cta-one-sec {
+    position: relative;
+    display: block;
+    margin-top: -295px;
+    z-index: 2;
+}
+
+.cta-one-sec__shape {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: .5;
+    mix-blend-mode: luminosity;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
+
+.cta-one-sec__inner {
+    position: relative;
+    display: block;
+    text-align: center;
+    background-color: var(--tedlife-black);
+    border-radius: var(--tedlife-bdr-radius);
+    padding: 71px 20px 90px;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.cta-one-sec__title {
+    font-size: 60px;
+    color: var(--tedlife-white);
+    text-transform: uppercase;
+    line-height: 70px;
+}
+
+.cta-one-sec__text {
+    color: var(--tedlife-white);
+    margin: 0;
+    padding-top: 3px;
+    padding-bottom: 55px;
+}
+
+.cta-one-sec__btn-box {
+    position: relative;
+    display: block;
+}
+
+/*--------------------------------------------------------------
+# Cta Two
+--------------------------------------------------------------*/
+.cta-two {
+    position: relative;
+    display: block;
+    padding: 0 0 120px;
+    z-index: 1;
+}
+
+.cta-two__inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--tedlife-black);
+    padding: 81px 60px 71px;
+    border-radius: var(--tedlife-bdr-radius);
+    overflow: hidden;
+    z-index: 1;
+}
+
+.cta-two__shape-1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    mix-blend-mode: luminosity;
+    opacity: .20;
+    z-index: -1;
+}
+
+.cta-two__title {
+    font-size: 60px;
+    color: var(--tedlife-white);
+    text-transform: uppercase;
+    line-height: 70px;
+}
+
+.cta-two__btn-box {
+    position: relative;
+    display: block;
+    top: -10px;
+}
+
+.cta-two__btn {
+    top: 5px;
+}
+
+/*--------------------------------------------------------------
+# Cta Three
+--------------------------------------------------------------*/
+.cta-three {
+    padding: 120px 0 120px;
+}
+
+/*--------------------------------------------------------------
+# Cta Four
+--------------------------------------------------------------*/
+.cta-four {
+    margin-top: 0;
+    margin-bottom: -76px;
+    padding: 120px 0 186px;
+    background-color: var(--tedlife-primary);
+}
+
+.cta-four:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 400px;
+    background-color: rgba(var(--tedlife-base-rgb), .05);
+    z-index: -1;
+}
+
+
+
+
+
+/*--------------------------------------------------------------
+# End
+--------------------------------------------------------------*/

@@ -1,0 +1,140 @@
+/*==============================================
+    Intro One
+===============================================*/
+.intro-one {
+    position: relative;
+    display: block;
+    margin-top: -147px;
+    padding-bottom: 120px;
+    z-index: 10;
+}
+
+.intro-one__shape-1 {
+    position: absolute;
+    top: 147px;
+    left: 0;
+    opacity: 0.09;
+    z-index: -1;
+}
+
+.intro-one__shape-1 img {
+    width: auto;
+}
+
+.intro-one__inner {
+    position: relative;
+    display: block;
+    background-color: var(--tedlife-black);
+    border-radius: var(--tedlife-bdr-radius);
+    padding: 112px 100px 100px;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.intro-one__bg {
+    position: absolute;
+    top: -30px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.08;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    animation: topBottom 3s ease-in-out infinite;
+    z-index: -1;
+}
+
+.intro-one__left {
+    position: relative;
+    display: block;
+}
+
+.intro-one__title {
+    font-size: 60px;
+    font-weight: 500;
+    line-height: 64px;
+    color: var(--tedlife-white);
+    text-transform: uppercase;
+}
+
+.intro-one__text-1 {
+    color: var(--tedlife-white);
+    margin-top: 13px;
+    margin-bottom: 12px;
+}
+
+.intro-one__text-2 {
+    color: var(--tedlife-white);
+}
+
+.intro-one__right {
+    position: relative;
+    display: block;
+}
+
+.intro-one__list {
+    position: relative;
+    display: block;
+}
+
+.intro-one__list li {
+    position: relative;
+    display: block;
+    padding-left: 30px;
+}
+
+.intro-one__list li::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 0;
+    bottom: 7px;
+    width: 1px;
+    background-color: rgba(var(--tedlife-white-rgb), .40);
+}
+
+.intro-one__list li+li {
+    margin-top: 73px;
+}
+
+.intro-one__list li h4 {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 34px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.intro-one__list li h4 a {
+    color: var(--tedlife-white);
+}
+
+.intro-one__list li:hover h4 a {
+    color: var(--tedlife-base);
+}
+
+.intro-one__list li p {
+    color: var(--tedlife-white);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*--------------------------------------------------------------
+# End
+--------------------------------------------------------------*/

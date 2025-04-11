@@ -1,0 +1,121 @@
+/*--------------------------------------------------------------
+# Brand One
+--------------------------------------------------------------*/
+.brand-one {
+    position: relative;
+    display: block;
+    padding: 370px 0 110px;
+    margin-top: -250px;
+    overflow: hidden;
+    background-color: var(--tedlife-primary);
+    z-index: 1;
+}
+
+.brand-one__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: .14;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    mix-blend-mode: multiply;
+    animation: topBottom 3s ease-in-out infinite;
+    z-index: -1;
+}
+
+.brand-one__carousel {
+    position: relative;
+    display: block;
+}
+
+.brand-one__single {
+    position: relative;
+    display: block;
+    text-align: center;
+    z-index: 1;
+}
+
+.brand-one__img:before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--tedlife-white);
+    opacity: 0;
+    -webkit-transition: .5s;
+    -o-transition: .5s;
+    transition: .5s;
+    z-index: -1;
+}
+
+.brand-one__single:hover .brand-one__img:before {
+    opacity: 1;
+}
+
+.brand-one__img {
+    position: relative;
+    display: inline-block;
+    z-index: 10;
+}
+
+.brand-one__img>img {
+    position: relative;
+    -webkit-transition: 500ms;
+    transition: 500ms;
+}
+
+/*--------------------------------------------------------------
+# Brand Two
+--------------------------------------------------------------*/
+.brand-two {
+    position: relative;
+    display: block;
+    border-top: 1px solid #efefef;
+    border-bottom: 1px solid #efefef;
+    padding: 60px 0 50px;
+    z-index: 1;
+}
+
+.brand-two__carousel {
+    position: relative;
+    display: block;
+}
+
+.brand-two__single {
+    position: relative;
+    display: block;
+    text-align: center;
+    z-index: 1;
+}
+
+.brand-two__img {
+    position: relative;
+    display: inline-block;
+}
+
+.brand-two__img>img {
+    width: auto !important;
+    position: relative;
+    -webkit-transition: 500ms;
+    transition: 500ms;
+    opacity: .5;
+}
+
+.brand-two__img:hover img {
+    opacity: 1;
+}
+
+
+
+
+
+
+
+/*--------------------------------------------------------------
+# End
+--------------------------------------------------------------*/

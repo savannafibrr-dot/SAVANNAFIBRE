@@ -1,0 +1,194 @@
+/*==============================================
+    Help Sec 
+===============================================*/
+.feature-one {
+    position: relative;
+    display: block;
+    padding: 120px 0 385px;
+    background-color: #0c0d0f;
+    counter-reset: count;
+    z-index: 1;
+}
+
+.feature-one__bg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    opacity: .30;
+    mix-blend-mode: luminosity;
+    z-index: -1;
+}
+
+.feature-one .section-title__title {
+    color: var(--tedlife-white);
+}
+
+.feature-one__single {
+    position: relative;
+    display: block;
+    background-color: var(--tedlife-white);
+    border-radius: var(--tedlife-bdr-radius);
+    padding: 40px 30px 40px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+    z-index: 1;
+}
+
+.feature-one__single::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: var(--tedlife-bdr-radius);
+    background-color: var(--tedlife-black);
+    transform: scaleX(0.7) rotateX(20deg);
+    opacity: 0;
+    transition: all 0.4s linear;
+    z-index: -1;
+}
+
+.feature-one__single:hover::before {
+    transform: scaleX(1.0) rotateX(0deg);
+    transition: all 0.4s linear;
+    opacity: 1;
+}
+
+.feature-one__icon {
+    position: relative;
+    display: inline-block;
+}
+
+.feature-one__icon span {
+    position: relative;
+    display: inline-block;
+    font-size: 62px;
+    color: var(--tedlife-base);
+    -webkit-transition: all 500ms linear;
+    transition: all 500ms linear;
+    -webkit-transition-delay: 0.1s;
+    transition-delay: 0.1s;
+}
+
+.feature-one__single:hover .feature-one__icon span {
+    transform: scale(.9);
+}
+
+.feature-one__title {
+    font-size: 30px;
+    font-weight: 500;
+    text-transform: uppercase;
+    line-height: 30px;
+    margin-bottom: 13px;
+    margin-top: 21px;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.feature-one__title a {
+    color: var(--tedlife-black);
+}
+
+.feature-one__single:hover .feature-one__title a {
+    color: var(--tedlife-base);
+}
+
+.feature-one__text {
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.feature-one__single:hover .feature-one__text {
+    color: var(--tedlife-white);
+}
+
+.feature-one__single-shape-1 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-top: 100px solid rgba(var(--tedlife-black-rgb), 0.03);
+    border-left: 60px solid transparent;
+    border-right: 60px solid transparent;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.feature-one__single:hover .feature-one__single-shape-1 {
+    border-top: 100px solid rgba(var(--tedlife-white-rgb), 0.03);
+}
+
+.feature-one__single-shape-2 {
+    position: absolute;
+    bottom: 0;
+    left: -24px;
+    border-top: 100px solid rgba(var(--tedlife-black-rgb), 0.05);
+    border-left: 100px solid transparent;
+    border-right: 100px solid transparent;
+    transform: rotate(180deg);
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.feature-one__single:hover .feature-one__single-shape-2 {
+    border-top: 100px solid rgba(var(--tedlife-white-rgb), 0.03);
+}
+
+.feature-one__read-more {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-transform: capitalize;
+    color: var(--tedlife-black);
+    margin-top: 11px;
+}
+
+.feature-one__single:hover .feature-one__read-more {
+    color: var(--tedlife-base);
+}
+
+.feature-one__read-more span {
+    font-size: 14px;
+    color: var(--tedlife-base);
+}
+
+.feature-one__count {
+    position: absolute;
+    top: 21px;
+    right: 55px;
+    z-index: 2;
+}
+
+.feature-one__count:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    font-size: 40px;
+    line-height: 50px;
+    font-weight: 500;
+    letter-spacing: 0.1px;
+    color: rgba(var(--tedlife-black-rgb), .3);
+    font-family: var(--tedlife-font-two);
+    counter-increment: count;
+    content: "0"counter(count);
+    transition: all 200ms linear;
+    transition-delay: 0.1s;
+}
+
+.feature-one__single:hover .feature-one__count:before {
+    color: var(--tedlife-white);
+}
+
+/*--------------------------------------------------------------
+# End
+--------------------------------------------------------------*/

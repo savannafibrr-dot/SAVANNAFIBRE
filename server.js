@@ -9,6 +9,7 @@ const bcrypt = require('bcryptjs');
 const path = require('path');
 const User = require('./models/User');
 
+
 const app = express();
 
 // Connect to MongoDB with retry logic
@@ -102,25 +103,48 @@ app.use('/api/plans', require('./routes/plans'));
 app.use('/api/shops', require('./routes/shops'));
 app.use('/api/coverage', require('./routes/coverage'));
 
-// Serve static files
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'login.html'));
-});
+// Serve static files from the public directory for admin routes
+app.use('/admin', express.static(path.join(__dirname, 'public')));
 
-app.get('/dashboard', (req, res) => {
+// Serve static files from the frontend directory for root routes
+app.use('/', express.static(path.join(__dirname, 'frontend')));
+
+// Handle admin routes
+app.get('/admin/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'dashboard.html'));
+});
+app.get('/admin/dashboard', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'dashboard.html'));
 });
 
-app.get('/plans', (req, res) => {
+app.get('/admin/plans', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'plans.html'));
 });
 
+app.get('/admin/shop', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'shop.html'));
+});
+
+app.get('/admin/coverages', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'coverages.html'));
+});
+
+// Handle frontend routes
 app.get('/shops', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'shops.html'));
+    res.sendFile(path.join(__dirname, 'frontend', 'shops.html'));
 });
 
 app.get('/coverage', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'coverage.html'));
+    res.sendFile(path.join(__dirname, 'frontend', 'coverage.html'));
+});
+
+app.get('/accessories', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'accessories.html'));
+});
+
+// Handle frontend index route
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
 });
 
 // Error handling middleware
@@ -131,6 +155,10 @@ app.use((err, req, res, next) => {
         message: process.env.NODE_ENV === 'development' ? err.message : 'Something went wrong!'
     });
 });
+
+
+
+
 
 // Handle MongoDB connection errors
 mongoose.connection.on('error', (err) => {
@@ -143,5 +171,7 @@ mongoose.connection.on('disconnected', () => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+    console.log(`Server running at http://localhost:${PORT}`);
+    console.log(`Admin panel at http://localhost:${PORT}/admin`);
+    console.log(`Frontend at http://localhost:${PORT}`);
 }); 

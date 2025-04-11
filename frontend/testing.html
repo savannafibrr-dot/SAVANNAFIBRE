@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Methods</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            display: flex;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            width: 80%;
+            max-width: 900px;
+        }
+        .methods {
+            width: 30%;
+            background: #2c3e50;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .methods h5 {
+            color: #ecf0f1;
+            margin-bottom: 20px;
+        }
+        .method-icon {
+            width: 60px;
+            height: 60px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+        .method-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .method-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .method-icon.active {
+            border-color: #3498db;
+        }
+        .steps {
+            width: 70%;
+            padding: 40px;
+        }
+        .steps h5 {
+            margin-bottom: 20px;
+            color: #34495e;
+        }
+        .steps ul {
+            list-style: none;
+            padding: 0;
+        }
+        .steps ul li {
+            background: #ecf0f1;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            transition: background 0.3s;
+        }
+        .steps ul li:hover {
+            background: #d0d3d4;
+        }
+        .steps ul li img {
+            width: 20px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        .steps .default-message {
+            color: #7f8c8d;
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .methods, .steps {
+                width: 100%;
+            }
+            .methods {
+                flex-direction: row;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            .method-icon {
+                margin: 10px;
+            }
+        }
+    
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<style>
+        .method-icon {
+    width: 60px;
+    height: 60px;
+    margin: 10px 0;
+    cursor: pointer;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ecf0f1; /* Fallback color */
+}
+
+.method-icon img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.method-icon {
+    width: 60px;
+    height: 60px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.method-icon img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+</style>
+    
+</head>
+<body>
+    <div class="container">
+        <!-- Payment Methods Icons -->
+        <div class="methods">
+            <h5>Payment Methods</h5>
+            <div class="method-icon" data-method="mpesa">
+                <i class="fas fa-mobile-alt"></i>
+                <span>M-Pesa</span>
+            </div>
+            <div class="method-icon" data-method="airtel">
+                <i class="fas fa-sim-card"></i>
+                <span>Airtel Money</span>
+            </div>
+            <div class="method-icon" data-method="tigo">
+                <i class="fas fa-wallet"></i>
+                <span>Tigo Pesa</span>
+            </div>
+        </div>
+        
+        <!-- Payment Steps -->
+        <div class="steps">
+            <h5>Steps to Pay</h5>
+            <div id="mpesa" class="payment-steps" style="display: none;">
+                <ul>
+                    <li><img src="path/to/step-icon.png" alt="Step">Press *150*00# then ok.</li>
+                    <li><img src="path/to/step-icon.png" alt="Step">Go to M-Pesa menu and select option number 4 (Pay by M-Pesa).</li>
+                    <li><img src="path/to/step-icon.png" alt="Step">Go to option number 4 (enter business number): 711788.</li>
+                    <li><img src="path/to/step-icon.png" alt="Step">Key in Savanna Fibre account number and send.</li>
+                    <li><img src="path/to/step-icon.png" alt="Step">Add amount.</li>
+                    <li><img src="path/to/step-icon.png" alt="Step">Enter Personal PIN.</li>
+                    <li><img src="path/to/step-icon.png" alt="Step">Confirm payment.</li>
+                </ul>
+            </div>
+            <div id="airtel" class="payment-steps" style="display: none;">
+                <ul>
+                    <li><img src="path/to/step-icon.png" alt="Step">Press *150*60# then Ok using Airtel line.</li>
+                    <li><img src="path/to/step-icon.png" alt="Step">Go to option number 5 (Make payment).</li>
+                    <li><img src="path/to/step-icon.png" alt="Step">Go to option number 4 (enter business number): 711788.</li>
+                    <li><img src="path/to/step-icon.png" alt="Step">Enter reference number (your Savanna Fibre account number).</li>
+                    <li><img src="path/to/step-icon.png" alt="Step">Enter amount.</li>
+                    <li><img src="path/to/step-icon.png" alt="Step">Enter Personal PIN.</li>
+                    <li><img src="path/to/step-icon.png" alt="Step">Confirm payment.</li>
+                </ul>
+            </div>
+            <div id="tigo" class="payment-steps" style="display: none;">
+                <ul>
+                    <li><img src="path/to/step-icon.png" alt="Step">Press *150*01# then ok using the Tigo line.</li>
+                    <li><img src="path/to/step-icon.png" alt="Step">Go to Tigo Pesa menu and select option number 4 (Pay bill).</li>
+                    <li><img src="path/to/step-icon.png" alt="Step">Go to option number 3 (enter business number): 711788.</li>
+                    <li><img src="path/to/step-icon.png" alt="Step">Key in Savanna Fibre account number and send.</li>
+                    <li><img src="path/to/step-icon.png" alt="Step">Add amount.</li>
+                    <li><img src="path/to/step-icon.png" alt="Step">Enter Personal PIN.</li>
+                    <li><img src="path/to/step-icon.png" alt="Step">Confirm payment.</li>
+                </ul>
+            </div>
+            <p class="default-message">Please select a payment method to see the steps.</p>
+        </div>
+    </div>
+
+    <script>
+        const icons = document.querySelectorAll('.method-icon');
+        const steps = document.querySelectorAll('.payment-steps');
+        const defaultMessage = document.querySelector('.default-message');
+
+        icons.forEach(icon => {
+            icon.addEventListener('click', () => {
+                // Remove active state from all icons
+                icons.forEach(i => i.classList.remove('active'));
+                // Hide all steps
+                steps.forEach(step => step.style.display = 'none');
+                // Add active state to clicked icon
+                icon.classList.add('active');
+                // Show the corresponding steps
+                const method = icon.getAttribute('data-method');
+                document.getElementById(method).style.display = 'block';
+                // Hide default message
+                defaultMessage.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

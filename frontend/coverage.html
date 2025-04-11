@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coverage Page || Savannah Fibre</title>
+    <!-- favicons Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/preloader orange.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/preloader orange.svg" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/preloader orange.svg" />
+    <link rel="manifest" href="assets/preloader orange.svg" />
+    <meta name="description" content="" />
+
+
+    <link rel="shortcut icon" href="new/assets/images/logo/favicon.png">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="new/assets/css/bootstrap.min.css">
+    <!-- Fontasosome -->
+    <link rel="stylesheet" href="new/assets/css/fontasosome.min.css">
+    <!-- Fonts -->
+    <link rel="stylesheet" href="new/assets/css/clash-display.css">
+    <!-- Nice Select -->
+    <link rel="stylesheet" href="new/assets/css/nice-select.css">
+    <!-- AOS -->
+    <link rel="stylesheet" href="new/assets/css/aos.css">
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="new/assets/css/owl.carousel.min.css">
+    <!-- Slick -->
+    <link rel="stylesheet" href="new/assets/css/slick.css">
+    <!-- line awesome -->
+    <link rel="stylesheet" href="new/assets/css/line-awesome.min.css">
+    <!-- Main css -->
+    <link rel="stylesheet" href="new/assets/css/cyn.css">
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coveraget || Savannah Fibre</title>
+    <!-- favicons Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/preloader orange.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/preloader orange.svg" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/preloader orange.svg" />
+    <link rel="manifest" href="assets/preloader orange.svg" />
+    <meta name="description" content="" />
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&amp;display=swap" rel="stylesheet">
+
+
+    
+    <link rel="stylesheet" href="stap.css">
+    <script>
+        function toggleIcons() {
+            var dropdown = document.getElementById("floating-icons-dropdown");
+            // Toggle visibility of the dropdown
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        }
+
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+
+    <style>
+        /* General Styling */
+        .banner__area {
+            padding: 50px 20px;
+            background-color: #f9f9f9;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Title Styling */
+        .banner__title h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin: 0 auto 30px auto;
+            display: inline-block;
+            background: linear-gradient(90deg, #f79621, #e6851f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .banner__title h2::after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: #f79621;
+            margin: 10px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        .banner__title h2::before {
+            content: "";
+            display: block;
+            width: 50px;
+            height: 2px;
+            background-color: #e6851f;
+            margin: 8px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        /* Content Layout */
+        .banner__content {
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        /* Left Side: Town List */
+        .banner__locations {
+            flex: 1;
+            max-width: 30%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .banner__locations h3 {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .location__list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .location__list li {
+            padding: 10px;
+            font-size: 1rem;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .location__list li:hover {
+            background-color: #f79621;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        /* Right Side: Map */
+        .banner__map {
+            flex: 2;
+            max-width: 70%;
+        }
+
+        .banner__map iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+            border-radius: 15px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .banner__content {
+                flex-direction: column;
+            }
+
+            .banner__locations,
+            .banner__map {
+                max-width: 100%;
+            }
+
+            .banner__map iframe {
+                height: 300px;
+            }
+        }
+    </style>
+    <style>
+        @media (max-width: 768px) {
+            .banner__title h2 {
+                font-size: 2rem;
+                /* Reduce the font size for phones */
+                text-align: center;
+                /* Center align for better visibility */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .banner__title h2 {
+                font-size: 1.5rem;
+                /* Further reduce size for very small screens */
+                text-align: center;
+                /* Ensure centered alignment */
+            }
+        }
+    </style>
+    <style>
+        @media (max-width: 768px) {
+            .banner__content {
+                flex-direction: column;
+                /* Stack the items vertically */
+            }
+
+            .banner__locations {
+                width: 100%;
+                /* Take full width for Connected Towns */
+                margin-bottom: 20px;
+                /* Add space below Connected Towns */
+            }
+
+            .banner__map {
+                width: 100%;
+                /* Take full width for the map */
+            }
+
+            .banner__map iframe {
+                height: 300px;
+                /* Adjust map height for phones */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .banner__map iframe {
+                height: 250px;
+                /* Further reduce map height for smaller phones */
+            }
+        }
+    </style>
+    <style>
+        .banner__title h2 {
+            font-size: 3.5rem;
+            /* Default size for laptops */
+            text-align: center;
+            /* Center alignment for all devices */
+        }
+
+        @media (max-width: 768px) {
+            .banner__title h2 {
+                font-size: 2.5rem;
+                /* Smaller size for phones */
+                text-align: center;
+                /* Keep centered */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .banner__title h2 {
+                font-size: 2rem;
+                /* Even smaller size for small phones */
+                text-align: center;
+                /* Ensure centered alignment */
+            }
+        }
+    </style>
+
+    <style>
+        /* Dropdown Styling for Shops */
+        .main-menu__list>li>ul {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: linear-gradient(145deg, #F79621, #e5891f);
+            /* Gradient using logo color */
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+            list-style: none;
+            padding: 10px 0;
+            margin: 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .main-menu__list>li:hover>ul {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Dropdown Menu Items */
+        .main-menu__list>li>ul li {
+            padding: 0;
+            margin: 0;
+        }
+
+        .main-menu__list>li>ul li a {
+            color: #ffffff;
+            /* White text for contrast */
+            padding: 10px 20px;
+            display: block;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .main-menu__list>li>ul li a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            /* Subtle hover effect */
+            color: #000;
+            /* Black text on hover */
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Add spacing for icons */
+        .main-menu__list>li>ul li a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            /* Space between icon and text */
+            color: #ffffff;
+            /* White text for contrast */
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+        }
+
+        /* Hover effect for menu items with icons */
+        .main-menu__list>li>ul li a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            /* Subtle hover effect */
+            color: #fff;
+            /* Black text on hover */
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Icon Styling */
+        .main-menu__list>li>ul li a i {
+            font-size: 1.2rem;
+            color: #ffffff;
+            /* Icon color matches text */
+            transition: all 0.3s ease;
+        }
+
+        .main-menu__list>li>ul li a:hover i {
+            color: #000;
+            /* Icon color changes on hover */
+        }
+
+        /* Dropdown Menu Styling */
+        .main-menu__list>li>ul {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: linear-gradient(145deg, #F79621, #e5891f);
+            /* Gradient using logo color */
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+            list-style: none;
+            padding: 10px 0;
+            margin: 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .main-menu__list>li:hover>ul {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Dropdown Items Styling */
+        .main-menu__list>li>ul li {
+            padding: 0;
+            margin: 0;
+        }
+
+        .main-menu__list>li>ul li a {
+            color: #ffffff;
+            /* White text */
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            /* Spacing between icon and text */
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .main-menu__list>li>ul li a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            /* Subtle hover effect */
+            color: #fff;
+            /* Black text on hover */
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Icon Styling */
+        .main-menu__list>li>ul li a i {
+            font-size: 1.2rem;
+            color: #ffffff;
+            /* Match text color */
+            transition: all 0.3s ease;
+        }
+
+        .main-menu__list>li>ul li a:hover i {
+            color: #000;
+            /* Change icon color on hover */
+        }
+    </style>
+   
+    <style>
+        #map {
+            width: 100%;
+            height: 400px;
+        }
+
+        .location__list li {
+            cursor: pointer;
+            padding: 8px;
+            list-style: none;
+        }
+
+        .location__list li.active {
+            background-color: #f79621;
+            color: white;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+    </style>
+<link rel="stylesheet" href="assets/vendors/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="assets/vendors/bootstrap-select/bootstrap-select.min.css" />
+<link rel="stylesheet" href="assets/vendors/animate/animate.min.css" />
+<link rel="stylesheet" href="assets/vendors/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="assets/vendors/jquery-ui/jquery-ui.css" />
+<link rel="stylesheet" href="assets/vendors/jarallax/jarallax.css" />
+<link rel="stylesheet" href="assets/vendors/jquery-magnific-popup/jquery.magnific-popup.css" />
+<link rel="stylesheet" href="assets/vendors/nouislider/nouislider.min.css" />
+<link rel="stylesheet" href="assets/vendors/nouislider/nouislider.pips.css" />
+<link rel="stylesheet" href="assets/vendors/tiny-slider/tiny-slider.css" />
+<link rel="stylesheet" href="assets/vendors/ienet-icons/style.css" />
+<link rel="stylesheet" href="assets/vendors/slick/slick.css">
+<link rel="stylesheet" href="assets/vendors/owl-carousel/css/owl.carousel.min.css" />
+<link rel="stylesheet" href="assets/vendors/owl-carousel/css/owl.theme.default.min.css" />
+
+<!-- template styles -->
+<link rel="stylesheet" href="assets/css/ienet.css" />
+</head>
+
+<body class="custom-cursor">
+
+    <div class="custom-cursor__cursor"></div>
+    <div class="custom-cursor__cursor-two"></div>
+
+    <div class="preloader">
+        <div class="preloader__image" style="background-image: url(assets/preloader\ orange.svg);"></div>
+    </div>
+
+
+
+    <!-- /.preloader -->
+    <div class="page-wrapper">
+       <script src="//uae.fw-cdn.com/40150458/90775.js" chat="true"></script>
+
+        <header class="main-header main-header--inner sticky-header sticky-header--normal "
+            style="background: linear-gradient(90deg, #f89621, #b87333) !important;">
+            <div class="container-fluid">
+                <div class="main-header__inner">
+                    <div class="main-header__logo">
+                        <a href="index.html">
+                            <img src="Logo savanna6.svg" alt="Ienet HTML" height="100">
+                        </a>
+                    </div><!-- /.main-header__logo -->
+                    <a href="#" class="main-header__toggler" style="color: #fff;"><span class="icon-menu"></span></a>
+                    <nav class="main-header__nav main-menu">
+                        <ul class="main-menu__list">
+                            <li>
+                                <a href="index.html" style="color: #fff;"><strong>Home</strong></a>
+                            </li>
+                             <li class="dropdown">
+                                <a href="#" style="color: #fff;">Packages</a>
+                                <ul>
+                                    <li>
+                                        <a href="index.html?package=residential">
+                                            <i class="fas fa-box"></i> Residential Packages
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="index.html?package=business">
+                                            <i class="fas fa-network-wired"></i> Business Packages
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="coverage.html" style="color: #fff;">
+                                     Coverage
+                                </a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" style="color: #fff;">Shops</a>
+                                <ul>
+                                    <li>
+                                        <a href="shops.html">
+                                            <i class="fas fa-map-marker-alt"></i> Shop Location
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="accessories.html">
+                                            <i class="fas fa-headphones-alt"></i> Accessories
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" style="color: #fff;">Support</a>
+                                <ul>
+                                    <li>
+                                        <a href="payments.html">
+                                            <i class="fas fa-credit-card"></i> How to Make Payments
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fas fa-tools"></i> Self Care
+                                        </a>
+                                    </li>
+                                    <li>
+                                       <a href="https://www.speedtest.net/">
+                                            <i class="fas fa-tachometer-alt"></i> Speedtest
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="about.html" style="color: #fff;">
+                                     About
+                                </a>
+                            </li>
+                            <li>
+                                <a href="contact.html" style="color: #fff;">
+                                     Contact
+                                </a>
+                            </li>
+                        </ul>
+                    </nav><!-- /.main-header__nav -->
+                    <div class="main-header__right">
+                        <div class="mobile-nav__btn mobile-nav__toggler">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div><!-- /.mobile-nav__toggler -->
+
+                        <div class="main-header__lang">
+                            <div class="lang-dropdown">
+                                <button class="lang-selected">
+                                    <span class="flag-icon flag-icon-gb"></span> EN
+                                </button>
+                                <div class="lang-options">
+                                    <div class="lang-option" data-value="en">
+                                        <span class="flag-icon flag-icon-gb"></span> EN
+                                    </div>
+                                    <div class="lang-option" data-value="sw">
+                                        <span class="flag-icon flag-icon-tz"></span> SW
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.main-header__lang -->
+                        <div class="main-header__call">
+                            <div class="main-header__call__icon"><span class="icon-telephone"></span></div>
+                            <div class="main-header__call__title" style="color: #fff;">Call Us</div>
+                            <a class="main-header__call__text" href="tel: +255 699 999 555" style="color: #fff;"> +255 699 999 555</a>
+                        </div>
+                    </div><!-- /.main-header__right -->
+                </div><!-- /.main-header__inner -->
+            </div><!-- /.container-fluid -->
+        </header><!-- /.main-header -->
+
+
+
+
+        <style>
+            .banner__area {
+                padding-top: 20px;
+                /* Reduce padding at the top */
+                margin-top: 0;
+                /* Remove any unwanted margin */
+            }
+
+            .banner__bg img {
+                display: block;
+                /* Ensure no unwanted whitespace caused by inline images */
+                margin: 0;
+            }
+
+            .container {
+                padding-top: 0;
+                /* Remove default top padding, if any */
+            }
+        </style>
+        <section class="banner__area">
+            <div class="container">
+                <div class="banner__topbar">
+                    <div class="banner__title">
+                        <h2 style="font-size: 3.5rem;">Our Coverage</h2>
+                    </div>
+                </div>
+
+                <div class="banner__content">
+                    <!-- Left Side: Connected Towns -->
+                    <div class="banner__locations">
+                        <h3>Connected Towns</h3>
+                        <ul class="location__list" id="coverageList">
+                            <li class="active" data-location="All Towns">All Towns</li>
+                            <!-- Coverage areas will be dynamically added here -->
+                        </ul>
+                    </div>
+
+                    <!-- Right Side: Google Map -->
+                    <div class="banner__map">
+                        <div id="map"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+       
+
+
+
+
+
+
+
+
+
+
+        <footer class="main-footer background-black">
+            <div class="main-footer__bg background-black"
+                style="background-image: url(assets/images/shapes/footer-bg-1-1.png);"></div>
+            <div class="main-footer__shape-one"
+                style="background-image: url(assets/images/resources/footer-shape-1.png);"></div>
+            <div class="main-footer__shape-two" style="background-image: url(assets/images/iadded/wild2.png);"></div>
+            <div class="main-footer__top">
+                <div class="container">
+                    <div class="main-footer__top__inner">
+                        <ul class="list-unstyled main-footer__top__info">
+                            <li class="main-footer__top__info__item">
+                                <span class="main-footer__top__info__icon"><i class="icon-mail"></i></span>
+                                <a href="mailto:support@savannafibre.co.tz">support@savannafibre.co.tz</a>
+                            </li>
+                            <li class="main-footer__top__info__item">
+                                <span class="main-footer__top__info__icon"><i class="icon-maps-and-flags"></i></span>
+                                14th Floor, Derm Plaza Plot 18 Block 45A. Bagamoyo Road, Makumbusho. P. O Box 11692 Dar Es Salaam
+                            </li>
+                        </ul>
+                        <div class="main-footer__top__right">
+                            <div class="main-footer__top__social">
+                                <a href="https://www.facebook.com/savannafibretz" style="
+                                text-decoration: none; 
+                                color: #4267B2; 
+                                font-size: 18px; /* Smaller icon size */
+                                width: 30px; /* Reduce width of the circle */
+                                height: 30px; /* Reduce height of the circle */
+                                display: flex; 
+                                align-items: center; 
+                                justify-content: center; 
+                                border-radius: 50%; 
+                                background-color: #E9ECEF;
+                                transition: all 0.3s ease;
+                            " onmouseover="this.style.backgroundColor='#4267B2'; this.style.color='#fff';"
+                                    onmouseout="this.style.backgroundColor='#E9ECEF'; this.style.color='#4267B2';">
+                                    <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                                    <span class="sr-only">Facebook</span>
+                                </a>
+                                <a href="https://x.com/savannafibretz" target="_blank">
+                                    <img src="assets/x-twitter-brands-solid.svg" alt="TikTok" style="width: 24px; height: 24px;">
+                                    <span class="sr-only">Twitter</span>
+                                </a>
+                                <a href="https://www.instagram.com/savannafibretz/" style="
+                                text-decoration: none; 
+                                color: #E1306C; 
+                                font-size: 18px; 
+                                width: 30px; 
+                                height: 30px; 
+                                display: flex; 
+                                align-items: center; 
+                                justify-content: center; 
+                                border-radius: 50%; 
+                                background-color: #E9ECEF;
+                                transition: all 0.3s ease;
+                            " onmouseover="this.style.backgroundColor='#E1306C'; this.style.color='#fff';"
+                                    onmouseout="this.style.backgroundColor='#E9ECEF'; this.style.color='#E1306C';">
+                                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                                    <span class="sr-only">Instagram</span>
+                                </a>
+                                <a href="https://www.youtube.com/@savannafibretz" style="
+                                text-decoration: none; 
+                                color: #FF0000; 
+                                font-size: 18px; 
+                                width: 30px; 
+                                height: 30px; 
+                                display: flex; 
+                                align-items: center; 
+                                justify-content: center; 
+                                border-radius: 50%; 
+                                background-color: #E9ECEF;
+                                transition: all 0.3s ease;
+                            " onmouseover="this.style.backgroundColor='#FF0000'; this.style.color='#fff';"
+                                    onmouseout="this.style.backgroundColor='#E9ECEF'; this.style.color='#FF0000';">
+                                    <i class="fab fa-youtube" aria-hidden="true"></i>
+                                    <span class="sr-only">Youtube</span>
+                                </a>
+                                 <a href="https://www.tiktok.com/@savannafibretz" target="_blank">
+                                    <img src="assets/tiktok-brands-solid.svg" alt="TikTok" style="width: 24px; height: 24px;">
+                                    <span class="sr-only">TikTok</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="main-footer__middle">
+                    <a href="index.html">
+                        <img src="assets/images/iadded/logo/savanna 1.svg" height="170" alt="savanna Fibre">
+                    </a>
+                    <form action="#" data-url="MAILCHIMP_FORM_URL" class="footer-widget__newsletter mc-form">
+                        <span class="footer-widget__newsletter__icon"><i class="icon-mail"></i></span>
+                        <input type="text" name="EMAIL" placeholder="Enter Email Address">
+                        <button type="submit" class="ienet-btn"><span>Subscribe Now</span></button>
+                        <div class="mc-form__response"></div>
+                    </form>
+                    <div class="main-footer__middle__call">
+                        <div class="main-footer__middle__call__icon"><span class="icon-telephone"></span></div>
+                        <div class="main-footer__middle__call__title">Call Us</div>
+                        <a class="main-footer__middle__call__text" href="tel:+88012365499">+255699999555</a>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-xl-3">
+                        <div class="footer-widget footer-widget--about">
+                            <h2 class="footer-widget__title">About savanna Fibre</h2>
+                            <p class="footer-widget__text">
+                                Connecting lives with reliable, fast, and affordable internet plans, empowering homes
+                                and businesses.
+                            </p>
+                            <a href="contact.html" class="ienet-btn"><span>Get In Touch<span class="ienet-btn__icon"><i
+                                            class="fas fa-chevron-right"></i></span></span></a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-3">
+                        <div class="footer-widget footer-widget--links">
+                            <h2 class="footer-widget__title">Our Services</h2>
+                            <ul class="list-unstyled footer-widget__links">
+                            <li><a href="index.html?package=residential">Residential Packages</a></li>
+                                <li><a href="index.html?package=business">Business Packages</a></li>
+                                <li><a href="accessories.html">UPS</a></li>
+                                <li><a href="accessories.html">Wi-Fi Extenders</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-3">
+                        <div class="footer-widget footer-widget--links">
+                            <h2 class="footer-widget__title">Useful Links</h2>
+                            <ul class="list-unstyled footer-widget__links">
+                                <li><a href="about.html">About Us</a></li>
+                                <li><a href="coverage.html">Coverage</a></li>
+                                <li><a href="index.html?scroll=faq">FAQs</a></li>
+
+                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="shops.html">Shop</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-3">
+                        <div class="footer-widget footer-widget--gallery">
+                            <h2 class="footer-widget__title">Our Gallery</h2>
+                            <div class="footer-widget__gallery">
+                                <img src="assets/website gallery/website gallery/POSTERS RESIZED 84px 84px/connecting moments.jpg" 
+                                     data-large="assets/website gallery/website gallery/HIGH RESOLUTION/connecting moments-HIGH RES.jpg"
+                                     alt="Connecting Moments" onclick="openLightbox(this)">
+                                
+                                <img src="assets/website gallery/website gallery/POSTERS RESIZED 84px 84px/Connecting Tanzania.jpg" 
+                                     data-large="assets/website gallery/website gallery/HIGH RESOLUTION/Connecting Tanzania-HIGH RES..jpg"
+                                     alt="Connecting Tanzania" onclick="openLightbox(this)">
+                                
+                                <img src="assets/website gallery/website gallery/POSTERS RESIZED 84px 84px/Customer Support.jpg" 
+                                     data-large="assets/website gallery/website gallery/HIGH RESOLUTION/Customer Support-HIGH RES.jpg"
+                                     alt="Customer Support" onclick="openLightbox(this)">
+                                
+                                <img src="assets/website gallery/website gallery/POSTERS RESIZED 84px 84px/Fish Without Water.jpg" 
+                                     data-large="assets/website gallery/website gallery/HIGH RESOLUTION/Fish Without Water-HIGH RES..jpg"
+                                     alt="Fish Without Water" onclick="openLightbox(this)">
+                                
+                                <img src="assets/website gallery/website gallery/POSTERS RESIZED 84px 84px/Stay Connected.jpg" 
+                                     data-large="assets/website gallery/website gallery/HIGH RESOLUTION/Stay Connected-HIGH RES.jpg"
+                                     alt="Stay Connected" onclick="openLightbox(this)">
+                                
+                                <img src="assets/website gallery/website gallery/POSTERS RESIZED 84px 84px/Thirsty for Speed.jpg" 
+                                     data-large="assets/website gallery/website gallery/HIGH RESOLUTION/Thirsty for Speed-HIGH RES..jpg"
+                                     alt="Thirsty for Speed" onclick="openLightbox(this)">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Lightbox -->
+                    <div class="lightbox" id="lightbox">
+                        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+                        <img id="lightbox-img" src="">
+                    </div>
+                    
+                    <!-- Lightbox Styles -->
+                    <style>
+                        .footer-widget__gallery img {
+                            width: 84px;
+                            height: 84px;
+                            cursor: pointer;
+                            transition: transform 0.2s;
+                        }
+                        .footer-widget__gallery img:hover {
+                            transform: scale(1.1);
+                        }
+                        /* Lightbox styling */
+                        .lightbox {
+                            position: fixed;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background: rgba(0, 0, 0, 0.8);
+                            display: none;
+                            justify-content: center;
+                            align-items: center;
+                            z-index: 1000;
+                        }
+                        .lightbox img {
+                            max-width: 90%;
+                            max-height: 90%;
+                            border-radius: 10px;
+                        }
+                        .lightbox.active {
+                            display: flex;
+                        }
+                        .lightbox-close {
+                            position: absolute;
+                            top: 20px;
+                            right: 30px;
+                            font-size: 30px;
+                            color: white;
+                            cursor: pointer;
+                        }
+                    </style>
+                    
+                    <!-- Lightbox Script -->
+                    <script>
+                        function openLightbox(img) {
+                            // Get the larger image from the "data-large" attribute
+                            const largeImage = img.getAttribute("data-large");
+                            document.getElementById("lightbox-img").src = largeImage;
+                            document.getElementById("lightbox").classList.add("active");
+                        }
+                    
+                        function closeLightbox() {
+                            document.getElementById("lightbox").classList.remove("active");
+                        }
+                    </script>
+                    
+                </div>
+            </div>
+            <div class="main-footer__bottom">
+                <div class="container">
+                    <div class="main-footer__bottom__inner">
+                        <p class="main-footer__copyright" style="color: #fff;">
+                            &copy; Copyright <span class="dynamic-year"></span> 
+                            <strong style="color: #F79621;">Savanna Fibre</strong> (Tanzania) Limited. All rights reserved. 
+                           
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <script>
+                document.querySelector(".dynamic-year").textContent = new Date().getFullYear();
+            </script>
+        </footer>
+
+    </div><!-- /.page-wrapper -->
+
+
+
+    <div class="mobile-nav__wrapper">
+        <div class="mobile-nav__overlay mobile-nav__toggler"></div>
+        <!-- /.mobile-nav__overlay -->
+        <div class="mobile-nav__content">
+            <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
+
+            <div class="logo-box">
+                <a href="index.html" aria-label="logo image"><img src="assets/images/iadded/logo/savanna 1.svg"
+                        width="155" alt="" /></a>
+            </div>
+            <!-- /.logo-box -->
+            <div class="mobile-nav__container"></div>
+            <!-- /.mobile-nav__container -->
+
+            <ul class="mobile-nav__contact list-unstyled">
+                <li>
+                    <i class="fa fa-envelope"></i>
+                    <a href="mailto:support@savannafibre.co.tz">support@savannafibre.co.tz</a>
+                </li>
+                <li>
+                    <i class="fa fa-phone-alt"></i>
+                    <a href="tel:+255699999555">+255699999555</a>
+                </li>
+            </ul><!-- /.mobile-nav__contact -->
+            <div class="mobile-nav__social">
+
+
+                <a href="https://facebook.com/">
+                    <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                    <span class="sr-only">Facebook</span>
+                </a>
+                <a href="https://x.com/savannafibretz" target="_blank">
+                    <img src="assets/x-twitter white.svg" alt="TikTok" style="width: 16px; height: 16px;">
+                    <span class="sr-only">Twitter</span>
+                </a>
+                <a href="https://instagram.com/">
+                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                    <span class="sr-only">Instagram</span>
+                </a>
+                <a href="https://www.youtube.com/">
+                    <i class="fab fa-youtube" aria-hidden="true"></i>
+                    <span class="sr-only">Youtube</span>
+                </a>
+                <a href="https://www.tiktok.com/@savannafibretz" target="_blank">
+                    <img src="assets/tiktok white.svg" alt="TikTok" style="width: 18px; height: 18px;">
+                    <span class="sr-only">TikTok</span>
+                </a>
+            </div><!-- /.mobile-nav__social -->
+        </div>
+        <!-- /.mobile-nav__content -->
+    </div>
+    <!-- /.mobile-nav__wrapper -->
+    <div class="search-popup">
+        <div class="search-popup__overlay search-toggler"></div>
+        <!-- /.search-popup__overlay -->
+        <div class="search-popup__content">
+            <form role="search" method="get" class="search-popup__form" action="#">
+                <input type="text" id="search" placeholder="Search Here..." />
+                <button type="submit" aria-label="search submit" class="ienet-btn">
+                    <span><i class="icon-search"></i></span>
+                </button>
+            </form>
+        </div>
+        <!-- /.search-popup__content -->
+    </div>
+    <!-- /.search-popup -->
+    <!-- Sidebar One Start -->
+    <aside class="sidebar-one">
+        <div class="sidebar-one__overlay"></div><!-- /.siderbar-ovarlay -->
+        <div class="sidebar-one__content">
+            <div class="sidebar-one__close"><i class="icon-plus"></i></div><!-- /.siderbar-close -->
+            <div class="sidebar-one__logo">
+                <a href="index.html" aria-label="logo image"><img src="assets/images/iadded/logo/savanna 1.svg"
+                        alt="Ienet HTML" height="170"></a>
+            </div><!-- /.sidebar-one__logo-box -->
+            <p class="sidebar-one__text">
+                We envision ourselves as Tanzania's most trusted connectivity provider, delivering seamless, affordable,
+                and reliable internet to every household, and empowering communities in the digital age.
+            </p>
+            <h4 class="sidebar-one__title">Contact Info:</h4>
+            <ul class="sidebar-one__info">
+                <li>
+                    <span class="fas fa-map-marker-alt"></span>
+                    Makumbusho Wakatibado Street Makumbusho BraiWeb Technologies Ltd Dar es Salaam TZ, 14107, Tanzania
+                </li>
+               <li>
+    <span class="fas fa-clock"></span>
+    Mon - Fri: 8.00 AM - 5.00 PM
+</li>
+<li>
+    <span class="fas fa-clock"></span>
+    Saturday: 9.00 AM - 1.00 PM
+</li>
+
+                <li>
+                    <span class="fas fa-envelope"></span>
+                    <a href="tel:+9156980036420">+255 699 999 555 </a>
+                </li>
+            </ul>
+            <div class="sidebar-one__social">
+
+                <a href="https://facebook.com/">
+                    <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                    <span class="sr-only">Facebook</span>
+                </a>
+                <a href="https://x.com/savannafibretz" target="_blank">
+                    <img src="assets/x-twitter-brands-solid.svg" alt="TikTok" style="width: 24px; height: 24px;">
+                    <span class="sr-only">Twitter</span>
+                </a>
+                <a href="https://instagram.com/">
+                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                    <span class="sr-only">Instagram</span>
+                </a>
+                <a href="https://www.youtube.com/">
+                    <i class="fab fa-youtube" aria-hidden="true"></i>
+                    <span class="sr-only">Youtube</span>
+                </a>
+            </div><!-- /sidebar-one__socila -->
+            <h4 class="sidebar-one__title">Newsletter:</h4>
+            <form action="#" data-url="MAILCHIMP_FORM_URL" class="sidebar-one__newsletter mc-form">
+                <input type="text" name="EMAIL" placeholder="Email address">
+                <button type="submit" class="fas fa-paper-plane">
+                    <span class="sr-only">submit</span><!-- /.sr-only -->
+                </button>
+            </form><!-- /.footer-widget__newsletter mc-form -->
+        </div><!-- /.sidebar__content -->
+    </aside>
+    <!-- Sidebar One Start -->
+    <script>
+        document.querySelectorAll('.file-container').forEach((container) => {
+            const text = container.querySelector('.text');
+            const textEffect = container.querySelector('.text-effect');
+            const borderColor = container.dataset.borderColor;
+            const hoverTextColor = container.dataset.hoverTextColor;
+
+            container.style.setProperty('--border-color', borderColor);
+            container.style.setProperty('--hover-text-color', hoverTextColor);
+
+            container.style.setProperty('--borderGradient', `conic-gradient(from var(--rotation), 
+                var(--border-color) 0deg, 
+                var(--border-color) 90deg, 
+                var(--color-4) 90deg, 
+                var(--color-4) 360deg)`);
+            container.style.backgroundImage = `linear-gradient(#000, #000), var(--borderGradient)`;
+            textEffect.style.backgroundColor = borderColor;
+
+            container.addEventListener('mousemove', (e) => {
+                const rect = container.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                const angle = Math.atan2(y, x);
+                container.style.setProperty("--rotation", `${angle}rad`);
+            });
+
+            container.addEventListener('mouseenter', () => {
+                text.style.color = hoverTextColor;
+            });
+
+            container.addEventListener('mouseleave', () => {
+                text.style.color = '#f5f5f5';
+            });
+        });
+    </script>
+
+
+
+
+<script async
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUIQh2LJzL0V-fh24QLmiKVrVWCya-ZiA&callback=initMap">
+</script>
+
+
+
+<script>
+    let map;
+    let markers = [];
+    let infoWindows = [];
+    let coverageAreas = {};
+    let polygons = [];
+
+    function initMap() {
+        // Initialize the map with default center
+        map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 12,
+            center: { lat: -6.7924, lng: 39.2083 }, // Default center (Dar es Salaam)
+            styles: [
+                {
+                    featureType: "poi",
+                    elementType: "labels",
+                    stylers: [{ visibility: "off" }]
+                }
+            ]
+        });
+
+        // Add office location marker
+        const officeMarker = new google.maps.Marker({
+            position: { lat: -6.7767459, lng: 39.2431805 },
+            map: map,
+            title: "DERM PLAZA",
+            icon: {
+                url: 'assets/images/office-marker.svg',
+                scaledSize: new google.maps.Size(40, 40),
+                anchor: new google.maps.Point(20, 40)
+            }
+        });
+
+        const officeInfoWindow = new google.maps.InfoWindow({
+            content: `
+                <div style="font-family: Arial, sans-serif; font-size: 14px; line-height: 1.5; max-width: 250px; text-align: center; padding: 15px; border-radius: 10px; background-color: #f9f9f9; color: #444; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                    <h3 style="color: #f79621; margin-bottom: 10px;">DERM PLAZA</h3>
+                    <p>14th Floor, Derm Plaza</p>
+                    <p>Plot 18 Block 45A, Bagamoyo Road</p>
+                    <p>Makumbusho, Dar es Salaam</p>
+                    <p>Contact: +255 699 999 555</p>
+                </div>
+            `
+        });
+
+        officeMarker.addListener('click', () => {
+            infoWindows.forEach(info => info.close());
+            officeInfoWindow.open(map, officeMarker);
+        });
+
+        // Fetch coverage areas from the database
+        fetch('/api/coverage')
+            .then(response => response.json())
+            .then(data => {
+                if (!data || !Array.isArray(data)) {
+                    throw new Error('Invalid data format received');
+                }
+
+                // Clear existing markers and polygons
+                markers.forEach(marker => marker.setMap(null));
+                polygons.forEach(polygon => polygon.setMap(null));
+                markers = [];
+                polygons = [];
+                infoWindows = [];
+                coverageAreas = {};
+
+                // Clear existing coverage list
+                const coverageList = document.getElementById('coverageList');
+                if (coverageList) {
+                    coverageList.innerHTML = '<li class="active" data-location="All Towns">All Towns</li>';
+                }
+
+                // Group coverage areas by region
+                data.forEach(area => {
+                    if (!area || !area.region) return;
+                    
+                    if (!coverageAreas[area.region]) {
+                        coverageAreas[area.region] = [];
+                    }
+                    coverageAreas[area.region].push(area);
+                });
+
+                // Create list items for each region
+                Object.keys(coverageAreas).forEach(region => {
+                    const regionItem = document.createElement('li');
+                    regionItem.className = 'has-dropdow';
+                    regionItem.dataset.location = region;
+                    regionItem.textContent = region;
+
+                    // Create dropdown for subregions
+                    const dropdown = document.createElement('ul');
+                    dropdown.className = 'dropdow';
+
+                    coverageAreas[region].forEach(area => {
+                        if (!area || !area.subregion) return;
+
+                        const subregionItem = document.createElement('li');
+                        subregionItem.dataset.location = area.subregion;
+                        subregionItem.textContent = area.subregion;
+                        
+                        // Add click handler for subregion
+                        subregionItem.addEventListener('click', () => {
+                            // Update active state
+                            document.querySelectorAll('#coverageList li').forEach(li => li.classList.remove('active'));
+                            subregionItem.classList.add('active');
+
+                            // Center map on selected area
+                            if (area.path && Array.isArray(area.path)) {
+                                const bounds = new google.maps.LatLngBounds();
+                                area.path.forEach(point => {
+                                    bounds.extend({ lat: point.lat, lng: point.lng });
+                                });
+                                
+                                // Add padding to the bounds
+                                const padding = 0.05; // 5% padding
+                                const ne = bounds.getNorthEast();
+                                const sw = bounds.getSouthWest();
+                                const latSpan = ne.lat() - sw.lat();
+                                const lngSpan = ne.lng() - sw.lng();
+                                
+                                bounds.extend({
+                                    lat: ne.lat() + latSpan * padding,
+                                    lng: ne.lng() + lngSpan * padding
+                                });
+                                bounds.extend({
+                                    lat: sw.lat() - latSpan * padding,
+                                    lng: sw.lng() - lngSpan * padding
+                                });
+                                
+                                map.fitBounds(bounds);
+                            }
+                        });
+
+                        dropdown.appendChild(subregionItem);
+                    });
+
+                    regionItem.appendChild(dropdown);
+                    if (coverageList) {
+                        coverageList.appendChild(regionItem);
+                    }
+
+                    // Add click handler for region
+                    regionItem.addEventListener('click', () => {
+                        // Update active state
+                        document.querySelectorAll('#coverageList li').forEach(li => li.classList.remove('active'));
+                        regionItem.classList.add('active');
+
+                        // Show all areas in the region
+                        const bounds = new google.maps.LatLngBounds();
+                        coverageAreas[region].forEach(area => {
+                            if (area.path && Array.isArray(area.path)) {
+                                area.path.forEach(point => {
+                                    bounds.extend({ lat: point.lat, lng: point.lng });
+                                });
+                            }
+                        });
+                        
+                        // Add padding to the bounds
+                        const padding = 0.05; // 5% padding
+                        const ne = bounds.getNorthEast();
+                        const sw = bounds.getSouthWest();
+                        const latSpan = ne.lat() - sw.lat();
+                        const lngSpan = ne.lng() - sw.lng();
+                        
+                        bounds.extend({
+                            lat: ne.lat() + latSpan * padding,
+                            lng: ne.lng() + lngSpan * padding
+                        });
+                        bounds.extend({
+                            lat: sw.lat() - latSpan * padding,
+                            lng: sw.lng() - lngSpan * padding
+                        });
+                        
+                        map.fitBounds(bounds);
+                    });
+                });
+
+                // Add click handler for "All Towns"
+                const allTownsItem = document.querySelector('#coverageList li[data-location="All Towns"]');
+                if (allTownsItem) {
+                    allTownsItem.addEventListener('click', () => {
+                        // Update active state
+                        document.querySelectorAll('#coverageList li').forEach(li => li.classList.remove('active'));
+                        allTownsItem.classList.add('active');
+
+                        // Show all areas
+                        const bounds = new google.maps.LatLngBounds();
+                        data.forEach(area => {
+                            if (area.path && Array.isArray(area.path)) {
+                                area.path.forEach(point => {
+                                    bounds.extend({ lat: point.lat, lng: point.lng });
+                                });
+                            }
+                        });
+                        
+                        // Add padding to the bounds
+                        const padding = 0.05; // 5% padding
+                        const ne = bounds.getNorthEast();
+                        const sw = bounds.getSouthWest();
+                        const latSpan = ne.lat() - sw.lat();
+                        const lngSpan = ne.lng() - sw.lng();
+                        
+                        bounds.extend({
+                            lat: ne.lat() + latSpan * padding,
+                            lng: ne.lng() + lngSpan * padding
+                        });
+                        bounds.extend({
+                            lat: sw.lat() - latSpan * padding,
+                            lng: sw.lng() - lngSpan * padding
+                        });
+                        
+                        map.fitBounds(bounds);
+                    });
+                }
+
+                // Add polygons for each coverage area
+                data.forEach(area => {
+                    if (!area || !area.path || !Array.isArray(area.path)) return;
+
+                    const polygon = new google.maps.Polygon({
+                        paths: area.path.map(point => ({ lat: point.lat, lng: point.lng })),
+                        strokeColor: '#F79621',
+                        strokeOpacity: 0.8,
+                        strokeWeight: 2,
+                        fillColor: '#F79621',
+                        fillOpacity: 0.35,
+                        clickable: true
+                    });
+
+                    polygon.setMap(map);
+                    polygons.push(polygon);
+
+                    // Calculate center of the polygon for label placement
+                    const bounds = new google.maps.LatLngBounds();
+                    area.path.forEach(point => {
+                        bounds.extend({ lat: point.lat, lng: point.lng });
+                    });
+                    const center = bounds.getCenter();
+
+                    // Create label overlay
+                    const labelDiv = document.createElement('div');
+                    labelDiv.className = 'polygon-label';
+                    labelDiv.style.cssText = `
+                        position: absolute;
+                        transform: translate(-50%, -50%);
+                        background-color: rgba(247, 150, 33, 0.8);
+                        color: white;
+                        padding: 5px 10px;
+                        border-radius: 4px;
+                        font-weight: bold;
+                        font-size: 14px;
+                        white-space: nowrap;
+                        pointer-events: none;
+                        z-index: 1000;
+                    `;
+                    labelDiv.textContent = 'AREA covered';
+
+                    const labelOverlay = new google.maps.OverlayView();
+                    labelOverlay.onAdd = function() {
+                        this.getPanes().overlayLayer.appendChild(labelDiv);
+                    };
+                    labelOverlay.draw = function() {
+                        const projection = this.getProjection();
+                        const position = projection.fromLatLngToDivPixel(center);
+                        labelDiv.style.left = position.x + 'px';
+                        labelDiv.style.top = position.y + 'px';
+                    };
+                    labelOverlay.onRemove = function() {
+                        labelDiv.parentNode.removeChild(labelDiv);
+                    };
+                    labelOverlay.setMap(map);
+
+                    const infoWindow = new google.maps.InfoWindow({
+                        content: `
+                            <div style="font-family: Arial, sans-serif; font-size: 14px; line-height: 1.5; max-width: 250px; text-align: center; padding: 15px; border-radius: 10px; background-color: #f9f9f9; color: #444; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                                <h3 style="color: #f79621; margin-bottom: 10px;">${area.subregion || 'AREA covered'}</h3>
+                                <p>Region: ${area.region || 'Unknown'}</p>
+                                <p>${area.description || ''}</p>
+                            </div>
+                        `
+                    });
+
+                    polygon.addListener('click', () => {
+                        infoWindows.forEach(info => info.close());
+                        infoWindow.open(map);
+                        
+                        // Center map on clicked area
+                        const bounds = new google.maps.LatLngBounds();
+                        area.path.forEach(point => {
+                            bounds.extend({ lat: point.lat, lng: point.lng });
+                        });
+                        
+                        // Add padding to the bounds
+                        const padding = 0.05; // 5% padding
+                        const ne = bounds.getNorthEast();
+                        const sw = bounds.getSouthWest();
+                        const latSpan = ne.lat() - sw.lat();
+                        const lngSpan = ne.lng() - sw.lng();
+                        
+                        bounds.extend({
+                            lat: ne.lat() + latSpan * padding,
+                            lng: ne.lng() + lngSpan * padding
+                        });
+                        bounds.extend({
+                            lat: sw.lat() - latSpan * padding,
+                            lng: sw.lng() - lngSpan * padding
+                        });
+                        
+                        map.fitBounds(bounds);
+                    });
+
+                    infoWindows.push(infoWindow);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching coverage areas:', error);
+                // Show error message to user
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'alert alert-danger';
+                errorDiv.textContent = 'Failed to load coverage areas. Please try again later.';
+                const bannerContent = document.querySelector('.banner__content');
+                if (bannerContent) {
+                    bannerContent.prepend(errorDiv);
+                }
+            });
+    }
+
+    // Load Google Maps API
+    function loadGoogleMaps() {
+        const script = document.createElement('script');
+        script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDUIQh2LJzL0V-fh24QLmiKVrVWCya-ZiA&callback=initMap`;
+        script.defer = true;
+        script.async = true;
+        document.head.appendChild(script);
+    }
+
+    // Load the map when the page loads
+    document.addEventListener('DOMContentLoaded', loadGoogleMaps);
+</script>
+
+
+    <script src="scree.js"></script>
+
+    <script src="assets/vendors/jquery/jquery-3.7.0.min.js"></script>
+    <script src="assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendors/bootstrap-select/bootstrap-select.min.js"></script>
+    <script src="assets/vendors/jarallax/jarallax.min.js"></script>
+    <script src="assets/vendors/jquery-ui/jquery-ui.js"></script>
+    <script src="assets/vendors/jquery-ajaxchimp/jquery.ajaxchimp.min.js"></script>
+    <script src="assets/vendors/jquery-appear/jquery.appear.min.js"></script>
+    <script src="assets/vendors/jquery-circle-progress/jquery.circle-progress.min.js"></script>
+    <script src="assets/vendors/jquery-magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="assets/vendors/jquery-validate/jquery.validate.min.js"></script>
+    <script src="assets/vendors/nouislider/nouislider.min.js"></script>
+    <script src="assets/vendors/tiny-slider/tiny-slider.js"></script>
+    <script src="assets/vendors/wnumb/wNumb.min.js"></script>
+    <script src="assets/vendors/owl-carousel/js/owl.carousel.min.js"></script>
+    <script src="assets/vendors/wow/wow.js"></script>
+    <script src="assets/vendors/imagesloaded/imagesloaded.min.js"></script>
+    <script src="assets/vendors/isotope/isotope.js"></script>
+    <script src="assets/vendors/slick/slick.min.js"></script>
+    <script src="assets/vendors/countdown/countdown.min.js"></script>
+    <script src="assets/vendors/jquery-circleType/jquery.circleType.js"></script>
+    <script src="assets/vendors/jquery-lettering/jquery.lettering.min.js"></script>
+    <!-- gsap js -->
+    <script src="assets/vendors/gsap/gsap.js"></script>
+    <script src="assets/vendors/gsap/scrolltrigger.min.js"></script>
+    <script src="assets/vendors/gsap/splittext.min.js"></script>
+    <script src="assets/vendors/gsap/ienet-split.js"></script>
+    <!-- template js -->
+    <script src="assets/js/ienet.js"></script>
+</body>
+
+
+<!-- Mirrored from bracketweb.com/ienet-html-main/about.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Nov 2024 06:38:27 GMT -->
+
+</html>

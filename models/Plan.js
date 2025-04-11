@@ -2,11 +2,18 @@ const mongoose = require('mongoose');
 
 const planSchema = new mongoose.Schema({
     name: { type: String, required: true, trim: true },
+    type: { 
+        type: String, 
+        required: true, 
+        enum: ['residential', 'business'],
+        default: 'residential'
+    },
     speed: { type: Number, required: true, min: 0 },
     price: { type: Number, required: true, min: 0 },
     supportedDevices: { type: Number, required: true, min: 1 },
     features: [{ type: String, required: true, trim: true }],
     imageUrl: { type: String, trim: true },
+    isPopular: { type: Boolean, default: false },
     createdAt: { type: Date, default: Date.now }
 });
 

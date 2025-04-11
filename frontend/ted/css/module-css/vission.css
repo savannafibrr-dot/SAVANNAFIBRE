@@ -1,0 +1,220 @@
+/*==============================================
+    Vission Mission Sec
+===============================================*/
+.vission-mission-sec {
+    position: relative;
+    display: block;
+    z-index: 2;
+}
+
+.vission-mission__left {
+    position: relative;
+    display: block;
+}
+
+.vission-mission__single {
+    position: relative;
+    display: block;
+    border: 2px solid #f6f6f6;
+    border-radius: var(--tedlife-bdr-radius);
+    background-color: var(--tedlife-white);
+    padding: 40px 30px 43px;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.vission-mission__single:hover {
+    transform: translateY(-10px);
+}
+
+.vission-mission__icon {
+    height: 58px;
+    width: 58px;
+    background-color: var(--tedlife-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--tedlife-bdr-radius);
+}
+
+.vission-mission__icon span {
+    position: relative;
+    display: inline-block;
+    font-size: 25px;
+    color: var(--tedlife-base);
+    transition: all 500ms linear;
+    transition-delay: 0.1s;
+}
+
+.vission-mission__single:hover .vission-mission__icon span {
+    transform: rotateY(360deg);
+}
+
+.vission-mission__title {
+    font-size: 30px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 34px;
+    margin-bottom: 13px;
+}
+
+.vission-mission__title a {
+    color: var(--tedlife-black);
+    transition: all 500ms ease;
+}
+
+.vission-mission__title a:hover {
+    color: var(--tedlife-base);
+}
+
+.vission-mission__text {
+    margin: 0;
+}
+
+.vission-mission__video-box {
+    position: relative;
+    display: block;
+}
+
+.vission-mission__video-box-img {
+    position: relative;
+    display: block;
+    border-radius: var(--tedlife-bdr-radius);
+    background-color: var(--tedlife-black);
+    overflow: hidden;
+}
+
+.vission-mission__video-box-img::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    content: '';
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, .2);
+    border-radius: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    z-index: 1;
+}
+
+.vission-mission__video-box-img:hover:before {
+    -webkit-animation: circle .75s;
+    animation: circle .75s;
+}
+
+.vission-mission__video-box-img>img {
+    width: 100%;
+    border-radius: var(--tedlife-bdr-radius);
+    mix-blend-mode: luminosity;
+}
+
+.vission-mission__video-link {
+    position: relative;
+    display: block;
+}
+
+.vission-mission__video-icon {
+    height: 95px;
+    width: 95px;
+    background-color: var(--tedlife-base);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+    border-radius: var(--tedlife-bdr-radius);
+    z-index: 1;
+}
+
+.vission-mission__video-icon span {
+    position: relative;
+    display: inline-block;
+    font-size: 30px;
+    color: var(--tedlife-black);
+    transition: all 0.5s ease;
+}
+
+.vission-mission__video-icon:hover span {
+    color: var(--tedlife-base);
+}
+
+.vission-mission__video-icon::after {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    content: "";
+    border-radius: var(--tedlife-bdr-radius);
+    background-color: var(--tedlife-base);
+    transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    z-index: -1;
+}
+
+.vission-mission__video-icon:hover::after {
+    background-color: var(--tedlife-black);
+}
+
+.vission-mission__video-icon:before {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    content: "";
+    border-radius: var(--tedlife-bdr-radius);
+    background-color: rgba(var(--tedlife-base-rgb), .5);
+    z-index: -1;
+}
+
+.vission-mission__video-link .ripple,
+.vission-mission__video-icon .ripple:before,
+.vission-mission__video-icon .ripple:after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 115px;
+    height: 115px;
+    transform: translate(-50%, -50%);
+    -ms-box-shadow: 0 0 0 0 rgba(var(--tedlife-base-rgb), 0.6);
+    -o-box-shadow: 0 0 0 0 rgba(var(--tedlife-base-rgb), 0.6);
+    box-shadow: 0 0 0 0 rgba(var(--tedlife-base-rgb), 0.6);
+    -webkit-animation: ripple 3s infinite;
+    animation: ripple 3s infinite;
+    border-radius: var(--tedlife-bdr-radius);
+}
+
+.vission-mission__video-icon .ripple:before {
+    -webkit-animation-delay: 0.9s;
+    animation-delay: 0.9s;
+    content: "";
+    position: absolute;
+}
+
+.vission-mission__video-icon .ripple:after {
+    -webkit-animation-delay: 0.6s;
+    animation-delay: 0.6s;
+    content: "";
+    position: absolute;
+}
+
+
+/*--------------------------------------------------------------
+# Vission Mission Two
+--------------------------------------------------------------*/
+.vission-mission-two {
+    padding-top: 120px;
+}
+
+
+/*--------------------------------------------------------------
+# End
+--------------------------------------------------------------*/

@@ -1,0 +1,145 @@
+body,
+body.boxed-wrapper .page-wrapper,
+.services-one-sec:before,
+.feature-one__single,
+.testimonial-one-sec__single {
+    background-color: #1c1d21;
+}
+
+.brand-one,
+.vission-mission__icon,
+.team-one-sec__content,
+.testimonial-one-sec,
+.news-one-sec__btn {
+    background-color: var(--tedlife-black);
+}
+
+.about-one-sec__since:before,
+.brand-one__img:before {
+    background: #1a1a1a;
+}
+
+.services-one-sec__content-inner:before {
+    border: 2px solid rgba(var(--tedlife-white-rgb), .05);
+    border-top: 0;
+}
+
+.services-one-sec__text,
+.about-one-sec__content-text,
+.about-one-sec__content-right-text,
+.about-one-sec__name,
+.why-choose-one-sec__text,
+.tabs-content__inner-text,
+.feature-one__text,
+.team-one-sec__title,
+.testimonial-one-sec__text,
+.testimonial-one-sec__client-info p,
+.news-one__meta li a,
+.news-one-sec__text,
+.vission-mission__text {
+    color: #bababa;
+}
+
+.about-one-sec__big-text,
+.section-title__title,
+.about-one-sec__content-title,
+.vission-mission__title a,
+.why-choose-one-sec__progress-box .progress-box .bar-title,
+.tabs-content__inner-points li,
+.feature-one__title a,
+.feature-one__read-more,
+.feature-one__count:before,
+.project-filter.style1 li .filter-text,
+.team-one-sec__name a,
+.testimonial-one-sec__client-info h5 a,
+.news-one-sec__title a,
+.news-one-sec__btn {
+    color: var(--tedlife-white);
+}
+
+.about-one-sec__right-sing img,
+.about-one-sec__shape-3 img,
+.brand-one__img>img {
+    filter: invert(1);
+}
+
+.about-one__shape-1 img {
+    opacity: .10;
+}
+
+.about-one-sec__content-right-text-box:before {
+    background-color: rgba(var(--tedlife-white-rgb), .05);
+}
+
+.brand-one__bg {
+    opacity: .70;
+}
+
+.vission-mission__single {
+    border: 2px solid rgba(var(--tedlife-white-rgb), .05);
+    background-color: #1c1d21;
+}
+
+.why-choose-one-sec-shape-1,
+.why-choose-one-sec-shape-2 {
+    opacity: 0.01;
+    filter: invert(1);
+}
+
+.why-choose-one-sec__progress-box .progress-box .bar {
+    background-color: rgba(var(--tedlife-white-rgb), .10);
+}
+
+
+.why-choose-one-sec__btn:hover {
+    color: var(--tedlife-black);
+}
+
+.why-choose-one-sec__btn span::before {
+    background-color: var(--tedlife-white);
+}
+
+.why-choose-one-sec .tab-buttons .tab-btn span {
+    color: var(--tedlife-white);
+    background-color: #1a1a1a;
+}
+
+.tabs-content__inner-points li:before {
+    background-color: var(--tedlife-white);
+}
+
+.portfolio-one-sec__shape-2 img,
+.portfolio-one-sec__shape-1 img,
+.team-one-sec__shape-2 img {
+    opacity: .05;
+}
+
+.team-one-sec__social a {
+    color: var(--tedlife-white);
+    background-color: #1c1d21;
+}
+
+.testimonial-one-sec__bg {
+    filter: none;
+}
+
+.testimonial-one__carousel.owl-theme .owl-nav .owl-next:hover,
+.testimonial-one__carousel.owl-theme .owl-nav .owl-prev:hover {
+    background-color: #1c1d21 !important;
+    color: var(--tedlife-white) !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* The End */

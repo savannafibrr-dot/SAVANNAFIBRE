@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Marker background -->
+    <circle cx="20" cy="20" r="18" fill="#F79621"/>
+    
+    <!-- Shopping bag icon -->
+    <path d="M15 15H25V25C25 25.5523 24.5523 26 24 26H16C15.4477 26 15 25.5523 15 25V15Z" fill="white"/>
+    <path d="M15 15V12C15 11.4477 15.4477 11 16 11H24C24.5523 11 25 11.4477 25 12V15" fill="white"/>
+    <path d="M17 15V13C17 12.4477 17.4477 12 18 12H22C22.5523 12 23 12.4477 23 13V15" fill="#F79621"/>
+    
+    <!-- Marker point -->
+    <path d="M20 40L10 20L30 20L20 40Z" fill="#F79621"/>
+</svg> 

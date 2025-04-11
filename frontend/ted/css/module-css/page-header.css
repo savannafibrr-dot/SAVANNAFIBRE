@@ -1,0 +1,145 @@
+/*==============================================
+    Page Header
+===============================================*/
+.page-header {
+    position: relative;
+    display: block;
+    padding: 340px 0 189px;
+    background-color: var(--tedlife-black);
+    overflow: hidden;
+    z-index: 1;
+}
+
+.page-header__bg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    mix-blend-mode: luminosity;
+    z-index: -1;
+}
+
+.page-header-shape-1 {
+    position: absolute;
+    top: -182px;
+    right: 125px;
+    width: 495px;
+    height: 350px;
+    background-color: var(--tedlife-black);
+    mix-blend-mode: screen;
+    transform: rotate(45deg);
+    border-radius: 20px;
+    animation: shapeTopBottom 9s linear 0ms infinite;
+}
+
+.page-header-shape-2 {
+    position: absolute;
+    top: -70px;
+    right: -250px;
+    width: 495px;
+    height: 350px;
+    background-color: var(--tedlife-black);
+    mix-blend-mode: soft-light;
+    transform: rotate(45deg);
+    border-radius: 20px;
+    z-index: 1;
+    animation: shapeTopBottom 9s linear 1s infinite;
+}
+
+.page-header-shape-3 {
+    position: absolute;
+    top: 221px;
+    right: -394px;
+    width: 495px;
+    height: 350px;
+    background-color: var(--tedlife-white);
+    mix-blend-mode: soft-light;
+    transform: rotate(45deg);
+    border-radius: 20px;
+    z-index: 1;
+    animation: shapeTopBottom 9s linear 2s infinite;
+}
+
+.page-header__overly {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #000000;
+    opacity: 0.6;
+    z-index: -1;
+}
+
+.page-header__inner {
+    position: relative;
+    display: block;
+    z-index: 15;
+    text-align: center;
+}
+
+.page-header__inner h2 {
+    font-size: 100px;
+    font-weight: 600;
+    line-height: 100px;
+    text-transform: uppercase;
+    color: var(--tedlife-white);
+    letter-spacing: 0.01em;
+    margin-bottom: 1px;
+}
+
+.thm-breadcrumb__box {
+    position: relative;
+    display: block;
+    z-index: 1;
+}
+
+.thm-breadcrumb {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.thm-breadcrumb li {
+    position: relative;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--tedlife-white);
+    text-transform: uppercase;
+    font-family: var(--tedlife-font-two);
+    letter-spacing: 0.1em;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.thm-breadcrumb li a {
+    position: relative;
+    display: inline-block;
+    color: var(--tedlife-white);
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+    font-family: var(--tedlife-font-two);
+}
+
+.thm-breadcrumb li:hover a {
+    color: var(--tedlife-base);
+}
+
+.thm-breadcrumb li.active {
+    color: var(--tedlife-base);
+}
+
+
+
+
+/*--------------------------------------------------------------
+# End
+--------------------------------------------------------------*/

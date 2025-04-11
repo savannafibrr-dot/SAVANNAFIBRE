@@ -71,7 +71,7 @@ const isAuthenticated = (req, res, next) => {
 };
 
 // Get all plans
-router.get('/', isAuthenticated, async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const plans = await Plan.find().sort({ createdAt: -1 });
         res.json(plans);
@@ -85,10 +85,12 @@ router.post('/', isAuthenticated, upload.single('image'), handleMulterError, asy
     try {
         const planData = {
             name: req.body.name,
+            type: req.body.type || 'residential', // Default to residential if not specified
             speed: parseInt(req.body.speed),
             price: parseInt(req.body.price),
             supportedDevices: parseInt(req.body.supportedDevices),
-            features: JSON.parse(req.body.features)
+            features: JSON.parse(req.body.features),
+            isPopular: req.body.isPopular === 'true' || req.body.isPopular === true // Handle both string and boolean
         };
 
         if (req.file) {
@@ -112,7 +114,7 @@ router.post('/', isAuthenticated, upload.single('image'), handleMulterError, asy
 });
 
 // Get single plan
-router.get('/:id', isAuthenticated, async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         const plan = await Plan.findById(req.params.id);
         if (!plan) {
@@ -134,10 +136,12 @@ router.put('/:id', isAuthenticated, upload.single('image'), handleMulterError, a
 
         const planData = {
             name: req.body.name,
+            type: req.body.type || plan.type, // Keep existing type if not provided
             speed: parseInt(req.body.speed),
             price: parseInt(req.body.price),
             supportedDevices: parseInt(req.body.supportedDevices),
-            features: JSON.parse(req.body.features)
+            features: JSON.parse(req.body.features),
+            isPopular: req.body.isPopular === 'true' || req.body.isPopular === true // Handle both string and boolean
         };
 
         // If a new image is uploaded

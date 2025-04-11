@@ -1,0 +1,120 @@
+/*--------------------------------------------------------------
+# Newsletter One
+--------------------------------------------------------------*/
+.newsletter-one {
+    position: relative;
+    display: block;
+    z-index: 2;
+}
+
+.newsletter-one__inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--tedlife-base);
+    padding: 60px 60px 60px;
+    border-radius: var(--tedlife-bdr-radius);
+    overflow: hidden;
+    z-index: 1;
+}
+
+.newsletter-one__shape-1 {
+    position: absolute;
+    top: -50px;
+    left: 0;
+    opacity: 0.2;
+}
+
+.newsletter-one__shape-1 img {
+    width: auto;
+}
+
+.newsletter-one__shape-2 {
+    position: absolute;
+    top: -30px;
+    right: 0;
+    opacity: 0.2;
+}
+
+.newsletter-one__shape-2 img {
+    width: auto;
+}
+
+.newsletter-one__title-box {
+    position: relative;
+    display: block;
+    top: 4px;
+}
+
+.newsletter-one__title {
+    font-size: 35px;
+    font-weight: 700;
+    line-height: 50px;
+    text-transform: uppercase;
+}
+
+.newsletter-one__text {
+    font-weight: 500;
+    color: var(--tedlife-black);
+    margin-top: 7px;
+}
+
+.newsletter-one__form-box {
+    position: relative;
+    display: block;
+    max-width: 720px;
+    width: 100%;
+}
+
+.newsletter-one__form {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.newsletter-one__input-box {
+    position: relative;
+    display: block;
+    width: 230px;
+}
+
+.newsletter-one__input-box input[type="text"],
+.newsletter-one__input-box input[type="email"] {
+    height: 60px;
+    width: 100%;
+    border: none;
+    background-color: var(--tedlife-white);
+    padding-left: 20px;
+    padding-right: 20px;
+    outline: none;
+    font-size: 15px;
+    color: var(--tedlife-gray);
+    display: block;
+    font-weight: 400;
+    border-radius: var(--tedlife-bdr-radius);
+}
+
+.newsletter-one__btn-box {
+    position: relative;
+    display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*--------------------------------------------------------------
+# End
+--------------------------------------------------------------*/

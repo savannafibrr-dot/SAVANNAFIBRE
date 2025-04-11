@@ -1,0 +1,529 @@
+/*==============================================
+   Counter One
+===============================================*/
+.contact-one {
+    position: relative;
+    display: block;
+    padding: 120px 0 120px;
+    z-index: 2;
+}
+
+.contact-one__left {
+    position: relative;
+    display: block;
+    margin-right: 120px;
+}
+
+.contact-one__left .section-title {
+    margin-bottom: 15px;
+}
+
+.contact-one__img-and-text {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin: 29px 0 40px;
+}
+
+.contact-one__img {
+    position: relative;
+    display: block;
+    max-width: 270px;
+    width: 100%;
+    border-radius: var(--tedlife-bdr-radius);
+}
+
+.contact-one__img img {
+    width: auto;
+    border-radius: var(--tedlife-bdr-radius);
+    filter: grayscale(1);
+}
+
+.contact-one__img-text {
+    font-weight: 500;
+    font-style: italic;
+    color: var(--tedlife-black);
+}
+
+.contact-one__right {
+    position: relative;
+    display: block;
+    background-color: #f7f7f7;
+    border-radius: 20px;
+    padding: 50px 40px 50px;
+    margin-top: -240px;
+}
+
+.contact-one__from-title {
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 40px;
+    margin-bottom: 34px;
+    text-transform: uppercase;
+}
+
+.contact-one__form {
+    position: relative;
+    display: block;
+}
+
+.contact-one__input-box {
+    position: relative;
+    display: block;
+    margin-bottom: 23px;
+}
+
+.contact-one__input-box input[type="text"],
+.contact-one__input-box input[type="email"] {
+    height: 65px;
+    width: 100%;
+    background-color: var(--tedlife-white);
+    border: none;
+    padding-left: 25px;
+    padding-right: 25px;
+    outline: none;
+    font-size: 18px;
+    color: var(--tedlife-gray);
+    display: block;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: var(--tedlife-font-two);
+    border-radius: var(--tedlife-bdr-radius);
+}
+
+.contact-one__input-box textarea {
+    position: relative;
+    height: 210px;
+    width: 100%;
+    background-color: var(--tedlife-white);
+    border: none;
+    padding-top: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    outline: none;
+    font-size: 18px;
+    color: var(--tedlife-gray);
+    display: block;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: var(--tedlife-font-two);
+    border-radius: var(--tedlife-bdr-radius);
+    margin-bottom: 0;
+}
+
+.contact-one__input-box.text-message-box {
+    height: 210px;
+    margin-bottom: 30px;
+}
+
+.contact-one__btn-box {
+    position: relative;
+    display: block;
+}
+
+.contact-one__btn {
+    border: none;
+}
+
+/*--------------------------------------------------------------
+# Contact Two
+--------------------------------------------------------------*/
+.contact-two {
+    position: relative;
+    display: block;
+    background-color: #0c0d0f;
+    padding: 120px 0 120px;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.contact-two__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    mix-blend-mode: luminosity;
+    opacity: .15;
+    z-index: -1;
+}
+
+.contact-two__img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+}
+
+.contact-two__img img {
+    width: auto;
+    filter: grayscale(1);
+    animation: topBottom 3s ease-in-out infinite;
+}
+
+.contact-two__left {
+    position: relative;
+    display: block;
+    margin-right: 40px;
+}
+
+.contact-two__left .section-title {
+    margin-top: -1px;
+}
+
+.contact-two__left .section-title__title {
+    color: var(--tedlife-white);
+}
+
+.contact-two__form {
+    position: relative;
+    display: block;
+}
+
+.contact-two__input-box {
+    position: relative;
+    display: block;
+    margin-bottom: 30px;
+}
+
+.contact-two__input-box input[type="text"],
+.contact-two__input-box input[type="email"] {
+    height: 60px;
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid rgba(var(--tedlife-white-rgb), .10);
+    padding-left: 20px;
+    padding-right: 20px;
+    outline: none;
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(var(--tedlife-white-rgb), .70);
+    display: block;
+    border-radius: var(--tedlife-bdr-radius);
+}
+
+.contact-two__input-box .select-box {
+    width: 100%;
+}
+
+.contact-two__input-box .nice-select {
+    height: 60px;
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid rgba(var(--tedlife-white-rgb), .10);
+    padding-left: 20px;
+    padding-right: 20px;
+    outline: none;
+    font-size: 16px;
+    color: rgba(var(--tedlife-white-rgb), .70);
+    font-weight: 400;
+    border-radius: var(--tedlife-bdr-radius);
+    line-height: 60px;
+    display: block;
+    float: none;
+}
+
+.contact-two__input-box .nice-select:after {
+    position: absolute;
+    top: 22px;
+    right: 20px;
+    width: 8px;
+    height: 8px;
+    border-bottom: 2px solid rgba(var(--tedlife-white-rgb), .70);
+    border-right: 2px solid rgba(var(--tedlife-white-rgb), .70);
+    margin-top: 0px;
+    z-index: 10;
+}
+
+.contact-two__input-box .nice-select .option {
+    color: var(--tedlife-white);
+}
+
+.contact-two__input-box .nice-select .option.selected {
+    font-weight: 500;
+}
+
+.contact-two__input-box .nice-select .list {
+    background-color: var(--tedlife-base);
+}
+
+.contact-two__input-box .nice-select .option:hover,
+.contact-two__input-box .nice-select .option.focus,
+.contact-two__input-box .nice-select .option.selected.focus {
+    color: var(--tedlife-white);
+}
+
+.contact-two__input-box textarea {
+    height: 175px;
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid rgba(var(--tedlife-white-rgb), .10);
+    padding: 15px 20px 30px;
+    outline: none;
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(var(--tedlife-white-rgb), .70);
+    position: relative;
+    display: block;
+    border-radius: var(--tedlife-bdr-radius);
+}
+
+.contact-two__input-box.text-message-box {
+    height: 175px;
+}
+
+.contact-two__btn-box {
+    position: relative;
+    display: block;
+}
+
+.contact-two__btn {
+    border: none;
+}
+
+/*--------------------------------------------------------------
+# Contact Info
+--------------------------------------------------------------*/
+.contact-info {
+    position: relative;
+    display: block;
+    padding: 120px 0 90px;
+    z-index: 5;
+}
+
+.contact-info__single {
+    position: relative;
+    display: block;
+    border-radius: var(--tedlife-bdr-radius);
+    background-color: var(--tedlife-primary);
+    text-align: center;
+    padding: 40px 40px 42px;
+    margin-bottom: 30px;
+}
+
+.contact-info__icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    background-color: var(--tedlife-white);
+    border: 1px solid var(--tedlife-bdr-color);
+    border-radius: 50%;
+    margin: 0 auto;
+    z-index: 1;
+}
+
+.contact-info__icon:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: "";
+    border-radius: 50%;
+    background-color: var(--tedlife-black);
+    transform: scale(0);
+    transform-origin: center;
+    transform-style: preserve-3d;
+    transition: all 0.4s cubic-bezier(0.62, 0.21, 0.45, 1.52);
+    z-index: -1;
+}
+
+.contact-info__single:hover .contact-info__icon:before {
+    transform: scaleX(1);
+}
+
+.contact-info__icon span {
+    position: relative;
+    display: inline-block;
+    font-size: 32px;
+    color: var(--tedlife-black);
+    transition: all 500ms linear;
+    transition-delay: 0.1s;
+    transform: scale(1);
+}
+
+.contact-info__single:hover .contact-info__icon span {
+    transform: scale(0.9);
+    color: var(--tedlife-white);
+}
+
+
+.contact-info__single p {
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.contact-info__single h3 {
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 30px;
+    color: var(--tedlife-black);
+    text-transform: uppercase;
+}
+
+.contact-info__single h3 a {
+    color: var(--tedlife-black);
+}
+
+.contact-info__single h3 a:hover {
+    color: var(--tedlife-base)
+}
+
+
+/*--------------------------------------------------------------
+# Contact Page
+--------------------------------------------------------------*/
+.contact-page {
+    position: relative;
+    display: block;
+    padding: 0 0 120px;
+    z-index: 10;
+}
+
+.contact-page .container {
+    max-width: 768px;
+}
+
+.contact-page__inner {
+    position: relative;
+    display: block;
+}
+
+.contact-page__form {
+    position: relative;
+    display: block;
+}
+
+.contact-page__input-box {
+    position: relative;
+    display: block;
+    margin-bottom: 30px;
+}
+
+.contact-page__input-box input[type="text"],
+.contact-page__input-box input[type="email"] {
+    height: 60px;
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid rgba(var(--tedlife-gray-rgb), .2);
+    padding-left: 20px;
+    padding-right: 20px;
+    outline: none;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--tedlife-gray);
+    display: block;
+    border-radius: var(--tedlife-bdr-radius);
+}
+
+.contact-page__input-box .select-box {
+    width: 100%;
+}
+
+.contact-page__input-box .nice-select {
+    height: 60px;
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid rgba(var(--tedlife-gray-rgb), .20);
+    padding-left: 20px;
+    padding-right: 20px;
+    outline: none;
+    font-size: 16px;
+    color: var(--tedlife-gray);
+    font-weight: 400;
+    border-radius: var(--tedlife-bdr-radius);
+    line-height: 60px;
+    display: block;
+    float: none;
+}
+
+.contact-page__input-box .nice-select:after {
+    position: absolute;
+    top: 22px;
+    right: 20px;
+    width: 8px;
+    height: 8px;
+    border-bottom: 2px solid var(--tedlife-gray);
+    border-right: 2px solid var(--tedlife-gray);
+    margin-top: 0px;
+    z-index: 10;
+}
+
+.contact-page__input-box .nice-select .option {
+    color: var(--tedlife-white);
+}
+
+.contact-page__input-box .nice-select .option.selected {
+    font-weight: 500;
+}
+
+.contact-page__input-box .nice-select .list {
+    background-color: var(--tedlife-base);
+}
+
+.contact-page__input-box .nice-select .option:hover,
+.contact-page__input-box .nice-select .option.focus,
+.contact-page__input-box .nice-select .option.selected.focus {
+    color: var(--tedlife-white);
+}
+
+.contact-page__input-box textarea {
+    height: 175px;
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid rgba(var(--tedlife-gray-rgb), .2);
+    padding-left: 20px;
+    padding-right: 20px;
+    outline: none;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--tedlife-gray);
+    display: block;
+    border-radius: var(--tedlife-bdr-radius);
+}
+
+.contact-page__input-box.text-message-box {
+    height: 175px;
+}
+
+.contact-page__btn-box {
+    position: relative;
+    display: block;
+    text-align: center;
+}
+
+.contact-page__btn {
+    border: none;
+}
+
+/*--------------------------------------------------------------
+# Google Map
+--------------------------------------------------------------*/
+.google-map {
+    position: relative;
+    display: block;
+    margin-bottom: -75px;
+    z-index: 2;
+}
+
+.google-map__one {
+    position: relative;
+    display: block;
+    border: none;
+    height: 555px;
+    width: 100%;
+    filter: grayscale(1);
+}
+
+/*--------------------------------------------------------------
+# End
+--------------------------------------------------------------*/

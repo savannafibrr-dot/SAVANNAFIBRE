@@ -1,0 +1,532 @@
+/*==============================================
+    Why Choose One Sec
+===============================================*/
+.why-choose-one-sec {
+    position: relative;
+    display: block;
+    padding: 120px 0 120px;
+    overflow: hidden;
+}
+
+.why-choose-one-sec-shape-1 {
+    position: absolute;
+    top: -546px;
+    left: 0;
+    opacity: 0.03;
+    z-index: -1;
+}
+
+.why-choose-one-sec-shape-1 img {
+    width: auto;
+}
+
+.why-choose-one-sec-shape-2 {
+    position: absolute;
+    bottom: -440px;
+    right: 0;
+    opacity: 0.03;
+    z-index: -1;
+}
+
+.why-choose-one-sec-shape-2 img {
+    width: auto;
+    animation: topBottom 3s ease-in-out infinite;
+}
+
+.why-choose-one-sec__left {
+    position: relative;
+    display: block;
+    margin-right: 100px;
+}
+
+.why-choose-one-sec__left .section-title {
+    margin-bottom: 28px;
+}
+
+.why-choose-one-sec__progress-box {
+    position: relative;
+    display: block;
+    margin-top: 28px;
+    margin-bottom: 40px;
+}
+
+.why-choose-one-sec__progress-box .progress-box {
+    position: relative;
+    display: block;
+}
+
+.why-choose-one-sec__progress-box .progress-box .bar-title {
+    position: relative;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    font-family: var(--tedlife-font-two);
+    color: var(--tedlife-black);
+}
+
+.why-choose-one-sec__progress-box .progress-box .bar {
+    position: relative;
+    width: 100%;
+    height: 7px;
+    background-color: rgba(var(--tedlife-black-rgb), .10);
+    border-radius: 4px;
+}
+
+.why-choose-one-sec__progress-box .progress-box .bar-inner {
+    position: relative;
+    display: block;
+    width: 0px;
+    height: 7px;
+    background: var(--tedlife-base);
+    border-radius: 4px;
+    -webkit-transition: all 1500ms ease;
+    transition: all 1500ms ease;
+}
+
+.why-choose-one-sec__progress-box .progress-box .count-box {
+    position: absolute;
+    right: 0px;
+    margin-right: -40px;
+    bottom: 18px;
+    width: 40px;
+    height: 22px;
+    background: var(--tedlife-black);
+    color: #ffffff;
+    line-height: 22px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 5px;
+    text-align: center;
+    letter-spacing: 0.1em;
+    opacity: 0;
+    font-family: var(--tedlife-font-two);
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.why-choose-one-sec__progress-box .progress-box .counted .count-box {
+    opacity: 1;
+}
+
+.why-choose-one-sec__progress-box .progress-box .count-box:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 100%;
+    margin-top: -5px;
+    border: 5px solid transparent;
+    border-top: 5px solid var(--tedlife-black);
+    border-left: 5px solid var(--tedlife-black);
+}
+
+.why-choose-one-sec__right {
+    position: relative;
+    display: block;
+}
+
+.why-choose-one-sec__tab-box {
+    position: relative;
+    display: block;
+}
+
+.why-choose-one-sec .tab-buttons {
+    position: relative;
+    display: block;
+    margin-bottom: 50px;
+}
+
+.why-choose-one-sec .tab-buttons .tab-btn {
+    position: relative;
+    float: left;
+}
+
+.why-choose-one-sec .tab-buttons .tab-btn:nth-child(1) span {
+    border-top-left-radius: var(--tedlife-bdr-radius);
+    border-bottom-left-radius: var(--tedlife-bdr-radius);
+}
+
+.why-choose-one-sec .tab-buttons .tab-btn:nth-child(3) span {
+    border-top-right-radius: var(--tedlife-bdr-radius);
+    border-bottom-right-radius: var(--tedlife-bdr-radius);
+}
+
+.why-choose-one-sec .tab-buttons .tab-btn+.tab-btn {
+    margin-left: 0;
+}
+
+.why-choose-one-sec .tab-buttons .tab-btn span {
+    position: relative;
+    display: inline-block;
+    font-size: 24px;
+    color: var(--tedlife-black);
+    background-color: var(--tedlife-primary);
+    padding: 21px 38px 17px;
+    cursor: pointer;
+    transition: all 200ms linear;
+    transition-delay: 0.1s;
+    z-index: 1;
+    text-transform: uppercase;
+    font-family: var(--tedlife-font-two);
+}
+
+.why-choose-one-sec .tab-buttons .tab-btn.active-btn span {
+    color: var(--tedlife-base);
+    border-radius: var(--tedlife-bdr-radius);
+}
+
+.why-choose-one-sec .tab-buttons .tab-btn span:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: "";
+    background-color: var(--tedlife-black);
+    border-radius: var(--tedlife-bdr-radius);
+    border-bottom-right-radius: 0;
+    background-position: top bottom;
+    transition-delay: .1s;
+    transition-timing-function: ease-in-out;
+    transition-duration: .5s;
+    transition-property: all;
+    transform-origin: top;
+    transform-style: preserve-3d;
+    transform: scaleY(0);
+    z-index: -1;
+}
+
+.why-choose-one-sec .tab-buttons .tab-btn.active-btn span:before {
+    transform: scaleY(1.0);
+}
+
+.why-choose-one-sec .tab-buttons .tab-btn span:after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -40px;
+    border-top: 20px solid var(--tedlife-black);
+    border-bottom: 20px solid transparent;
+    border-left: 10px solid transparent;
+    opacity: 0;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.why-choose-one-sec .tab-buttons .tab-btn.active-btn span:after {
+    opacity: 1;
+    transition-delay: 500ms;
+}
+
+.why-choose-one-sec .tabs-content {
+    position: relative;
+    display: block;
+}
+
+.why-choose-one-sec .tabs-content .tab {
+    position: relative;
+    display: none;
+    -webkit-transform: translateY(35px);
+    -ms-transform: translateY(35px);
+    transform: translateY(35px);
+    -webkit-transition: all 600ms ease;
+    -moz-transition: all 600ms ease;
+    -ms-transition: all 600ms ease;
+    -o-transition: all 600ms ease;
+    transition: all 600ms ease;
+    z-index: 10;
+}
+
+.why-choose-one-sec .tabs-content .tab.active-tab {
+    display: block;
+    margin-top: 0px;
+    -webkit-transform: translateY(0px);
+    -ms-transform: translateY(0px);
+    transform: translateY(0px);
+
+}
+
+.tabs-content__inner {
+    position: relative;
+    display: block;
+}
+
+.tabs-content__inner-left {
+    position: relative;
+    display: block;
+    margin-top: -9px;
+}
+
+.tabs-content__inner-text {
+    margin: 0;
+}
+
+.tabs-content__inner-points {
+    position: relative;
+    display: block;
+    margin-top: 20px;
+}
+
+.tabs-content__inner-points li {
+    position: relative;
+    display: block;
+    font-size: 16px;
+    color: var(--tedlife-black);
+    padding-left: 15px;
+}
+
+.tabs-content__inner-points li:before {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 5px;
+    width: 5px;
+    content: "";
+    background-color: var(--tedlife-black);
+    border-radius: 50%;
+    transform: translateY(-50%);
+}
+
+.why-choose-one-sec__btn-box {
+    position: relative;
+    display: block;
+}
+
+.tabs-content__inner-right {
+    position: relative;
+    display: block;
+}
+
+.tabs-content__inner-img {
+    position: relative;
+    display: block;
+    background-color: var(--tedlife-black);
+    border-radius: var(--tedlife-bdr-radius);
+}
+
+.tabs-content__inner-img img {
+    width: 100%;
+    mix-blend-mode: luminosity;
+    border-radius: var(--tedlife-bdr-radius);
+}
+
+/*--------------------------------------------------------------
+# Why Choose Two
+--------------------------------------------------------------*/
+.why-choose-two {
+    position: relative;
+    display: block;
+    padding: 120px 0 120px;
+    z-index: 1;
+}
+
+.why-choose-two__shape-1 {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    opacity: .4;
+    z-index: -1;
+}
+
+.why-choose-two__shape-1 img {
+    width: auto;
+}
+
+.why-choose-two__shape-2 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: rotate(-150deg);
+    opacity: .4;
+    z-index: -1;
+}
+
+.why-choose-two__shape-2 img {
+    width: auto;
+    transform: rotate(-150deg);
+}
+
+.why-choose-two::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 625px;
+    background-color: #f7f7f7;
+    z-index: -1;
+}
+
+.why-choose-two__left {
+    position: relative;
+    display: block;
+}
+
+.why-choose-two__img {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: var(--tedlife-bdr-radius);
+    z-index: 1;
+}
+
+.why-choose-two__img::after {
+    background: hsla(0, 0%, 100%, 0.5);
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 0;
+    opacity: 1;
+    z-index: 9;
+    pointer-events: none;
+}
+
+.why-choose-two__img:hover::after {
+    height: 100%;
+    opacity: 0;
+    transition: all 0.6s linear;
+}
+
+.why-choose-two__img img {
+    width: 100%;
+    border-radius: var(--tedlife-bdr-radius);
+    filter: grayscale();
+    object-fit: cover;
+    transition: all 1s ease-in-out;
+}
+
+.why-choose-two__img:hover img {
+    transform: scale(1.1);
+}
+
+.why-choose-two__right {
+    position: relative;
+    display: block;
+    margin-top: -9px;
+}
+
+.why-choose-two__right-top {
+    position: relative;
+    display: block;
+    margin-left: -100px;
+    padding-left: 100px;
+    padding-bottom: 76px;
+    background-color: #f7f7f7;
+    border-bottom-left-radius: var(--tedlife-bdr-radius);
+    z-index: 2;
+}
+
+.why-choose-two__text {
+    margin-bottom: 70px;
+}
+
+.why-choose-two__single-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 100px;
+}
+
+.why-choose-two__single-list {
+    position: relative;
+    display: block;
+}
+
+.why-choose-two__single-list li {
+    position: relative;
+    display: block;
+    padding-left: 42px;
+}
+
+.why-choose-two__single-list li::before {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 0;
+    bottom: 7px;
+    width: 1px;
+    background-color: #8d8c89;
+}
+
+.why-choose-two__single-list li+li {
+    margin-top: 60px;
+}
+
+.why-choose-two__single-list li h4 {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 34px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.why-choose-two__single-list li h4 a {
+    color: var(--tedlife-black);
+}
+
+.why-choose-two__single-list li:hover h4 a {
+    color: var(--tedlife-base);
+}
+
+.why-choose-two__bottom {
+    position: relative;
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    margin-top: 34px;
+}
+
+.why-choose-two__ratting {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.why-choose-two__ratting span {
+    position: relative;
+    display: inline-block;
+    font-size: 17px;
+    color: var(--tedlife-base);
+}
+
+.why-choose-two__bottom-text-box {
+    position: relative;
+    display: block;
+}
+
+.why-choose-two__bottom-text-color {
+    color: var(--tedlife-base);
+    position: relative;
+}
+
+.why-choose-two__bottom-text-color::before {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 5px;
+    height: 1px;
+    background-color: var(--tedlife-base);
+}
+
+.why-choose-two__bottom-text-two {
+    position: relative;
+    display: block;
+}
+
+
+
+
+
+
+
+
+/*--------------------------------------------------------------
+# End
+--------------------------------------------------------------*/
