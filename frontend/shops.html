@@ -771,6 +771,27 @@
                     <!-- Left Side: Connected Shops -->
                     <div class="banner__locations">
                         <h3>Our Shops Locations</h3>
+                        <!-- Search Section -->
+                        <div class="search-section" style="margin-bottom: 20px;">
+                            <div class="search-container" style="position: relative;">
+                                <input type="text" id="locationSearch" 
+                                    placeholder="Enter your location (e.g., address, area, landmark)" 
+                                    style="width: 100%; padding: 10px; border: 2px solid #f79621; border-radius: 5px; font-size: 14px;">
+                                <div id="suggestions" style="display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; border: 1px solid #ddd; border-radius: 5px; z-index: 1000; max-height: 200px; overflow-y: auto;"></div>
+                            </div>
+                        </div>
+                        <!-- Search Results -->
+                        <div id="searchResults" style="display: none;">
+                            <h4 style="color: #f79621; margin-bottom: 10px;">Search Results</h4>
+                            <div id="nearestShop" style="margin-bottom: 20px; padding: 15px; background: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                <h5 style="color: #f79621; margin-bottom: 10px;">Nearest Shop</h5>
+                                <div id="nearestShopContent"></div>
+                            </div>
+                            <div id="otherShops" style="max-height: 300px; overflow-y: auto;">
+                                <h5 style="color: #f79621; margin-bottom: 10px;">Other Nearby Shops</h5>
+                                <div id="otherShopsContent"></div>
+                            </div>
+                        </div>
                         <ul class="location__list" id="shopsList">
                             <li class="active" data-location="All Towns">All Shops</li>
                             <!-- Shops will be dynamically added here -->
@@ -786,16 +807,39 @@
         </section>
 
         <script>
-            // Initialize the map
             let map;
             let markers = [];
             let infoWindows = [];
+            let geocoder;
+            let placesService;
+            let userMarker;
+            let allShops = [];
+            let autocomplete;
+
+            function loadGoogleMaps() {
+                if (window.google && window.google.maps && window.google.maps.places) {
+                    initMap();
+                    return;
+                }
+
+                const script = document.createElement('script');
+                script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDUIQh2LJzL0V-fh24QLmiKVrVWCya-ZiA&libraries=places,geometry&callback=initMap';
+                script.defer = true;
+                script.async = true;
+                document.head.appendChild(script);
+            }
 
             function initMap() {
-                // Initialize the map with default center
+                // Wait for the Places library to be fully loaded
+                if (!window.google || !window.google.maps || !window.google.maps.places) {
+                    console.error('Google Maps Places library not loaded');
+                    return;
+                }
+
+                // Initialize the map
                 map = new google.maps.Map(document.getElementById("map"), {
                     zoom: 12,
-                    center: { lat: -6.7924, lng: 39.2083 }, // Default center (Dar es Salaam)
+                    center: { lat: -6.7924, lng: 39.2083 },
                     styles: [
                         {
                             featureType: "poi",
@@ -820,10 +864,67 @@
                     anchor: new google.maps.Point(20, 40)
                 };
 
+                // Initialize services
+                geocoder = new google.maps.Geocoder();
+                placesService = new google.maps.places.PlacesService(map);
+
+                // Initialize search functionality
+                const searchInput = document.getElementById('locationSearch');
+                const suggestionsDiv = document.getElementById('suggestions');
+                const searchResults = document.getElementById('searchResults');
+                const nearestShopContent = document.getElementById('nearestShopContent');
+                const otherShopsContent = document.getElementById('otherShopsContent');
+
+                // Initialize Autocomplete
+                if (window.google.maps.places.Autocomplete) {
+                    autocomplete = new google.maps.places.Autocomplete(searchInput, {
+                        types: ['geocode', 'establishment'],
+                        componentRestrictions: { country: 'tz' }
+                    });
+
+                    // Handle place selection
+                    autocomplete.addListener('place_changed', () => {
+                        const place = autocomplete.getPlace();
+                        if (place.geometry) {
+                            performSearch(place.geometry.location);
+                            suggestionsDiv.style.display = 'none';
+                        }
+                    });
+                } else {
+                    console.error('Google Maps Places Autocomplete not available');
+                    searchInput.placeholder = 'Enter location manually';
+                }
+
+                // Show suggestions as user types
+                searchInput.addEventListener('input', debounce(() => {
+                    const searchText = searchInput.value.trim();
+                    if (searchText.length < 2) {
+                        suggestionsDiv.style.display = 'none';
+                        return;
+                    }
+
+                    if (placesService) {
+                        // Get Google Places suggestions
+                        const request = {
+                            query: searchText,
+                            fields: ['name', 'formatted_address', 'geometry'],
+                            location: map.getCenter(),
+                            radius: 50000
+                        };
+
+                        placesService.textSearch(request, (results, status) => {
+                            if (status === google.maps.places.PlacesServiceStatus.OK) {
+                                showSuggestions(results);
+                            }
+                        });
+                    }
+                }, 300));
+
                 // Fetch shops from the database
                 fetch('/api/shops')
                     .then(response => response.json())
                     .then(shops => {
+                        allShops = shops;
                         // Clear existing markers
                         markers.forEach(marker => marker.setMap(null));
                         markers = [];
@@ -926,16 +1027,114 @@
                     });
             }
 
-            // Load Google Maps API
-            function loadGoogleMaps() {
-                const script = document.createElement('script');
-                script.src = `https://maps.googleapis.com/maps/api/js?key=${window.env.GOOGLE_MAPS_API_KEY}&callback=initMap`;
-                script.defer = true;
-                script.async = true;
-                document.head.appendChild(script);
+            function showSuggestions(placesResults) {
+                const suggestionsDiv = document.getElementById('suggestions');
+                suggestionsDiv.innerHTML = '';
+                
+                placesResults.slice(0, 5).forEach(place => {
+                    const item = document.createElement('div');
+                    item.className = 'suggestion-item';
+                    item.innerHTML = `
+                        <div>${place.name}</div>
+                        <div class="type">${place.formatted_address}</div>
+                    `;
+                    item.addEventListener('click', () => {
+                        performSearch(place.geometry.location);
+                        suggestionsDiv.style.display = 'none';
+                    });
+                    suggestionsDiv.appendChild(item);
+                });
+
+                suggestionsDiv.style.display = 'block';
             }
 
-            // Load the map when the page loads
+            function performSearch(location) {
+                const searchResults = document.getElementById('searchResults');
+                const nearestShopContent = document.getElementById('nearestShopContent');
+                const otherShopsContent = document.getElementById('otherShopsContent');
+
+                // Clear previous results
+                nearestShopContent.innerHTML = '';
+                otherShopsContent.innerHTML = '';
+
+                // Update user marker
+                if (userMarker) userMarker.setMap(null);
+                userMarker = new google.maps.Marker({
+                    position: location,
+                    map: map,
+                    title: 'Search Location',
+                    icon: {
+                        url: "assets/images/user-location.svg",
+                        scaledSize: new google.maps.Size(40, 40),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(20, 40)
+                    }
+                });
+
+                // Center map on search location
+                map.setCenter(location);
+                map.setZoom(14);
+
+                // Calculate distances and find matches
+                const shopsWithDistance = allShops.map(shop => {
+                    const shopLocation = new google.maps.LatLng(
+                        parseFloat(shop.location.lat),
+                        parseFloat(shop.location.lng)
+                    );
+                    const distance = google.maps.geometry.spherical.computeDistanceBetween(
+                        location,
+                        shopLocation
+                    );
+                    return {
+                        shop,
+                        distance
+                    };
+                });
+
+                // Sort by distance
+                shopsWithDistance.sort((a, b) => a.distance - b.distance);
+
+                // Display nearest shop
+                if (shopsWithDistance.length > 0) {
+                    const nearest = shopsWithDistance[0];
+                    const distanceKm = (nearest.distance / 1000).toFixed(1);
+                    nearestShopContent.innerHTML = createShopResultHTML(nearest.shop, distanceKm);
+                }
+
+                // Display other shops
+                shopsWithDistance.slice(1).forEach(shop => {
+                    const distanceKm = (shop.distance / 1000).toFixed(1);
+                    const shopElement = document.createElement('div');
+                    shopElement.className = 'shop-result';
+                    shopElement.innerHTML = createShopResultHTML(shop.shop, distanceKm);
+                    otherShopsContent.appendChild(shopElement);
+                });
+
+                // Show results
+                searchResults.style.display = 'block';
+            }
+
+            function createShopResultHTML(shop, distance) {
+                return `
+                    <div class="name">${shop.name}</div>
+                    <div class="address">${shop.address}</div>
+                    <div class="distance">${distance} km away</div>
+                `;
+            }
+
+            // Debounce function
+            function debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+
             document.addEventListener('DOMContentLoaded', loadGoogleMaps);
         </script>
 

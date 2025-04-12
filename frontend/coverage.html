@@ -614,9 +614,58 @@
                 <div class="banner__content">
                     <!-- Left Side: Connected Towns -->
                     <div class="banner__locations">
-                        <h3>Connected Towns</h3>
-                        <ul class="location__list" id="coverageList">
-                            <li class="active" data-location="All Towns">All Towns</li>
+                        <h3 style="color: #333; font-size: 24px; margin-bottom: 20px;">Our Coverage Areas</h3>
+                        
+                        <!-- Search Bar -->
+                        <div class="search-input-container" style="margin-bottom: 20px; position: relative;">
+                            <input type="text" id="locationSearch" 
+                                placeholder="Enter your location (e.g., address, area, landmark)" 
+                                style="width: 100%; 
+                                       padding: 12px 15px; 
+                                       border: 2px solid #ddd; 
+                                       border-radius: 8px; 
+                                       font-size: 14px;
+                                       transition: border-color 0.3s;">
+                            <div id="suggestions" 
+                                style="position: absolute; 
+                                       top: 100%; 
+                                       left: 0; 
+                                       right: 0; 
+                                       background: white; 
+                                       border: 1px solid #ddd; 
+                                       border-radius: 8px; 
+                                       display: none; 
+                                       z-index: 1000; 
+                                       margin-top: 5px;
+                                       box-shadow: 0 2px 6px rgba(0,0,0,0.1);"></div>
+                        </div>
+
+                        <!-- Search Results -->
+                        <div id="searchResults" 
+                            style="margin-bottom: 20px; 
+                                   font-size: 14px; 
+                                   padding: 10px; 
+                                   border-radius: 8px;"></div>
+
+                        <!-- All Areas Button -->
+                        <div style="margin-bottom: 20px;">
+                            <button onclick="document.querySelector('#coverageList li[data-location=\'All Towns\']').click()" 
+                                    style="width: 100%;
+                                           padding: 12px;
+                                           background-color: #f79621;
+                                           color: white;
+                                           border: none;
+                                           border-radius: 8px;
+                                           font-weight: bold;
+                                           cursor: pointer;
+                                           transition: background-color 0.3s;">
+                                All Areas
+                            </button>
+                        </div>
+
+                        <!-- Coverage List -->
+                        <ul class="location__list" id="coverageList" style="margin-top: 10px;">
+                            <li class="active" data-location="All Towns" style="display: none;">All Towns</li>
                             <!-- Coverage areas will be dynamically added here -->
                         </ul>
                     </div>
@@ -1076,337 +1125,374 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUIQh2LJzL0V-fh24QLmiKVrV
     let infoWindows = [];
     let coverageAreas = {};
     let polygons = [];
+    let geocoder;
+    let placesService;
+    let userMarker;
+    let allAreas = [];
+    let autocomplete;
+    let currentHighlightedPolygon = null;
 
-    function initMap() {
-        // Initialize the map with default center
-        map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 12,
-            center: { lat: -6.7924, lng: 39.2083 }, // Default center (Dar es Salaam)
-            styles: [
-                {
-                    featureType: "poi",
-                    elementType: "labels",
-                    stylers: [{ visibility: "off" }]
-                }
-            ]
-        });
-
-        // Add office location marker
-        const officeMarker = new google.maps.Marker({
-            position: { lat: -6.7767459, lng: 39.2431805 },
-            map: map,
-            title: "DERM PLAZA",
-            icon: {
-                url: 'assets/images/office-marker.svg',
-                scaledSize: new google.maps.Size(40, 40),
-                anchor: new google.maps.Point(20, 40)
-            }
-        });
-
-        const officeInfoWindow = new google.maps.InfoWindow({
-            content: `
-                <div style="font-family: Arial, sans-serif; font-size: 14px; line-height: 1.5; max-width: 250px; text-align: center; padding: 15px; border-radius: 10px; background-color: #f9f9f9; color: #444; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-                    <h3 style="color: #f79621; margin-bottom: 10px;">DERM PLAZA</h3>
-                    <p>14th Floor, Derm Plaza</p>
-                    <p>Plot 18 Block 45A, Bagamoyo Road</p>
-                    <p>Makumbusho, Dar es Salaam</p>
-                    <p>Contact: +255 699 999 555</p>
-                </div>
-            `
-        });
-
-        officeMarker.addListener('click', () => {
-            infoWindows.forEach(info => info.close());
-            officeInfoWindow.open(map, officeMarker);
-        });
-
-        // Fetch coverage areas from the database
-        fetch('/api/coverage')
-            .then(response => response.json())
-            .then(data => {
-                if (!data || !Array.isArray(data)) {
-                    throw new Error('Invalid data format received');
-                }
-
-                // Clear existing markers and polygons
-                markers.forEach(marker => marker.setMap(null));
-                polygons.forEach(polygon => polygon.setMap(null));
-                markers = [];
-                polygons = [];
-                infoWindows = [];
-                coverageAreas = {};
-
-                // Clear existing coverage list
-                const coverageList = document.getElementById('coverageList');
-                if (coverageList) {
-                    coverageList.innerHTML = '<li class="active" data-location="All Towns">All Towns</li>';
-                }
-
-                // Group coverage areas by region
-                data.forEach(area => {
-                    if (!area || !area.region) return;
-                    
-                    if (!coverageAreas[area.region]) {
-                        coverageAreas[area.region] = [];
-                    }
-                    coverageAreas[area.region].push(area);
-                });
-
-                // Create list items for each region
-                Object.keys(coverageAreas).forEach(region => {
-                    const regionItem = document.createElement('li');
-                    regionItem.className = 'has-dropdow';
-                    regionItem.dataset.location = region;
-                    regionItem.textContent = region;
-
-                    // Create dropdown for subregions
-                    const dropdown = document.createElement('ul');
-                    dropdown.className = 'dropdow';
-
-                    coverageAreas[region].forEach(area => {
-                        if (!area || !area.subregion) return;
-
-                        const subregionItem = document.createElement('li');
-                        subregionItem.dataset.location = area.subregion;
-                        subregionItem.textContent = area.subregion;
-                        
-                        // Add click handler for subregion
-                        subregionItem.addEventListener('click', () => {
-                            // Update active state
-                            document.querySelectorAll('#coverageList li').forEach(li => li.classList.remove('active'));
-                            subregionItem.classList.add('active');
-
-                            // Center map on selected area
-                            if (area.path && Array.isArray(area.path)) {
-                                const bounds = new google.maps.LatLngBounds();
-                                area.path.forEach(point => {
-                                    bounds.extend({ lat: point.lat, lng: point.lng });
-                                });
-                                
-                                // Add padding to the bounds
-                                const padding = 0.05; // 5% padding
-                                const ne = bounds.getNorthEast();
-                                const sw = bounds.getSouthWest();
-                                const latSpan = ne.lat() - sw.lat();
-                                const lngSpan = ne.lng() - sw.lng();
-                                
-                                bounds.extend({
-                                    lat: ne.lat() + latSpan * padding,
-                                    lng: ne.lng() + lngSpan * padding
-                                });
-                                bounds.extend({
-                                    lat: sw.lat() - latSpan * padding,
-                                    lng: sw.lng() - lngSpan * padding
-                                });
-                                
-                                map.fitBounds(bounds);
-                            }
-                        });
-
-                        dropdown.appendChild(subregionItem);
-                    });
-
-                    regionItem.appendChild(dropdown);
-                    if (coverageList) {
-                        coverageList.appendChild(regionItem);
-                    }
-
-                    // Add click handler for region
-                    regionItem.addEventListener('click', () => {
-                        // Update active state
-                        document.querySelectorAll('#coverageList li').forEach(li => li.classList.remove('active'));
-                        regionItem.classList.add('active');
-
-                        // Show all areas in the region
-                        const bounds = new google.maps.LatLngBounds();
-                        coverageAreas[region].forEach(area => {
-                            if (area.path && Array.isArray(area.path)) {
-                                area.path.forEach(point => {
-                                    bounds.extend({ lat: point.lat, lng: point.lng });
-                                });
-                            }
-                        });
-                        
-                        // Add padding to the bounds
-                        const padding = 0.05; // 5% padding
-                        const ne = bounds.getNorthEast();
-                        const sw = bounds.getSouthWest();
-                        const latSpan = ne.lat() - sw.lat();
-                        const lngSpan = ne.lng() - sw.lng();
-                        
-                        bounds.extend({
-                            lat: ne.lat() + latSpan * padding,
-                            lng: ne.lng() + lngSpan * padding
-                        });
-                        bounds.extend({
-                            lat: sw.lat() - latSpan * padding,
-                            lng: sw.lng() - lngSpan * padding
-                        });
-                        
-                        map.fitBounds(bounds);
-                    });
-                });
-
-                // Add click handler for "All Towns"
-                const allTownsItem = document.querySelector('#coverageList li[data-location="All Towns"]');
-                if (allTownsItem) {
-                    allTownsItem.addEventListener('click', () => {
-                        // Update active state
-                        document.querySelectorAll('#coverageList li').forEach(li => li.classList.remove('active'));
-                        allTownsItem.classList.add('active');
-
-                        // Show all areas
-                        const bounds = new google.maps.LatLngBounds();
-                        data.forEach(area => {
-                            if (area.path && Array.isArray(area.path)) {
-                                area.path.forEach(point => {
-                                    bounds.extend({ lat: point.lat, lng: point.lng });
-                                });
-                            }
-                        });
-                        
-                        // Add padding to the bounds
-                        const padding = 0.05; // 5% padding
-                        const ne = bounds.getNorthEast();
-                        const sw = bounds.getSouthWest();
-                        const latSpan = ne.lat() - sw.lat();
-                        const lngSpan = ne.lng() - sw.lng();
-                        
-                        bounds.extend({
-                            lat: ne.lat() + latSpan * padding,
-                            lng: ne.lng() + lngSpan * padding
-                        });
-                        bounds.extend({
-                            lat: sw.lat() - latSpan * padding,
-                            lng: sw.lng() - lngSpan * padding
-                        });
-                        
-                        map.fitBounds(bounds);
-                    });
-                }
-
-                // Add polygons for each coverage area
-                data.forEach(area => {
-                    if (!area || !area.path || !Array.isArray(area.path)) return;
-
-                    const polygon = new google.maps.Polygon({
-                        paths: area.path.map(point => ({ lat: point.lat, lng: point.lng })),
-                        strokeColor: '#F79621',
-                        strokeOpacity: 0.8,
-                        strokeWeight: 2,
-                        fillColor: '#F79621',
-                        fillOpacity: 0.35,
-                        clickable: true
-                    });
-
-                    polygon.setMap(map);
-                    polygons.push(polygon);
-
-                    // Calculate center of the polygon for label placement
-                    const bounds = new google.maps.LatLngBounds();
-                    area.path.forEach(point => {
-                        bounds.extend({ lat: point.lat, lng: point.lng });
-                    });
-                    const center = bounds.getCenter();
-
-                    // Create label overlay
-                    const labelDiv = document.createElement('div');
-                    labelDiv.className = 'polygon-label';
-                    labelDiv.style.cssText = `
-                        position: absolute;
-                        transform: translate(-50%, -50%);
-                        background-color: rgba(247, 150, 33, 0.8);
-                        color: white;
-                        padding: 5px 10px;
-                        border-radius: 4px;
-                        font-weight: bold;
-                        font-size: 14px;
-                        white-space: nowrap;
-                        pointer-events: none;
-                        z-index: 1000;
-                    `;
-                    labelDiv.textContent = 'AREA covered';
-
-                    const labelOverlay = new google.maps.OverlayView();
-                    labelOverlay.onAdd = function() {
-                        this.getPanes().overlayLayer.appendChild(labelDiv);
-                    };
-                    labelOverlay.draw = function() {
-                        const projection = this.getProjection();
-                        const position = projection.fromLatLngToDivPixel(center);
-                        labelDiv.style.left = position.x + 'px';
-                        labelDiv.style.top = position.y + 'px';
-                    };
-                    labelOverlay.onRemove = function() {
-                        labelDiv.parentNode.removeChild(labelDiv);
-                    };
-                    labelOverlay.setMap(map);
-
-                    const infoWindow = new google.maps.InfoWindow({
-                        content: `
-                            <div style="font-family: Arial, sans-serif; font-size: 14px; line-height: 1.5; max-width: 250px; text-align: center; padding: 15px; border-radius: 10px; background-color: #f9f9f9; color: #444; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-                                <h3 style="color: #f79621; margin-bottom: 10px;">${area.subregion || 'AREA covered'}</h3>
-                                <p>Region: ${area.region || 'Unknown'}</p>
-                                <p>${area.description || ''}</p>
-                            </div>
-                        `
-                    });
-
-                    polygon.addListener('click', () => {
-                        infoWindows.forEach(info => info.close());
-                        infoWindow.open(map);
-                        
-                        // Center map on clicked area
-                        const bounds = new google.maps.LatLngBounds();
-                        area.path.forEach(point => {
-                            bounds.extend({ lat: point.lat, lng: point.lng });
-                        });
-                        
-                        // Add padding to the bounds
-                        const padding = 0.05; // 5% padding
-                        const ne = bounds.getNorthEast();
-                        const sw = bounds.getSouthWest();
-                        const latSpan = ne.lat() - sw.lat();
-                        const lngSpan = ne.lng() - sw.lng();
-                        
-                        bounds.extend({
-                            lat: ne.lat() + latSpan * padding,
-                            lng: ne.lng() + lngSpan * padding
-                        });
-                        bounds.extend({
-                            lat: sw.lat() - latSpan * padding,
-                            lng: sw.lng() - lngSpan * padding
-                        });
-                        
-                        map.fitBounds(bounds);
-                    });
-
-                    infoWindows.push(infoWindow);
-                });
-            })
-            .catch(error => {
-                console.error('Error fetching coverage areas:', error);
-                // Show error message to user
-                const errorDiv = document.createElement('div');
-                errorDiv.className = 'alert alert-danger';
-                errorDiv.textContent = 'Failed to load coverage areas. Please try again later.';
-                const bannerContent = document.querySelector('.banner__content');
-                if (bannerContent) {
-                    bannerContent.prepend(errorDiv);
-                }
-            });
-    }
-
-    // Load Google Maps API
     function loadGoogleMaps() {
+        const existingScript = document.querySelector('script[src*="maps.googleapis.com"]');
+        if (existingScript) {
+            existingScript.remove();
+        }
+
         const script = document.createElement('script');
-        script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDUIQh2LJzL0V-fh24QLmiKVrVWCya-ZiA&callback=initMap`;
+        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDUIQh2LJzL0V-fh24QLmiKVrVWCya-ZiA&libraries=places,geometry&callback=initMap';
         script.defer = true;
         script.async = true;
         document.head.appendChild(script);
     }
 
-    // Load the map when the page loads
+    function initMap() {
+        try {
+            if (!window.google || !window.google.maps || !window.google.maps.places) {
+                console.error('Google Maps Places library not loaded');
+                return;
+            }
+
+            map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 12,
+                center: { lat: -6.7924, lng: 39.2083 },
+                styles: [
+                    {
+                        featureType: "poi",
+                        elementType: "labels",
+                        stylers: [{ visibility: "off" }]
+                    }
+                ]
+            });
+
+            geocoder = new google.maps.Geocoder();
+            placesService = new google.maps.places.PlacesService(map);
+
+            const searchInput = document.getElementById('locationSearch');
+            const searchBtn = document.getElementById('searchBtn');
+            const suggestionsDiv = document.getElementById('suggestions');
+            const searchResults = document.getElementById('searchResults');
+
+            try {
+                autocomplete = new google.maps.places.Autocomplete(searchInput, {
+                    types: ['geocode', 'establishment'],
+                    componentRestrictions: { country: 'tz' }
+                });
+
+                autocomplete.addListener('place_changed', () => {
+                    const place = autocomplete.getPlace();
+                    if (place.geometry) {
+                        checkCoverage(place);
+                        suggestionsDiv.style.display = 'none';
+                    }
+                });
+
+                // Add focus event to style the input
+                searchInput.addEventListener('focus', () => {
+                    searchInput.style.borderColor = '#f79621';
+                });
+
+                searchInput.addEventListener('blur', () => {
+                    searchInput.style.borderColor = '#ddd';
+                });
+
+                // Handle Enter key
+                searchInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter' && searchInput.value.trim().length >= 2) {
+                        const request = {
+                            query: searchInput.value.trim(),
+                            fields: ['name', 'formatted_address', 'geometry'],
+                            location: map.getCenter(),
+                            radius: 50000
+                        };
+
+                        placesService.textSearch(request, (results, status) => {
+                            if (status === google.maps.places.PlacesServiceStatus.OK && results.length > 0) {
+                                const place = {
+                                    name: results[0].name,
+                                    geometry: {
+                                        location: results[0].geometry.location
+                                    }
+                                };
+                                checkCoverage(place);
+                            }
+                        });
+                    }
+                });
+            } catch (error) {
+                console.error('Error initializing Autocomplete:', error);
+                searchInput.placeholder = 'Enter location manually';
+            }
+
+            // Show suggestions as user types
+            searchInput.addEventListener('input', debounce(() => {
+                const searchText = searchInput.value.trim();
+                if (searchText.length < 2) {
+                    suggestionsDiv.style.display = 'none';
+                    return;
+                }
+
+                if (placesService) {
+                    const request = {
+                        query: searchText,
+                        fields: ['name', 'formatted_address', 'geometry'],
+                        location: map.getCenter(),
+                        radius: 50000
+                    };
+
+                    placesService.textSearch(request, (results, status) => {
+                        if (status === google.maps.places.PlacesServiceStatus.OK) {
+                            showSuggestions(results);
+                        }
+                    });
+                }
+            }, 300));
+
+            fetch('/api/coverage')
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.json();
+                })
+                .then(areas => {
+                    if (!Array.isArray(areas)) throw new Error('Invalid data format received from server');
+
+                    allAreas = areas;
+                    markers.forEach(marker => marker.setMap(null));
+                    markers = [];
+                    infoWindows = [];
+                    polygons.forEach(polygon => polygon.setMap(null));
+                    polygons = [];
+
+                    const townsList = document.getElementById('coverageList');
+                    townsList.innerHTML = '<li class="active" data-location="All Towns">All Towns</li>';
+
+                    areas.forEach(area => {
+                        try {
+                            if (!area || !area.path || !Array.isArray(area.path)) return;
+
+                            const polygon = new google.maps.Polygon({
+                                paths: area.path.map(point => ({ lat: point.lat, lng: point.lng })),
+                                strokeColor: '#F79621',
+                                strokeOpacity: 0.8,
+                                strokeWeight: 2,
+                                fillColor: '#F79621',
+                                fillOpacity: 0.35,
+                                clickable: true
+                            });
+
+                            polygon.setMap(map);
+                            polygons.push(polygon);
+
+                            const infoWindow = new google.maps.InfoWindow({
+                                content: `
+                                    <div style="font-family: Arial, sans-serif; font-size: 14px; line-height: 1.5; max-width: 250px; text-align: center; padding: 15px; border-radius: 10px; background-color: #f9f9f9; color: #444; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                                        <h3 style="color: #f79621; margin-bottom: 10px;">${area.subregion || 'Coverage Area'}</h3>
+                                        <p>Region: ${area.region || 'Unknown'}</p>
+                                        <p>${area.description || ''}</p>
+                                    </div>
+                                `
+                            });
+
+                            polygon.addListener('click', () => {
+                                infoWindows.forEach(info => info.close());
+                                infoWindow.open(map);
+                                
+                                if (currentHighlightedPolygon) {
+                                    currentHighlightedPolygon.setOptions({
+                                        strokeWeight: 2,
+                                        fillOpacity: 0.35
+                                    });
+                                }
+                                
+                                polygon.setOptions({
+                                    strokeWeight: 4,
+                                    fillOpacity: 0.5
+                                });
+                                currentHighlightedPolygon = polygon;
+                            });
+
+                            infoWindows.push(infoWindow);
+
+                            const areaItem = document.createElement('li');
+                            areaItem.textContent = area.subregion || 'Unnamed Area';
+                            areaItem.dataset.location = area.subregion || 'Unnamed Area';
+                            areaItem.addEventListener('click', () => {
+                                document.querySelectorAll('#coverageList li').forEach(li => li.classList.remove('active'));
+                                areaItem.classList.add('active');
+                                
+                                if (currentHighlightedPolygon) {
+                                    currentHighlightedPolygon.setOptions({
+                                        strokeWeight: 2,
+                                        fillOpacity: 0.35
+                                    });
+                                }
+                                
+                                polygon.setOptions({
+                                    strokeWeight: 4,
+                                    fillOpacity: 0.5
+                                });
+                                currentHighlightedPolygon = polygon;
+
+                                const bounds = new google.maps.LatLngBounds();
+                                area.path.forEach(point => {
+                                    bounds.extend({ lat: point.lat, lng: point.lng });
+                                });
+                                map.fitBounds(bounds);
+                            });
+                            townsList.appendChild(areaItem);
+                        } catch (error) {
+                            console.error('Error processing area:', error);
+                        }
+                    });
+
+                    document.querySelector('#coverageList li[data-location="All Towns"]').addEventListener('click', () => {
+                        document.querySelectorAll('#coverageList li').forEach(li => li.classList.remove('active'));
+                        document.querySelector('#coverageList li[data-location="All Towns"]').classList.add('active');
+                        
+                        if (currentHighlightedPolygon) {
+                            currentHighlightedPolygon.setOptions({
+                                strokeWeight: 2,
+                                fillOpacity: 0.35
+                            });
+                            currentHighlightedPolygon = null;
+                        }
+                        
+                        const bounds = new google.maps.LatLngBounds();
+                        polygons.forEach(polygon => {
+                            polygon.getPath().forEach(point => {
+                                bounds.extend(point);
+                            });
+                        });
+                        map.fitBounds(bounds);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching coverage areas:', error);
+                    const errorDiv = document.createElement('div');
+                    errorDiv.className = 'alert alert-danger';
+                    errorDiv.textContent = 'Failed to load coverage areas. Please try again later.';
+                    document.querySelector('.banner__content').prepend(errorDiv);
+                });
+        } catch (error) {
+            console.error('Error initializing map:', error);
+        }
+    }
+
+    function checkCoverage(place) {
+        if (userMarker) {
+            userMarker.setMap(null);
+        }
+
+        userMarker = new google.maps.Marker({
+            position: place.geometry.location,
+            map: map,
+            title: place.name,
+            icon: {
+                url: 'assets/images/user-marker.svg',
+                scaledSize: new google.maps.Size(40, 40),
+                anchor: new google.maps.Point(20, 40)
+            }
+        });
+
+        map.setCenter(place.geometry.location);
+        map.setZoom(15);
+
+        let isCovered = false;
+        let coveredArea = null;
+
+        for (const polygon of polygons) {
+            if (google.maps.geometry.poly.containsLocation(place.geometry.location, polygon)) {
+                isCovered = true;
+                coveredArea = polygon;
+                break;
+            }
+        }
+
+        const searchResults = document.getElementById('searchResults');
+        if (isCovered) {
+            searchResults.innerHTML = `
+                <div style="color: #28a745; font-weight: bold; background-color: rgba(40, 167, 69, 0.1); padding: 15px; border-radius: 5px;">
+                    ✅ Great news! ${place.name} is within our coverage area.
+                </div>
+            `;
+            
+            if (currentHighlightedPolygon) {
+                currentHighlightedPolygon.setOptions({
+                    strokeWeight: 2,
+                    fillOpacity: 0.35
+                });
+            }
+            
+            coveredArea.setOptions({
+                strokeWeight: 4,
+                fillOpacity: 0.5
+            });
+            currentHighlightedPolygon = coveredArea;
+        } else {
+            searchResults.innerHTML = `
+                <div style="color: #dc3545; font-weight: bold; background-color: rgba(220, 53, 69, 0.1); padding: 15px; border-radius: 5px;">
+                    ❌ Sorry, ${place.name} is not yet covered. We're expanding soon!
+                </div>
+            `;
+            
+            if (currentHighlightedPolygon) {
+                currentHighlightedPolygon.setOptions({
+                    strokeWeight: 2,
+                    fillOpacity: 0.35
+                });
+                currentHighlightedPolygon = null;
+            }
+        }
+    }
+
+    function showSuggestions(results) {
+        const suggestionsDiv = document.getElementById('suggestions');
+        suggestionsDiv.innerHTML = '';
+        
+        results.slice(0, 5).forEach(result => {
+            const suggestion = document.createElement('div');
+            suggestion.style.padding = '10px';
+            suggestion.style.borderBottom = '1px solid #eee';
+            suggestion.style.cursor = 'pointer';
+            suggestion.style.transition = 'background-color 0.2s';
+            suggestion.textContent = result.name;
+            
+            suggestion.addEventListener('mouseover', () => {
+                suggestion.style.backgroundColor = '#f5f5f5';
+            });
+            
+            suggestion.addEventListener('mouseout', () => {
+                suggestion.style.backgroundColor = 'white';
+            });
+            
+            suggestion.addEventListener('click', () => {
+                const place = {
+                    name: result.name,
+                    geometry: {
+                        location: result.geometry.location
+                    }
+                };
+                checkCoverage(place);
+                suggestionsDiv.style.display = 'none';
+            });
+            
+            suggestionsDiv.appendChild(suggestion);
+        });
+        
+        suggestionsDiv.style.display = 'block';
+    }
+
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
     document.addEventListener('DOMContentLoaded', loadGoogleMaps);
 </script>
 
