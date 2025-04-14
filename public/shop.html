@@ -166,9 +166,15 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/admin/coverages">
+                        <a class="nav-link" href="/admin/coverage">
                             <i class="bi bi-broadcast-pin"></i>
                             Coverage Areas
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/banners">
+                            <i class="bi bi-images"></i>
+                            Banner Management
                         </a>
                     </li>
                 </ul>
@@ -268,7 +274,7 @@
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Opening Hours (Monday - Saturday)</label>
+                                    <label class="form-label">Opening Hours</label>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="input-group mb-2">
@@ -283,7 +289,24 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <small class="text-muted">Same hours for Monday to Saturday</small>
+                                    <small class="text-muted">Monday to Friday hours</small>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Weekend Hours (Saturday & Sunday)</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="input-group mb-2">
+                                                <span class="input-group-text">Open</span>
+                                                <input type="time" class="form-control" id="weekendOpenTime" value="09:00">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="input-group mb-2">
+                                                <span class="input-group-text">Close</span>
+                                                <input type="time" class="form-control" id="weekendCloseTime" value="17:00">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Shop Image</label>
@@ -876,7 +899,10 @@
                         <td class="align-middle">${shop.city}</td>
                         <td class="align-middle">${shop.contactNumber}</td>
                         <td class="align-middle">
-                            Mon-Sat: ${shop.openingHours?.monday?.open || '09:00'} - ${shop.openingHours?.monday?.close || '17:00'}
+                            <div class="d-flex flex-column">
+                                <small class="text-muted">Mon-Fri: ${shop.openingHours?.monday?.open || '09:00'} - ${shop.openingHours?.monday?.close || '17:00'}</small>
+                                <small class="text-muted">Weekend: ${shop.openingHours?.saturday?.open || '09:00'} - ${shop.openingHours?.saturday?.close || '17:00'}</small>
+                            </div>
                         </td>
                         <td class="align-middle">
                             <div class="d-flex gap-2">
@@ -913,6 +939,10 @@
                 if (shop.openingHours?.monday) {
                     document.getElementById('openTime').value = shop.openingHours.monday.open;
                     document.getElementById('closeTime').value = shop.openingHours.monday.close;
+                }
+                if (shop.openingHours?.saturday) {
+                    document.getElementById('weekendOpenTime').value = shop.openingHours.saturday.open;
+                    document.getElementById('weekendCloseTime').value = shop.openingHours.saturday.close;
                 }
                 
                 // Show existing image if available
@@ -975,6 +1005,8 @@
                 const contactNumber = document.getElementById('contactNumber').value.trim();
                 const openTime = document.getElementById('openTime').value;
                 const closeTime = document.getElementById('closeTime').value;
+                const weekendOpenTime = document.getElementById('weekendOpenTime').value;
+                const weekendCloseTime = document.getElementById('weekendCloseTime').value;
                 const imageFile = document.getElementById('shopImage').files[0];
 
                 // Validate required fields
@@ -1012,7 +1044,8 @@
                         wednesday: { open: openTime, close: closeTime },
                         thursday: { open: openTime, close: closeTime },
                         friday: { open: openTime, close: closeTime },
-                        saturday: { open: openTime, close: closeTime }
+                        saturday: { open: weekendOpenTime, close: weekendCloseTime },
+                        sunday: { open: weekendOpenTime, close: weekendCloseTime }
                     }
                 };
 

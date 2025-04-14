@@ -54,6 +54,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use('/uploads', express.static('public/uploads'));
+app.use('/banner-uploads', express.static('public/banner-uploads'));
 
 // Set view engine and pass environment variables to views
 app.set('view engine', 'ejs');
@@ -102,6 +103,7 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/plans', require('./routes/plans'));
 app.use('/api/shops', require('./routes/shops'));
 app.use('/api/coverage', require('./routes/coverage'));
+app.use('/api/banners', require('./routes/banners'));
 
 // Serve static files from the public directory for admin routes
 app.use('/admin', express.static(path.join(__dirname, 'public')));
@@ -127,6 +129,10 @@ app.get('/admin/shop', (req, res) => {
 
 app.get('/admin/coverages', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'coverages.html'));
+});
+
+app.get('/banners', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'banners.html'));
 });
 
 // Handle frontend routes

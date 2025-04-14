@@ -628,14 +628,14 @@
                                        transition: border-color 0.3s;">
                             <div id="suggestions" 
                                 style="position: absolute; 
-                                       top: 100%; 
+                            top: 100%;
                                        left: 0; 
                                        right: 0; 
-                                       background: white; 
+                            background: white;
                                        border: 1px solid #ddd; 
                                        border-radius: 8px; 
                                        display: none; 
-                                       z-index: 1000; 
+                            z-index: 1000;
                                        margin-top: 5px;
                                        box-shadow: 0 2px 6px rgba(0,0,0,0.1);"></div>
                         </div>
@@ -657,7 +657,7 @@
                                            border: none;
                                            border-radius: 8px;
                                            font-weight: bold;
-                                           cursor: pointer;
+                            cursor: pointer;
                                            transition: background-color 0.3s;">
                                 All Areas
                             </button>
@@ -1121,7 +1121,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUIQh2LJzL0V-fh24QLmiKVrV
 
 <script>
     let map;
-    let markers = [];
+let markers = [];
     let infoWindows = [];
     let coverageAreas = {};
     let polygons = [];
@@ -1145,14 +1145,14 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUIQh2LJzL0V-fh24QLmiKVrV
         document.head.appendChild(script);
     }
 
-    function initMap() {
+function initMap() {
         try {
             if (!window.google || !window.google.maps || !window.google.maps.places) {
                 console.error('Google Maps Places library not loaded');
                 return;
             }
 
-            map = new google.maps.Map(document.getElementById("map"), {
+    map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 12,
                 center: { lat: -6.7924, lng: 39.2083 },
                 styles: [
@@ -1282,7 +1282,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUIQh2LJzL0V-fh24QLmiKVrV
                             polygon.setMap(map);
                             polygons.push(polygon);
 
-                            const infoWindow = new google.maps.InfoWindow({
+        const infoWindow = new google.maps.InfoWindow({
                                 content: `
                                     <div style="font-family: Arial, sans-serif; font-size: 14px; line-height: 1.5; max-width: 250px; text-align: center; padding: 15px; border-radius: 10px; background-color: #f9f9f9; color: #444; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
                                         <h3 style="color: #f79621; margin-bottom: 10px;">${area.subregion || 'Coverage Area'}</h3>
@@ -1310,7 +1310,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUIQh2LJzL0V-fh24QLmiKVrV
                                 currentHighlightedPolygon = polygon;
                             });
 
-                            infoWindows.push(infoWindow);
+        infoWindows.push(infoWindow);
 
                             const areaItem = document.createElement('li');
                             areaItem.textContent = area.subregion || 'Unnamed Area';
@@ -1427,7 +1427,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUIQh2LJzL0V-fh24QLmiKVrV
                 fillOpacity: 0.5
             });
             currentHighlightedPolygon = coveredArea;
-        } else {
+            } else {
             searchResults.innerHTML = `
                 <div style="color: #dc3545; font-weight: bold; background-color: rgba(220, 53, 69, 0.1); padding: 15px; border-radius: 5px;">
                     ❌ Sorry, ${place.name} is not yet covered. We're expanding soon!
@@ -1494,7 +1494,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUIQh2LJzL0V-fh24QLmiKVrV
     }
 
     document.addEventListener('DOMContentLoaded', loadGoogleMaps);
-</script>
+        </script>
 
 
     <script src="scree.js"></script>

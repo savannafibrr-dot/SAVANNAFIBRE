@@ -59,6 +59,10 @@ const shopSchema = new mongoose.Schema({
         saturday: {
             open: { type: String, default: '09:00' },
             close: { type: String, default: '17:00' }
+        },
+        sunday: {
+            open: { type: String, default: '09:00' },
+            close: { type: String, default: '17:00' }
         }
     },
     createdAt: {

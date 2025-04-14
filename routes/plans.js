@@ -192,9 +192,10 @@ router.delete('/:id', isAuthenticated, async (req, res) => {
             }
         }
 
-        await plan.remove();
+        await Plan.findByIdAndDelete(req.params.id);
         res.json({ success: true });
     } catch (error) {
+        console.error('Error deleting plan:', error);
         res.status(500).json({ error: 'Server error' });
     }
 });

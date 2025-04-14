@@ -118,9 +118,15 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/admin/coverages">
+                        <a class="nav-link" href="/admin/coverage">
                             <i class="bi bi-broadcast-pin"></i>
                             Coverage Areas
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/banners">
+                            <i class="bi bi-images"></i>
+                            Banner Management
                         </a>
                     </li>
                 </ul>
@@ -155,9 +161,11 @@
                         <thead>
                             <tr>
                                 <th>PLAN NAME</th>
+                                <th>TYPE</th>
                                 <th>SPEED</th>
                                 <th>PRICE</th>
                                 <th>DEVICES</th>
+                                <th>STATUS</th>
                                 <th>ACTIONS</th>
                             </tr>
                         </thead>
@@ -304,9 +312,17 @@
                                 ${plan.name}
                             </div>
                         </td>
+                        <td>
+                            <span class="badge ${plan.type === 'business' ? 'bg-primary' : 'bg-success'}">
+                                ${plan.type === 'business' ? 'Business' : 'Residential'}
+                            </span>
+                        </td>
                         <td>${plan.speed} Mbps</td>
                         <td>${plan.price.toLocaleString()} TZS</td>
                         <td>${plan.supportedDevices} devices</td>
+                        <td>
+                            ${plan.isPopular ? '<span class="badge bg-warning">Popular</span>' : ''}
+                        </td>
                         <td>
                             <div class="d-flex gap-2">
                                 <button class="btn btn-sm btn-outline-primary" onclick="editPlan('${plan._id}')">

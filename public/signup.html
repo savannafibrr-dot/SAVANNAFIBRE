@@ -82,7 +82,7 @@
                     throw new Error(data.error || 'Signup failed');
                 }
 
-                window.location.href = '/dashboard';
+                window.location.href = '/admin/dashboard';
             } catch (error) {
                 errorMessage.style.display = 'block';
                 errorMessage.querySelector('span').textContent = error.message;

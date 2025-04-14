@@ -79,7 +79,7 @@
                     throw new Error(data.error || 'Login failed');
                 }
 
-                window.location.href = '/dashboard';
+                window.location.href = '/admin/dashboard';
             } catch (error) {
                 errorMessage.style.display = 'block';
                 errorMessage.querySelector('span').textContent = error.message;

@@ -1856,8 +1856,8 @@
                 <!-- Pricing Cards -->
                 <div class="price__cards" id="priceCards" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
                     <!-- Plans will be dynamically added here -->
-                </div>
-            </div>
+                            </div>
+                            </div>
         </section>
 
         <script>
@@ -1901,20 +1901,20 @@
                             }
 
                             card.innerHTML += `
-                                <div class="price__card-inner">
+                        <div class="price__card-inner">
                                     <h3 class="price-title" style="${plan.isPopular ? 'color: white; margin-top: 10px;' : ''}">${plan.name}</h3>
-                                    <div class="price-image">
+                            <div class="price-image">
                                         <img src="${plan.imageUrl || '/assets/MBPS CARDS/1.svg'}" alt="${plan.name} Plan">
-                                    </div>
-                                    <div class="price-pop">
+                            </div>
+                            <div class="price-pop">
                                         <span class="price-amount" style="${plan.isPopular ? 'color: white;' : ''}">TZS ${plan.price.toLocaleString()}</span>
                                         <span class="price-duration" style="${plan.isPopular ? '' : 'color: #F79621;'}">/ Per Month</span>
-                                    </div>
+                            </div>
                                     <ul class="price-details star-list ${plan.isPopular ? 'specific-stars' : ''}" style="${plan.isPopular ? 'color: white;' : 'color: black;'}">
                                         ${plan.features.map(feature => `<li>${feature}</li>`).join('')}
-                                    </ul>
+                            </ul>
                                     <a href="contact.html" class="price-btn" style="${plan.isPopular ? 'background-color: white;' : ''}">Get Connected</a>
-                                </div>
+                        </div>
                             `;
 
                             priceCards.appendChild(card);
