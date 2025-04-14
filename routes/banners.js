@@ -16,7 +16,7 @@ const isAuthenticated = (req, res, next) => {
 // Configure multer for image upload
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        const dir = 'public/uploads/banners';
+        const dir = 'public/banner-uploads';
         if (!fs.existsSync(dir)) {
             fs.mkdirSync(dir, { recursive: true });
         }
@@ -40,17 +40,7 @@ const upload = multer({
     }
 });
 
-// Public endpoint to get active banners
-router.get('/public', async (req, res) => {
-    try {
-        const banners = await Banner.find({ isActive: true }).sort({ createdAt: -1 });
-        res.json(banners);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-});
-
-// Get all banners (admin only)
+// Get all banners
 router.get('/', isAuthenticated, async (req, res) => {
     try {
         const banners = await Banner.find().sort({ createdAt: -1 });
