@@ -160,6 +160,7 @@
                     <table class="table mb-0">
                         <thead>
                             <tr>
+                                <th>POSITION</th>
                                 <th>PLAN NAME</th>
                                 <th>TYPE</th>
                                 <th>SPEED</th>
@@ -194,6 +195,16 @@
                                     <i class="bi bi-tag"></i>
                                 </span>
                                 <input type="text" class="form-control" id="planName" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Position</label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-sort-numeric-down"></i>
+                                </span>
+                                <input type="number" class="form-control" id="planPosition" required>
+                                <span class="input-group-text">Lower numbers appear first</span>
                             </div>
                         </div>
                         <div class="mb-3">
@@ -303,8 +314,9 @@
                 const response = await fetch('/api/plans');
                 const plans = await response.json();
                 
-                const plansHtml = plans.map(plan => `
+                const plansHtml = plans.sort((a, b) => a.position - b.position).map(plan => `
                     <tr class="fade-in">
+                        <td>${plan.position}</td>
                         <td>
                             <div class="d-flex align-items-center">
                                 <img src="${plan.imageUrl || 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiNlZWUiLz48dGV4dCB4PSI1MCIgeT0iNTUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkludGVybmV0IFBsYW48L3RleHQ+PC9zdmc+'}" alt="${plan.name}" 
@@ -356,6 +368,7 @@
                 document.getElementById('supportedDevices').value = plan.supportedDevices;
                 document.getElementById('planFeatures').value = plan.features.join('\n');
                 document.getElementById('isPopular').checked = plan.isPopular;
+                document.getElementById('planPosition').value = plan.position;
                 
                 // Show existing image if available
                 const preview = document.getElementById('imagePreview');
@@ -408,6 +421,7 @@
                 const supportedDevices = parseInt(document.getElementById('supportedDevices').value);
                 const features = document.getElementById('planFeatures').value.trim().split('\n').filter(feature => feature.trim());
                 const isPopular = document.getElementById('isPopular').checked;
+                const position = parseInt(document.getElementById('planPosition').value);
 
                 // Validate required fields
                 if (!name) throw new Error('Plan name is required');
@@ -416,6 +430,7 @@
                 if (!price || price <= 0) throw new Error('Valid price is required');
                 if (!supportedDevices || supportedDevices <= 0) throw new Error('Valid number of supported devices is required');
                 if (features.length === 0) throw new Error('At least one feature is required');
+                if (isNaN(position)) throw new Error('Valid position is required');
 
                 // Create FormData for file upload
                 const formData = new FormData();
@@ -428,6 +443,7 @@
                 formData.append('supportedDevices', supportedDevices);
                 formData.append('features', JSON.stringify(features));
                 formData.append('isPopular', isPopular);
+                formData.append('position', position);
 
                 // Append image if selected
                 const imageFile = document.getElementById('planImage').files[0];

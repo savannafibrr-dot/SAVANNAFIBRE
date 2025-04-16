@@ -73,7 +73,7 @@ const isAuthenticated = (req, res, next) => {
 // Get all plans
 router.get('/', async (req, res) => {
     try {
-        const plans = await Plan.find().sort({ createdAt: -1 });
+        const plans = await Plan.find().sort({ position: 1 });
         res.json(plans);
     } catch (error) {
         res.status(500).json({ error: 'Server error' });
@@ -90,7 +90,8 @@ router.post('/', isAuthenticated, upload.single('image'), handleMulterError, asy
             price: parseInt(req.body.price),
             supportedDevices: parseInt(req.body.supportedDevices),
             features: JSON.parse(req.body.features),
-            isPopular: req.body.isPopular === 'true' || req.body.isPopular === true // Handle both string and boolean
+            isPopular: req.body.isPopular === 'true' || req.body.isPopular === true, // Handle both string and boolean
+            position: parseInt(req.body.position) // Add position field
         };
 
         if (req.file) {
@@ -141,7 +142,8 @@ router.put('/:id', isAuthenticated, upload.single('image'), handleMulterError, a
             price: parseInt(req.body.price),
             supportedDevices: parseInt(req.body.supportedDevices),
             features: JSON.parse(req.body.features),
-            isPopular: req.body.isPopular === 'true' || req.body.isPopular === true // Handle both string and boolean
+            isPopular: req.body.isPopular === 'true' || req.body.isPopular === true, // Handle both string and boolean
+            position: parseInt(req.body.position) // Add position field
         };
 
         // If a new image is uploaded

@@ -1006,9 +1006,16 @@
                                                     <i class="fas fa-clock" style="color: #f79621; margin-right: 8px; min-width: 16px;"></i>
                                                     <p style="margin: 0; color: #333; font-size: 14px; font-weight: 500;">Opening Hours</p>
                                                 </div>
-                                                <p style="margin: 0; color: #666; font-size: 13px; line-height: 1.4; padding-left: 24px;">
-                                                    Mon-Sat: ${shop.openingHours?.monday?.open || '09:00'} - ${shop.openingHours?.monday?.close || '17:00'}
-                                                </p>
+                                                <div style="color: #666; font-size: 13px; line-height: 1.4;">
+                                                    <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                                        <span>Monday - Friday:</span>
+                                                        <span>${shop.openingHours?.monday?.open || '09:00'} - ${shop.openingHours?.monday?.close || '17:00'}</span>
+                                                    </div>
+                                                    <div style="display: flex; justify-content: space-between;">
+                                                        <span>Saturday - Sunday:</span>
+                                                        <span>${shop.openingHours?.saturday?.open || '10:00'} - ${shop.openingHours?.saturday?.close || '17:00'}</span>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <a href="https://www.google.com/maps/search/?api=1&query=${position.lat},${position.lng}" 
                                                 target="_blank" 

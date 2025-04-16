@@ -14,6 +14,7 @@ const planSchema = new mongoose.Schema({
     features: [{ type: String, required: true, trim: true }],
     imageUrl: { type: String, trim: true },
     isPopular: { type: Boolean, default: false },
+    position: { type: Number, default: 0 },
     createdAt: { type: Date, default: Date.now }
 });
 
