@@ -131,6 +131,11 @@ app.get('/admin/coverages', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'coverages.html'));
 });
 
+// Add redirect for /admin/coverage to /admin/coverages
+app.get('/admin/coverage', (req, res) => {
+    res.redirect('/admin/coverages');
+});
+
 app.get('/banners', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'banners.html'));
 });
