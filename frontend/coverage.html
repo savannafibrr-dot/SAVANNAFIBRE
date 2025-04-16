@@ -1112,8 +1112,25 @@
 
 
 
-<script async
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUIQh2LJzL0V-fh24QLmiKVrVWCya-ZiA&libraries=places&callback=initMap">
+<script>
+    function loadGoogleMaps() {
+        if (window.google && window.google.maps && window.google.maps.places) {
+            initMap();
+            return;
+        }
+
+        const script = document.createElement('script');
+        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDUIQh2LJzL0V-fh24QLmiKVrVWCya-ZiA&libraries=places&callback=initMap';
+        script.defer = true;
+        script.async = true;
+        script.onerror = () => {
+            console.error('Failed to load Google Maps API');
+            document.getElementById('map').innerHTML = '<div style="padding: 20px; text-align: center; color: #d32f2f;">Failed to load map. Please check your internet connection and try again.</div>';
+        };
+        document.head.appendChild(script);
+    }
+
+    document.addEventListener('DOMContentLoaded', loadGoogleMaps);
 </script>
 
 
@@ -1124,7 +1141,6 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUIQh2LJzL0V-fh24QLmiKVrV
 let markers = [];
     let coverageAreas = [];
     let cityGroups = {};
-    let autocompleteService;
 
     function initMap() {
         // Default center (Tanzania)
@@ -1156,14 +1172,22 @@ let markers = [];
         });
 
         geocoder = new google.maps.Geocoder();
-        autocompleteService = new google.maps.places.AutocompleteService();
         loadCoverageAreas();
     }
 
     async function loadCoverageAreas() {
         try {
-            const response = await fetch('/api/coverage');
-            if (!response.ok) throw new Error('Failed to fetch coverage areas');
+            const response = await fetch('/api/coverage/public', {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            });
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
             
             coverageAreas = await response.json();
             
@@ -1183,6 +1207,11 @@ let markers = [];
             showAllCoverageAreas();
         } catch (error) {
             console.error('Error loading coverage areas:', error);
+            document.getElementById('coverageList').innerHTML = `
+                <div style="padding: 20px; text-align: center; color: #d32f2f;">
+                    Failed to load coverage areas. Please try again later.
+                </div>
+            `;
         }
     }
 
@@ -1509,7 +1538,8 @@ let markers = [];
 
         try {
             // Use Google Places Autocomplete
-            const predictions = await autocompleteService.getPlacePredictions({
+            const autocomplete = new google.maps.places.AutocompleteService();
+            const predictions = await autocomplete.getPlacePredictions({
                 input: query,
                 componentRestrictions: { country: 'tz' }, // Restrict to Tanzania
                 types: ['geocode', 'establishment']

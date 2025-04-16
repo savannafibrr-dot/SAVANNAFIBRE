@@ -76,6 +76,20 @@ router.get('/', auth, async (req, res) => {
     }
 });
 
+// Get public coverage areas (no auth required)
+router.get('/public', async (req, res) => {
+    try {
+        const coverageAreas = await Coverage.find().sort({ createdAt: -1 });
+        res.json(coverageAreas);
+    } catch (error) {
+        console.error('Error fetching public coverage areas:', error);
+        res.status(500).json({ 
+            error: 'Server error',
+            message: error.message
+        });
+    }
+});
+
 // Add new coverage area with path
 router.post('/add-coverage', auth, async (req, res) => {
     try {
