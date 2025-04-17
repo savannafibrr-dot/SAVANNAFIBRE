@@ -8,6 +8,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
 const path = require('path');
 const User = require('./models/User');
+const auth = require('./middleware/auth');
 
 
 const app = express();
@@ -32,18 +33,29 @@ connectDB();
 
 // Session configuration
 app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
+    secret: 'local-development-secret', // Fixed secret for local development
+    resave: true,
+    saveUninitialized: true,
     store: MongoStore.create({
         mongoUrl: process.env.MONGODB_URI,
         ttl: 24 * 60 * 60 // Session TTL (1 day)
     }),
     cookie: {
-        secure: process.env.NODE_ENV === 'production',
-        maxAge: 24 * 60 * 60 * 1000 // Cookie max age (1 day)
+        secure: false, // Set to false for local development
+        maxAge: 24 * 60 * 60 * 1000, // Cookie max age (1 day)
+        httpOnly: false, // Set to false for local development
+        sameSite: 'lax'
     }
 }));
+
+// Add CORS configuration for local development
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+    next();
+});
 
 // Passport configuration
 app.use(passport.initialize());
@@ -104,39 +116,45 @@ app.use('/api/plans', require('./routes/plans'));
 app.use('/api/shops', require('./routes/shops'));
 app.use('/api/coverage', require('./routes/coverage'));
 app.use('/api/banners', require('./routes/banners'));
+app.use('/api/users', require('./routes/users'));
 
 // Serve static files from the public directory for admin routes
-app.use('/admin', express.static(path.join(__dirname, 'public')));
+app.use('/admin', auth, express.static(path.join(__dirname, 'public')));
 
 // Serve static files from the frontend directory for root routes
 app.use('/', express.static(path.join(__dirname, 'frontend')));
 
-// Handle admin routes
-app.get('/admin/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'dashboard.html'));
-});
-app.get('/admin/dashboard', (req, res) => {
+// Handle admin routes with authentication
+app.get('/admin/', auth, (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'dashboard.html'));
 });
 
-app.get('/admin/plans', (req, res) => {
+app.get('/admin/dashboard', auth, (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'dashboard.html'));
+});
+
+app.get('/admin/plans', auth, (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'plans.html'));
 });
 
-app.get('/admin/shop', (req, res) => {
+app.get('/admin/shop', auth, (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'shop.html'));
 });
 
-app.get('/admin/coverages', (req, res) => {
+app.get('/admin/coverages', auth, (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'coverages.html'));
 });
 
 // Add redirect for /admin/coverage to /admin/coverages
-app.get('/admin/coverage', (req, res) => {
+app.get('/admin/coverage', auth, (req, res) => {
     res.redirect('/admin/coverages');
 });
 
-app.get('/banners', (req, res) => {
+app.get('/admin/users', auth, (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'users.html'));
+});
+
+app.get('/banners', auth, (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'banners.html'));
 });
 

@@ -34,8 +34,12 @@ router.post('/signup', async (req, res) => {
             return res.status(400).json({ error: 'Email already registered' });
         }
 
-        // Create new user
-        const user = new User({ email, password });
+        // Create new user with default role as 'user'
+        const user = new User({ 
+            email, 
+            password,
+            role: 'user' // Explicitly set role as 'user'
+        });
         await user.save();
 
         // Auto login after signup
@@ -66,6 +70,17 @@ router.get('/logout', (req, res) => {
 // Check authentication status
 router.get('/status', (req, res) => {
     res.json({ isAuthenticated: req.isAuthenticated() });
+});
+
+// Get current user data
+router.get('/user', (req, res) => {
+    if (!req.isAuthenticated()) {
+        return res.status(401).json({ error: 'Not authenticated' });
+    }
+    res.json({
+        email: req.user.email,
+        role: req.user.role || 'user'
+    });
 });
 
 module.exports = router; 
