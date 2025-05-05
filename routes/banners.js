@@ -30,10 +30,11 @@ const storage = multer.diskStorage({
 const upload = multer({
     storage: storage,
     fileFilter: function (req, file, cb) {
-        if (file.mimetype !== 'image/png') {
-            return cb(new Error('Only PNG files are allowed!'));
+        if (file.mimetype.startsWith('image/')) {
+            cb(null, true);
+        } else {
+            cb(new Error('Only image files are allowed!'));
         }
-        cb(null, true);
     },
     limits: {
         fileSize: 5 * 1024 * 1024 // 5MB max file size
@@ -50,14 +51,33 @@ router.get('/', isAuthenticated, async (req, res) => {
     }
 });
 
+// Get single banner
+router.get('/:id', isAuthenticated, async (req, res) => {
+    try {
+        const banner = await Banner.findById(req.params.id);
+        if (!banner) {
+            return res.status(404).json({ message: 'Banner not found' });
+        }
+        res.json(banner);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
 // Create new banner
 router.post('/', isAuthenticated, upload.single('image'), async (req, res) => {
     try {
-        if (!req.file) {
-            return res.status(400).json({ message: 'Image is required' });
+        let imagePath;
+        
+        if (req.file) {
+            // If file is uploaded, use the uploaded file path
+            imagePath = '/banner-uploads/' + req.file.filename;
+        } else if (req.body.imagePath) {
+            // If image path is provided, use that
+            imagePath = req.body.imagePath;
+        } else {
+            return res.status(400).json({ message: 'Either an image file or image path is required' });
         }
-
-        const imagePath = req.file.filename; // Store only the filename
         
         const banner = new Banner({
             title: req.body.title,
@@ -67,7 +87,6 @@ router.post('/', isAuthenticated, upload.single('image'), async (req, res) => {
             button2Text: req.body.button2Text,
             button2Link: req.body.button2Link,
             imagePath: imagePath,
-            bgColor: req.body.bgColor,
             isActive: req.body.isActive === 'true'
         });
 
@@ -90,13 +109,19 @@ router.put('/:id', isAuthenticated, upload.single('image'), async (req, res) => 
         }
 
         let imagePath = banner.imagePath;
+        
         if (req.file) {
-            // Delete old image
-            const oldImagePath = path.join('public/banner-uploads', banner.imagePath);
-            if (fs.existsSync(oldImagePath)) {
-                fs.unlinkSync(oldImagePath);
+            // If new file is uploaded, delete old file and use new one
+            if (banner.imagePath && !banner.imagePath.startsWith('./')) {
+                const oldImagePath = path.join('public', banner.imagePath);
+                if (fs.existsSync(oldImagePath)) {
+                    fs.unlinkSync(oldImagePath);
+                }
             }
-            imagePath = req.file.filename; // Store only the filename
+            imagePath = '/banner-uploads/' + req.file.filename;
+        } else if (req.body.imagePath) {
+            // If new image path is provided, use that
+            imagePath = req.body.imagePath;
         }
 
         banner.title = req.body.title || banner.title;
@@ -106,7 +131,6 @@ router.put('/:id', isAuthenticated, upload.single('image'), async (req, res) => 
         banner.button2Text = req.body.button2Text || banner.button2Text;
         banner.button2Link = req.body.button2Link || banner.button2Link;
         banner.imagePath = imagePath;
-        banner.bgColor = req.body.bgColor || banner.bgColor;
         banner.isActive = req.body.isActive === 'true';
 
         const updatedBanner = await banner.save();
@@ -127,13 +151,15 @@ router.delete('/:id', isAuthenticated, async (req, res) => {
             return res.status(404).json({ message: 'Banner not found' });
         }
 
-        // Delete image file
-        const imagePath = path.join('public/banner-uploads', banner.imagePath);
-        if (fs.existsSync(imagePath)) {
-            fs.unlinkSync(imagePath);
+        // Delete image file only if it's an uploaded file
+        if (banner.imagePath && !banner.imagePath.startsWith('./')) {
+            const imagePath = path.join('public', banner.imagePath);
+            if (fs.existsSync(imagePath)) {
+                fs.unlinkSync(imagePath);
+            }
         }
 
-        await banner.deleteOne(); // Using deleteOne instead of remove
+        await banner.deleteOne();
         res.json({ message: 'Banner deleted' });
     } catch (error) {
         res.status(500).json({ message: error.message });

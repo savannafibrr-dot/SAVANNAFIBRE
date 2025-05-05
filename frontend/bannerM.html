@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Banner Slider</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: white;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 12px;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .swiper-button-next {
+      right: 20px;
+    }
+
+    .swiper-button-prev {
+      left: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .swiper-button-next,
+      .swiper-button-prev {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Swiper Container -->
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper" id="bannerSlides">
+      <!-- Banners will be loaded here -->
+    </div>
+
+    <!-- Swiper Pagination & Nav -->
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-next text-white"></div>
+    <div class="swiper-button-prev text-white"></div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    const swiper = new Swiper(".mySwiper", {
+      loop: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+
+    // Post message height to parent
+    function sendHeight() {
+      const height = document.body.scrollHeight;
+      window.parent.postMessage({ type: "bannerHeight", height }, "*");
+    }
+
+    window.addEventListener("load", sendHeight);
+    window.addEventListener("resize", sendHeight);
+    setInterval(sendHeight, 1000); // keep syncing in case of Swiper height changes
+
+    // Fetch and display banners
+    async function loadBanners() {
+      try {
+        const response = await fetch('/api/banners');
+        if (!response.ok) throw new Error('Failed to load banners');
+        const banners = await response.json();
+        
+        const bannerSlides = banners.map(banner => `
+          <section class="swiper-slide bg-gradient-to-b from-[#4b1f0f] via-[#aa4b0e] to-[#f79621] text-white">
+            <div class="max-w-7xl mx-auto px-6 pt-28 pb-12 flex flex-col-reverse lg:flex-row items-center gap-10">
+              <div class="flex-1 text-left">
+                <h1 class="text-4xl sm:text-5xl font-bold mb-4">${banner.title}</h1>
+                <p class="mb-6 text-lg text-gray-100">${banner.subtitle}</p>
+                <div class="flex flex-col sm:flex-row justify-start gap-4">
+                  <a href="${banner.button1Link}" target="_parent" style="font-family: 'Poppins', sans-serif;" class="px-6 py-3 border-2 border-white text-white hover:bg-white hover:text-orange-600 rounded-md transition">${banner.button1Text}</a>
+                  <a href="${banner.button2Link}" target="_parent" style="font-family: 'Poppins', sans-serif;" class="px-6 py-3 bg-white text-orange-600 hover:bg-orange-200 rounded-md transition">${banner.button2Text}</a>
+                </div>
+              </div>
+              <div class="flex-1 flex justify-center">
+                <img src="${banner.imagePath}" alt="${banner.title}" class="w-full max-w-md md:max-w-lg lg:max-w-xl h-auto" />
+              </div>
+            </div>
+          </section>
+        `).join('');
+
+        document.getElementById('bannerSlides').innerHTML = bannerSlides;
+        swiper.update();
+      } catch (error) {
+        console.error('Error loading banners:', error);
+      }
+    }
+
+    // Load banners when page loads
+    loadBanners();
+  </script>
+</body>
+</html>

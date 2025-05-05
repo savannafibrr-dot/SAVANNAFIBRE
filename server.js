@@ -66,7 +66,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use('/uploads', express.static('public/uploads'));
-app.use('/banner-uploads', express.static('public/banner-uploads'));
+app.use('/banner-uploads', express.static(path.join(__dirname, 'public/banner-uploads')));
 
 // Set view engine and pass environment variables to views
 app.set('view engine', 'ejs');
