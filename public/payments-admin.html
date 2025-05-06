@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payments Admin - Savanna Fibre</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .icon-picker-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .icon-picker-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      border: 2px solid transparent;
+      border-radius: 8px;
+      padding: 8px;
+      transition: border 0.2s;
+    }
+    .icon-picker-item.selected {
+      border: 2px solid #F79621;
+      background: #fff7ed;
+    }
+    .icon-picker-item i {
+      font-size: 28px;
+      color: #F79621;
+      margin-bottom: 4px;
+    }
+    .payment-method-card {
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background: #fff;
+    }
+    .payment-method-card .fa, .payment-method-card .fas {
+      font-size: 32px;
+      color: #F79621;
+      margin-right: 12px;
+    }
+    .steps-list {
+      margin-bottom: 0;
+    }
+    .steps-list li {
+      margin-bottom: 4px;
+    }
+    .edit-btn, .delete-btn {
+      margin-left: 8px;
+    }
+  </style>
+</head>
+<body class="bg-light">
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/admin/dashboard">
+        <img src="/Logo savanna6.svg" alt="Savanna Fibre" height="40">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="/admin/dashboard"><i class="bi bi-speedometer2"></i>Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="/admin/plans"><i class="bi bi-wifi"></i>Internet Plans</a></li>
+          <li class="nav-item"><a class="nav-link" href="/admin/shop"><i class="bi bi-shop"></i>Shop Locations</a></li>
+          <li class="nav-item"><a class="nav-link" href="/admin/coverage"><i class="bi bi-broadcast-pin"></i>Coverage Areas</a></li>
+          <li class="nav-item"><a class="nav-link" href="/banners"><i class="bi bi-images"></i>Banner Management</a></li>
+          <li class="nav-item"><a class="nav-link" href="/about-admin.html"><i class="bi bi-info-circle"></i>About Admin</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/payments-admin.html"><i class="fa fa-money-bill"></i>Payments Admin</a></li>
+        </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="#" id="logout-btn"><i class="bi bi-box-arrow-right"></i>Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 class="h3 mb-0">Payments Management</h1>
+      <button id="addPaymentBtn" class="btn btn-primary">
+        <i class="bi bi-plus-circle"></i> Add Payment Method
+      </button>
+    </div>
+    <div id="methods-list"></div>
+  </div>
+
+  <!-- Modal for adding/editing payment method -->
+  <div class="modal fade" id="paymentModal" aria-labelledby="paymentModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="paymentModalLabel">Add Payment Method</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="method-form">
+            <input type="hidden" id="method-id">
+            <div class="mb-3">
+              <label class="form-label">Method Name</label>
+              <input type="text" class="form-control" id="methodName" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Icon</label>
+              <div class="icon-picker-grid" id="icon-picker"></div>
+              <input type="hidden" id="iconClass" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Steps (one per line)</label>
+              <textarea class="form-control" id="steps" rows="5" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Order</label>
+              <input type="number" class="form-control" id="order" value="0">
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-secondary ms-2" data-bs-dismiss="modal">Cancel</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/auth.js"></script>
+  <script>
+    // Auth check
+    document.addEventListener('DOMContentLoaded', async () => {
+      const isAuthenticated = await checkAuth();
+      if (!isAuthenticated) window.location.href = '/login.html';
+      loadMethods();
+    });
+
+    // Icon options (Font Awesome, matching your static icons)
+    const availableIcons = [
+      { class: 'fas fa-mobile-alt', name: 'M-Pesa' },
+      { class: 'fas fa-sim-card', name: 'Airtel Money' },
+      { class: 'fas fa-wallet', name: 'Mixx By Yas' },
+      { class: 'fas fa-university', name: 'Bank' },
+      { class: 'fas fa-credit-card', name: 'Card' },
+      { class: 'fas fa-money-bill', name: 'Cash' },
+      { class: 'fas fa-qrcode', name: 'QR Code' },
+      { class: 'fas fa-coins', name: 'Other' }
+    ];
+
+    // Render icon picker
+    function renderIconPicker(selected) {
+      const picker = document.getElementById('icon-picker');
+      picker.innerHTML = '';
+      availableIcons.forEach(icon => {
+        const div = document.createElement('div');
+        div.className = 'icon-picker-item' + (icon.class === selected ? ' selected' : '');
+        div.innerHTML = `<i class="${icon.class}"></i><span style="font-size:12px;">${icon.name}</span>`;
+        div.onclick = () => {
+          document.getElementById('iconClass').value = icon.class;
+          renderIconPicker(icon.class);
+        };
+        picker.appendChild(div);
+      });
+    }
+    renderIconPicker();
+
+    // Load payment methods
+    async function loadMethods() {
+      const res = await fetch('/api/payments');
+      const methods = await res.json();
+      const list = document.getElementById('methods-list');
+      list.innerHTML = '';
+      methods.forEach(method => {
+        const card = document.createElement('div');
+        card.className = 'payment-method-card';
+        card.innerHTML = `
+          <i class="${method.iconClass}"></i>
+          <div style="flex:1;">
+            <div class="d-flex align-items-center mb-2">
+              <strong>${method.methodName}</strong>
+              <button class="btn btn-sm btn-outline-primary edit-btn" onclick="editMethod('${method._id}')"><i class="bi bi-pencil"></i></button>
+              <button class="btn btn-sm btn-outline-danger delete-btn" onclick="deleteMethod('${method._id}')"><i class="bi bi-trash"></i></button>
+            </div>
+            <ol class="steps-list">${method.steps.map(step => `<li>${step}</li>`).join('')}</ol>
+          </div>
+        `;
+        list.appendChild(card);
+      });
+    }
+
+    // Add/edit method
+    document.getElementById('method-form').onsubmit = async function(e) {
+      e.preventDefault();
+      const id = document.getElementById('method-id').value;
+      const methodName = document.getElementById('methodName').value.trim();
+      const iconClass = document.getElementById('iconClass').value;
+      const steps = document.getElementById('steps').value.split('\n').map(s => s.trim()).filter(Boolean);
+      const order = parseInt(document.getElementById('order').value) || 0;
+      const body = JSON.stringify({ methodName, iconClass, steps, order });
+      console.log('Request body:', body); // Debug log
+      const headers = { 'Content-Type': 'application/json' };
+      let url = '/api/payments', method = 'POST';
+      if (id) { url += '/' + id; method = 'PUT'; }
+      const res = await fetch(url, { method, headers, body });
+      if (res.ok) {
+        loadMethods();
+        this.reset();
+        renderIconPicker();
+        document.getElementById('paymentModalLabel').textContent = 'Add Payment Method';
+        bootstrap.Modal.getInstance(document.getElementById('paymentModal')).hide();
+      } else {
+        alert('Failed to save payment method');
+      }
+    };
+
+    // Edit method
+    window.editMethod = async function(id) {
+      const res = await fetch('/api/payments');
+      const methods = await res.json();
+      const method = methods.find(m => m._id === id);
+      if (!method) return;
+      document.getElementById('method-id').value = method._id;
+      document.getElementById('methodName').value = method.methodName;
+      document.getElementById('iconClass').value = method.iconClass;
+      document.getElementById('steps').value = method.steps.join('\n');
+      document.getElementById('order').value = method.order;
+      renderIconPicker(method.iconClass);
+      document.getElementById('paymentModalLabel').textContent = 'Edit Payment Method';
+      new bootstrap.Modal(document.getElementById('paymentModal')).show();
+    };
+
+    // Delete method
+    window.deleteMethod = async function(id) {
+      if (!confirm('Delete this payment method?')) return;
+      const res = await fetch('/api/payments/' + id, { method: 'DELETE' });
+      if (res.ok) loadMethods();
+      else alert('Failed to delete');
+    };
+
+    // Logout handler
+    document.getElementById('logout-btn').addEventListener('click', async (e) => {
+      e.preventDefault();
+      try {
+        await fetch('/api/auth/logout', { credentials: 'include' });
+        window.location.href = '/login.html';
+      } catch (error) {
+        console.error('Error logging out:', error);
+      }
+    });
+
+    document.getElementById('addPaymentBtn').addEventListener('click', () => {
+      document.getElementById('method-id').value = '';
+      document.getElementById('methodName').value = '';
+      document.getElementById('iconClass').value = '';
+      document.getElementById('steps').value = '';
+      document.getElementById('order').value = '';
+      document.getElementById('paymentModalLabel').textContent = 'Add Payment Method';
+      new bootstrap.Modal(document.getElementById('paymentModal')).show();
+    });
+  </script>
+</body>
+</html> 

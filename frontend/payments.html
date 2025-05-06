@@ -517,18 +517,6 @@ background-position: top left;
                 <!-- Payment Methods -->
                 <div class="methods" style="font-family: poppins;">
                     <h5>Payment Methods</h5>
-                    <div class="method-icon" data-method="mpesa">
-                        <i class="fas fa-mobile-alt"></i>
-                        <span>M-Pesa</span>
-                    </div>
-                    <div class="method-icon" data-method="airtel">
-                        <i class="fas fa-sim-card"></i>
-                        <span>Airtel Money</span>
-                    </div>
-                    <div class="method-icon" data-method="tigo">
-                        <i class="fas fa-wallet"></i>
-                        <span>Mixx By Yas </span>
-                    </div>
                 </div>
             
 
@@ -582,16 +570,56 @@ background-position: top left;
        
 
         <!-- Script -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
         <script>
-            document.querySelectorAll('.method-icon').forEach((icon) => {
-                icon.addEventListener('click', (e) => {
-                    const method = e.currentTarget.dataset.method;
-                    document.querySelectorAll('.payment-steps').forEach((step) => {
-                        step.style.display = step.id === method ? 'block' : 'none';
-                    });
-                    document.querySelector('.default-message').style.display = 'none';
-                });
-            });
+        async function loadPayments() {
+          const res = await fetch('/api/payments');
+          const methods = await res.json();
+          const methodsContainer = document.querySelector('.methods');
+          const stepsContainer = document.querySelector('.steps');
+          const defaultMsg = stepsContainer.querySelector('.default-message');
+          const img = stepsContainer.querySelector('img');
+
+          // Clear and render payment methods
+          methodsContainer.innerHTML = '<h5>Payment Methods</h5>';
+          methods.forEach(method => {
+            const div = document.createElement('div');
+            div.className = 'method-icon';
+            div.setAttribute('data-method', method._id);
+            div.innerHTML = `<i class="${method.iconClass}"></i><span>${method.methodName}</span>`;
+            div.onclick = () => showSteps(method);
+            methodsContainer.appendChild(div);
+          });
+
+          // Show default message and hide all steps initially
+          stepsContainer.querySelectorAll('.payment-steps').forEach(el => el.remove());
+          defaultMsg.style.display = '';
+          img.style.display = '';
+        }
+
+        function showSteps(method) {
+          const stepsContainer = document.querySelector('.steps');
+          const defaultMsg = stepsContainer.querySelector('.default-message');
+          const img = stepsContainer.querySelector('img');
+          // Remove any previous steps
+          stepsContainer.querySelectorAll('.payment-steps').forEach(el => el.remove());
+          // Hide default message and image
+          defaultMsg.style.display = 'none';
+          img.style.display = 'none';
+          // Create and show steps
+          const stepsDiv = document.createElement('div');
+          stepsDiv.className = 'payment-steps';
+          const ul = document.createElement('ul');
+          method.steps.forEach(step => {
+            const li = document.createElement('li');
+            li.innerHTML = `<i class='fas fa-step-forward'></i> ${step}`;
+            ul.appendChild(li);
+          });
+          stepsDiv.appendChild(ul);
+          stepsContainer.appendChild(stepsDiv);
+        }
+
+        document.addEventListener('DOMContentLoaded', loadPayments);
         </script>
 
 
@@ -931,7 +959,7 @@ background-position: top left;
                         alt="Ienet HTML" height="170"></a>
             </div><!-- /.sidebar-one__logo-box -->
             <p class="sidebar-one__text">
-                We envision ourselves as Tanzania’s most trusted connectivity provider, delivering seamless, affordable,
+                We envision ourselves as Tanzania's most trusted connectivity provider, delivering seamless, affordable,
                 and reliable internet to every household, and empowering communities in the digital age.
             </p>
             <h4 class="sidebar-one__title">Contact Info:</h4>

@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ Management - Savanna Fibre</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .navbar {
+            background: #3C1800;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 0.5rem 1rem;
+            border-bottom: 1px solid #4a1e00;
+        }
+        .navbar-brand {
+            padding: 0.5rem 0;
+        }
+        .navbar-brand img {
+            height: 40px;
+            width: auto;
+        }
+        .navbar-toggler {
+            border: 1px solid #ff6600;
+            padding: 0.5rem;
+            background-color: transparent;
+        }
+        .navbar-toggler:focus {
+            box-shadow: 0 0 0 0.25rem rgba(255, 102, 0, 0.25);
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.75)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        .nav-link {
+            padding: 0.75rem 1rem;
+            color: #ffffff !important;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            opacity: 0.85;
+            margin: 0.25rem 0;
+        }
+        .nav-link:hover {
+            color: #ffffff !important;
+            background: rgba(255, 255, 255, 0.15);
+            opacity: 1;
+        }
+        .nav-link.active {
+            color: #ffffff !important;
+            background: rgba(255, 255, 255, 0.2);
+            font-weight: 600;
+            opacity: 1;
+        }
+        .nav-link i {
+            margin-right: 0.75rem;
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+        .faq-item {
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            transition: all 0.2s ease;
+        }
+        .faq-item:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .faq-header {
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+        }
+        .faq-content {
+            padding: 1rem;
+            border-top: 1px solid #dee2e6;
+        }
+        .faq-actions {
+            padding: 0.5rem 1rem;
+            background: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+            border-radius: 0 0 8px 8px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/dashboard">
+                <img src="/images/logo.png" alt="Savanna Fibre" height="40">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/dashboard">
+                            <i class="bi bi-speedometer2"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/plans">
+                            <i class="bi bi-wifi"></i>
+                            Internet Plans
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/shop">
+                            <i class="bi bi-shop"></i>
+                            Shop Locations
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/coverage">
+                            <i class="bi bi-broadcast-pin"></i>
+                            Coverage Areas
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/banners">
+                            <i class="bi bi-images"></i>
+                            Banner Management
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about-admin.html">
+                            <i class="bi bi-info-circle"></i>
+                            About Admin
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/payments-admin.html">
+                            <i class="fa fa-money-bill"></i>
+                            Payments Admin
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/faq-admin.html">
+                            <i class="bi bi-question-circle"></i>
+                            FAQ Management
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="logout-btn">
+                            <i class="bi bi-box-arrow-right"></i>
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h1 class="h3 mb-1">FAQ Management</h1>
+                <p class="text-secondary mb-0">Manage frequently asked questions</p>
+            </div>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#faqModal">
+                <i class="bi bi-plus-lg me-2"></i>
+                Add New FAQ
+            </button>
+        </div>
+
+        <div id="faqList">
+            <!-- FAQs will be loaded here -->
+        </div>
+    </div>
+
+    <!-- FAQ Modal -->
+    <div class="modal fade" id="faqModal" tabindex="-1" aria-labelledby="faqModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="faqModalLabel">Add New FAQ</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="faqForm">
+                        <div class="mb-3">
+                            <label class="form-label">Category</label>
+                            <input type="text" class="form-control" id="category" list="categoryList" required>
+                            <datalist id="categoryList">
+                                <!-- Categories will be populated dynamically -->
+                            </datalist>
+                            <small class="text-muted">Type a new category or select from existing ones</small>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Order</label>
+                            <input type="number" class="form-control" id="categoryOrder" required>
+                            <small class="text-muted">Lower numbers appear first</small>
+                        </div>
+                        <div id="faqPairsContainer">
+                            <!-- Dynamic question/answer pairs will be inserted here -->
+                        </div>
+                        <button type="button" class="btn btn-link" id="addPairBtn">
+                            <i class="bi bi-plus-circle"></i> Add Question
+                        </button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="saveFaqBtn">
+                        <span class="spinner-border spinner-border-sm d-none me-2"></span>
+                        Save FAQ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/auth.js"></script>
+    <script>
+        let currentFaqId = null;
+        const faqModal = new bootstrap.Modal(document.getElementById('faqModal'));
+
+        // Initialize
+        async function initialize() {
+            try {
+                const isAuthenticated = await checkAuth();
+                if (!isAuthenticated) return;
+
+                const isAdmin = await checkAdmin();
+                if (isAdmin) {
+                    // Add Users link to navbar if user is admin
+                    const navbarNav = document.querySelector('.navbar-nav.me-auto');
+                    const usersNavItem = document.createElement('li');
+                    usersNavItem.className = 'nav-item';
+                    usersNavItem.innerHTML = `
+                        <a class="nav-link" href="/admin/users">
+                            <i class="bi bi-people"></i>
+                            Users
+                        </a>
+                    `;
+                    // Insert before the logout button
+                    navbarNav.insertBefore(usersNavItem, navbarNav.lastElementChild);
+                }
+
+                // Load FAQs
+                await loadFaqs();
+            } catch (error) {
+                console.error('Initialization error:', error);
+            }
+        }
+
+        // Load FAQs
+        async function loadFaqs() {
+            try {
+                const response = await fetch('/api/faqs', {
+                    credentials: 'include',
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to fetch FAQs');
+                }
+                const faqs = await response.json();
+                
+                // Get unique categories for the datalist
+                const categories = [...new Set(faqs.map(faq => faq.category))];
+                const categoryList = document.getElementById('categoryList');
+                categoryList.innerHTML = categories.map(category => 
+                    `<option value="${category}">`
+                ).join('');
+                
+                // Group FAQs by category
+                const groupedFaqs = faqs.reduce((acc, faq) => {
+                    if (!acc[faq.category]) {
+                        acc[faq.category] = [];
+                    }
+                    acc[faq.category].push(faq);
+                    return acc;
+                }, {});
+
+                // Sort categories
+                const sortedCategories = Object.keys(groupedFaqs).sort();
+
+                // Generate HTML
+                const faqListHtml = sortedCategories.map(category => `
+                    <div class="mb-4">
+                        <h4 class="mb-3">${category}</h4>
+                        ${groupedFaqs[category]
+                            .sort((a, b) => a.order - b.order)
+                            .map(faq => `
+                                <div class="faq-item" id="faq-${faq._id}">
+                                    <div class="faq-header d-flex justify-content-between align-items-center">
+                                        <h5 class="mb-0">${faq.question}</h5>
+                                        <div class="d-flex gap-2">
+                                            <button class="btn btn-sm btn-outline-primary" onclick="editFaq('${faq._id}')">
+                                                <i class="bi bi-pencil"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-danger" onclick="deleteFaq('${faq._id}')">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="faq-content">
+                                        <p class="mb-0">${faq.answer}</p>
+                                    </div>
+                                </div>
+                            `).join('')}
+                    </div>
+                `).join('');
+                
+                document.getElementById('faqList').innerHTML = faqListHtml;
+            } catch (error) {
+                console.error('Error loading FAQs:', error);
+            }
+        }
+
+        // Helper to create a question/answer pair
+        function createFaqPair(question = '', answer = '') {
+            const pairDiv = document.createElement('div');
+            pairDiv.className = 'faq-pair mb-3 border rounded p-3 position-relative';
+            pairDiv.innerHTML = `
+                <div class="mb-2">
+                    <label class="form-label">Question</label>
+                    <input type="text" class="form-control question-input" value="${question}" required>
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Answer</label>
+                    <textarea class="form-control answer-input" rows="3" required>${answer}</textarea>
+                </div>
+                <button type="button" class="btn btn-sm btn-outline-danger remove-pair-btn position-absolute top-0 end-0 m-2" title="Remove" style="display:none;">
+                    <i class="bi bi-trash"></i>
+                </button>
+            `;
+            return pairDiv;
+        }
+
+        // Add a new pair to the form
+        function addFaqPair(question = '', answer = '') {
+            const container = document.getElementById('faqPairsContainer');
+            const pairDiv = createFaqPair(question, answer);
+            container.appendChild(pairDiv);
+            updateRemoveButtons();
+        }
+
+        // Remove a pair from the form
+        function removeFaqPair(btn) {
+            btn.closest('.faq-pair').remove();
+            updateRemoveButtons();
+        }
+
+        // Show remove button only if more than one pair
+        function updateRemoveButtons() {
+            const pairs = document.querySelectorAll('.faq-pair');
+            pairs.forEach((pair, idx) => {
+                const btn = pair.querySelector('.remove-pair-btn');
+                btn.style.display = pairs.length > 1 ? '' : 'none';
+                btn.onclick = () => removeFaqPair(btn);
+            });
+        }
+
+        // Add pair button handler
+        if (document.getElementById('addPairBtn')) {
+            document.getElementById('addPairBtn').onclick = () => addFaqPair();
+        }
+
+        // Reset form and add one empty pair by default
+        function resetForm() {
+            const form = document.getElementById('faqForm');
+            form.reset();
+            document.getElementById('faqPairsContainer').innerHTML = '';
+            addFaqPair();
+            document.getElementById('faqModalLabel').textContent = 'Add New FAQ';
+            currentFaqId = null;
+        }
+
+        // Save FAQ handler
+        document.getElementById('saveFaqBtn').addEventListener('click', async () => {
+            const spinner = document.querySelector('.spinner-border');
+            const form = document.getElementById('faqForm');
+            
+            // Validate all pairs
+            let valid = true;
+            const pairs = document.querySelectorAll('.faq-pair');
+            const faqs = [];
+            pairs.forEach(pair => {
+                const question = pair.querySelector('.question-input').value.trim();
+                const answer = pair.querySelector('.answer-input').value.trim();
+                if (!question || !answer) valid = false;
+                faqs.push({ question, answer });
+            });
+            if (!form.checkValidity() || !valid) {
+                form.reportValidity();
+                return;
+            }
+
+            try {
+                spinner.classList.remove('d-none');
+                const category = document.getElementById('category').value;
+                const order = parseInt(document.getElementById('categoryOrder').value);
+                const url = currentFaqId ? `/api/faqs/${currentFaqId}` : '/api/faqs';
+                const method = currentFaqId ? 'PUT' : 'POST';
+                const body = JSON.stringify({ category, order, faqs });
+                const response = await fetch(url, {
+                    method,
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to save FAQ');
+                }
+                faqModal.hide();
+                loadFaqs();
+                resetForm();
+            } catch (error) {
+                console.error('Error saving FAQ:', error);
+                alert('Error saving FAQ. Please try again.');
+            } finally {
+                spinner.classList.add('d-none');
+            }
+        });
+
+        // Edit FAQ handler
+        window.editFaq = async function(id) {
+            try {
+                const response = await fetch(`/api/faqs/${id}`, {
+                    credentials: 'include',
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to fetch FAQ');
+                }
+                const faq = await response.json();
+                document.getElementById('faqModalLabel').textContent = 'Edit FAQ';
+                document.getElementById('category').value = faq.category;
+                document.getElementById('categoryOrder').value = faq.order;
+                document.getElementById('faqPairsContainer').innerHTML = '';
+                // Fetch all FAQs for this category
+                const allFaqsRes = await fetch('/api/faqs', {
+                    credentials: 'include',
+                    headers: { 'Accept': 'application/json' }
+                });
+                const allFaqs = await allFaqsRes.json();
+                const categoryFaqs = allFaqs.filter(f => f.category === faq.category);
+                categoryFaqs.forEach(f => addFaqPair(f.question, f.answer));
+                currentFaqId = id;
+                faqModal.show();
+            } catch (error) {
+                console.error('Error loading FAQ:', error);
+            }
+        }
+
+        // Delete FAQ
+        async function deleteFaq(id) {
+            if (confirm('Are you sure you want to delete this FAQ?')) {
+                try {
+                    const response = await fetch(`/api/faqs/${id}`, { 
+                        method: 'DELETE',
+                        credentials: 'include',
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+                    if (!response.ok) {
+                        throw new Error('Failed to delete FAQ');
+                    }
+                    loadFaqs();
+                } catch (error) {
+                    console.error('Error deleting FAQ:', error);
+                    alert('Error deleting FAQ. Please try again.');
+                }
+            }
+        }
+
+        // Handle modal close
+        document.getElementById('faqModal').addEventListener('hidden.bs.modal', resetForm);
+
+        // Logout handler
+        document.getElementById('logout-btn').addEventListener('click', async (e) => {
+            e.preventDefault();
+            try {
+                await fetch('/api/auth/logout', { credentials: 'include' });
+                window.location.href = '/login.html';
+            } catch (error) {
+                console.error('Error logging out:', error);
+            }
+        });
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initialize);
+    </script>
+</body>
+</html> 

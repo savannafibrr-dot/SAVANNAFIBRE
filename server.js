@@ -119,6 +119,8 @@ app.use('/api/coverage', require('./routes/coverage'));
 app.use('/api/banners', require('./routes/banners'));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/about', aboutRouter);
+app.use('/api/payments', require('./routes/payments'));
+app.use('/api/faqs', require('./routes/faqs'));
 app.use('/about-uploads', express.static(path.join(__dirname, 'public/about-uploads')));
 
 // Serve static files from the public directory for admin routes
