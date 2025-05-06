@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Section Management - Savanna Fibre</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    .navbar {
+      background: #3C1800;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 0.5rem 1rem;
+      border-bottom: 1px solid #4a1e00;
+    }
+    .navbar-brand img { height: 40px; width: auto; }
+    .nav-link { color: #fff !important; font-weight: 500; opacity: 0.85; }
+    .nav-link.active, .nav-link:focus { background: rgba(255,255,255,0.2); color: #fff !important; font-weight: 600; opacity: 1; }
+    .nav-link i { margin-right: 0.75rem; font-size: 1.1rem; width: 20px; text-align: center; }
+    .card { border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .btn-primary { background-color: #F79621; border-color: #F79621; }
+    .btn-primary:hover { background-color: #e88a1a; border-color: #e88a1a; }
+    .img-thumbnail { max-height: 200px; }
+    .feature-box {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+    }
+    .feature-box .remove-feature {
+      color: #dc3545;
+      cursor: pointer;
+    }
+    .image-preview {
+      max-width: 200px;
+      max-height: 200px;
+      margin-top: 10px;
+    }
+    .icon-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+        gap: 10px;
+        margin-top: 10px;
+        max-height: 200px;
+        overflow-y: auto;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+    .icon-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        border: 1px solid #eee;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    .icon-item:hover {
+        background: #f8f9fa;
+        border-color: #F79621;
+    }
+    .icon-item.selected {
+        background: #F79621;
+        color: white;
+        border-color: #F79621;
+    }
+    .icon-item i {
+        font-size: 24px;
+        margin-bottom: 5px;
+    }
+    .icon-item span {
+        font-size: 10px;
+        text-align: center;
+        word-break: break-word;
+    }
+    .icon-preview {
+        font-size: 24px;
+        margin-right: 10px;
+    }
+    .custom-icon-input {
+        display: flex;
+        align-items: center;
+    }
+    .live-preview {
+        background: #f8f9fa;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 15px;
+        margin-top: 15px;
+    }
+    .live-preview h6 {
+        color: #666;
+        margin-bottom: 10px;
+    }
+    .preview-box {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 15px;
+        background: white;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .preview-box i {
+        font-size: 40px;
+        color: #F79621;
+    }
+    .preview-content h5 {
+        margin: 0;
+        color: #333;
+    }
+    .preview-content p {
+        margin: 5px 0 0;
+        color: #666;
+        font-size: 14px;
+    }
+    .about-preview {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        padding: 30px;
+        margin-bottom: 30px;
+    }
+    .about-preview .main-content {
+        display: flex;
+        gap: 40px;
+        margin-bottom: 40px;
+    }
+    .about-preview .text-content {
+        flex: 1;
+    }
+    .about-preview .images {
+        flex: 1;
+        display: flex;
+        gap: 20px;
+    }
+    .about-preview .image-container {
+        flex: 1;
+    }
+    .about-preview .image-container img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .about-preview .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 40px;
+    }
+    .about-preview .feature-item {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    .about-preview .feature-item i {
+        font-size: 40px;
+        color: #F79621;
+    }
+    .about-preview .feature-content h5 {
+        margin: 0;
+        color: #333;
+    }
+    .about-preview .feature-content p {
+        margin: 5px 0 0;
+        color: #666;
+        font-size: 14px;
+    }
+    .validation-error {
+        color: #dc3545;
+        font-size: 14px;
+        margin-top: 5px;
+        display: none;
+    }
+    .form-control.is-invalid {
+        border-color: #dc3545;
+    }
+    .form-control.is-invalid + .validation-error {
+        display: block;
+    }
+    .edit-form {
+        display: none;
+    }
+    .edit-form.active {
+        display: block;
+    }
+    .preview-actions {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 20px;
+    }
+    .btn-edit {
+        background-color: #F79621;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+    }
+    .btn-edit:hover {
+        background-color: #e88a1a;
+        color: white;
+    }
+    .btn-edit i {
+        font-size: 18px;
+    }
+    .about-preview {
+        transition: all 0.3s ease;
+    }
+    .about-preview.edit-mode {
+        margin-bottom: 0;
+    }
+    @font-face {
+        font-family: 'icomoon';
+        src: url('/fonts/icomoon.eot?7kkyc2');
+        src: url('/fonts/icomoon.eot?7kkyc2#iefix') format('embedded-opentype'),
+             url('/fonts/icomoon.ttf?7kkyc2') format('truetype'),
+             url('/fonts/icomoon.woff?7kkyc2') format('woff'),
+             url('/fonts/icomoon.svg?7kkyc2#icomoon') format('svg');
+        font-weight: normal;
+        font-style: normal;
+        font-display: block;
+    }
+
+    [class^="icon-"], [class*=" icon-"] {
+        font-family: 'icomoon' !important;
+        speak: never;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        -webkit-font-smoothing: antialiised;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Icon definitions */
+    .icon-world:before { content: "\e900"; }
+    .icon-wifi-router:before { content: "\e901"; }
+    .icon-medal:before { content: "\e902"; }
+    .icon-dashboard:before { content: "\e903"; }
+    .icon-telephone:before { content: "\e904"; }
+    .icon-mail:before { content: "\e905"; }
+    .icon-maps-and-flags:before { content: "\e906"; }
+    .icon-chat:before { content: "\e907"; }
+    .icon-customer-service:before { content: "\e908"; }
+    .icon-speed:before { content: "\e909"; }
+    .icon-shield:before { content: "\e90a"; }
+    .icon-support:before { content: "\e90b"; }
+    .icon-24-hours:before { content: "\e90c"; }
+    .icon-network:before { content: "\e90d"; }
+    .icon-cloud:before { content: "\e90e"; }
+    .icon-security:before { content: "\e90f"; }
+    .icon-connection:before { content: "\e910"; }
+    .icon-global:before { content: "\e911"; }
+    .icon-settings:before { content: "\e912"; }
+    .icon-maintenance:before { content: "\e913"; }
+    .icon-picker-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .icon-picker-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      border: 2px solid transparent;
+      border-radius: 8px;
+      padding: 8px;
+      transition: border 0.2s;
+    }
+    .icon-picker-item.selected {
+      border: 2px solid #F79621;
+      background: #fff7ed;
+    }
+    .icon-picker-item i {
+      font-size: 28px;
+      color: #F79621;
+      margin-bottom: 4px;
+    }
+  </style>
+</head>
+<body class="bg-light">
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/dashboard">
+        <img src="/Logo savanna6.svg" alt="Savanna Fibre" height="40">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/dashboard"><i class="bi bi-speedometer2"></i>Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/plans"><i class="bi bi-wifi"></i>Internet Plans</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/shop"><i class="bi bi-shop"></i>Shop Locations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/coverage"><i class="bi bi-broadcast-pin"></i>Coverage Areas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/banners"><i class="bi bi-images"></i>Banner Management</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/about-admin.html"><i class="bi bi-info-circle"></i>About Admin</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="logout-btn"><i class="bi bi-box-arrow-right"></i>Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div>
+        <h1 class="h3 mb-1">About Section Management</h1>
+        <p class="text-secondary mb-0">View and edit the About page content shown on the website</p>
+      </div>
+    </div>
+    
+    <!-- Preview Section -->
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="about-preview">
+          <div class="preview-actions">
+            <button class="btn-edit" onclick="toggleEditForm()">
+              <i class="fas fa-edit"></i>
+              <span>Edit Content</span>
+            </button>
+          </div>
+          <div class="main-content">
+            <div class="text-content">
+              <h3 id="previewTitle">Loading...</h3>
+              <h4 id="previewSubtitle" class="text-muted mb-3">Loading...</h4>
+              <p id="previewDescription">Loading...</p>
+            </div>
+            <div class="images">
+              <div class="image-container">
+                <img id="previewMainImage" src="" alt="Main Image">
+              </div>
+              <div class="image-container">
+                <img id="previewSecondaryImage" src="" alt="Secondary Image">
+              </div>
+            </div>
+          </div>
+          <div class="feature-grid" id="previewFeatureBoxes">
+            <!-- Feature boxes will be added here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Form Section -->
+    <div class="row justify-content-center edit-form" id="editForm">
+      <div class="col-lg-8">
+        <div class="card p-4">
+          <form id="aboutForm" enctype="multipart/form-data">
+            <div class="mb-3">
+              <label for="title" class="form-label">Title</label>
+              <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+            <div class="mb-3">
+              <label for="subtitle" class="form-label">Subtitle</label>
+              <input type="text" class="form-control" id="subtitle" name="subtitle" required>
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea class="form-control" id="description" name="description" rows="5" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="mainImage" class="form-label">Main Image</label>
+              <input type="file" class="form-control" id="mainImage" name="mainImage" accept="image/*">
+              <div id="mainImagePreview" class="mt-2">
+                <img src="" alt="Main Image Preview" class="img-thumbnail image-preview" style="display: none;">
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="secondaryImage" class="form-label">Secondary Image</label>
+              <input type="file" class="form-control" id="secondaryImage" name="secondaryImage" accept="image/*">
+              <div id="secondaryImagePreview" class="mt-2">
+                <img src="" alt="Secondary Image Preview" class="img-thumbnail image-preview" style="display: none;">
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Feature Boxes</label>
+              <div id="featureBoxes">
+                <!-- Feature boxes will be added here -->
+              </div>
+              <button type="button" class="btn btn-secondary mt-2" onclick="addFeatureBox()">
+                <i class="fas fa-plus"></i> Add Feature Box
+              </button>
+            </div>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    let currentAbout = null;
+
+    // Load current about info
+    async function loadAbout() {
+      try {
+      const res = await fetch('/api/about');
+        currentAbout = await res.json();
+        
+        // Update preview content first
+        document.getElementById('previewTitle').textContent = currentAbout.title;
+        document.getElementById('previewSubtitle').textContent = currentAbout.subtitle;
+        document.getElementById('previewDescription').textContent = currentAbout.description;
+        
+        if (currentAbout.mainImage) {
+          document.getElementById('previewMainImage').src = currentAbout.mainImage;
+        }
+        
+        if (currentAbout.secondaryImage) {
+          document.getElementById('previewSecondaryImage').src = currentAbout.secondaryImage;
+        }
+        
+        // Update feature boxes preview
+        const previewContainer = document.getElementById('previewFeatureBoxes');
+        previewContainer.innerHTML = '';
+        currentAbout.featureBoxes.forEach(box => {
+            const featureItem = document.createElement('div');
+            featureItem.className = 'feature-item';
+            featureItem.innerHTML = `
+                <i class="${box.icon}"></i>
+                <div class="feature-content">
+                    <h5>${box.title}</h5>
+                    <p>${box.description}</p>
+                </div>
+            `;
+            previewContainer.appendChild(featureItem);
+        });
+        
+        // Fill form fields (but keep form hidden)
+        document.getElementById('title').value = currentAbout.title;
+        document.getElementById('subtitle').value = currentAbout.subtitle;
+        document.getElementById('description').value = currentAbout.description;
+        
+        // Show image previews in form
+        if (currentAbout.mainImage) {
+          const mainImg = document.querySelector('#mainImagePreview img');
+          mainImg.src = currentAbout.mainImage;
+          mainImg.style.display = 'block';
+        }
+        
+        if (currentAbout.secondaryImage) {
+          const secImg = document.querySelector('#secondaryImagePreview img');
+          secImg.src = currentAbout.secondaryImage;
+          secImg.style.display = 'block';
+        }
+        
+        // Load feature boxes in form
+        document.getElementById('featureBoxes').innerHTML = '';
+        currentAbout.featureBoxes.forEach(box => addFeatureBox(box));
+      } catch (error) {
+        console.error('Error loading about info:', error);
+        alert('Failed to load about information');
+      }
+    }
+
+    // List of Font Awesome icons to offer in the picker
+    const availableIcons = [
+      { class: 'fa-solid fa-globe', name: 'Globe' },
+      { class: 'fa-solid fa-wifi', name: 'WiFi' },
+      { class: 'fa-solid fa-medal', name: 'Medal' },
+      { class: 'fa-solid fa-gauge', name: 'Dashboard' },
+      { class: 'fa-solid fa-phone', name: 'Phone' },
+      { class: 'fa-solid fa-envelope', name: 'Mail' },
+      { class: 'fa-solid fa-location-dot', name: 'Location' },
+      { class: 'fa-solid fa-comments', name: 'Chat' },
+      { class: 'fa-solid fa-headset', name: 'Customer Service' },
+      { class: 'fa-solid fa-gauge-high', name: 'Speed' },
+      { class: 'fa-solid fa-shield-halved', name: 'Shield' },
+      { class: 'fa-solid fa-life-ring', name: 'Support' },
+      { class: 'fa-solid fa-clock', name: '24 Hours' },
+      { class: 'fa-solid fa-network-wired', name: 'Network' },
+      { class: 'fa-solid fa-cloud', name: 'Cloud' },
+      { class: 'fa-solid fa-lock', name: 'Security' },
+      { class: 'fa-solid fa-link', name: 'Connection' },
+      { class: 'fa-solid fa-earth-africa', name: 'Global' },
+      { class: 'fa-solid fa-gear', name: 'Settings' },
+      { class: 'fa-solid fa-screwdriver-wrench', name: 'Maintenance' }
+    ];
+
+    // Update the feature box preview to ensure proper icon display
+    function updateFeatureBoxPreview(box, data) {
+        const previewBox = box.querySelector('.preview-box');
+        if (previewBox) {
+            const icon = previewBox.querySelector('i');
+            if (icon) {
+                icon.className = data.icon || '';
+            }
+        }
+    }
+
+    // Update the addFeatureBox function to include proper icon handling
+    function addFeatureBox(data = null) {
+        const box = document.createElement('div');
+        box.className = 'feature-box';
+        box.innerHTML = `
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h6 class="mb-0">Feature Box</h6>
+                <i class="fas fa-times remove-feature" onclick="this.parentElement.parentElement.remove()"></i>
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Icon</label>
+                <div class="custom-icon-input">
+                    <i class="${data?.icon || ''}"></i>
+                    <input type="text" class="form-control" name="icon" value="${data?.icon || ''}" required readonly>
+                </div>
+                <div class="icon-picker-grid">
+                    ${availableIcons.map(icon => `
+                        <div class="icon-picker-item ${data?.icon === icon.class ? 'selected' : ''}" 
+                             onclick="selectIcon(this, '${icon.class}')">
+                            <i class="${icon.class}"></i>
+                            <span>${icon.name}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Title</label>
+                <input type="text" class="form-control" name="title" value="${data?.title || ''}" required 
+                       oninput="updatePreview(this)">
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Description</label>
+                <textarea class="form-control" name="description" rows="2" required
+                          oninput="updatePreview(this)">${data?.description || ''}</textarea>
+            </div>
+            <div class="live-preview">
+                <h6>Live Preview</h6>
+                <div class="preview-box">
+                    <i class="${data?.icon || ''}"></i>
+                    <div class="preview-content">
+                        <h5>${data?.title || 'Feature Title'}</h5>
+                        <p>${data?.description || 'Feature description goes here'}</p>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.getElementById('featureBoxes').appendChild(box);
+    }
+
+    // Update the selectIcon function to ensure proper icon class application
+    function selectIcon(element, iconClass) {
+        const iconPicker = element.closest('.icon-picker-grid');
+        iconPicker.querySelectorAll('.icon-picker-item').forEach(item => {
+            item.classList.remove('selected');
+        });
+        
+        element.classList.add('selected');
+        
+        const featureBox = element.closest('.feature-box');
+        const input = featureBox.querySelector('input[name="icon"]');
+        const preview = featureBox.querySelector('.preview-box i');
+        const customIconInput = featureBox.querySelector('.custom-icon-input i');
+        
+        input.value = iconClass;
+        preview.className = iconClass;
+        customIconInput.className = iconClass;
+    }
+
+    // Add function to update preview
+    function updatePreview(element) {
+        const featureBox = element.closest('.feature-box');
+        const previewBox = featureBox.querySelector('.preview-box');
+        const title = featureBox.querySelector('input[name="title"]').value;
+        const description = featureBox.querySelector('textarea[name="description"]').value;
+        
+        previewBox.querySelector('h5').textContent = title || 'Feature Title';
+        previewBox.querySelector('p').textContent = description || 'Feature description goes here';
+    }
+
+    // Add validation function
+    function validateForm() {
+        let isValid = true;
+        const requiredFields = document.querySelectorAll('[required]');
+        
+        requiredFields.forEach(field => {
+            if (!field.value.trim()) {
+                field.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                field.classList.remove('is-invalid');
+            }
+        });
+        
+        return isValid;
+    }
+
+    // Update form submission handler
+    document.getElementById('aboutForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        if (!validateForm()) {
+            alert('Please fill in all required fields before saving.');
+            return;
+        }
+        
+        try {
+            const formData = new FormData();
+            formData.append('title', document.getElementById('title').value);
+            formData.append('subtitle', document.getElementById('subtitle').value);
+            formData.append('description', document.getElementById('description').value);
+            
+            // Add images if selected
+            const mainImage = document.getElementById('mainImage').files[0];
+            if (mainImage) formData.append('mainImage', mainImage);
+            
+            const secondaryImage = document.getElementById('secondaryImage').files[0];
+            if (secondaryImage) formData.append('secondaryImage', secondaryImage);
+            
+            // Add feature boxes
+            const featureBoxes = [];
+            document.querySelectorAll('.feature-box').forEach(box => {
+                featureBoxes.push({
+                    icon: box.querySelector('[name="icon"]').value,
+                    title: box.querySelector('[name="title"]').value,
+                    description: box.querySelector('[name="description"]').value
+                });
+            });
+            formData.append('featureBoxes', JSON.stringify(featureBoxes));
+            
+            const res = await fetch('/api/about', {
+                method: 'PUT',
+                body: formData
+            });
+            
+            if (!res.ok) throw new Error('Failed to update about info');
+            
+            alert('About section updated successfully!');
+            loadAbout(); // Reload the form and preview
+            toggleEditForm(); // Close the edit form after successful save
+        } catch (error) {
+            console.error('Error updating about info:', error);
+            alert('Failed to update about information');
+        }
+    });
+
+    // Add input validation on change
+    document.querySelectorAll('[required]').forEach(field => {
+        field.addEventListener('input', function() {
+            if (this.value.trim()) {
+                this.classList.remove('is-invalid');
+            } else {
+                this.classList.add('is-invalid');
+            }
+        });
+    });
+
+    // Image preview handlers
+    document.getElementById('mainImage').addEventListener('change', function() {
+      const preview = document.querySelector('#mainImagePreview img');
+      if (this.files && this.files[0]) {
+        const reader = new FileReader();
+        reader.onload = e => {
+          preview.src = e.target.result;
+          preview.style.display = 'block';
+        };
+        reader.readAsDataURL(this.files[0]);
+      }
+    });
+
+    document.getElementById('secondaryImage').addEventListener('change', function() {
+      const preview = document.querySelector('#secondaryImagePreview img');
+      if (this.files && this.files[0]) {
+        const reader = new FileReader();
+        reader.onload = e => {
+          preview.src = e.target.result;
+          preview.style.display = 'block';
+        };
+        reader.readAsDataURL(this.files[0]);
+      }
+    });
+
+    // Load about info when page loads
+    loadAbout();
+
+    // Logout handler (optional, for consistency)
+    document.getElementById('logout-btn').addEventListener('click', async (e) => {
+      e.preventDefault();
+      try {
+        const response = await fetch('/api/auth/logout', { method: 'POST' });
+        if (response.ok) {
+          window.location.href = '/login';
+        }
+      } catch (error) {
+        console.error('Error logging out:', error);
+      }
+    });
+
+    // Add toggle function for edit form
+    function toggleEditForm() {
+        const editForm = document.getElementById('editForm');
+        const aboutPreview = document.querySelector('.about-preview');
+        const editButton = document.querySelector('.btn-edit');
+        
+        if (editForm.classList.contains('active')) {
+            editForm.classList.remove('active');
+            aboutPreview.classList.remove('edit-mode');
+            editButton.innerHTML = '<i class="fas fa-edit"></i><span>Edit Content</span>';
+        } else {
+            editForm.classList.add('active');
+            aboutPreview.classList.add('edit-mode');
+            editButton.innerHTML = '<i class="fas fa-times"></i><span>Cancel Edit</span>';
+        }
+    }
+  </script>
+</body>
+</html> 

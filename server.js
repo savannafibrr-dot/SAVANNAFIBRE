@@ -9,6 +9,7 @@ const bcrypt = require('bcryptjs');
 const path = require('path');
 const User = require('./models/User');
 const auth = require('./middleware/auth');
+const aboutRouter = require('./routes/about');
 
 
 const app = express();
@@ -117,6 +118,8 @@ app.use('/api/shops', require('./routes/shops'));
 app.use('/api/coverage', require('./routes/coverage'));
 app.use('/api/banners', require('./routes/banners'));
 app.use('/api/users', require('./routes/users'));
+app.use('/api/about', aboutRouter);
+app.use('/about-uploads', express.static(path.join(__dirname, 'public/about-uploads')));
 
 // Serve static files from the public directory for admin routes
 app.use('/admin', auth, express.static(path.join(__dirname, 'public')));
