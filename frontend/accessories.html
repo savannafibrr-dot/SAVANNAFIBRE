@@ -1089,6 +1089,31 @@
     <script src="assets/vendors/gsap/ienet-split.js"></script>
     <!-- template js -->
     <script src="assets/js/ienet.js"></script>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookieConsentBanner" style="display:none; position:fixed; bottom:0; left:0; width:100%; background:#222; color:#fff; padding:18px 10px 18px 10px; z-index:99999; text-align:center; box-shadow:0 -2px 8px rgba(0,0,0,0.2); font-size:1rem;">
+      <span style="margin-right: 10px;">We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies. <a href='policy.html' style='color:#F79621;text-decoration:underline;'>Learn more</a></span>
+      <button id="acceptCookies" style="background:#F79621;color:#fff;border:none;padding:8px 18px;border-radius:5px;margin:0 8px;cursor:pointer;">Accept</button>
+      <button id="declineCookies" style="background:#fff;color:#222;border:none;padding:8px 18px;border-radius:5px;margin:0 8px;cursor:pointer;">Decline</button>
+    </div>
+    <script>
+    (function() {
+      var banner = document.getElementById('cookieConsentBanner');
+      var acceptBtn = document.getElementById('acceptCookies');
+      var declineBtn = document.getElementById('declineCookies');
+      if (!localStorage.getItem('cookieConsent')) {
+        banner.style.display = 'block';
+      }
+      acceptBtn.onclick = function() {
+        localStorage.setItem('cookieConsent', 'accepted');
+        banner.style.display = 'none';
+      };
+      declineBtn.onclick = function() {
+        localStorage.setItem('cookieConsent', 'declined');
+        banner.style.display = 'none';
+      };
+    })();
+    </script>
 </body>
 
 
