@@ -42,7 +42,7 @@ const upload = multer({
 });
 
 // Get all banners
-router.get('/', isAuthenticated, async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const banners = await Banner.find().sort({ createdAt: -1 });
         res.json(banners);
@@ -52,7 +52,7 @@ router.get('/', isAuthenticated, async (req, res) => {
 });
 
 // Get single banner
-router.get('/:id', isAuthenticated, async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         const banner = await Banner.findById(req.params.id);
         if (!banner) {
