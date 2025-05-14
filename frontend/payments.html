@@ -163,20 +163,77 @@
 
         .payment-steps li {
             display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
             font-size: 1rem;
+            line-height: 1.5;
+            padding: 8px;
+            border-radius: 6px;
+            transition: background-color 0.2s;
+        }
+
+        .payment-steps li:hover {
+            background-color: #fff7ed;
         }
 
         .payment-steps li i {
-            color: #f79621;
+            color: #F79621;
+            font-size: 1.1rem;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .payment-steps li .step-content {
+            flex: 1;
+        }
+
+        /* Rich text formatting styles */
+        .payment-steps li strong {
+            color: #F79621;
+            font-weight: 600;
+        }
+
+        .payment-steps li em {
+            font-style: italic;
+            color: #666;
+        }
+
+        .payment-steps li u {
+            text-decoration: underline;
+            text-decoration-color: #F79621;
+        }
+
+        .payment-steps li s {
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        .payment-steps li [style*="text-align: center"] {
+            text-align: center;
+        }
+
+        .payment-steps li [style*="text-align: right"] {
+            text-align: right;
+        }
+
+        .payment-steps li [style*="font-size"] {
+            line-height: 1.4;
+        }
+
+        .payment-steps li [style*="background-color"] {
+            padding: 2px 4px;
+            border-radius: 3px;
         }
 
         .default-message {
             font-size: 1rem;
             color: #777;
             text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            margin: 20px 0;
         }
 
         /* Responsive Design */
@@ -601,21 +658,68 @@ background-position: top left;
           const stepsContainer = document.querySelector('.steps');
           const defaultMsg = stepsContainer.querySelector('.default-message');
           const img = stepsContainer.querySelector('img');
+          
           // Remove any previous steps
           stepsContainer.querySelectorAll('.payment-steps').forEach(el => el.remove());
+          
           // Hide default message and image
           defaultMsg.style.display = 'none';
           img.style.display = 'none';
+          
+          // Robustly handle steps: if only one step and it contains <br> or newlines, split it
+          let steps = method.steps;
+          if (Array.isArray(steps) && steps.length === 1) {
+            if (steps[0].includes('<li>')) {
+              // Parse HTML list
+              const temp = document.createElement('div');
+              temp.innerHTML = steps[0];
+              steps = Array.from(temp.querySelectorAll('li')).map(li => li.innerHTML.trim()).filter(Boolean);
+            } else if (steps[0].includes('<br>')) {
+              steps = steps[0].split(/<br\s*\/?>(?:\s*)/i).map(s => s.trim()).filter(Boolean);
+            } else if (steps[0].includes('\n')) {
+              steps = steps[0].split(/\n/).map(s => s.trim()).filter(Boolean);
+            }
+          }
+          
           // Create and show steps
           const stepsDiv = document.createElement('div');
           stepsDiv.className = 'payment-steps';
-          const ul = document.createElement('ul');
-          method.steps.forEach(step => {
+          const ol = document.createElement('ol');
+          ol.style.cssText = 'padding-left: 20px; margin: 0; list-style-position: outside; counter-reset: step-counter;';
+          
+          steps.forEach((step, index) => {
             const li = document.createElement('li');
-            li.innerHTML = `<i class='fas fa-step-forward'></i> ${step}`;
-            ul.appendChild(li);
+            li.style.cssText = `
+              margin-bottom: 12px;
+              padding: 8px;
+              border-radius: 6px;
+              transition: background-color 0.2s;
+              counter-increment: step-counter;
+              position: relative;
+            `;
+            
+            // Create a wrapper for the step content
+            const stepWrapper = document.createElement('div');
+            stepWrapper.style.cssText = 'display: flex; align-items: flex-start; gap: 10px;';
+            
+            // Create the step number
+            const stepNumber = document.createElement('span');
+            stepNumber.style.cssText = 'color: #F79621; font-weight: 500; min-width: 25px;';
+            stepNumber.textContent = `${index + 1}.`;
+            
+            // Create the step content container
+            const stepContent = document.createElement('div');
+            stepContent.style.cssText = 'flex: 1;';
+            stepContent.innerHTML = step; // This will preserve the HTML formatting from the database
+            
+            // Assemble the step
+            stepWrapper.appendChild(stepNumber);
+            stepWrapper.appendChild(stepContent);
+            li.appendChild(stepWrapper);
+            ol.appendChild(li);
           });
-          stepsDiv.appendChild(ul);
+          
+          stepsDiv.appendChild(ol);
           stepsContainer.appendChild(stepsDiv);
         }
 
@@ -1078,28 +1182,57 @@ background-position: top left;
     <!-- template js -->
     <script src="assets/js/ienet.js"></script>
     <!-- Cookie Consent Banner -->
-    <div id="cookieConsentBanner" style="display:none; position:fixed; bottom:0; left:0; width:100%; background:#222; color:#fff; padding:18px 10px 18px 10px; z-index:99999; text-align:center; box-shadow:0 -2px 8px rgba(0,0,0,0.2); font-size:1rem;">
-      <span style="margin-right: 10px;">We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies. <a href='policy.html' style='color:#F79621;text-decoration:underline;'>Learn more</a></span>
-      <button id="acceptCookies" style="background:#F79621;color:#fff;border:none;padding:8px 18px;border-radius:5px;margin:0 8px;cursor:pointer;">Accept</button>
-      <button id="declineCookies" style="background:#fff;color:#222;border:none;padding:8px 18px;border-radius:5px;margin:0 8px;cursor:pointer;">Decline</button>
+    <div id="cookieConsentBanner" style="display: none; position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(34, 34, 34, 0.95); color: #fff; padding: 15px 20px; z-index: 999999; text-align: center; box-shadow: 0 -2px 10px rgba(0,0,0,0.2); font-family: Arial, sans-serif; font-size: 14px; line-height: 1.5;">
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 15px;">
+            <div style="flex: 1; min-width: 280px;">
+                We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies. 
+                <a href="policy.html" style="color: #F79621; text-decoration: underline; font-weight: 500;">Learn more</a>
+            </div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+                <button id="acceptCookies" style="background: #F79621; color: #fff; border: none; padding: 8px 20px; border-radius: 5px; cursor: pointer; font-weight: 500; transition: background-color 0.3s ease; min-width: 100px;">Accept</button>
+                <button id="declineCookies" style="background: #fff; color: #222; border: none; padding: 8px 20px; border-radius: 5px; cursor: pointer; font-weight: 500; transition: background-color 0.3s ease; min-width: 100px;">Decline</button>
+            </div>
+        </div>
     </div>
     <script>
-    (function() {
-      var banner = document.getElementById('cookieConsentBanner');
-      var acceptBtn = document.getElementById('acceptCookies');
-      var declineBtn = document.getElementById('declineCookies');
-      if (!localStorage.getItem('cookieConsent')) {
-        banner.style.display = 'block';
-      }
-      acceptBtn.onclick = function() {
-        localStorage.setItem('cookieConsent', 'accepted');
-        banner.style.display = 'none';
-      };
-      declineBtn.onclick = function() {
-        localStorage.setItem('cookieConsent', 'declined');
-        banner.style.display = 'none';
-      };
-    })();
+    document.addEventListener('DOMContentLoaded', function() {
+        var banner = document.getElementById('cookieConsentBanner');
+        var acceptBtn = document.getElementById('acceptCookies');
+        var declineBtn = document.getElementById('declineCookies');
+
+        // Check if consent was previously given
+        if (!localStorage.getItem('cookieConsent')) {
+            // Show banner after a short delay to ensure page is loaded
+            setTimeout(function() {
+                banner.style.display = 'block';
+            }, 500);
+        }
+
+        // Add hover effects
+        acceptBtn.addEventListener('mouseover', function() {
+            this.style.backgroundColor = '#e6851f';
+        });
+        acceptBtn.addEventListener('mouseout', function() {
+            this.style.backgroundColor = '#F79621';
+        });
+        declineBtn.addEventListener('mouseover', function() {
+            this.style.backgroundColor = '#f0f0f0';
+        });
+        declineBtn.addEventListener('mouseout', function() {
+            this.style.backgroundColor = '#fff';
+        });
+
+        // Handle button clicks
+        acceptBtn.addEventListener('click', function() {
+            localStorage.setItem('cookieConsent', 'accepted');
+            banner.style.display = 'none';
+        });
+
+        declineBtn.addEventListener('click', function() {
+            localStorage.setItem('cookieConsent', 'declined');
+            banner.style.display = 'none';
+        });
+    });
     </script>
 </body>
 

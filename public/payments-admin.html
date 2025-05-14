@@ -36,19 +36,83 @@
       margin-bottom: 4px;
     }
     .payment-method-card {
-      border: 1px solid #eee;
-      border-radius: 8px;
-      padding: 16px;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
+      position: relative;
       background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+      padding: 32px 24px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: box-shadow 0.2s, transform 0.2s;
+      min-height: 320px;
     }
-    .payment-method-card .fa, .payment-method-card .fas {
-      font-size: 32px;
+    .payment-method-card:hover {
+      box-shadow: 0 8px 32px rgba(247,150,33,0.15);
+      transform: translateY(-4px) scale(1.02);
+    }
+    .payment-method-card .card-actions {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      display: flex;
+      gap: 8px;
+    }
+    .payment-method-card .card-actions button {
+      background: none;
+      border: none;
       color: #F79621;
-      margin-right: 12px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 50%;
+      transition: background 0.2s;
+    }
+    .payment-method-card .card-actions button:hover {
+      background: #fff7ed;
+    }
+    .payment-method-card .icon {
+      font-size: 3rem;
+      color: #F79621;
+      margin-bottom: 12px;
+    }
+    .payment-method-card .method-name {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #2d1a00;
+      text-align: center;
+    }
+    .payment-method-card .steps-toggle {
+      background: none;
+      border: none;
+      color: #F79621;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-bottom: 8px;
+      text-decoration: underline;
+      padding: 0;
+    }
+    .payment-method-card .steps-list {
+      width: 100%;
+      margin: 0 auto 0 auto;
+      padding-left: 18px;
+      font-size: 1rem;
+      color: #333;
+      display: none;
+      text-align: left;
+    }
+    .payment-method-card .steps-list.visible {
+      display: block;
+      animation: fadeIn 0.3s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: none; }
+    }
+    @media (max-width: 600px) {
+      .payment-method-card { padding: 20px 10px; min-height: 220px; }
+      .payments-grid { gap: 14px; }
     }
     .steps-list {
       margin-bottom: 0;
@@ -58,6 +122,78 @@
     }
     .edit-btn, .delete-btn {
       margin-left: 8px;
+    }
+    /* Rich Text Editor Styles */
+    .rich-editor {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background: #fff;
+    }
+    .editor-toolbar {
+      padding: 8px;
+      border-bottom: 1px solid #ddd;
+      background: #f8f9fa;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .editor-toolbar button {
+      padding: 4px 8px;
+      border: 1px solid #ddd;
+      background: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .editor-toolbar button:hover {
+      background: #f0f0f0;
+    }
+    .editor-toolbar button.active {
+      background: #e9ecef;
+      border-color: #adb5bd;
+    }
+    .editor-content {
+      min-height: 200px;
+      padding: 12px;
+      outline: none;
+    }
+    .editor-content:empty:before {
+      content: 'Enter steps here...';
+      color: #adb5bd;
+    }
+    .color-picker {
+      position: relative;
+      display: inline-block;
+    }
+    .color-picker input[type="color"] {
+      position: absolute;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+    .font-size-select {
+      padding: 4px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .step-item {
+      margin-bottom: 8px;
+      padding: 8px;
+      border: 1px solid #eee;
+      border-radius: 4px;
+      background: #fff;
+    }
+    .step-item:hover {
+      border-color: #F79621;
+    }
+    .payments-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+      margin-top: 24px;
     }
   </style>
 </head>
@@ -93,7 +229,7 @@
         <i class="bi bi-plus-circle"></i> Add Payment Method
       </button>
     </div>
-    <div id="methods-list"></div>
+    <div id="methods-list" class="payments-grid"></div>
   </div>
 
   <!-- Modal for adding/editing payment method -->
@@ -118,7 +254,38 @@
             </div>
             <div class="mb-3">
               <label class="form-label">Steps (one per line)</label>
-              <textarea class="form-control" id="steps" rows="5" required></textarea>
+              <div class="rich-editor">
+                <div class="editor-toolbar">
+                  <button type="button" data-command="bold" title="Bold (Ctrl+B)"><i class="fas fa-bold"></i></button>
+                  <button type="button" data-command="italic" title="Italic (Ctrl+I)"><i class="fas fa-italic"></i></button>
+                  <button type="button" data-command="underline" title="Underline (Ctrl+U)"><i class="fas fa-underline"></i></button>
+                  <button type="button" data-command="strikeThrough" title="Strikethrough"><i class="fas fa-strikethrough"></i></button>
+                  <span class="separator">|</span>
+                  <button type="button" data-command="justifyLeft" title="Align Left"><i class="fas fa-align-left"></i></button>
+                  <button type="button" data-command="justifyCenter" title="Align Center"><i class="fas fa-align-center"></i></button>
+                  <button type="button" data-command="justifyRight" title="Align Right"><i class="fas fa-align-right"></i></button>
+                  <span class="separator">|</span>
+                  <button type="button" data-command="foreColor" title="Text Color">
+                    <i class="fas fa-font" style="color: #F79621;"></i>
+                  </button>
+                  <button type="button" data-command="hiliteColor" title="Background Color">
+                    <i class="fas fa-highlighter"></i>
+                  </button>
+                  <span class="separator">|</span>
+                  <select class="font-size-select" data-command="fontSize">
+                    <option value="1">Small</option>
+                    <option value="3" selected>Normal</option>
+                    <option value="5">Large</option>
+                    <option value="7">Extra Large</option>
+                  </select>
+                  <button type="button" data-command="insertUnorderedList" title="Bullet List"><i class="fas fa-list-ul"></i></button>
+                  <button type="button" data-command="insertOrderedList" title="Numbered List"><i class="fas fa-list-ol"></i></button>
+                  <span class="separator">|</span>
+                  <button type="button" data-command="undo" title="Undo (Ctrl+Z)"><i class="fas fa-undo"></i></button>
+                  <button type="button" data-command="redo" title="Redo (Ctrl+Y)"><i class="fas fa-redo"></i></button>
+                </div>
+                <div class="editor-content" id="steps" contenteditable="true"></div>
+              </div>
             </div>
             <div class="mb-3">
               <label class="form-label">Order</label>
@@ -135,6 +302,105 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="/js/auth.js"></script>
   <script>
+    // Rich Text Editor Implementation
+    class RichEditor {
+      constructor(editorId) {
+        this.editor = document.getElementById(editorId);
+        this.toolbar = this.editor.previousElementSibling;
+        this.setupToolbar();
+        this.setupKeyboardShortcuts();
+      }
+
+      setupToolbar() {
+        this.toolbar.addEventListener('click', (e) => {
+          const button = e.target.closest('button');
+          if (!button) return;
+
+          const command = button.dataset.command;
+          if (command) {
+            e.preventDefault();
+            this.executeCommand(command);
+            this.updateToolbarState();
+          }
+        });
+
+        // Handle font size changes
+        const fontSizeSelect = this.toolbar.querySelector('[data-command="fontSize"]');
+        if (fontSizeSelect) {
+          fontSizeSelect.addEventListener('change', () => {
+            this.executeCommand('fontSize', fontSizeSelect.value);
+          });
+        }
+      }
+
+      setupKeyboardShortcuts() {
+        this.editor.addEventListener('keydown', (e) => {
+          if (e.ctrlKey || e.metaKey) {
+            switch (e.key.toLowerCase()) {
+              case 'b':
+                e.preventDefault();
+                this.executeCommand('bold');
+                break;
+              case 'i':
+                e.preventDefault();
+                this.executeCommand('italic');
+                break;
+              case 'u':
+                e.preventDefault();
+                this.executeCommand('underline');
+                break;
+              case 'z':
+                e.preventDefault();
+                if (e.shiftKey) {
+                  this.executeCommand('redo');
+                } else {
+                  this.executeCommand('undo');
+                }
+                break;
+              case 'y':
+                e.preventDefault();
+                this.executeCommand('redo');
+                break;
+            }
+          }
+        });
+      }
+
+      executeCommand(command, value = null) {
+        if (command === 'foreColor' || command === 'hiliteColor') {
+          const color = value || '#000000';
+          document.execCommand(command, false, color);
+        } else {
+          document.execCommand(command, false, value);
+        }
+        this.editor.focus();
+      }
+
+      updateToolbarState() {
+        this.toolbar.querySelectorAll('button[data-command]').forEach(button => {
+          const command = button.dataset.command;
+          if (['bold', 'italic', 'underline', 'strikeThrough'].includes(command)) {
+            button.classList.toggle('active', document.queryCommandState(command));
+          }
+        });
+      }
+
+      getContent() {
+        return this.editor.innerHTML;
+      }
+
+      setContent(content) {
+        this.editor.innerHTML = content;
+      }
+
+      clear() {
+        this.editor.innerHTML = '';
+      }
+    }
+
+    // Initialize editor
+    const editor = new RichEditor('steps');
+
     // Auth check
     document.addEventListener('DOMContentLoaded', async () => {
       const isAuthenticated = await checkAuth();
@@ -181,44 +447,18 @@
         const card = document.createElement('div');
         card.className = 'payment-method-card';
         card.innerHTML = `
-          <i class="${method.iconClass}"></i>
-          <div style="flex:1;">
-            <div class="d-flex align-items-center mb-2">
-              <strong>${method.methodName}</strong>
-              <button class="btn btn-sm btn-outline-primary edit-btn" onclick="editMethod('${method._id}')"><i class="bi bi-pencil"></i></button>
-              <button class="btn btn-sm btn-outline-danger delete-btn" onclick="deleteMethod('${method._id}')"><i class="bi bi-trash"></i></button>
-            </div>
-            <ol class="steps-list">${method.steps.map(step => `<li>${step}</li>`).join('')}</ol>
+          <div class="card-actions">
+            <button class="edit-btn" title="Edit" onclick="editMethod('${method._id}')"><i class="bi bi-pencil"></i></button>
+            <button class="delete-btn" title="Delete" onclick="deleteMethod('${method._id}')"><i class="bi bi-trash"></i></button>
           </div>
+          <div class="icon"><i class="${method.iconClass}"></i></div>
+          <div class="method-name">${method.methodName}</div>
+          <button class="steps-toggle" onclick="this.nextElementSibling.classList.toggle('visible'); this.textContent = this.nextElementSibling.classList.contains('visible') ? 'Hide Steps' : 'Show Steps';">Show Steps</button>
+          <ol class="steps-list">${method.steps.map(step => `<li>${step}</li>`).join('')}</ol>
         `;
         list.appendChild(card);
       });
     }
-
-    // Add/edit method
-    document.getElementById('method-form').onsubmit = async function(e) {
-      e.preventDefault();
-      const id = document.getElementById('method-id').value;
-      const methodName = document.getElementById('methodName').value.trim();
-      const iconClass = document.getElementById('iconClass').value;
-      const steps = document.getElementById('steps').value.split('\n').map(s => s.trim()).filter(Boolean);
-      const order = parseInt(document.getElementById('order').value) || 0;
-      const body = JSON.stringify({ methodName, iconClass, steps, order });
-      console.log('Request body:', body); // Debug log
-      const headers = { 'Content-Type': 'application/json' };
-      let url = '/api/payments', method = 'POST';
-      if (id) { url += '/' + id; method = 'PUT'; }
-      const res = await fetch(url, { method, headers, body });
-      if (res.ok) {
-        loadMethods();
-        this.reset();
-        renderIconPicker();
-        document.getElementById('paymentModalLabel').textContent = 'Add Payment Method';
-        bootstrap.Modal.getInstance(document.getElementById('paymentModal')).hide();
-      } else {
-        alert('Failed to save payment method');
-      }
-    };
 
     // Edit method
     window.editMethod = async function(id) {
@@ -229,7 +469,7 @@
       document.getElementById('method-id').value = method._id;
       document.getElementById('methodName').value = method.methodName;
       document.getElementById('iconClass').value = method.iconClass;
-      document.getElementById('steps').value = method.steps.join('\n');
+      editor.setContent(method.steps.join('\n'));
       document.getElementById('order').value = method.order;
       renderIconPicker(method.iconClass);
       document.getElementById('paymentModalLabel').textContent = 'Edit Payment Method';
@@ -259,11 +499,48 @@
       document.getElementById('method-id').value = '';
       document.getElementById('methodName').value = '';
       document.getElementById('iconClass').value = '';
-      document.getElementById('steps').value = '';
+      editor.clear();
       document.getElementById('order').value = '';
       document.getElementById('paymentModalLabel').textContent = 'Add Payment Method';
       new bootstrap.Modal(document.getElementById('paymentModal')).show();
     });
+
+    // Add/edit method
+    document.getElementById('method-form').onsubmit = async function(e) {
+      e.preventDefault();
+      const id = document.getElementById('method-id').value;
+      const methodName = document.getElementById('methodName').value.trim();
+      const iconClass = document.getElementById('iconClass').value;
+      let stepsRaw = editor.getContent();
+      let steps = [];
+      // Try to split by <li> if present (from list mode)
+      if (stepsRaw.includes('<li>')) {
+        const temp = document.createElement('div');
+        temp.innerHTML = stepsRaw;
+        steps = Array.from(temp.querySelectorAll('li')).map(li => li.innerHTML.trim()).filter(Boolean);
+      } else if (stepsRaw.includes('<br>')) {
+        steps = stepsRaw.split(/<br\s*\/?>(?:\s*)/i).map(s => s.trim()).filter(Boolean);
+      } else {
+        steps = stepsRaw.split(/\n/).map(s => s.trim()).filter(Boolean);
+      }
+      const order = parseInt(document.getElementById('order').value) || 0;
+      const body = JSON.stringify({ methodName, iconClass, steps, order });
+      console.log('Request body:', body);
+      const headers = { 'Content-Type': 'application/json' };
+      let url = '/api/payments', method = 'POST';
+      if (id) { url += '/' + id; method = 'PUT'; }
+      const res = await fetch(url, { method, headers, body });
+      if (res.ok) {
+        loadMethods();
+        this.reset();
+        editor.clear();
+        renderIconPicker();
+        document.getElementById('paymentModalLabel').textContent = 'Add Payment Method';
+        bootstrap.Modal.getInstance(document.getElementById('paymentModal')).hide();
+      } else {
+        alert('Failed to save payment method');
+      }
+    };
   </script>
 </body>
 </html> 
