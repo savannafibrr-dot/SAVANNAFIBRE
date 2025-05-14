@@ -13,22 +13,18 @@ const bannerSchema = new mongoose.Schema({
     },
     button1Text: {
         type: String,
-        required: true,
         trim: true
     },
     button1Link: {
         type: String,
-        required: true,
         trim: true
     },
     button2Text: {
         type: String,
-        required: true,
         trim: true
     },
     button2Link: {
         type: String,
-        required: true,
         trim: true
     },
     imagePath: {

@@ -124,12 +124,13 @@ router.put('/:id', isAuthenticated, upload.single('image'), async (req, res) => 
             imagePath = req.body.imagePath;
         }
 
-        banner.title = req.body.title || banner.title;
-        banner.subtitle = req.body.subtitle || banner.subtitle;
-        banner.button1Text = req.body.button1Text || banner.button1Text;
-        banner.button1Link = req.body.button1Link || banner.button1Link;
-        banner.button2Text = req.body.button2Text || banner.button2Text;
-        banner.button2Link = req.body.button2Link || banner.button2Link;
+        // Update all fields directly from req.body, allowing empty values
+        banner.title = req.body.title;
+        banner.subtitle = req.body.subtitle;
+        banner.button1Text = req.body.button1Text;
+        banner.button1Link = req.body.button1Link;
+        banner.button2Text = req.body.button2Text;
+        banner.button2Link = req.body.button2Link;
         banner.imagePath = imagePath;
         banner.isActive = req.body.isActive === 'true';
 

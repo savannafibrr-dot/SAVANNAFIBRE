@@ -244,23 +244,25 @@
 
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label class="form-label" for="button1Text">Primary Button Text</label>
-                                <input type="text" class="form-control" id="button1Text" required>
+                                <label class="form-label" for="button1Text">Primary Button Text (Optional)</label>
+                                <input type="text" class="form-control" id="button1Text">
+                                <small class="text-muted">Leave empty if you don't want to show this button</small>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label" for="button1Link">Primary Button Link</label>
-                                <input type="text" class="form-control" id="button1Link" required>
+                                <label class="form-label" for="button1Link">Primary Button Link (Optional)</label>
+                                <input type="text" class="form-control" id="button1Link">
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label class="form-label" for="button2Text">Secondary Button Text</label>
-                                <input type="text" class="form-control" id="button2Text" required>
+                                <label class="form-label" for="button2Text">Secondary Button Text (Optional)</label>
+                                <input type="text" class="form-control" id="button2Text">
+                                <small class="text-muted">Leave empty if you don't want to show this button</small>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label" for="button2Link">Secondary Button Link</label>
-                                <input type="text" class="form-control" id="button2Link" required>
+                                <label class="form-label" for="button2Link">Secondary Button Link (Optional)</label>
+                                <input type="text" class="form-control" id="button2Link">
                             </div>
                         </div>
 
@@ -463,8 +465,23 @@
         // Save banner
         document.getElementById('saveBannerBtn').addEventListener('click', async () => {
             const form = document.getElementById('bannerForm');
-            if (!form.checkValidity()) {
-                form.reportValidity();
+            
+            // Only validate required fields (title, subtitle, and image)
+            const title = document.getElementById('title').value.trim();
+            const subtitle = document.getElementById('subtitle').value.trim();
+            const imageFile = document.getElementById('image').files[0];
+            const imagePath = document.getElementById('imagePath').value.trim();
+
+            if (!title) {
+                alert('Please enter a title');
+                return;
+            }
+            if (!subtitle) {
+                alert('Please enter a subtitle');
+                return;
+            }
+            if (!imageFile && !imagePath) {
+                alert('Please provide either an image file or an image path');
                 return;
             }
 
@@ -473,23 +490,22 @@
                 spinner.classList.remove('d-none');
 
                 const formData = new FormData();
-                formData.append('title', document.getElementById('title').value);
-                formData.append('subtitle', document.getElementById('subtitle').value);
-                formData.append('button1Text', document.getElementById('button1Text').value);
-                formData.append('button1Link', document.getElementById('button1Link').value);
-                formData.append('button2Text', document.getElementById('button2Text').value);
-                formData.append('button2Link', document.getElementById('button2Link').value);
-                formData.append('isActive', document.getElementById('isActive').checked);
+                formData.append('title', title);
+                formData.append('subtitle', subtitle);
+                
+                // Always append button fields, even if empty
+                // This ensures we can clear button data when editing
+                formData.append('button1Text', document.getElementById('button1Text').value.trim());
+                formData.append('button1Link', document.getElementById('button1Link').value.trim());
+                formData.append('button2Text', document.getElementById('button2Text').value.trim());
+                formData.append('button2Link', document.getElementById('button2Link').value.trim());
 
-                const imageFile = document.getElementById('image').files[0];
-                const imagePath = document.getElementById('imagePath').value;
+                formData.append('isActive', document.getElementById('isActive').checked);
 
                 if (imageFile) {
                     formData.append('image', imageFile);
-                } else if (imagePath) {
-                    formData.append('imagePath', imagePath);
                 } else {
-                    throw new Error('Please provide either an image file or an image path');
+                    formData.append('imagePath', imagePath);
                 }
 
                 const url = currentBannerId ? `/api/banners/${currentBannerId}` : '/api/banners';
