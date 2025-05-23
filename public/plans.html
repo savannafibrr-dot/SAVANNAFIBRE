@@ -92,7 +92,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="/dashboard">
-                <img src="/images/logo.png" alt="Savanna Fibre" height="40">
+                <img src="/assets/images/giraffe-pin.png" alt="Savanna Fibre" height="40">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -483,6 +483,12 @@
                 // Append image if selected
                 const imageFile = document.getElementById('planImage').files[0];
                 if (imageFile) {
+                    console.log('Selected image file:', {
+                        name: imageFile.name,
+                        type: imageFile.type,
+                        size: imageFile.size
+                    });
+                    
                     // Validate image file
                     if (!imageFile.type.startsWith('image/')) {
                         throw new Error('Please select a valid image file');
@@ -490,7 +496,9 @@
                     if (imageFile.size > 5 * 1024 * 1024) {
                         throw new Error('Image size should be less than 5MB');
                     }
+                    
                     formData.append('image', imageFile);
+                    console.log('Image added to form data');
                 }
 
                 const url = currentPlanId ? `/api/plans/${currentPlanId}` : '/api/plans';
@@ -501,10 +509,29 @@
                     body: formData
                 });
 
-                const data = await response.json();
-
+                const result = await response.json();
+                console.log('Server response:', result);  // Debug log
+                
                 if (!response.ok) {
-                    throw new Error(data.message || data.error || 'Failed to save plan');
+                    throw new Error(result.error || 'Something went wrong');
+                }
+
+                if (result.cloudinary) {
+                    // Show Cloudinary success message in a more visible way
+                    const cloudinaryAlert = document.createElement('div');
+                    cloudinaryAlert.className = 'alert alert-info alert-dismissible fade show mt-3';
+                    cloudinaryAlert.style.marginBottom = '15px';
+                    cloudinaryAlert.innerHTML = `
+                        <strong>📤 Cloudinary Upload Success!</strong>
+                        <hr>
+                        <p>Your image has been uploaded to Cloudinary successfully.</p>
+                        <p><strong>Image URL:</strong> <a href="${result.cloudinary.url}" target="_blank">${result.cloudinary.url}</a></p>
+                        <p><strong>Public ID:</strong> ${result.cloudinary.publicId}</p>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    `;
+                    // Insert alert at the top of the form
+                    const modalBody = document.querySelector('.modal-body');
+                    modalBody.insertBefore(cloudinaryAlert, modalBody.firstChild);
                 }
 
                 // Show success message
@@ -605,4 +632,4 @@
         document.addEventListener('DOMContentLoaded', initialize);
     </script>
 </body>
-</html> 
+</html>

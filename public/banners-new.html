@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- ... Keep all the existing head and style content ... -->
+<body class="bg-light">
+    <!-- ... Keep all the existing nav and structure content ... -->
+    <script>
+        let currentBannerId = null;
+        const bannerModal = new bootstrap.Modal(document.getElementById('bannerModal'));
+
+        // ... Keep existing toggle and preview handlers ...
+
+        // Load banners
+        async function loadBanners() {
+            try {
+                const response = await fetch('/api/banners');
+                if (!response.ok) {
+                    if (response.status === 401) {
+                        window.location.href = '/login';
+                        return;
+                    }
+                    throw new Error('Failed to load banners');
+                }
+                const banners = await response.json();
+                
+                const bannersHtml = banners.map(banner => `
+                    <div class="col-md-6 mb-4">
+                        <div class="card banner-card ${!banner.active ? 'inactive-banner' : ''}">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <h5 class="card-title mb-0">${banner.title}</h5>
+                                </div>
+                                <p class="card-text text-secondary">${banner.subtitle}</p>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <img src="${banner.imageUrl || (banner.imagePath && banner.imagePath.startsWith('./') ? banner.imagePath : banner.imagePath)}" 
+                                             class="preview-image" 
+                                             alt="${banner.title}"
+                                             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNFOUVDRUYiLz48cGF0aCBkPSJNODAgOTBIMTIwVjExMEg4MFY5MFoiIGZpbGw9IiM2Qzc1N0QiLz48cGF0aCBkPSJNMTEwIDcwSDkwVjEzMEgxMTBWNzBaIiBmaWxsPSIjNkM3NTdEIi8+PC9zdmc+'">
+                                        ${banner.cloudinaryPublicId ? `<small class="d-block text-muted mt-1">Cloudinary ID: ${banner.cloudinaryPublicId}</small>` : ''}
+                                    </div>
+                                </div>
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-sm btn-outline-primary" onclick="editBanner('${banner._id}')">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-${banner.active ? 'warning' : 'success'}" 
+                                            onclick="toggleBanner('${banner._id}')">
+                                        <i class="bi bi-${banner.active ? 'pause' : 'play'}"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger" onclick="deleteBanner('${banner._id}')">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+                
+                document.getElementById('bannersList').innerHTML = bannersHtml;
+            } catch (error) {
+                console.error('Error loading banners:', error);
+                if (error.message === 'Unauthorized') {
+                    window.location.href = '/login';
+                }
+            }
+        }
+
+        // Save banner
+        document.getElementById('saveBannerBtn').addEventListener('click', async () => {
+            const form = document.getElementById('bannerForm');
+            
+            // Validate required fields
+            const title = document.getElementById('title').value.trim();
+            const subtitle = document.getElementById('subtitle').value.trim();
+            const imageFile = document.getElementById('image').files[0];
+            const imagePath = document.getElementById('imagePath').value.trim();
+
+            if (!title) {
+                alert('Please enter a title');
+                return;
+            }
+            if (!subtitle) {
+                alert('Please enter a subtitle');
+                return;
+            }
+            if (!imageFile && !imagePath && !currentBannerId) {
+                alert('Please provide either an image file or an image path');
+                return;
+            }
+
+            const spinner = document.querySelector('.spinner-border');
+            try {
+                spinner.classList.remove('d-none');
+
+                const formData = new FormData();
+                formData.append('title', title);
+                formData.append('subtitle', subtitle);
+                formData.append('button1Text', document.getElementById('button1Text').value.trim());
+                formData.append('button1Link', document.getElementById('button1Link').value.trim());
+                formData.append('button2Text', document.getElementById('button2Text').value.trim());
+                formData.append('button2Link', document.getElementById('button2Link').value.trim());
+                formData.append('active', document.getElementById('isActive').checked);
+
+                if (imageFile) {
+                    console.log('Uploading image:', {
+                        name: imageFile.name,
+                        type: imageFile.type,
+                        size: Math.round(imageFile.size / 1024) + 'KB'
+                    });
+                    formData.append('image', imageFile);
+                } else if (imagePath) {
+                    formData.append('imagePath', imagePath);
+                }
+
+                const url = currentBannerId ? `/api/banners/${currentBannerId}` : '/api/banners';
+                const method = currentBannerId ? 'PUT' : 'POST';
+
+                const response = await fetch(url, {
+                    method,
+                    body: formData
+                });
+
+                const result = await response.json();
+                console.log('Server response:', result);
+
+                if (!response.ok) {
+                    throw new Error(result.message || 'Failed to save banner');
+                }
+
+                // Show success message with Cloudinary info
+                const successAlert = document.createElement('div');
+                successAlert.className = 'alert alert-success alert-dismissible fade show';
+                successAlert.innerHTML = `
+                    <strong>Success!</strong> ${result.message}
+                    ${result.cloudinary ? `
+                        <hr>
+                        <p>Image uploaded to Cloudinary:</p>
+                        <p><small>URL: <a href="${result.cloudinary.url}" target="_blank">${result.cloudinary.url}</a></small></p>
+                    ` : ''}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                `;
+
+                // Insert at the top of the page
+                const mainContent = document.querySelector('.container');
+                mainContent.insertBefore(successAlert, mainContent.firstChild);
+
+                // Auto-dismiss after 5 seconds
+                setTimeout(() => successAlert.remove(), 5000);
+
+                bannerModal.hide();
+                loadBanners();
+                resetForm();
+            } catch (error) {
+                console.error('Error saving banner:', error);
+                alert(error.message || 'Error saving banner. Please try again.');
+            } finally {
+                spinner.classList.add('d-none');
+            }
+        });
+
+        // ... Keep all other existing functions (resetForm, etc) ...
+
+        // Initialize
+        loadBanners();
+    </script>
+</body>
+</html>

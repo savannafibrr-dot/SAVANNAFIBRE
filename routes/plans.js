@@ -1,65 +1,39 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
-const path = require('path');
-const fs = require('fs');
 const Plan = require('../models/Plan');
+const { uploadToCloudinary } = require('../utils/upload');
+const cloudinary = require('../config/cloudinary');
 
-// Configure multer for image upload
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        const uploadDir = 'public/images/plans';
-        if (!fs.existsSync(uploadDir)) {
-            fs.mkdirSync(uploadDir, { recursive: true });
-        }
-        cb(null, uploadDir);
-    },
-    filename: function (req, file, cb) {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        cb(null, uniqueSuffix + path.extname(file.originalname));
+// Configure multer for memory storage
+const storage = multer.memoryStorage();
+
+// File filter
+const fileFilter = (req, file, cb) => {
+    // Accept images only
+    if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
+        return cb(new Error('Only image files are allowed!'), false);
     }
-});
+    cb(null, true);
+};
 
 const upload = multer({
     storage: storage,
+    fileFilter: fileFilter,
     limits: {
         fileSize: 5 * 1024 * 1024 // 5MB limit
-    },
-    fileFilter: function (req, file, cb) {
-        // Log file information for debugging
-        console.log('File details:', {
-            originalname: file.originalname,
-            mimetype: file.mimetype,
-            size: file.size
-        });
-
-        // Check file type
-        if (!file.mimetype.startsWith('image/') && file.mimetype !== 'image/svg+xml') {
-            console.log('Invalid file type:', file.mimetype);
-            return cb(new Error('Only image files are allowed!'), false);
-        }
-
-        // Check file extension
-        const ext = path.extname(file.originalname).toLowerCase();
-        if (!['.jpg', '.jpeg', '.png', '.gif', '.svg'].includes(ext)) {
-            console.log('Invalid file extension:', ext);
-            return cb(new Error('Only .jpg, .jpeg, .png, .gif, and .svg files are allowed!'), false);
-        }
-
-        cb(null, true);
     }
 });
 
 // Error handling middleware for multer
 const handleMulterError = (err, req, res, next) => {
     if (err instanceof multer.MulterError) {
-        console.error('Multer error:', err);
-        return res.status(400).json({ error: err.message });
-    } else if (err) {
-        console.error('File upload error:', err);
+        if (err.code === 'LIMIT_FILE_SIZE') {
+            return res.status(400).json({ error: 'File size should not exceed 5MB' });
+        }
         return res.status(400).json({ error: err.message });
     }
-    next();
+    next(err);
 };
 
 // Middleware to check if user is authenticated
@@ -85,31 +59,41 @@ router.post('/', isAuthenticated, upload.single('image'), handleMulterError, asy
     try {
         const planData = {
             name: req.body.name,
-            type: req.body.type || 'residential', // Default to residential if not specified
+            type: req.body.type || 'residential',
             speed: parseInt(req.body.speed),
             price: parseInt(req.body.price),
             supportedDevices: parseInt(req.body.supportedDevices),
             features: JSON.parse(req.body.features),
-            isPopular: req.body.isPopular === 'true' || req.body.isPopular === true, // Handle both string and boolean
-            position: parseInt(req.body.position) // Add position field
-        };
-
+            isPopular: req.body.isPopular === 'true' || req.body.isPopular === true,
+            position: parseInt(req.body.position)
+        };        // Upload image to Cloudinary if file was uploaded
         if (req.file) {
-            planData.imageUrl = `/images/plans/${req.file.filename}`;
+            console.log('Uploading image to Cloudinary...');
+            const result = await uploadToCloudinary(req.file, 'plans');
+            console.log('Cloudinary upload successful:', {
+                url: result.secure_url,
+                publicId: result.public_id,
+                format: result.format,
+                size: result.bytes
+            });
+            planData.imageUrl = result.secure_url;
+            planData.cloudinaryPublicId = result.public_id;
         }
 
         const plan = new Plan(planData);
         await plan.save();
-        res.status(201).json(plan);
+        
+        // Include a message in the response indicating Cloudinary upload
+        res.status(201).json({
+            message: req.file ? 'Plan created successfully with Cloudinary image' : 'Plan created successfully',
+            plan: plan,
+            cloudinary: req.file ? {
+                url: planData.imageUrl,
+                publicId: planData.cloudinaryPublicId
+            } : null
+        });
     } catch (error) {
         console.error('Error creating plan:', error);
-        // If there was an error and a file was uploaded, delete it
-        if (req.file) {
-            const filePath = path.join(__dirname, '..', req.file.path);
-            if (fs.existsSync(filePath)) {
-                fs.unlinkSync(filePath);
-            }
-        }
         res.status(400).json({ error: error.message || 'Invalid data' });
     }
 });
@@ -137,25 +121,32 @@ router.put('/:id', isAuthenticated, upload.single('image'), handleMulterError, a
 
         const planData = {
             name: req.body.name,
-            type: req.body.type || plan.type, // Keep existing type if not provided
+            type: req.body.type || plan.type,
             speed: parseInt(req.body.speed),
             price: parseInt(req.body.price),
             supportedDevices: parseInt(req.body.supportedDevices),
             features: JSON.parse(req.body.features),
-            isPopular: req.body.isPopular === 'true' || req.body.isPopular === true, // Handle both string and boolean
-            position: parseInt(req.body.position) // Add position field
-        };
-
-        // If a new image is uploaded
+            isPopular: req.body.isPopular === 'true' || req.body.isPopular === true,
+            position: parseInt(req.body.position)
+        };        // Upload new image to Cloudinary if file was uploaded
         if (req.file) {
-            // Delete the old image if it exists
-            if (plan.imageUrl) {
-                const oldImagePath = path.join(__dirname, '..', plan.imageUrl);
-                if (fs.existsSync(oldImagePath)) {
-                    fs.unlinkSync(oldImagePath);
-                }
+            console.log('Uploading new image to Cloudinary...');
+            // Delete old image from Cloudinary if exists
+            if (plan.cloudinaryPublicId) {
+                console.log('Deleting old image from Cloudinary:', plan.cloudinaryPublicId);
+                await cloudinary.uploader.destroy(plan.cloudinaryPublicId);
             }
-            planData.imageUrl = `/images/plans/${req.file.filename}`;
+
+            // Upload new image
+            const result = await uploadToCloudinary(req.file, 'plans');
+            console.log('Cloudinary upload successful:', {
+                url: result.secure_url,
+                publicId: result.public_id,
+                format: result.format,
+                size: result.bytes
+            });
+            planData.imageUrl = result.secure_url;
+            planData.cloudinaryPublicId = result.public_id;
         }
 
         const updatedPlan = await Plan.findByIdAndUpdate(
@@ -163,17 +154,18 @@ router.put('/:id', isAuthenticated, upload.single('image'), handleMulterError, a
             planData,
             { new: true }
         );
-
-        res.json(updatedPlan);
+        
+        // Return response with Cloudinary info
+        res.json({
+            message: req.file ? 'Plan updated with new Cloudinary image' : 'Plan updated',
+            plan: updatedPlan,
+            cloudinary: req.file ? {
+                url: planData.imageUrl,
+                publicId: planData.cloudinaryPublicId
+            } : null
+        });
     } catch (error) {
         console.error('Error updating plan:', error);
-        // If there was an error and a file was uploaded, delete it
-        if (req.file) {
-            const filePath = path.join(__dirname, '..', req.file.path);
-            if (fs.existsSync(filePath)) {
-                fs.unlinkSync(filePath);
-            }
-        }
         res.status(400).json({ error: error.message || 'Invalid data' });
     }
 });
@@ -186,15 +178,12 @@ router.delete('/:id', isAuthenticated, async (req, res) => {
             return res.status(404).json({ error: 'Plan not found' });
         }
 
-        // Delete the image file if it exists
-        if (plan.imageUrl) {
-            const imagePath = path.join(__dirname, '..', plan.imageUrl);
-            if (fs.existsSync(imagePath)) {
-                fs.unlinkSync(imagePath);
-            }
+        // Delete image from Cloudinary if exists
+        if (plan.cloudinaryPublicId) {
+            await cloudinary.uploader.destroy(plan.cloudinaryPublicId);
         }
 
-        await Plan.findByIdAndDelete(req.params.id);
+        await plan.deleteOne();
         res.json({ success: true });
     } catch (error) {
         console.error('Error deleting plan:', error);
@@ -202,4 +191,34 @@ router.delete('/:id', isAuthenticated, async (req, res) => {
     }
 });
 
-module.exports = router; 
+// Test Cloudinary configuration
+router.get('/test-cloudinary', async (req, res) => {
+    try {
+        console.log('Cloudinary Config:', {
+            cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+            api_key: process.env.CLOUDINARY_API_KEY,
+            api_secret: '***' // Don't log the actual secret
+        });
+        
+        // Try to get account info from Cloudinary
+        const result = await cloudinary.api.account();
+        res.json({
+            status: 'success',
+            message: 'Cloudinary is configured correctly',
+            accountInfo: {
+                cloud_name: result.cloud_name,
+                plan: result.plan,
+                timestamp: new Date().toISOString()
+            }
+        });
+    } catch (error) {
+        console.error('Cloudinary Test Error:', error);
+        res.status(500).json({
+            status: 'error',
+            message: 'Cloudinary configuration test failed',
+            error: error.message
+        });
+    }
+});
+
+module.exports = router;

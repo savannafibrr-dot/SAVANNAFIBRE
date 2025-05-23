@@ -1196,15 +1196,15 @@ background-position: top left;
     </div>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var banner = document.getElementById('cookieConsentBanner');
-        var acceptBtn = document.getElementById('acceptCookies');
-        var declineBtn = document.getElementById('declineCookies');
+      var banner = document.getElementById('cookieConsentBanner');
+      var acceptBtn = document.getElementById('acceptCookies');
+      var declineBtn = document.getElementById('declineCookies');
 
         // Check if consent was previously given
-        if (!localStorage.getItem('cookieConsent')) {
+      if (!localStorage.getItem('cookieConsent')) {
             // Show banner after a short delay to ensure page is loaded
             setTimeout(function() {
-                banner.style.display = 'block';
+        banner.style.display = 'block';
             }, 500);
         }
 
@@ -1224,13 +1224,13 @@ background-position: top left;
 
         // Handle button clicks
         acceptBtn.addEventListener('click', function() {
-            localStorage.setItem('cookieConsent', 'accepted');
-            banner.style.display = 'none';
+        localStorage.setItem('cookieConsent', 'accepted');
+        banner.style.display = 'none';
         });
 
         declineBtn.addEventListener('click', function() {
-            localStorage.setItem('cookieConsent', 'declined');
-            banner.style.display = 'none';
+        localStorage.setItem('cookieConsent', 'declined');
+        banner.style.display = 'none';
         });
     });
     </script>

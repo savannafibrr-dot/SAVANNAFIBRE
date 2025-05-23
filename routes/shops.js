@@ -2,26 +2,11 @@ const express = require('express');
 const router = express.Router();
 const Shop = require('../models/Shop');
 const multer = require('multer');
-const path = require('path');
-const fs = require('fs');
+const { uploadToCloudinary } = require('../utils/upload');
+const cloudinary = require('../config/cloudinary');
 
-// Ensure uploads directory exists
-const uploadDir = 'public/uploads/shops';
-if (!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir, { recursive: true });
-}
-
-// Configure multer for file uploads
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, uploadDir);
-    },
-    filename: function (req, file, cb) {
-        // Generate unique filename
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        cb(null, uniqueSuffix + path.extname(file.originalname));
-    }
-});
+// Configure multer for memory storage
+const storage = multer.memoryStorage();
 
 // File filter
 const fileFilter = (req, file, cb) => {
@@ -32,7 +17,7 @@ const fileFilter = (req, file, cb) => {
     cb(null, true);
 };
 
-const upload = multer({ 
+const upload = multer({
     storage: storage,
     fileFilter: fileFilter,
     limits: {
@@ -65,15 +50,17 @@ router.post('/', isAuthenticated, upload.single('image'), async (req, res) => {
         // Parse the shop data
         const shopData = JSON.parse(req.body.data);
         
-        // Add image URL if file was uploaded
+        // Upload image to Cloudinary if file was uploaded
         if (req.file) {
-            shopData.imageUrl = `/uploads/shops/${req.file.filename}`;
+            const result = await uploadToCloudinary(req.file, 'shops');
+            shopData.imageUrl = result.secure_url;
+            shopData.cloudinaryPublicId = result.public_id;
         }
 
         const shop = new Shop(shopData);
         await shop.save();
         
-        console.log('Shop created:', shop); // Debug log
+        console.log('Shop created:', shop);
         res.status(201).json(shop);
     } catch (error) {
         console.error('Error creating shop:', error);
@@ -101,17 +88,18 @@ router.put('/:id', isAuthenticated, upload.single('image'), async (req, res) => 
         // Parse the shop data
         const shopData = JSON.parse(req.body.data);
         
-        // Add image URL if file was uploaded
+        // Upload new image to Cloudinary if file was uploaded
         if (req.file) {
-            // Delete old image if exists
+            // Delete old image from Cloudinary if exists
             const oldShop = await Shop.findById(req.params.id);
-            if (oldShop && oldShop.imageUrl) {
-                const oldImagePath = path.join(__dirname, '..', 'public', oldShop.imageUrl);
-                if (fs.existsSync(oldImagePath)) {
-                    fs.unlinkSync(oldImagePath);
-                }
+            if (oldShop && oldShop.cloudinaryPublicId) {
+                await cloudinary.uploader.destroy(oldShop.cloudinaryPublicId);
             }
-            shopData.imageUrl = `/uploads/shops/${req.file.filename}`;
+
+            // Upload new image
+            const result = await uploadToCloudinary(req.file, 'shops');
+            shopData.imageUrl = result.secure_url;
+            shopData.cloudinaryPublicId = result.public_id;
         }
 
         const shop = await Shop.findByIdAndUpdate(
@@ -137,12 +125,9 @@ router.delete('/:id', isAuthenticated, async (req, res) => {
             return res.status(404).json({ error: 'Shop not found' });
         }
 
-        // Delete image file if exists
-        if (shop.imageUrl) {
-            const imagePath = path.join(__dirname, '..', 'public', shop.imageUrl);
-            if (fs.existsSync(imagePath)) {
-                fs.unlinkSync(imagePath);
-            }
+        // Delete image from Cloudinary if exists
+        if (shop.cloudinaryPublicId) {
+            await cloudinary.uploader.destroy(shop.cloudinaryPublicId);
         }
 
         await shop.deleteOne();
@@ -153,4 +138,4 @@ router.delete('/:id', isAuthenticated, async (req, res) => {
     }
 });
 
-module.exports = router; 
+module.exports = router;

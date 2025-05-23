@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
-const path = require('path');
 const Banner = require('../models/Banner');
-const fs = require('fs');
+const { uploadToCloudinary } = require('../utils/upload');
+const cloudinary = require('../config/cloudinary');
+const path = require('path');
 
 // Authentication middleware
 const isAuthenticated = (req, res, next) => {
@@ -13,31 +14,20 @@ const isAuthenticated = (req, res, next) => {
     res.status(401).json({ message: 'Unauthorized' });
 };
 
-// Configure multer for image upload
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        const dir = 'public/banner-uploads';
-        if (!fs.existsSync(dir)) {
-            fs.mkdirSync(dir, { recursive: true });
-        }
-        cb(null, dir);
-    },
-    filename: function (req, file, cb) {
-        cb(null, 'banner-' + Date.now() + path.extname(file.originalname));
-    }
-});
-
+// Configure multer for memory storage
+const storage = multer.memoryStorage();
 const upload = multer({
     storage: storage,
-    fileFilter: function (req, file, cb) {
-        if (file.mimetype.startsWith('image/')) {
-            cb(null, true);
-        } else {
-            cb(new Error('Only image files are allowed!'));
+    fileFilter: (req, file, cb) => {
+        // Accept all image types
+        if (!file.mimetype.startsWith('image/')) {
+            cb(new Error('Only image files are allowed'), false);
+            return;
         }
+        cb(null, true);
     },
-    limits: {
-        fileSize: 5 * 1024 * 1024 // 5MB max file size
+    limits: { 
+        fileSize: 5 * 1024 * 1024 // 5MB
     }
 });
 
@@ -51,51 +41,61 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Get single banner
-router.get('/:id', async (req, res) => {
-    try {
-        const banner = await Banner.findById(req.params.id);
-        if (!banner) {
-            return res.status(404).json({ message: 'Banner not found' });
-        }
-        res.json(banner);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-});
-
 // Create new banner
 router.post('/', isAuthenticated, upload.single('image'), async (req, res) => {
     try {
-        let imagePath;
-        
-        if (req.file) {
-            // If file is uploaded, use the uploaded file path
-            imagePath = '/banner-uploads/' + req.file.filename;
-        } else if (req.body.imagePath) {
-            // If image path is provided, use that
-            imagePath = req.body.imagePath;
-        } else {
-            return res.status(400).json({ message: 'Either an image file or image path is required' });
+        console.log('Creating banner with:', {
+            body: req.body,
+            file: req.file ? {
+                originalname: req.file.originalname,
+                size: req.file.size,
+                mimetype: req.file.mimetype
+            } : 'No file'
+        });
+
+        if (!req.file && !req.body.imagePath) {
+            throw new Error('Either image file or image path is required');
         }
-        
-        const banner = new Banner({
+
+        const bannerData = {
             title: req.body.title,
             subtitle: req.body.subtitle,
             button1Text: req.body.button1Text,
             button1Link: req.body.button1Link,
             button2Text: req.body.button2Text,
             button2Link: req.body.button2Link,
-            imagePath: imagePath,
             isActive: req.body.isActive === 'true'
-        });
+        };
 
-        const newBanner = await banner.save();
-        res.status(201).json(newBanner);
-    } catch (error) {
         if (req.file) {
-            fs.unlinkSync(req.file.path);
+            try {
+                console.log('Uploading to Cloudinary...');
+                const result = await uploadToCloudinary(req.file, 'banners');
+                console.log('Cloudinary result:', result);
+                
+                bannerData.imageUrl = result.secure_url;
+                bannerData.cloudinaryPublicId = result.public_id;
+            } catch (uploadError) {
+                console.error('Cloudinary upload failed:', uploadError);
+                throw new Error('Failed to upload image to Cloudinary');
+            }
+        } else if (req.body.imagePath) {
+            bannerData.imagePath = req.body.imagePath;
         }
+
+        const banner = new Banner(bannerData);
+        await banner.save();
+
+        res.status(201).json({
+            message: req.file ? 'Banner created with Cloudinary image' : 'Banner created with image path',
+            banner,
+            cloudinary: req.file ? {
+                url: bannerData.imageUrl,
+                publicId: bannerData.cloudinaryPublicId
+            } : null
+        });
+    } catch (error) {
+        console.error('Error creating banner:', error);
         res.status(400).json({ message: error.message });
     }
 });
@@ -108,38 +108,56 @@ router.put('/:id', isAuthenticated, upload.single('image'), async (req, res) => 
             return res.status(404).json({ message: 'Banner not found' });
         }
 
-        let imagePath = banner.imagePath;
-        
+        const updateData = {
+            title: req.body.title,
+            subtitle: req.body.subtitle,
+            button1Text: req.body.button1Text,
+            button1Link: req.body.button1Link,
+            button2Text: req.body.button2Text,
+            button2Link: req.body.button2Link,
+            isActive: req.body.isActive === 'true'
+        };
+
         if (req.file) {
-            // If new file is uploaded, delete old file and use new one
-            if (banner.imagePath && !banner.imagePath.startsWith('./')) {
-                const oldImagePath = path.join('public', banner.imagePath);
-                if (fs.existsSync(oldImagePath)) {
-                    fs.unlinkSync(oldImagePath);
-                }
+            // Delete old image from Cloudinary if exists
+            if (banner.cloudinaryPublicId) {
+                console.log('Deleting old image from Cloudinary:', banner.cloudinaryPublicId);
+                await cloudinary.uploader.destroy(banner.cloudinaryPublicId);
             }
-            imagePath = '/banner-uploads/' + req.file.filename;
+
+            // Upload new image to Cloudinary
+            console.log('Uploading new image to Cloudinary...');
+            const result = await uploadToCloudinary(req.file, 'banners');
+            console.log('Cloudinary upload result:', result);
+
+            updateData.imageUrl = result.secure_url;
+            updateData.cloudinaryPublicId = result.public_id;
+            updateData.imagePath = null; // Clear imagePath when using Cloudinary
         } else if (req.body.imagePath) {
-            // If new image path is provided, use that
-            imagePath = req.body.imagePath;
+            updateData.imagePath = req.body.imagePath;
+            updateData.imageUrl = null; // Clear imageUrl when using imagePath
+            if (banner.cloudinaryPublicId) {
+                await cloudinary.uploader.destroy(banner.cloudinaryPublicId);
+                updateData.cloudinaryPublicId = null;
+            }
         }
 
-        // Update all fields directly from req.body, allowing empty values
-        banner.title = req.body.title;
-        banner.subtitle = req.body.subtitle;
-        banner.button1Text = req.body.button1Text;
-        banner.button1Link = req.body.button1Link;
-        banner.button2Text = req.body.button2Text;
-        banner.button2Link = req.body.button2Link;
-        banner.imagePath = imagePath;
-        banner.isActive = req.body.isActive === 'true';
+        const updatedBanner = await Banner.findByIdAndUpdate(
+            req.params.id,
+            updateData,
+            { new: true }
+        );
 
-        const updatedBanner = await banner.save();
-        res.json(updatedBanner);
+        res.json({
+            message: req.file ? 'Banner updated with new Cloudinary image' : 'Banner updated',
+            banner: updatedBanner,
+            cloudinary: req.file ? {
+                url: updateData.imageUrl,
+                publicId: updateData.cloudinaryPublicId
+            } : null
+        });
     } catch (error) {
-        if (req.file) {
-            fs.unlinkSync(req.file.path);
-        }
+        console.error('Error updating banner:', error);
         res.status(400).json({ message: error.message });
     }
 });
@@ -150,37 +168,23 @@ router.delete('/:id', isAuthenticated, async (req, res) => {
         const banner = await Banner.findById(req.params.id);
         if (!banner) {
             return res.status(404).json({ message: 'Banner not found' });
-        }
-
-        // Delete image file only if it's an uploaded file
-        if (banner.imagePath && !banner.imagePath.startsWith('./')) {
-            const imagePath = path.join('public', banner.imagePath);
-            if (fs.existsSync(imagePath)) {
-                fs.unlinkSync(imagePath);
+        }        // Delete image from Cloudinary if exists
+        if (banner.cloudinaryPublicId) {
+            try {
+                console.log('Deleting image from Cloudinary:', banner.cloudinaryPublicId);
+                await cloudinary.uploader.destroy(banner.cloudinaryPublicId);
+            } catch (error) {
+                console.error('Error deleting image from Cloudinary:', error);
+                // Continue with banner deletion even if Cloudinary deletion fails
             }
         }
 
-        await banner.deleteOne();
-        res.json({ message: 'Banner deleted' });
+        await Banner.findByIdAndDelete(req.params.id);
+        res.json({ message: 'Banner deleted successfully' });
     } catch (error) {
+        console.error('Error deleting banner:', error);
         res.status(500).json({ message: error.message });
     }
 });
 
-// Toggle banner status
-router.patch('/:id/toggle', isAuthenticated, async (req, res) => {
-    try {
-        const banner = await Banner.findById(req.params.id);
-        if (!banner) {
-            return res.status(404).json({ message: 'Banner not found' });
-        }
-
-        banner.isActive = !banner.isActive;
-        const updatedBanner = await banner.save();
-        res.json(updatedBanner);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-});
-
-module.exports = router; 
+module.exports = router;

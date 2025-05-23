@@ -363,10 +363,11 @@
                                 <p class="card-text text-secondary">${banner.subtitle}</p>
                                 <div class="row mb-3">
                                     <div class="col">
-                                        <img src="${banner.imagePath.startsWith('./') ? banner.imagePath : banner.imagePath}" 
+                                        <img src="${banner.imageUrl || banner.imagePath}" 
                                              class="preview-image" 
                                              alt="${banner.title}" 
                                              onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNFOUVDRUYiLz48cGF0aCBkPSJNODAgOTBIMTIwVjExMEg4MFY5MFoiIGZpbGw9IiM2Qzc1N0QiLz48cGF0aCBkPSJNMTEwIDcwSDkwVjEzMEgxMTBWNzBaIiBmaWxsPSIjNkM3NTdEIi8+PC9zdmc+'">
+                                        ${banner.cloudinaryPublicId ? `<small class="d-block text-muted mt-1">Cloudinary ID: ${banner.cloudinaryPublicId}</small>` : ''}
                                     </div>
                                 </div>
                                 <div class="d-flex gap-2">
@@ -412,21 +413,30 @@
                 document.getElementById('bannerId').value = banner._id;
                 document.getElementById('title').value = banner.title;
                 document.getElementById('subtitle').value = banner.subtitle;
-                document.getElementById('button1Text').value = banner.button1Text;
-                document.getElementById('button1Link').value = banner.button1Link;
-                document.getElementById('button2Text').value = banner.button2Text;
-                document.getElementById('button2Link').value = banner.button2Link;
-                document.getElementById('imagePath').value = banner.imagePath;
+                document.getElementById('button1Text').value = banner.button1Text || '';
+                document.getElementById('button1Link').value = banner.button1Link || '';
+                document.getElementById('button2Text').value = banner.button2Text || '';
+                document.getElementById('button2Link').value = banner.button2Link || '';
                 document.getElementById('isActive').checked = banner.isActive;
                 
                 // Show existing image
                 const preview = document.getElementById('imagePreview').querySelector('img');
-                preview.src = banner.imagePath.startsWith('./') ? banner.imagePath : banner.imagePath;
+                preview.src = banner.imageUrl || banner.imagePath || '';
                 preview.style.display = 'block';
                 
-                // Show path input for editing
-                document.getElementById('imagePathGroup').classList.remove('d-none');
-                document.getElementById('usePathBtn').textContent = 'Upload File Instead';
+                // Show path input for editing if using path
+                const imagePathGroup = document.getElementById('imagePathGroup');
+                const usePathBtn = document.getElementById('usePathBtn');
+                
+                if (banner.imagePath) {
+                    imagePathGroup.classList.remove('d-none');
+                    document.getElementById('imagePath').value = banner.imagePath;
+                    usePathBtn.textContent = 'Upload File Instead';
+                } else {
+                    imagePathGroup.classList.add('d-none');
+                    document.getElementById('imagePath').value = '';
+                    usePathBtn.textContent = 'Use Path Instead';
+                }
                 
                 currentBannerId = id;
                 bannerModal.show();
@@ -466,7 +476,7 @@
         document.getElementById('saveBannerBtn').addEventListener('click', async () => {
             const form = document.getElementById('bannerForm');
             
-            // Only validate required fields (title, subtitle, and image)
+            // Validate required fields
             const title = document.getElementById('title').value.trim();
             const subtitle = document.getElementById('subtitle').value.trim();
             const imageFile = document.getElementById('image').files[0];
@@ -480,44 +490,73 @@
                 alert('Please enter a subtitle');
                 return;
             }
-            if (!imageFile && !imagePath) {
+            if (!imageFile && !imagePath && !currentBannerId) {
                 alert('Please provide either an image file or an image path');
                 return;
             }
-
+            
             const spinner = document.querySelector('.spinner-border');
             try {
                 spinner.classList.remove('d-none');
-
+                
                 const formData = new FormData();
                 formData.append('title', title);
                 formData.append('subtitle', subtitle);
-                
-                // Always append button fields, even if empty
-                // This ensures we can clear button data when editing
                 formData.append('button1Text', document.getElementById('button1Text').value.trim());
                 formData.append('button1Link', document.getElementById('button1Link').value.trim());
                 formData.append('button2Text', document.getElementById('button2Text').value.trim());
                 formData.append('button2Link', document.getElementById('button2Link').value.trim());
-
                 formData.append('isActive', document.getElementById('isActive').checked);
 
                 if (imageFile) {
+                    console.log('Uploading image:', {
+                        name: imageFile.name,
+                        type: imageFile.type,
+                        size: Math.round(imageFile.size / 1024) + 'KB'
+                    });
                     formData.append('image', imageFile);
-                } else {
+                } else if (imagePath) {
                     formData.append('imagePath', imagePath);
                 }
 
                 const url = currentBannerId ? `/api/banners/${currentBannerId}` : '/api/banners';
                 const method = currentBannerId ? 'PUT' : 'POST';
 
+                // Log what we're sending
+                console.log('Making request:', {
+                    url,
+                    method,
+                    hasImage: !!imageFile,
+                    hasPath: !!imagePath
+                });
+
                 const response = await fetch(url, {
                     method,
                     body: formData
                 });
 
+                const result = await response.json();
+                console.log('Server response:', result);
+
                 if (!response.ok) {
-                    throw new Error('Failed to save banner');
+                    throw new Error(result.message || 'Failed to save banner');
+                }
+
+                // Show success message with Cloudinary info if available
+                if (result.cloudinary) {
+                    const successAlert = document.createElement('div');
+                    successAlert.className = 'alert alert-success alert-dismissible fade show';
+                    successAlert.innerHTML = `
+                        <strong>Success!</strong> ${result.message}
+                        <hr>
+                        <p>Image uploaded to Cloudinary:</p>
+                        <p><small>URL: <a href="${result.cloudinary.url}" target="_blank">${result.cloudinary.url}</a></small></p>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    `;
+                    
+                    const container = document.querySelector('.container');
+                    container.insertBefore(successAlert, container.firstChild);
+                    setTimeout(() => successAlert.remove(), 5000);
                 }
 
                 bannerModal.hide();
@@ -563,4 +602,4 @@
         loadBanners();
     </script>
 </body>
-</html> 
+</html>

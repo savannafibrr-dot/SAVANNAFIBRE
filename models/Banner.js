@@ -29,12 +29,15 @@ const bannerSchema = new mongoose.Schema({
     },
     imagePath: {
         type: String,
-        required: true
+        trim: true
     },
-    bgColor: {
+    imageUrl: {
         type: String,
-        required: true,
-        default: '#F79621'
+        trim: true
+    },
+    cloudinaryPublicId: {
+        type: String,
+        trim: true
     },
     isActive: {
         type: Boolean,
@@ -46,4 +49,4 @@ const bannerSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Banner', bannerSchema); 
+module.exports = mongoose.model('Banner', bannerSchema);
