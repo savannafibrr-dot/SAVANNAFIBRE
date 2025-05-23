@@ -16,18 +16,17 @@ const isAuthenticated = (req, res, next) => {
 
 // Configure multer for memory storage
 const storage = multer.memoryStorage();
-const upload = multer({
-    storage: storage,
+const upload = multer({    storage: storage,
     fileFilter: (req, file, cb) => {
-        // Accept all image types
-        if (!file.mimetype.startsWith('image/')) {
-            cb(new Error('Only image files are allowed'), false);
+        // Accept all image types and SVG
+        if (!file.mimetype.startsWith('image/') && file.mimetype !== 'image/svg+xml') {
+            cb(new Error('Only image files and SVG are allowed'), false);
             return;
         }
         cb(null, true);
     },
     limits: { 
-        fileSize: 5 * 1024 * 1024 // 5MB
+        fileSize: 10 * 1024 * 1024 // 10MB to accommodate larger SVG files
     }
 });
 
@@ -37,6 +36,30 @@ router.get('/', async (req, res) => {
         const banners = await Banner.find().sort({ createdAt: -1 });
         res.json(banners);
     } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+// Get active banners only
+router.get('/active', async (req, res) => {
+    try {
+        const banners = await Banner.find({ isActive: true }).sort({ createdAt: -1 });
+        res.json(banners);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+// Get single banner by ID
+router.get('/:id', async (req, res) => {
+    try {
+        const banner = await Banner.findById(req.params.id);
+        if (!banner) {
+            return res.status(404).json({ message: 'Banner not found' });
+        }
+        res.json(banner);
+    } catch (error) {
+        console.error('Error fetching banner:', error);
         res.status(500).json({ message: error.message });
     }
 });
@@ -159,6 +182,27 @@ router.put('/:id', isAuthenticated, upload.single('image'), async (req, res) => 
     } catch (error) {
         console.error('Error updating banner:', error);
         res.status(400).json({ message: error.message });
+    }
+});
+
+// Toggle banner status
+router.patch('/:id/toggle', isAuthenticated, async (req, res) => {
+    try {
+        const banner = await Banner.findById(req.params.id);
+        if (!banner) {
+            return res.status(404).json({ message: 'Banner not found' });
+        }
+
+        banner.isActive = !banner.isActive;
+        await banner.save();
+
+        res.json({
+            message: `Banner ${banner.isActive ? 'activated' : 'deactivated'} successfully`,
+            banner
+        });
+    } catch (error) {
+        console.error('Error toggling banner status:', error);
+        res.status(500).json({ message: error.message });
     }
 });
 

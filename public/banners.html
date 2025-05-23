@@ -269,7 +269,7 @@
                         <div class="mb-3">
                             <label class="form-label" for="image">Banner Image</label>
                             <div class="input-group mb-2">
-                                <input type="file" class="form-control" id="image" accept="image/*">
+                                <input type="file" class="form-control" id="image" accept="image/*, .svg">
                                 <button class="btn btn-outline-secondary" type="button" id="usePathBtn">Use Path Instead</button>
                             </div>
                             <div id="imagePathGroup" class="d-none">
@@ -399,13 +399,13 @@
         // Edit banner
         async function editBanner(id) {
             try {
-                const response = await fetch(`/api/banners/${id}`);
-                if (!response.ok) {
+                const response = await fetch(`/api/banners/${id}`);            if (!response.ok) {
                     if (response.status === 401) {
                         window.location.href = '/login';
                         return;
                     }
-                    throw new Error('Failed to load banner');
+                    const data = await response.json();
+                    throw new Error(data.message || 'Failed to load banner');
                 }
                 const banner = await response.json();
                 
@@ -446,16 +446,48 @@
                     window.location.href = '/login';
                 }
             }
-        }
-
-        // Toggle banner status
+        }        // Toggle banner status
         async function toggleBanner(id) {
             if (confirm('Are you sure you want to change this banner\'s status?')) {
                 try {
-                    await fetch(`/api/banners/${id}/toggle`, { method: 'PATCH' });
-                    loadBanners();
+                    console.log('Attempting to toggle banner:', id);
+                    const response = await fetch(`/api/banners/${id}/toggle`, { 
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        credentials: 'include'
+                    });
+                    
+                    console.log('Toggle response status:', response.status);
+                    const result = await response.json();
+                    console.log('Toggle response data:', result);
+                    
+                    if (!response.ok) {
+                        throw new Error(result.message || 'Failed to toggle banner status');
+                    }
+
+                    // Show success message
+                    const successAlert = document.createElement('div');
+                    successAlert.className = 'alert alert-success alert-dismissible fade show';
+                    successAlert.innerHTML = `
+                        <strong>Success!</strong> Banner status updated successfully
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    `;
+                    
+                    const container = document.querySelector('.container');
+                    container.insertBefore(successAlert, container.firstChild);
+                    setTimeout(() => successAlert.remove(), 3000);
+
+                    // Reload banners to show updated status
+                    await loadBanners();
                 } catch (error) {
-                    console.error('Error toggling banner:', error);
+                    console.error('Detailed toggle error:', {
+                        message: error.message,
+                        stack: error.stack
+                    });
+                    alert(error.message || 'Failed to toggle banner status');
                 }
             }
         }

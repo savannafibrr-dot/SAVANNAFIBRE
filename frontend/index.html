@@ -1500,7 +1500,14 @@
         <!-- main-slider-start -->
         
 <!-- Hero Slider Section (Wrapped in a custom class to limit scope) -->
-<iframe id="bannerFrame" src="bannerM.html" scrolling="no" loading="eager" style="width: 100%; border: none; min-height: 200px;"></iframe>
+<iframe id="bannerFrame" 
+        src="bannerM.html" 
+        scrolling="no" 
+        loading="eager" 
+        style="width: 100%; border: none; min-height: 200px; overflow: hidden;"
+        allow="autoplay"
+        title="Banner Slider">
+</iframe>
 
 
 
@@ -2763,6 +2770,35 @@
         banner.style.display = 'none';
       };
     })();
+    </script>
+
+    <!-- Add this script after your banner iframe -->
+    <script>
+    // Function to handle banner updates
+    function updateBannerDisplay() {
+        const bannerFrame = document.getElementById('bannerFrame');
+        if (bannerFrame) {
+            // Reload the banner iframe to show updated banners
+            bannerFrame.src = bannerFrame.src;
+        }
+    }
+
+    // Listen for banner updates from the admin panel
+    window.addEventListener('storage', function(e) {
+        if (e.key === 'bannerUpdate') {
+            updateBannerDisplay();
+        }
+    });
+
+    // Initial banner frame height adjustment
+    window.addEventListener('message', function(event) {
+        if (event.data?.type === 'bannerHeight') {
+            const bannerFrame = document.getElementById('bannerFrame');
+            if (bannerFrame) {
+                bannerFrame.style.height = event.data.height + 'px';
+            }
+        }
+    });
     </script>
 </body>
 

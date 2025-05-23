@@ -152,12 +152,20 @@
       document.getElementById('loadingContainer').style.display = 'none';
       document.querySelector('.swiper').style.display = 'block';
       sendHeight();
+    }    // Helper function to handle SVG paths
+    function getImagePath(banner) {
+      // For SVG files, prefer imagePath over Cloudinary URL
+      if (banner.imagePath && banner.imagePath.toLowerCase().endsWith('.svg')) {
+        return banner.imagePath;
+      }
+      // For other files, prefer Cloudinary URL if available
+      return banner.imageUrl || banner.imagePath;
     }
 
     // Fetch and display banners
     async function loadBanners() {
       try {
-        const response = await fetch('/api/banners');
+        const response = await fetch('/api/banners/active');
         if (!response.ok) throw new Error('Failed to load banners');
         const banners = await response.json();
         
@@ -179,9 +187,14 @@
                     `<a href="${banner.button2Link}" target="_parent" style="font-family: 'Poppins', sans-serif;" class="px-6 py-3 bg-white text-orange-600 hover:bg-orange-200 rounded-md transition">${banner.button2Text}</a>` 
                     : ''}
                 </div>
-              </div>
-              <div class="flex-1 flex items-end justify-center h-full" style="height:100%">
-                <img src="${banner.imagePath}" alt="${banner.title}" class="w-full max-w-md md:max-w-lg lg:max-w-xl h-full object-bottom object-contain" style="height:100%" />
+              </div>              <div class="flex-1 flex items-end justify-center h-full" style="height:100%">
+                <img 
+                  src="${banner.imageUrl || banner.imagePath}" 
+                  alt="${banner.title}" 
+                  class="w-full max-w-md md:max-w-lg lg:max-w-xl h-full object-bottom object-contain" 
+                  style="height:100%${banner.imagePath?.endsWith('.svg') ? '; width: auto' : ''}" 
+                  onerror="this.onerror=null; this.src='${banner.imagePath}'; if(this.src.endsWith('.svg')) this.style.width='auto';" 
+                />
               </div>
             </div>
           </section>

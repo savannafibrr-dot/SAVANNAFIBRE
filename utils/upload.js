@@ -15,11 +15,14 @@ const uploadToCloudinary = async (file, folder = 'general') => {
     });
 
     return new Promise((resolve, reject) => {
-        try {
+        try {            // Handle SVGs differently
+            const isSVG = file.mimetype === 'image/svg+xml';
             const uploadStream = cloudinary.uploader.upload_stream(
                 {
                     folder: folder,
-                    resource_type: 'auto'
+                    resource_type: isSVG ? 'raw' : 'auto',
+                    format: isSVG ? 'svg' : undefined,
+                    allowed_formats: ['jpg', 'jpeg', 'png', 'gif', 'svg']
                 },
                 (error, result) => {
                     if (error) {
