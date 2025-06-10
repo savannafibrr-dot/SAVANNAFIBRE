@@ -196,6 +196,101 @@
                 height: 300px;
             }
         }
+        
+        /* City Sections Styling */
+        .cities-container {
+            max-height: 600px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+        
+        .cities-container::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .cities-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+        
+        .cities-container::-webkit-scrollbar-thumb {
+            background: #f79621;
+            border-radius: 3px;
+        }
+        
+        .cities-container::-webkit-scrollbar-thumb:hover {
+            background: #e6851f;
+        }
+        
+        .city-section {
+            margin-bottom: 10px;
+        }
+        
+        .city-header {
+            transition: all 0.3s ease;
+        }
+        
+        .city-header:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .city-shops {
+            transition: all 0.3s ease;
+        }
+        
+        .city-shops .location__list {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .city-shops .location__list li {
+            padding: 8px 12px;
+            margin: 2px 0;
+            border-radius: 5px;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        
+        .city-shops .location__list li:hover {
+            background: #f79621;
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .city-shops .location__list li.active {
+            background: #f79621;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .all-shops-section {
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f79621;
+            padding-bottom: 15px;
+        }
+        
+        .all-shops-section .city-header {
+            background: linear-gradient(90deg, #f79621, #e6851f) !important;
+        }
+        
+        /* Responsive adjustments for city sections */
+        @media (max-width: 768px) {
+            .cities-container {
+                max-height: 400px;
+            }
+            
+            .city-header {
+                padding: 10px 12px !important;
+                font-size: 14px;
+            }
+            
+            .city-shops .location__list li {
+                padding: 6px 10px;
+                font-size: 13px;
+            }
+        }
     </style>
     <style>
         @media (max-width: 768px) {
@@ -711,21 +806,7 @@
                             <span></span>
                         </div><!-- /.mobile-nav__toggler -->
 
-                        <div class="main-header__lang">
-                            <div class="lang-dropdown">
-                                <button class="lang-selected">
-                                    <span class="flag-icon flag-icon-gb"></span> EN
-                                </button>
-                                <div class="lang-options">
-                                    <div class="lang-option" data-value="en">
-                                        <span class="flag-icon flag-icon-gb"></span> EN
-                                    </div>
-                                    <div class="lang-option" data-value="sw">
-                                        <span class="flag-icon flag-icon-tz"></span> SW
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- /.main-header__lang -->
+                        
                         <div class="main-header__call">
                             <div class="main-header__call__icon"><span class="icon-telephone"></span></div>
                             <div class="main-header__call__title" style="color: #fff;">Call Us</div>
@@ -770,7 +851,7 @@
                 <div class="banner__content">
                     <!-- Left Side: Connected Shops -->
                     <div class="banner__locations">
-                        <h3>Our Shops Locations</h3>
+                        <h3>Our Shops by Cities</h3>
                         <!-- Search Section -->
                         <div class="search-section" style="margin-bottom: 20px;">
                             <div class="search-container" style="position: relative;">
@@ -792,10 +873,12 @@
                                 <div id="otherShopsContent"></div>
                             </div>
                         </div>
-                        <ul class="location__list" id="shopsList">
-                            <li class="active" data-location="All Towns">All Shops</li>
-                            <!-- Shops will be dynamically added here -->
-                        </ul>
+                        
+                        <!-- Cities and Shops List -->
+                        <div class="cities-container" id="citiesContainer">
+                            <!-- Cities will be dynamically added here -->
+                            <div id="citiesList"></div>
+                        </div>
                     </div>
 
                     <!-- Right Side: Google Map -->
@@ -858,10 +941,10 @@
                 };
 
                 const shopIcon = {
-                    url: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e5891f'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/%3E%3C/svg%3E",
+                    url: "map pin.svg",
                     scaledSize: new google.maps.Size(40, 40),
                     origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(12, 40)
+                    anchor: new google.maps.Point(20, 40)
                 };
 
                 // Initialize services
@@ -930,9 +1013,69 @@
                         markers = [];
                         infoWindows = [];
 
-                        // Clear existing shop list
-                        const shopsList = document.getElementById('shopsList');
-                        shopsList.innerHTML = '<li class="active" data-location="All Towns">All Shops</li>';
+                        // Group shops by city
+                        const shopsByCity = {};
+                        shops.forEach(shop => {
+                            const city = shop.city || 'Unknown City';
+                            if (!shopsByCity[city]) {
+                                shopsByCity[city] = [];
+                            }
+                            shopsByCity[city].push(shop);
+                        });
+
+                        // Create city sections
+                        const citiesList = document.getElementById('citiesList');
+                        citiesList.innerHTML = '';
+
+                        Object.keys(shopsByCity).sort().forEach(city => {
+                            const cityShops = shopsByCity[city];
+                            
+                            // Create city section
+                            const citySection = document.createElement('div');
+                            citySection.className = 'city-section';
+                            citySection.innerHTML = `
+                                <div class="city-header" style="background: linear-gradient(90deg, #f79621, #e6851f); color: white; padding: 12px 15px; border-radius: 8px; margin-bottom: 10px; cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; align-items: center;" onclick="toggleCitySection('${city.replace(/\s+/g, '-').toLowerCase()}')">
+                                    <span>${city} (${cityShops.length})</span>
+                                    <i class="fas fa-chevron-down" id="${city.replace(/\s+/g, '-').toLowerCase()}-icon" style="transition: transform 0.3s ease;"></i>
+                                </div>
+                                <div class="city-shops" id="${city.replace(/\s+/g, '-').toLowerCase()}-shops" style="display: none; margin-bottom: 15px;">
+                                    <ul class="location__list">
+                                        ${cityShops.map(shop => `<li data-location="${shop.name}">${shop.name}</li>`).join('')}
+                                    </ul>
+                                </div>
+                            `;
+                            citiesList.appendChild(citySection);
+
+                            // Add click handlers for shops in this city
+                            const cityShopList = citySection.querySelector('.location__list');
+                            cityShopList.addEventListener('click', (e) => {
+                                if (e.target.tagName === 'LI') {
+                                    const shopName = e.target.dataset.location;
+                                    const shop = allShops.find(s => s.name === shopName);
+                                    if (shop) {
+                                        // Update active state
+                                        document.querySelectorAll('.location__list li').forEach(li => li.classList.remove('active'));
+                                        e.target.classList.add('active');
+
+                                        // Center map on selected shop
+                                        const position = {
+                                            lat: parseFloat(shop.location.lat),
+                                            lng: parseFloat(shop.location.lng)
+                                        };
+                                        map.setCenter(position);
+                                        map.setZoom(16);
+
+                                        // Open info window
+                                        const marker = markers.find(m => m.getTitle() === shop.name);
+                                        const infoWindow = infoWindows.find(iw => iw.getContent().includes(shop.name));
+                                        if (marker && infoWindow) {
+                                            infoWindows.forEach(iw => iw.close());
+                                            infoWindow.open(map, marker);
+                                        }
+                                    }
+                                }
+                            });
+                        });
 
                         // Add markers for each shop
                         shops.forEach(shop => {
@@ -1051,36 +1194,6 @@
 
                             markers.push(marker);
                             infoWindows.push(infoWindow);
-
-                            // Add shop to the list
-                            const shopItem = document.createElement('li');
-                            shopItem.textContent = shop.name;
-                            shopItem.dataset.location = shop.name;
-                            shopItem.addEventListener('click', () => {
-                                // Update active state
-                                document.querySelectorAll('#shopsList li').forEach(li => li.classList.remove('active'));
-                                shopItem.classList.add('active');
-
-                                // Center map on selected shop
-                                map.setCenter(position);
-                                map.setZoom(16);
-
-                                // Open info window
-                                infoWindow.open(map, marker);
-                            });
-                            shopsList.appendChild(shopItem);
-                        });
-
-                        // Add click handler for "All Shops"
-                        document.querySelector('#shopsList li[data-location="All Towns"]').addEventListener('click', () => {
-                            // Update active state
-                            document.querySelectorAll('#shopsList li').forEach(li => li.classList.remove('active'));
-                            document.querySelector('#shopsList li[data-location="All Towns"]').classList.add('active');
-
-                            // Show all markers and fit bounds
-                            const bounds = new google.maps.LatLngBounds();
-                            markers.forEach(marker => bounds.extend(marker.getPosition()));
-                            map.fitBounds(bounds);
                         });
                     })
                     .catch(error => {
@@ -1209,6 +1322,20 @@
                     clearTimeout(timeout);
                     timeout = setTimeout(later, wait);
                 };
+            }
+
+            // Function to toggle city sections
+            function toggleCitySection(cityId) {
+                const cityShops = document.getElementById(cityId + '-shops');
+                const cityIcon = document.getElementById(cityId + '-icon');
+                
+                if (cityShops.style.display === 'none') {
+                    cityShops.style.display = 'block';
+                    cityIcon.style.transform = 'rotate(180deg)';
+                } else {
+                    cityShops.style.display = 'none';
+                    cityIcon.style.transform = 'rotate(0deg)';
+                }
             }
 
             document.addEventListener('DOMContentLoaded', loadGoogleMaps);

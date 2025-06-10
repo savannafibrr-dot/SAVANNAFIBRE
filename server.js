@@ -121,13 +121,11 @@ app.use('/api/users', require('./routes/users'));
 app.use('/api/about', aboutRouter);
 app.use('/api/payments', require('./routes/payments'));
 app.use('/api/faqs', require('./routes/faqs'));
+app.use('/api/accessories', require('./routes/accessories'));
 app.use('/about-uploads', express.static(path.join(__dirname, 'public/about-uploads')));
 
 // Serve static files from the public directory for admin routes
 app.use('/admin', auth, express.static(path.join(__dirname, 'public')));
-
-// Serve static files from the frontend directory for root routes
-app.use('/', express.static(path.join(__dirname, 'frontend')));
 
 // Handle admin routes with authentication
 app.get('/admin/', auth, (req, res) => {
@@ -163,6 +161,13 @@ app.get('/banners', auth, (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'banners.html'));
 });
 
+app.get('/admin/accessories', auth, (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'accessories.html'));
+});
+
+// Serve all frontend static files first (this should come before specific routes)
+app.use(express.static(path.join(__dirname, 'frontend')));
+
 // Handle frontend routes
 app.get('/shops', (req, res) => {
     res.sendFile(path.join(__dirname, 'frontend', 'shops.html'));
@@ -174,6 +179,26 @@ app.get('/coverage', (req, res) => {
 
 app.get('/accessories', (req, res) => {
     res.sendFile(path.join(__dirname, 'frontend', 'accessories.html'));
+});
+
+app.get('/about', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'about.html'));
+});
+
+app.get('/contact', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'contact.html'));
+});
+
+app.get('/policy', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'policy.html'));
+});
+
+app.get('/payments', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'payments.html'));
+});
+
+app.get('/residential', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'residential.html'));
 });
 
 // Handle frontend index route

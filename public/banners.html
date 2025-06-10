@@ -61,6 +61,12 @@
             width: 20px;
             text-align: center;
         }
+        
+        /* Fix horizontal overflow */
+        .navbar-nav {
+            flex-wrap: wrap;
+        }
+        
         @media (max-width: 991.98px) {
             .navbar-collapse {
                 background: #3C1800;
@@ -78,13 +84,42 @@
                 margin: 0.25rem 0;
             }
         }
-        @media (min-width: 992px) {
+        
+        @media (min-width: 992px) and (max-width: 1199.98px) {
+            .navbar {
+                padding: 0.5rem;
+            }
+            .navbar-nav {
+                gap: 0.25rem;
+            }
+            .nav-link {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.9rem;
+            }
+            .nav-link i {
+                margin-right: 0.5rem;
+                font-size: 1rem;
+            }
+        }
+        
+        @media (min-width: 1200px) {
             .navbar {
                 padding: 1rem;
             }
             .navbar-nav {
                 gap: 0.5rem;
             }
+        }
+        
+        /* Prevent horizontal scroll */
+        body {
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 100%;
+            padding-left: 15px;
+            padding-right: 15px;
         }
         .preview-image {
             max-width: 200px;
@@ -145,7 +180,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/admin/dashboard">
                             <i class="bi bi-speedometer2"></i>
-                            Dashboard
+                            Dash
                         </a>
                     </li>
                     <li class="nav-item">
@@ -167,9 +202,15 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="/admin/accessories">
+                            <i class="bi bi-headphones"></i>
+                            Accessories
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link active" href="/banners">
                             <i class="bi bi-images"></i>
-                            Banner Management
+                            Banners
                         </a>
                     </li>
                     <li class="nav-item">
