@@ -2684,7 +2684,6 @@
 
 <script>
     document.getElementById('savannaForm').addEventListener('submit', async (e) => {
-        return; // Prevent duplicate handler from running
         e.preventDefault();
         
         const formData = new FormData(e.target);
@@ -2693,20 +2692,20 @@
         const messageBox = document.getElementById('messageBox'); // ✅ Message container
 
         try {
-            // const response = await fetch('/send-email', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify(data),
-            // });
+            const response = await fetch('/send-email', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            });
 
-            // if (!response.ok) {
-            //     throw new Error(`Server error! Status: ${response.status}`);
-            // }
+            if (!response.ok) {
+                throw new Error(`Server error! Status: ${response.status}`);
+            }
 
-            // const result = await response.json();
+            const result = await response.json();
             
             // ✅ Show success message
-            messageBox.textContent = "Form handled by correct handler above";
+            messageBox.textContent = result.message || "Email sent successfully!";
             messageBox.style.color = "green";
             messageBox.style.display = "block";
 

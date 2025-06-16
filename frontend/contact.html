@@ -1255,7 +1255,7 @@
             height="170"></a>
       </div><!-- /.sidebar-one__logo-box -->
       <p class="sidebar-one__text">
-        We envision ourselves as Tanzania’s most trusted connectivity provider, delivering seamless, affordable,
+        We envision ourselves as Tanzania's most trusted connectivity provider, delivering seamless, affordable,
         and reliable internet to every household, and empowering communities in the digital age.
       </p>
       <h4 class="sidebar-one__title">Contact Info:</h4>
@@ -1309,11 +1309,16 @@
   <!-- Sidebar One Start -->
 
 <script>
-document.querySelector("form").addEventListener("submit", async function (e) {
+document.querySelector(".contact-form form").addEventListener("submit", async function (e) {
     e.preventDefault();
 
     const formData = new FormData(this);
     const formObject = Object.fromEntries(formData.entries());
+
+    // Combine first_name and last_name into name
+    formObject.name = (formObject.first_name || "") + " " + (formObject.last_name || "");
+    delete formObject.first_name;
+    delete formObject.last_name;
 
     try {
         const response = await fetch('/send-mail', {
