@@ -34,7 +34,7 @@ connectDB();
 
 // Session configuration
 app.use(session({
-    secret: 'local-development-secret', // Fixed secret for local development
+    secret: process.env.SESSION_SECRET || 'local-development-secret', // Use environment variable for production
     resave: true,
     saveUninitialized: true,
     store: MongoStore.create({
@@ -42,17 +42,27 @@ app.use(session({
         ttl: 24 * 60 * 60 // Session TTL (1 day)
     }),
     cookie: {
-        secure: false, // Set to false for local development
+        secure: process.env.NODE_ENV === 'production', // Set to true in production
         maxAge: 24 * 60 * 60 * 1000, // Cookie max age (1 day)
-        httpOnly: false, // Set to false for local development
+        httpOnly: process.env.NODE_ENV === 'production', // Set to true in production
         sameSite: 'lax'
     }
 }));
 
-// Add CORS configuration for local development
+// Add CORS configuration for production and development
 app.use((req, res, next) => {
+    const allowedOrigins = [
+        'http://localhost:3000',
+        'https://savannafibre.co.tz',
+        'https://www.savannafibre.co.tz'
+    ];
+    
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+        res.header('Access-Control-Allow-Origin', origin);
+    }
+    
     res.header('Access-Control-Allow-Credentials', 'true');
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
     next();
