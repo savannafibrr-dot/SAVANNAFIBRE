@@ -135,6 +135,21 @@ app.use('/api/accessories', require('./routes/accessories'));
 app.use('/', require('./routes/mail'));
 app.use('/about-uploads', express.static(path.join(__dirname, 'public/about-uploads')));
 
+// Health check endpoint for debugging
+app.get('/health', (req, res) => {
+    res.json({
+        status: 'OK',
+        timestamp: new Date().toISOString(),
+        environment: process.env.NODE_ENV || 'development',
+        mongodb: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected',
+        env_vars: {
+            MONGODB_URI: process.env.MONGODB_URI ? 'set' : 'missing',
+            SESSION_SECRET: process.env.SESSION_SECRET ? 'set' : 'missing',
+            NODE_ENV: process.env.NODE_ENV || 'not set'
+        }
+    });
+});
+
 // Serve static files from the public directory for admin routes
 app.use('/admin', auth, express.static(path.join(__dirname, 'public')));
 
@@ -220,15 +235,27 @@ app.get('/', (req, res) => {
 // Error handling middleware
 app.use((err, req, res, next) => {
     console.error('Error:', err);
+    console.error('Request URL:', req.url);
+    console.error('Request Method:', req.method);
+    console.error('Request Headers:', req.headers);
+    
     res.status(500).json({
         error: 'Internal Server Error',
-        message: process.env.NODE_ENV === 'development' ? err.message : 'Something went wrong!'
+        message: process.env.NODE_ENV === 'development' ? err.message : 'Something went wrong!',
+        timestamp: new Date().toISOString(),
+        path: req.url
     });
 });
 
-
-
-
+// 404 handler for unmatched routes
+app.use('*', (req, res) => {
+    console.log('404 - Route not found:', req.originalUrl);
+    res.status(404).json({
+        error: 'Not Found',
+        message: `Route ${req.originalUrl} not found`,
+        timestamp: new Date().toISOString()
+    });
+});
 
 // Handle MongoDB connection errors
 mongoose.connection.on('error', (err) => {

@@ -1,0 +1,50 @@
+# Dependencies
+node_modules/
+
+# Large asset directories
+frontend/assets/website gallery/
+frontend/assets/Website banner elements/
+frontend/assets/MBPS CARDS/
+frontend/assets/bg-new/
+frontend/assets/bg-new (2)/
+frontend/assets/new-bg/
+frontend/assets/use-bg/
+frontend/assets/resources/
+
+# Large specific files
+frontend/assets/contact bg.svg
+frontend/assets/bg1.svg
+frontend/assets/bg.svg
+frontend/assets/bg2.svg
+frontend/assets/bgtry.svg
+frontend/assets/Customer Service.png
+frontend/assets/connecting moments.png
+frontend/assets/hutoboi bila savanna.png
+frontend/assets/free Installation & Router banner.png
+frontend/assets/Our packages.png
+frontend/assets/hero resized.png
+
+# Backup and test files
+frontend/*_backup.html
+frontend/*_old.html
+frontend/temp.txt
+frontend/testing.html
+frontend/testmode.html
+frontend/removed.html
+frontend/try.html
+frontend/newshops.html
+frontend/*.xlsx
+
+# Git and IDE files
+.git/
+.vscode/
+.idea/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+.cache/
+
+# Environment files
+.env* 
