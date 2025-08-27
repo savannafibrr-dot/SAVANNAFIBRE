@@ -121,6 +121,30 @@
             padding-left: 15px;
             padding-right: 15px;
         }
+        
+        /* Empty state styling */
+        .text-muted {
+            color: #6c757d !important;
+        }
+        
+        .fs-1 {
+            font-size: 3rem !important;
+        }
+        
+        .spinner-border-sm {
+            width: 1rem;
+            height: 1rem;
+        }
+        
+        /* Fade in animation */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
@@ -165,25 +189,25 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/banners">
+                        <a class="nav-link" href="/admin/banners">
                             <i class="bi bi-images"></i>
                             Banner Management
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/about-admin.html">
+                        <a class="nav-link" href="/admin/about">
                             <i class="bi bi-info-circle"></i>
                             About Admin
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/payments-admin.html">
-                            <i class="fa fa-money-bill"></i>
+                        <a class="nav-link" href="/admin/payments">
+                            <i class="bi bi-credit-card"></i>
                             Payments Admin
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/faq-admin.html">
+                        <a class="nav-link" href="/admin/faq">
                             <i class="bi bi-question-circle"></i>
                             FAQ Admin
                         </a>
@@ -208,17 +232,21 @@
                 <p class="text-secondary mb-0">Monitor and manage your services</p>
             </div>
             <div class="d-flex gap-2 flex-wrap">
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPlanModal">
+                <a href="/admin/plans" class="btn btn-primary">
                     <i class="bi bi-plus-lg me-2"></i>
                     New Plan
-                </button>
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addShopModal">
+                </a>
+                <a href="/admin/shop" class="btn btn-primary">
                     <i class="bi bi-plus-lg me-2"></i>
                     New Shop
-                </button>
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCoverageModal">
+                </a>
+                <a href="/admin/coverage" class="btn btn-primary">
                     <i class="bi bi-plus-lg me-2"></i>
                     New Coverage
+                </a>
+                <button class="btn btn-outline-secondary" onclick="refreshDashboard()">
+                    <i class="bi bi-arrow-clockwise me-2"></i>
+                    Refresh
                 </button>
             </div>
         </div>
@@ -267,7 +295,7 @@
                             <h5 class="mb-1">Recent Plans</h5>
                             <p class="text-secondary small mb-0">Latest internet plans added</p>
                         </div>
-                        <a href="/plans.html" class="btn btn-sm btn-outline-primary">
+                        <a href="/admin/plans" class="btn btn-sm btn-outline-primary">
                             View All
                             <i class="bi bi-arrow-right ms-1"></i>
                         </a>
@@ -295,7 +323,7 @@
                             <h5 class="mb-1">Recent Shops</h5>
                             <p class="text-secondary small mb-0">Latest shop locations added</p>
                         </div>
-                        <a href="/shops.html" class="btn btn-sm btn-outline-primary">
+                        <a href="/admin/shop" class="btn btn-sm btn-outline-primary">
                             View All
                             <i class="bi bi-arrow-right ms-1"></i>
                         </a>
@@ -355,6 +383,24 @@
         // Load dashboard data
         async function loadDashboardData() {
             try {
+                // Show loading state
+                document.getElementById('recent-plans').innerHTML = `
+                    <tr>
+                        <td colspan="3" class="text-center text-muted py-4">
+                            <div class="spinner-border spinner-border-sm me-2" role="status"></div>
+                            Loading plans...
+                        </td>
+                    </tr>
+                `;
+                document.getElementById('recent-shops').innerHTML = `
+                    <tr>
+                        <td colspan="3" class="text-center text-muted py-4">
+                            <div class="spinner-border spinner-border-sm me-2" role="status"></div>
+                            Loading shops...
+                        </td>
+                    </tr>
+                `;
+
                 const [plansRes, shopsRes, coverageRes] = await Promise.all([
                     fetch('/api/plans', { credentials: 'include' }),
                     fetch('/api/shops', { credentials: 'include' }),
@@ -372,40 +418,86 @@
                 animateCount('shops-count', shops.length);
                 animateCount('coverage-count', coverage.length);
 
+                // Add loading delay for better UX
+                await new Promise(resolve => setTimeout(resolve, 500));
+
                 // Update recent plans
                 const recentPlans = plans.slice(0, 5);
-                const recentPlansHtml = recentPlans.map(plan => `
-                    <tr class="fade-in">
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <i class="bi bi-wifi me-2 text-primary"></i>
-                                ${plan.name}
-                            </div>
-                        </td>
-                        <td>${plan.speed}</td>
-                        <td>$${plan.price}</td>
-                    </tr>
-                `).join('');
+                let recentPlansHtml = '';
+                if (recentPlans.length > 0) {
+                    recentPlansHtml = recentPlans.map(plan => `
+                        <tr class="fade-in">
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-wifi me-2 text-primary"></i>
+                                    ${plan.name}
+                                </div>
+                            </td>
+                            <td>${plan.speed}</td>
+                            <td>$${plan.price}</td>
+                        </tr>
+                    `).join('');
+                } else {
+                    recentPlansHtml = `
+                        <tr>
+                            <td colspan="3" class="text-center text-muted py-4">
+                                <i class="bi bi-inbox fs-1 d-block mb-2"></i>
+                                No plans present
+                            </td>
+                        </tr>
+                    `;
+                }
                 document.getElementById('recent-plans').innerHTML = recentPlansHtml;
 
                 // Update recent shops
                 const recentShops = shops.slice(0, 5);
-                const recentShopsHtml = recentShops.map(shop => `
-                    <tr class="fade-in">
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <i class="bi bi-shop me-2 text-primary"></i>
-                                ${shop.name}
-                            </div>
-                        </td>
-                        <td>${shop.city}</td>
-                        <td>${shop.contactNumber}</td>
-                    </tr>
-                `).join('');
+                let recentShopsHtml = '';
+                if (recentShops.length > 0) {
+                    recentShopsHtml = recentShops.map(shop => `
+                        <tr class="fade-in">
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-shop me-2 text-primary"></i>
+                                    ${shop.name}
+                                </div>
+                            </td>
+                            <td>${shop.city}</td>
+                            <td>${shop.contactNumber}</td>
+                        </tr>
+                    `).join('');
+                } else {
+                    recentShopsHtml = `
+                        <tr>
+                            <td colspan="3" class="text-center text-muted py-4">
+                                <i class="bi bi-inbox fs-1 d-block mb-2"></i>
+                                No shops present
+                            </td>
+                        </tr>
+                    `;
+                }
                 document.getElementById('recent-shops').innerHTML = recentShopsHtml;
 
             } catch (error) {
                 console.error('Error loading dashboard data:', error);
+                // Show error state in tables
+                document.getElementById('recent-plans').innerHTML = `
+                    <tr>
+                        <td colspan="3" class="text-center text-danger py-4">
+                            <i class="bi bi-exclamation-triangle fs-1 d-block mb-2"></i>
+                            Error loading plans
+                            <br><small class="text-muted">${error.message || 'Please try again later'}</small>
+                        </td>
+                    </tr>
+                `;
+                document.getElementById('recent-shops').innerHTML = `
+                    <tr>
+                        <td colspan="3" class="text-center text-danger py-4">
+                            <i class="bi bi-exclamation-triangle fs-1 d-block mb-2"></i>
+                            Error loading shops
+                            <br><small class="text-muted">${error.message || 'Please try again later'}</small>
+                        </td>
+                    </tr>
+                `;
             }
         }
 
@@ -439,6 +531,33 @@
                 console.error('Error logging out:', error);
             }
         });
+
+        // Refresh dashboard function
+        async function refreshDashboard() {
+            const refreshBtn = document.querySelector('button[onclick="refreshDashboard()"]');
+            const originalText = refreshBtn.innerHTML;
+            
+            // Show loading state
+            refreshBtn.innerHTML = '<div class="spinner-border spinner-border-sm me-2"></div>Refreshing...';
+            refreshBtn.disabled = true;
+            
+            try {
+                await loadDashboardData();
+                // Show success feedback
+                refreshBtn.innerHTML = '<i class="bi bi-check-circle me-2 text-success"></i>Refreshed!';
+                setTimeout(() => {
+                    refreshBtn.innerHTML = originalText;
+                    refreshBtn.disabled = false;
+                }, 2000);
+            } catch (error) {
+                console.error('Error refreshing dashboard:', error);
+                refreshBtn.innerHTML = '<i class="bi bi-exclamation-triangle me-2 text-danger"></i>Error!';
+                setTimeout(() => {
+                    refreshBtn.innerHTML = originalText;
+                    refreshBtn.disabled = false;
+                }, 2000);
+            }
+        }
 
         // Initialize when DOM is loaded
         document.addEventListener('DOMContentLoaded', initialize);

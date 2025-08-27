@@ -188,8 +188,25 @@ app.get('/banners', auth, (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'banners.html'));
 });
 
+app.get('/admin/banners', auth, (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'banners.html'));
+});
+
 app.get('/admin/accessories', auth, (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'accessories.html'));
+});
+
+// Add missing admin routes
+app.get('/admin/about', auth, (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'about-admin.html'));
+});
+
+app.get('/admin/payments', auth, (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'payments-admin.html'));
+});
+
+app.get('/admin/faq', auth, (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'faq-admin.html'));
 });
 
 // Serve all frontend static files first (this should come before specific routes)
@@ -224,8 +241,20 @@ app.get('/payments', (req, res) => {
     res.sendFile(path.join(__dirname, 'frontend', 'payments.html'));
 });
 
+app.get('/faq', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'faq.html'));
+});
+
 app.get('/residential', (req, res) => {
     res.sendFile(path.join(__dirname, 'frontend', 'residential.html'));
+});
+
+app.get('/business', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'business.html'));
+});
+
+app.get('/index', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
 });
 
 // Handle frontend index route
