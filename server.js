@@ -132,6 +132,7 @@ app.use('/api/about', aboutRouter);
 app.use('/api/payments', require('./routes/payments'));
 app.use('/api/faqs', require('./routes/faqs'));
 app.use('/api/accessories', require('./routes/accessories'));
+app.use('/api/settings', require('./routes/settings'));
 app.use('/', require('./routes/mail'));
 app.use('/about-uploads', express.static(path.join(__dirname, 'public/about-uploads')));
 

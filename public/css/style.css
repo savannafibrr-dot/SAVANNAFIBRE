@@ -408,3 +408,38 @@ body {
 .badge.bg-info {
     background-color: var(--primary-color) !important;
 } 
+
+/* Admin Navbar multi-row support (keeps long menus tidy across pages) */
+.navbar .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.navbar-collapse {
+    flex-wrap: wrap;
+    row-gap: 0.25rem;
+    width: 100%;
+}
+
+.navbar-nav {
+    flex-wrap: wrap;
+    gap: 0.25rem;
+}
+
+/* Make the main nav use the full row; place the right-side group on its own right-aligned row */
+.navbar-nav.me-auto {
+    flex: 1 1 auto;
+    width: auto;
+    flex-wrap: nowrap;
+}
+
+.navbar-collapse > .navbar-nav:last-child {
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+}
+
+.navbar .nav-link {
+    white-space: nowrap;
+}

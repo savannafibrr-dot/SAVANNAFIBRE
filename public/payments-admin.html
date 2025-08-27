@@ -6,10 +6,27 @@
   <title>Payments Admin - Savanna Fibre</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <style>
+    :root {
+      --font-family: Inter, sans-serif;
+      --font-size: 16px;
+      --font-weight: 400;
+    }
+    
+    body {
+      font-family: var(--font-family);
+      font-size: var(--font-size);
+      font-weight: var(--font-weight);
+    }
+    
     .icon-picker-grid {
       display: flex;
       flex-wrap: wrap;
@@ -174,10 +191,92 @@
       height: 100%;
       cursor: pointer;
     }
-    .font-size-select {
-      padding: 4px;
+    .font-family-select,
+    .font-size-select,
+    .font-weight-select {
+      padding: 4px 8px;
       border: 1px solid #ddd;
       border-radius: 4px;
+      background: white;
+      font-size: 12px;
+      min-width: 80px;
+    }
+    
+    .font-family-select {
+      min-width: 100px;
+    }
+    
+    .font-weight-select {
+      min-width: 70px;
+    }
+    
+    /* Color button styling */
+    .color-btn {
+      position: relative;
+      min-width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+    
+    .color-btn.black {
+      background: #000000;
+      border-color: #000000;
+      color: white;
+    }
+    
+    .color-btn.black:hover {
+      background: #333333;
+      border-color: #333333;
+      transform: scale(1.05);
+    }
+    
+    .color-btn.orange {
+      background: #F79621;
+      border-color: #F79621;
+      color: white;
+    }
+    
+    .color-btn.orange:hover {
+      background: #e6851f;
+      border-color: #e6851f;
+      transform: scale(1.05);
+    }
+    
+    .color-btn.orange-bg {
+      background: #fff7ed;
+      border-color: #F79621;
+      color: #F79621;
+    }
+    
+    .color-btn.orange-bg:hover {
+      background: #F79621;
+      color: white;
+      transform: scale(1.05);
+    }
+    
+    .color-btn.black-bg {
+      background: #f8f9fa;
+      border-color: #000000;
+      color: #000000;
+    }
+    
+    .color-btn.black-bg:hover {
+      background: #000000;
+      color: white;
+      transform: scale(1.05);
+    }
+    
+    .color-btn.light-orange-bg {
+      background: #fff7ed;
+      border-color: #F79621;
+      color: #F79621;
+    }
+    
+    .color-btn.light-orange-bg:hover {
+      background: #F79621;
+      color: white;
+      transform: scale(1.05);
     }
     .step-item {
       margin-bottom: 8px;
@@ -305,9 +404,14 @@
   <div class="container py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
       <h1 class="h3 mb-0">Payments Management</h1>
-      <button id="addPaymentBtn" class="btn btn-primary">
-        <i class="bi bi-plus-circle"></i> Add Payment Method
-      </button>
+      <div class="d-flex gap-2">
+        <button id="fontSettingsBtn" class="btn btn-outline-secondary">
+          <i class="fas fa-font"></i> Font Settings
+        </button>
+        <button id="addPaymentBtn" class="btn btn-primary">
+          <i class="bi bi-plus-circle"></i> Add Payment Method
+        </button>
+      </div>
     </div>
     <div id="methods-list" class="payments-grid"></div>
   </div>
@@ -336,31 +440,80 @@
               <label class="form-label">Steps (one per line)</label>
               <div class="rich-editor">
                 <div class="editor-toolbar">
+                  <!-- Text Formatting -->
                   <button type="button" data-command="bold" title="Bold (Ctrl+B)"><i class="fas fa-bold"></i></button>
                   <button type="button" data-command="italic" title="Italic (Ctrl+I)"><i class="fas fa-italic"></i></button>
                   <button type="button" data-command="underline" title="Underline (Ctrl+U)"><i class="fas fa-underline"></i></button>
                   <button type="button" data-command="strikeThrough" title="Strikethrough"><i class="fas fa-strikethrough"></i></button>
+                  
                   <span class="separator">|</span>
+                  
+                  <!-- Font Controls -->
+                  <select class="font-family-select" data-command="fontName" title="Font Family">
+                    <option value="Inter">Inter</option>
+                    <option value="Outfit">Outfit</option>
+                    <option value="Roboto">Roboto</option>
+                    <option value="Open Sans">Open Sans</option>
+                    <option value="Poppins">Poppins</option>
+                    <option value="Montserrat">Montserrat</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Helvetica">Helvetica</option>
+                  </select>
+                  
+                  <select class="font-size-select" data-command="fontSize" title="Font Size">
+                    <option value="1">12px</option>
+                    <option value="2">14px</option>
+                    <option value="3" selected>16px</option>
+                    <option value="4">18px</option>
+                    <option value="5">20px</option>
+                    <option value="6">24px</option>
+                    <option value="7">28px</option>
+                  </select>
+                  
+                  <select class="font-weight-select" data-command="fontWeight" title="Font Weight">
+                    <option value="300">Light</option>
+                    <option value="400" selected>Normal</option>
+                    <option value="500">Medium</option>
+                    <option value="600">Semi-Bold</option>
+                    <option value="700">Bold</option>
+                    <option value="900">Black</option>
+                  </select>
+                  
+                  <span class="separator">|</span>
+                  
+                  <!-- Alignment -->
                   <button type="button" data-command="justifyLeft" title="Align Left"><i class="fas fa-align-left"></i></button>
                   <button type="button" data-command="justifyCenter" title="Align Center"><i class="fas fa-align-center"></i></button>
                   <button type="button" data-command="justifyRight" title="Align Right"><i class="fas fa-align-right"></i></button>
+                  
                   <span class="separator">|</span>
-                  <button type="button" data-command="foreColor" title="Text Color">
+                  
+                  <!-- Colors -->
+                  <button type="button" data-command="foreColor" data-value="#000000" title="Black Text" class="color-btn black">
+                    <i class="fas fa-font" style="color: #000000;"></i>
+                  </button>
+                  <button type="button" data-command="foreColor" data-value="#F79621" title="Orange Text" class="color-btn orange">
                     <i class="fas fa-font" style="color: #F79621;"></i>
                   </button>
-                  <button type="button" data-command="hiliteColor" title="Background Color">
-                    <i class="fas fa-highlighter"></i>
+                  <button type="button" data-command="hiliteColor" data-value="#F79621" title="Orange Background" class="color-btn orange-bg">
+                    <i class="fas fa-highlighter" style="color: #F79621;"></i>
                   </button>
+                  <button type="button" data-command="hiliteColor" data-value="#000000" title="Black Background" class="color-btn black-bg">
+                    <i class="fas fa-highlighter" style="color: #000000;"></i>
+                  </button>
+                  <button type="button" data-command="hiliteColor" data-value="#fff7ed" title="Light Orange Background" class="color-btn light-orange-bg">
+                    <i class="fas fa-highlighter" style="color: #F79621;"></i>
+                  </button>
+                  
                   <span class="separator">|</span>
-                  <select class="font-size-select" data-command="fontSize">
-                    <option value="1">Small</option>
-                    <option value="3" selected>Normal</option>
-                    <option value="5">Large</option>
-                    <option value="7">Extra Large</option>
-                  </select>
+                  
+                  <!-- Lists -->
                   <button type="button" data-command="insertUnorderedList" title="Bullet List"><i class="fas fa-list-ul"></i></button>
                   <button type="button" data-command="insertOrderedList" title="Numbered List"><i class="fas fa-list-ol"></i></button>
+                  
                   <span class="separator">|</span>
+                  
+                  <!-- Undo/Redo -->
                   <button type="button" data-command="undo" title="Undo (Ctrl+Z)"><i class="fas fa-undo"></i></button>
                   <button type="button" data-command="redo" title="Redo (Ctrl+Y)"><i class="fas fa-redo"></i></button>
                 </div>
@@ -374,6 +527,70 @@
             <button type="submit" class="btn btn-primary">Save</button>
             <button type="button" class="btn btn-secondary ms-2" data-bs-dismiss="modal">Cancel</button>
           </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Font Settings Modal -->
+  <div class="modal fade" id="fontSettingsModal" aria-labelledby="fontSettingsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="fontSettingsModalLabel">
+            <i class="fas fa-font"></i> Global Font Settings
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="font-settings-form">
+            <div class="mb-3">
+              <label class="form-label fw-bold">Font Family</label>
+              <select class="form-select" id="fontFamily" required>
+                <option value="Inter">Inter (Default)</option>
+                <option value="Outfit">Outfit</option>
+                <option value="Roboto">Roboto</option>
+                <option value="Open Sans">Open Sans</option>
+                <option value="Poppins">Poppins</option>
+                <option value="Montserrat">Montserrat</option>
+                <option value="Arial">Arial</option>
+                <option value="Helvetica">Helvetica</option>
+              </select>
+              <small class="text-muted">This will change the font across all pages</small>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-bold">Font Size</label>
+              <select class="form-select" id="fontSize" required>
+                <option value="12px">12px (Small)</option>
+                <option value="14px">14px (Small)</option>
+                <option value="16px" selected>16px (Normal)</option>
+                <option value="18px">18px (Large)</option>
+                <option value="20px">20px (Large)</option>
+                <option value="24px">24px (Extra Large)</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-bold">Font Weight</label>
+              <select class="form-select" id="fontWeight" required>
+                <option value="300">300 (Light)</option>
+                <option value="400" selected>400 (Normal)</option>
+                <option value="500">500 (Medium)</option>
+                <option value="600">600 (Semi-Bold)</option>
+                <option value="700">700 (Bold)</option>
+                <option value="900">900 (Black)</option>
+              </select>
+            </div>
+            <div class="alert alert-info">
+              <i class="fas fa-info-circle"></i>
+              <strong>Note:</strong> Font changes will apply to both admin and client pages immediately.
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="saveFontSettings">
+            <i class="fas fa-save"></i> Save Font Settings
+          </button>
         </div>
       </div>
     </div>
@@ -404,6 +621,14 @@
           }
         });
 
+        // Handle font family changes
+        const fontFamilySelect = this.toolbar.querySelector('[data-command="fontName"]');
+        if (fontFamilySelect) {
+          fontFamilySelect.addEventListener('change', () => {
+            this.executeCommand('fontName', fontFamilySelect.value);
+          });
+        }
+
         // Handle font size changes
         const fontSizeSelect = this.toolbar.querySelector('[data-command="fontSize"]');
         if (fontSizeSelect) {
@@ -411,6 +636,24 @@
             this.executeCommand('fontSize', fontSizeSelect.value);
           });
         }
+
+        // Handle font weight changes
+        const fontWeightSelect = this.toolbar.querySelector('[data-command="fontWeight"]');
+        if (fontWeightSelect) {
+          fontWeightSelect.addEventListener('change', () => {
+            this.executeCommand('fontWeight', fontWeightSelect.value);
+          });
+        }
+
+        // Handle color button clicks
+        this.toolbar.querySelectorAll('.color-btn').forEach(button => {
+          button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const command = button.dataset.command;
+            const value = button.dataset.value;
+            this.executeCommand(command, value);
+          });
+        });
       }
 
       setupKeyboardShortcuts() {
@@ -441,6 +684,14 @@
                 e.preventDefault();
                 this.executeCommand('redo');
                 break;
+              case '1':
+                e.preventDefault();
+                this.executeCommand('foreColor', '#000000'); // Black text
+                break;
+              case '2':
+                e.preventDefault();
+                this.executeCommand('foreColor', '#F79621'); // Orange text
+                break;
             }
           }
         });
@@ -450,6 +701,20 @@
         if (command === 'foreColor' || command === 'hiliteColor') {
           const color = value || '#000000';
           document.execCommand(command, false, color);
+        } else if (command === 'fontWeight') {
+          // Handle font weight with inline styles for better compatibility
+          const selection = window.getSelection();
+          if (selection.rangeCount > 0) {
+            const range = selection.getRangeAt(0);
+            if (!range.collapsed) {
+              const span = document.createElement('span');
+              span.style.fontWeight = value;
+              range.surroundContents(span);
+            }
+          }
+        } else if (command === 'fontName') {
+          // Handle font family changes
+          document.execCommand('fontName', false, value);
         } else {
           document.execCommand(command, false, value);
         }
@@ -463,6 +728,25 @@
             button.classList.toggle('active', document.queryCommandState(command));
           }
         });
+        
+        // Update color button states
+        this.toolbar.querySelectorAll('.color-btn').forEach(button => {
+          button.classList.remove('active');
+        });
+        
+        // Check current text color and highlight active color button
+        const currentColor = document.queryCommandValue('foreColor');
+        if (currentColor) {
+          const colorBtn = this.toolbar.querySelector(`[data-command="foreColor"][data-value="${currentColor}"]`);
+          if (colorBtn) colorBtn.classList.add('active');
+        }
+        
+        // Check current background color and highlight active background button
+        const currentBgColor = document.queryCommandValue('hiliteColor');
+        if (currentBgColor) {
+          const bgColorBtn = this.toolbar.querySelector(`[data-command="hiliteColor"][data-value="${currentBgColor}"]`);
+          if (bgColorBtn) bgColorBtn.classList.add('active');
+        }
       }
 
       getContent() {
@@ -549,7 +833,9 @@
       document.getElementById('method-id').value = method._id;
       document.getElementById('methodName').value = method.methodName;
       document.getElementById('iconClass').value = method.iconClass;
-      editor.setContent(method.steps.join('\n'));
+      // Join steps with line breaks to preserve formatting
+      const formattedSteps = method.steps.join('<br>');
+      editor.setContent(formattedSteps);
       document.getElementById('order').value = method.order;
       renderIconPicker(method.iconClass);
       document.getElementById('paymentModalLabel').textContent = 'Edit Payment Method';
@@ -621,6 +907,98 @@
         alert('Failed to save payment method');
       }
     };
+
+    // Font Settings Functionality
+    let currentSettings = null;
+
+    // Load current font settings
+    async function loadFontSettings() {
+      try {
+        const response = await fetch('/api/settings');
+        currentSettings = await response.json();
+        
+        // Update form fields with current values
+        document.getElementById('fontFamily').value = currentSettings.fontFamily || 'Inter';
+        document.getElementById('fontSize').value = currentSettings.fontSize || '16px';
+        document.getElementById('fontWeight').value = currentSettings.fontWeight || '400';
+        
+        console.log('Font settings loaded:', currentSettings);
+      } catch (error) {
+        console.error('Error loading font settings:', error);
+      }
+    }
+
+    // Save font settings
+    async function saveFontSettings() {
+      try {
+        const fontFamily = document.getElementById('fontFamily').value;
+        const fontSize = document.getElementById('fontSize').value;
+        const fontWeight = document.getElementById('fontWeight').value;
+
+        const response = await fetch('/api/settings', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            fontFamily,
+            fontSize,
+            fontWeight
+          }),
+          credentials: 'include'
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          currentSettings = result.settings;
+          
+          // Apply font changes immediately to current page
+          applyFontSettings(currentSettings);
+          
+          // Show success message
+          alert('Font settings saved successfully! Changes will apply to all pages.');
+          
+          // Close modal
+          bootstrap.Modal.getInstance(document.getElementById('fontSettingsModal')).hide();
+          
+          console.log('Font settings saved:', result);
+        } else {
+          const errorData = await response.json();
+          alert(`Failed to save font settings: ${errorData.error}`);
+        }
+      } catch (error) {
+        console.error('Error saving font settings:', error);
+        alert('Failed to save font settings. Please try again.');
+      }
+    }
+
+    // Apply font settings to current page
+    function applyFontSettings(settings) {
+      const root = document.documentElement;
+      root.style.setProperty('--font-family', settings.fontFamily);
+      root.style.setProperty('--font-size', settings.fontSize);
+      root.style.setProperty('--font-weight', settings.fontWeight);
+      
+      // Apply to body as well for immediate effect
+      document.body.style.fontFamily = settings.fontFamily;
+      document.body.style.fontSize = settings.fontSize;
+      document.body.style.fontWeight = settings.fontWeight;
+      
+      console.log('Font settings applied:', settings);
+    }
+
+    // Event listeners for font settings
+    document.getElementById('fontSettingsBtn').addEventListener('click', () => {
+      loadFontSettings();
+      new bootstrap.Modal(document.getElementById('fontSettingsModal')).show();
+    });
+
+    document.getElementById('saveFontSettings').addEventListener('click', saveFontSettings);
+
+    // Load font settings when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      loadFontSettings();
+    });
   </script>
 </body>
 </html> 

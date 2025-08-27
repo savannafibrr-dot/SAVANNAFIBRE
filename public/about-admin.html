@@ -163,6 +163,15 @@
     .about-preview .image-container {
         flex: 1;
     }
+    
+    .about-preview .image-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        padding: 0 10px;
+    }
+    
     .about-preview .image-container img {
         width: 100%;
         height: auto;
@@ -208,12 +217,6 @@
     .form-control.is-invalid + .validation-error {
         display: block;
     }
-    .edit-form {
-        display: none;
-    }
-    .edit-form.active {
-        display: block;
-    }
     .preview-actions {
         display: flex;
         justify-content: flex-end;
@@ -240,8 +243,143 @@
     .about-preview {
         transition: all 0.3s ease;
     }
-    .about-preview.edit-mode {
-        margin-bottom: 0;
+    
+    /* Loading state styles */
+    .btn-loading {
+        display: none;
+    }
+    .btn-loading.d-none {
+        display: none !important;
+    }
+    .btn-loading:not(.d-none) {
+        display: inline-flex !important;
+        align-items: center;
+    }
+    .btn-text:not(.d-none) {
+        display: inline;
+    }
+    .btn-text.d-none {
+        display: none !important;
+    }
+    
+    /* Enhanced image preview styles */
+    .image-upload-container {
+        border: 2px dashed #dee2e6;
+        border-radius: 8px;
+        padding: 20px;
+        background: #f8f9fa;
+        transition: all 0.3s ease;
+    }
+    
+    .image-upload-container:hover {
+        border-color: #F79621;
+        background: #fff7ed;
+    }
+    
+    .image-preview-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .current-image-preview,
+    .new-image-preview-img {
+        max-width: 200px;
+        max-height: 200px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .current-image-preview {
+        border: 2px solid #28a745;
+        opacity: 0.8;
+    }
+    
+    .new-image-preview-img {
+        border: 2px solid #F79621;
+    }
+    
+    /* Delete button and placeholder styles */
+    .btn-danger.btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+        border-radius: 0.375rem;
+    }
+    
+    .text-muted.fst-italic {
+        padding: 0.5rem;
+        background: #f8f9fa;
+        border: 1px dashed #dee2e6;
+        border-radius: 0.375rem;
+        display: inline-block;
+        min-width: 150px;
+        text-align: center;
+    }
+    
+    .feature-boxes-container {
+        background: #f8f9fa;
+        border-radius: 8px;
+        padding: 20px;
+        border: 1px solid #dee2e6;
+    }
+    
+    .feature-box {
+        background: white;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+    }
+    
+    .feature-box:hover {
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        border-color: #F79621;
+    }
+    
+    .feature-box .remove-feature {
+        color: #dc3545;
+        cursor: pointer;
+        font-size: 18px;
+        transition: all 0.3s ease;
+    }
+    
+    .feature-box .remove-feature:hover {
+        color: #c82333;
+        transform: scale(1.1);
+    }
+    
+    /* Modal specific styles */
+    .modal-xl {
+        max-width: 1200px;
+    }
+    
+    .modal-body {
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+    
+    .modal-footer {
+        border-top: 1px solid #dee2e6;
+        padding: 1rem 1.5rem;
+    }
+    
+    /* Ensure modal content is properly styled */
+    .modal-content {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    
+    .modal-header {
+        border-bottom: none;
+        border-radius: 12px 12px 0 0;
+    }
+    
+    .modal-footer {
+        border-top: none;
+        border-radius: 0 0 12px 12px;
     }
     @font-face {
         font-family: 'icomoon';
@@ -263,7 +401,7 @@
         font-variant: normal;
         text-transform: none;
         line-height: 1;
-        -webkit-font-smoothing: antialiised;
+        -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
 
@@ -412,20 +550,21 @@
       </div>
     </div>
   </nav>
-  <div class="container py-4">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-      <div>
-        <h1 class="h3 mb-1">About Section Management</h1>
-        <p class="text-secondary mb-0">View and edit the About page content shown on the website</p>
+      <div class="container py-4">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h1 class="h3 mb-1">About Section Management</h1>
+          <p class="text-secondary mb-0">View and edit the About page content shown on the website</p>
+        </div>
+
       </div>
-    </div>
     
     <!-- Preview Section -->
     <div class="row justify-content-center">
       <div class="col-lg-10">
         <div class="about-preview">
           <div class="preview-actions">
-            <button class="btn-edit" onclick="toggleEditForm()">
+            <button class="btn-edit" onclick="openEditModal()">
               <i class="fas fa-edit"></i>
               <span>Edit Content</span>
             </button>
@@ -438,9 +577,25 @@
             </div>
             <div class="images">
               <div class="image-container">
+                <div class="image-header">
+                  <h6 class="text-primary mb-2">
+                    <i class="fas fa-image me-2"></i>Main Image
+                  </h6>
+                  <button type="button" class="btn btn-danger btn-sm" onclick="deleteMainImageDirect()" id="deleteMainImageDirectBtn" style="display: none;">
+                    <i class="fas fa-trash"></i> Delete
+                  </button>
+                </div>
                 <img id="previewMainImage" src="" alt="Main Image">
               </div>
               <div class="image-container">
+                <div class="image-header">
+                  <h6 class="text-primary mb-2">
+                    <i class="fas fa-images me-2"></i>Secondary Image
+                  </h6>
+                  <button type="button" class="btn btn-danger btn-sm" onclick="deleteSecondaryImageDirect()" id="deleteSecondaryImageDirectBtn" style="display: none;">
+                    <i class="fas fa-trash"></i> Delete
+                  </button>
+                </div>
                 <img id="previewSecondaryImage" src="" alt="Secondary Image">
               </div>
             </div>
@@ -452,60 +607,151 @@
       </div>
     </div>
 
-    <!-- Edit Form Section -->
-    <div class="row justify-content-center edit-form" id="editForm">
-      <div class="col-lg-8">
-        <div class="card p-4">
-          <form id="aboutForm" enctype="multipart/form-data">
-            <div class="mb-3">
-              <label for="title" class="form-label">Title</label>
-              <input type="text" class="form-control" id="title" name="title" required>
-            </div>
-            <div class="mb-3">
-              <label for="subtitle" class="form-label">Subtitle</label>
-              <input type="text" class="form-control" id="subtitle" name="subtitle" required>
-            </div>
-            <div class="mb-3">
-              <label for="description" class="form-label">Description</label>
-              <textarea class="form-control" id="description" name="description" rows="5" required></textarea>
-            </div>
-            <div class="mb-3">
-              <label for="mainImage" class="form-label">Main Image</label>
-              <input type="file" class="form-control" id="mainImage" name="mainImage" accept="image/*">
-              <div id="mainImagePreview" class="mt-2">
-                <img src="" alt="Main Image Preview" class="img-thumbnail image-preview" style="display: none;">
-              </div>
-            </div>
-            <div class="mb-3">
-              <label for="secondaryImage" class="form-label">Secondary Image</label>
-              <input type="file" class="form-control" id="secondaryImage" name="secondaryImage" accept="image/*">
-              <div id="secondaryImagePreview" class="mt-2">
-                <img src="" alt="Secondary Image Preview" class="img-thumbnail image-preview" style="display: none;">
-              </div>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Feature Boxes</label>
-              <div id="featureBoxes">
-                <!-- Feature boxes will be added here -->
-              </div>
-              <button type="button" class="btn btn-secondary mt-2" onclick="addFeatureBox()">
-                <i class="fas fa-plus"></i> Add Feature Box
+    <!-- Edit Form Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="editModalLabel">
+              <i class="fas fa-edit me-2"></i>
+              Edit About Section
+            </h5>
+            <div class="d-flex align-items-center gap-2">
+              <button type="button" class="btn btn-warning btn-sm" onclick="testDeleteFunctions()">
+                <i class="fas fa-bug"></i> Test
               </button>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <button type="submit" class="btn btn-primary">Save Changes</button>
-          </form>
+          </div>
+          <div class="modal-body p-4">
+            <form id="aboutForm" enctype="multipart/form-data">
+              <!-- Hidden fields to track image deletion -->
+              <input type="hidden" id="deleteMainImageFlag" name="deleteMainImage" value="false">
+              <input type="hidden" id="deleteSecondaryImageFlag" name="deleteSecondaryImage" value="false">
+              
+              <div class="row">
+                <!-- Left Column - Text Content -->
+                <div class="col-lg-6">
+                  <div class="mb-4">
+                    <label for="title" class="form-label fw-bold text-primary">
+                      <i class="fas fa-heading me-2"></i>Main Title
+                    </label>
+                    <input type="text" class="form-control form-control-lg" id="title" name="title" required 
+                           placeholder="Enter main title">
+                  </div>
+                  
+                  <div class="mb-4">
+                    <label for="subtitle" class="form-label fw-bold text-primary">
+                      <i class="fas fa-tag me-2"></i>Subtitle
+                    </label>
+                    <input type="text" class="form-control form-control-lg" id="subtitle" name="subtitle" required 
+                           placeholder="Enter subtitle">
+                  </div>
+                  
+                  <div class="mb-4">
+                    <label for="description" class="form-label fw-bold text-primary">
+                      <i class="fas fa-align-left me-2"></i>Description
+                    </label>
+                    <textarea class="form-control" id="description" name="description" rows="6" required 
+                              placeholder="Enter detailed description"></textarea>
+                  </div>
+                </div>
+                
+                <!-- Right Column - Images -->
+                <div class="col-lg-6">
+                  <div class="mb-4">
+                    <label for="mainImage" class="form-label fw-bold text-primary">
+                      <i class="fas fa-image me-2"></i>Main Image
+                    </label>
+                    <div class="image-upload-container">
+                      <input type="file" class="form-control" id="mainImage" name="mainImage" accept="image/*">
+                      <div class="image-preview-container mt-3">
+                        <div class="current-image mb-2">
+                          <label class="form-label text-muted small">Current Image:</label>
+                          <div class="d-flex align-items-center gap-2">
+                            <img id="currentMainImage" src="" alt="Current Main Image" class="img-thumbnail current-image-preview" style="display: none;">
+                            <button type="button" class="btn btn-danger btn-sm" onclick="deleteMainImage()" id="deleteMainImageBtn" style="display: none;">
+                              <i class="fas fa-trash"></i> Delete
+                            </button>
+                          </div>
+                        </div>
+                        <div class="new-image-preview">
+                          <label class="form-label text-muted small">New Image Preview:</label>
+                          <img id="mainImagePreview" src="" alt="Main Image Preview" class="img-thumbnail new-image-preview-img" style="display: none;">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="mb-4">
+                    <label for="secondaryImage" class="form-label fw-bold text-primary">
+                      <i class="fas fa-images me-2"></i>Secondary Image
+                    </label>
+                    <div class="image-upload-container">
+                      <input type="file" class="form-control" id="secondaryImage" name="secondaryImage" accept="image/*">
+                      <div class="image-preview-container mt-3">
+                        <div class="current-image mb-2">
+                          <label class="form-label text-muted small">Current Image:</label>
+                          <div class="d-flex align-items-center gap-2">
+                            <img id="currentSecondaryImage" src="" alt="Current Secondary Image" class="img-thumbnail current-image-preview" style="display: none;">
+                            <button type="button" class="btn btn-danger btn-sm" onclick="deleteSecondaryImage()" id="deleteSecondaryImageBtn" style="display: none;">
+                              <i class="fas fa-trash"></i> Delete
+                            </button>
+                          </div>
+                        </div>
+                        <div class="new-image-preview">
+                          <label class="form-label text-muted small">New Image Preview:</label>
+                          <img id="secondaryImagePreview" src="" alt="Secondary Image Preview" class="img-thumbnail new-image-preview-img" style="display: none;">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Feature Boxes Section -->
+              <div class="mt-5">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                  <h5 class="text-primary mb-0">
+                    <i class="fas fa-star me-2"></i>Feature Boxes
+                  </h5>
+                  <button type="button" class="btn btn-success btn-sm" onclick="addFeatureBox()">
+                    <i class="fas fa-plus me-2"></i>Add Feature Box
+                  </button>
+                </div>
+                <div id="featureBoxes" class="feature-boxes-container">
+                  <!-- Feature boxes will be added here -->
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer bg-light">
+            <button type="button" class="btn btn-secondary btn-lg px-4" data-bs-dismiss="modal">
+              <i class="fas fa-times me-2"></i>Cancel
+            </button>
+            <button type="submit" form="aboutForm" class="btn btn-primary btn-lg px-4" id="submitBtn">
+              <span class="btn-text">
+                <i class="fas fa-save me-2"></i>Save Changes
+              </span>
+              <span class="btn-loading d-none">
+                <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+                Uploading...
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/auth.js"></script>
   <script>
     let currentAbout = null;
 
     // Load current about info
     async function loadAbout() {
       try {
-      const res = await fetch('/api/about');
+        const res = await fetch('/api/about');
         currentAbout = await res.json();
         
         // Update preview content first
@@ -513,12 +759,41 @@
         document.getElementById('previewSubtitle').textContent = currentAbout.subtitle;
         document.getElementById('previewDescription').textContent = currentAbout.description;
         
-        if (currentAbout.mainImage) {
-          document.getElementById('previewMainImage').src = currentAbout.mainImage;
+        // Update images - handle both Cloudinary URLs and local paths
+        if (currentAbout.mainImage && currentAbout.mainImage !== '') {
+          const mainImg = document.getElementById('previewMainImage');
+          mainImg.src = currentAbout.mainImage;
+          mainImg.alt = 'Main Image';
+          mainImg.style.display = 'block';
+          
+          // Show delete button in main view
+          const deleteMainBtn = document.getElementById('deleteMainImageDirectBtn');
+          if (deleteMainBtn) {
+            deleteMainBtn.style.display = 'inline-block';
+            console.log('Showing main image delete button in main view');
+          }
+        } else {
+          document.getElementById('previewMainImage').style.display = 'none';
+          document.getElementById('deleteMainImageDirectBtn').style.display = 'none';
+          console.log('Hiding main image delete button in main view - no image');
         }
         
-        if (currentAbout.secondaryImage) {
-          document.getElementById('previewSecondaryImage').src = currentAbout.secondaryImage;
+        if (currentAbout.secondaryImage && currentAbout.secondaryImage !== '') {
+          const secImg = document.getElementById('previewSecondaryImage');
+          secImg.src = currentAbout.secondaryImage;
+          secImg.alt = 'Secondary Image';
+          secImg.style.display = 'block';
+          
+          // Show delete button in main view
+          const deleteSecBtn = document.getElementById('deleteSecondaryImageDirectBtn');
+          if (deleteSecBtn) {
+            deleteSecBtn.style.display = 'inline-block';
+            console.log('Showing secondary image delete button in main view');
+          }
+        } else {
+          document.getElementById('previewSecondaryImage').style.display = 'none';
+          document.getElementById('deleteSecondaryImageDirectBtn').style.display = 'none';
+          console.log('Hiding secondary image delete button in main view - no image');
         }
         
         // Update feature boxes preview
@@ -542,17 +817,69 @@
         document.getElementById('subtitle').value = currentAbout.subtitle;
         document.getElementById('description').value = currentAbout.description;
         
-        // Show image previews in form
-        if (currentAbout.mainImage) {
-          const mainImg = document.querySelector('#mainImagePreview img');
-          mainImg.src = currentAbout.mainImage;
-          mainImg.style.display = 'block';
+        // Show current images in form and manage delete buttons
+        console.log('Managing main image display...');
+        console.log('Main image value:', currentAbout.mainImage);
+        
+        if (currentAbout.mainImage && currentAbout.mainImage !== '') {
+          const currentMainImg = document.getElementById('currentMainImage');
+          const deleteMainBtn = document.getElementById('deleteMainImageBtn');
+          console.log('Main image found, showing image and delete button');
+          currentMainImg.src = currentAbout.mainImage;
+          currentMainImg.style.display = 'block';
+          deleteMainBtn.style.display = 'inline-block';
+          
+          // Remove any existing placeholder
+          const placeholder = currentMainImg.parentElement.querySelector('.text-muted');
+          if (placeholder) placeholder.remove();
+        } else {
+          // Show placeholder for main image
+          const currentMainImg = document.getElementById('currentMainImage');
+          const deleteMainBtn = document.getElementById('deleteMainImageBtn');
+          console.log('No main image, hiding image and delete button');
+          currentMainImg.style.display = 'none';
+          deleteMainBtn.style.display = 'none';
+          
+          // Add placeholder if not exists
+          if (!currentMainImg.parentElement.querySelector('.text-muted')) {
+            const placeholder = document.createElement('div');
+            placeholder.className = 'text-muted fst-italic';
+            placeholder.innerHTML = '<i class="fas fa-image me-2"></i>No image selected';
+            currentMainImg.parentElement.appendChild(placeholder);
+          }
         }
         
-        if (currentAbout.secondaryImage) {
-          const secImg = document.querySelector('#secondaryImagePreview img');
-          secImg.src = currentAbout.secondaryImage;
-          secImg.style.display = 'block';
+        console.log('Managing secondary image display...');
+        console.log('Secondary image value:', currentAbout.secondaryImage);
+        
+        if (currentAbout.secondaryImage && currentAbout.secondaryImage !== '') {
+          const currentSecImg = document.getElementById('currentSecondaryImage');
+          const deleteSecBtn = document.getElementById('deleteSecondaryImageBtn');
+          console.log('Secondary image found, showing image and delete button');
+          console.log('Secondary image element:', currentSecImg);
+          console.log('Delete button element:', deleteSecBtn);
+          currentSecImg.src = currentAbout.secondaryImage;
+          currentSecImg.style.display = 'block';
+          deleteSecBtn.style.display = 'inline-block';
+          
+          // Remove any existing placeholder
+          const placeholder = currentSecImg.parentElement.querySelector('.text-muted');
+          if (placeholder) placeholder.remove();
+        } else {
+          // Show placeholder for secondary image
+          const currentSecImg = document.getElementById('currentSecondaryImage');
+          const deleteSecBtn = document.getElementById('deleteSecondaryImageBtn');
+          console.log('No secondary image, hiding image and delete button');
+          currentSecImg.style.display = 'none';
+          deleteSecBtn.style.display = 'none';
+          
+          // Add placeholder if not exists
+          if (!currentSecImg.parentElement.querySelector('.text-muted')) {
+            const placeholder = document.createElement('div');
+            placeholder.className = 'text-muted fst-italic';
+            placeholder.innerHTML = '<i class="fas fa-image me-2"></i>No image selected';
+            currentSecImg.parentElement.appendChild(placeholder);
+          }
         }
         
         // Load feature boxes in form
@@ -704,6 +1031,15 @@
             return;
         }
         
+        // Show loading state
+        const submitBtn = document.getElementById('submitBtn');
+        const btnText = submitBtn.querySelector('.btn-text');
+        const btnLoading = submitBtn.querySelector('.btn-loading');
+        
+        btnText.classList.add('d-none');
+        btnLoading.classList.remove('d-none');
+        submitBtn.disabled = true;
+        
         try {
             const formData = new FormData();
             formData.append('title', document.getElementById('title').value);
@@ -716,6 +1052,13 @@
             
             const secondaryImage = document.getElementById('secondaryImage').files[0];
             if (secondaryImage) formData.append('secondaryImage', secondaryImage);
+            
+            // Add deletion flags
+            const deleteMainImage = document.getElementById('deleteMainImageFlag').value === 'true';
+            const deleteSecondaryImage = document.getElementById('deleteSecondaryImageFlag').value === 'true';
+            
+            if (deleteMainImage) formData.append('deleteMainImage', 'true');
+            if (deleteSecondaryImage) formData.append('deleteSecondaryImage', 'true');
             
             // Add feature boxes
             const featureBoxes = [];
@@ -735,12 +1078,20 @@
             
             if (!res.ok) throw new Error('Failed to update about info');
             
+            const result = await res.json();
+            console.log('Update successful:', result);
+            
             alert('About section updated successfully!');
             loadAbout(); // Reload the form and preview
-            toggleEditForm(); // Close the edit form after successful save
+            closeEditModal(); // Close the modal after successful save
         } catch (error) {
             console.error('Error updating about info:', error);
             alert('Failed to update about information');
+        } finally {
+            // Hide loading state
+            btnText.classList.remove('d-none');
+            btnLoading.classList.add('d-none');
+            submitBtn.disabled = false;
         }
     });
 
@@ -757,28 +1108,107 @@
 
     // Image preview handlers
     document.getElementById('mainImage').addEventListener('change', function() {
-      const preview = document.querySelector('#mainImagePreview img');
-      if (this.files && this.files[0]) {
-        const reader = new FileReader();
-        reader.onload = e => {
-          preview.src = e.target.result;
-          preview.style.display = 'block';
-        };
-        reader.readAsDataURL(this.files[0]);
-      }
+        const preview = document.getElementById('mainImagePreview');
+        if (this.files && this.files[0]) {
+            const reader = new FileReader();
+            reader.onload = e => {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
+            reader.readAsDataURL(this.files[0]);
+        }
     });
 
     document.getElementById('secondaryImage').addEventListener('change', function() {
-      const preview = document.querySelector('#secondaryImagePreview img');
-      if (this.files && this.files[0]) {
-        const reader = new FileReader();
-        reader.onload = e => {
-          preview.src = e.target.result;
-          preview.style.display = 'block';
-        };
-        reader.readAsDataURL(this.files[0]);
-      }
+        const preview = document.getElementById('secondaryImagePreview');
+        if (this.files && this.files[0]) {
+            const reader = new FileReader();
+            reader.onload = e => {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
+            reader.readAsDataURL(this.files[0]);
+        }
     });
+
+
+
+    // Modal event listeners
+    document.getElementById('editModal').addEventListener('show.bs.modal', function () {
+        // Load about info when modal opens
+        loadAbout();
+    });
+    
+    document.getElementById('editModal').addEventListener('hidden.bs.modal', function () {
+        // Reset form when modal closes
+        document.getElementById('aboutForm').reset();
+        // Reset deletion flags
+        document.getElementById('deleteMainImageFlag').value = 'false';
+        document.getElementById('deleteSecondaryImageFlag').value = 'false';
+        // Clear image previews
+        document.getElementById('mainImagePreview').style.display = 'none';
+        document.getElementById('secondaryImagePreview').style.display = 'none';
+        // Clear feature boxes
+        document.getElementById('featureBoxes').innerHTML = '';
+    });
+
+    // Test delete functions accessibility
+    window.testDeleteFunctions = function() {
+        console.log('Testing delete functions...');
+        console.log('deleteMainImage function:', typeof deleteMainImage);
+        console.log('deleteSecondaryImage function:', typeof deleteSecondaryImage);
+        console.log('deleteMainImageBtn element:', document.getElementById('deleteMainImageBtn'));
+        console.log('deleteSecondaryImageBtn element:', document.getElementById('deleteSecondaryImageBtn'));
+        
+        // Try to manually show delete buttons for testing
+        const deleteMainBtn = document.getElementById('deleteMainImageBtn');
+        const deleteSecBtn = document.getElementById('deleteSecondaryImageBtn');
+        
+        if (deleteMainBtn) {
+            deleteMainBtn.style.display = 'inline-block';
+            console.log('Manually showed main delete button');
+        }
+        
+        if (deleteSecBtn) {
+            deleteSecBtn.style.display = 'inline-block';
+            console.log('Manually showed secondary delete button');
+        }
+        
+        // Test clicking the delete buttons
+        console.log('Testing click events...');
+        if (deleteMainBtn) {
+            deleteMainBtn.click();
+        }
+    };
+    
+    // Test direct delete functions
+    window.testDirectDeleteFunctions = function() {
+        console.log('Testing direct delete functions...');
+        console.log('deleteMainImageDirect function:', typeof deleteMainImageDirect);
+        console.log('deleteSecondaryImageDirect function:', typeof deleteSecondaryImageDirect);
+        console.log('deleteMainImageDirectBtn element:', document.getElementById('deleteMainImageDirectBtn'));
+        console.log('deleteSecondaryImageDirectBtn element:', document.getElementById('deleteSecondaryImageDirectBtn'));
+        
+        // Try to manually show direct delete buttons for testing
+        const deleteMainDirectBtn = document.getElementById('deleteMainImageDirectBtn');
+        const deleteSecDirectBtn = document.getElementById('deleteSecondaryImageDirectBtn');
+        
+        if (deleteMainDirectBtn) {
+            deleteMainDirectBtn.style.display = 'inline-block';
+            console.log('Manually showed main direct delete button');
+        }
+        
+        if (deleteSecDirectBtn) {
+            deleteSecDirectBtn.style.display = 'inline-block';
+            console.log('Manually showed secondary direct delete button');
+        }
+        
+        // Test authentication status
+        console.log('Testing authentication...');
+        checkAuth().then(isAuth => {
+            console.log('User authenticated:', isAuth);
+        });
+    };
 
     // Load about info when page loads
     loadAbout();
@@ -796,20 +1226,175 @@
       }
     });
 
-    // Add toggle function for edit form
-    function toggleEditForm() {
-        const editForm = document.getElementById('editForm');
-        const aboutPreview = document.querySelector('.about-preview');
-        const editButton = document.querySelector('.btn-edit');
+    // Function to open edit modal
+    function openEditModal() {
+        const editModal = new bootstrap.Modal(document.getElementById('editModal'));
+        editModal.show();
+    }
+
+    // Function to close edit modal
+    function closeEditModal() {
+        const editModal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
+        if (editModal) {
+            editModal.hide();
+        }
+    }
+
+    // Function to delete main image (in modal)
+    function deleteMainImage() {
+        console.log('deleteMainImage function called');
+        if (confirm('Are you sure you want to delete the main image? This action cannot be undone.')) {
+            console.log('User confirmed deletion of main image');
+            document.getElementById('deleteMainImageFlag').value = 'true';
+            document.getElementById('currentMainImage').style.display = 'none';
+            document.getElementById('deleteMainImageBtn').style.display = 'none';
+            
+            // Show a placeholder or message
+            const currentImageContainer = document.getElementById('currentMainImage').parentElement;
+            const placeholder = document.createElement('div');
+            placeholder.className = 'text-muted fst-italic';
+            placeholder.innerHTML = '<i class="fas fa-image me-2"></i>No image selected';
+            currentImageContainer.appendChild(placeholder);
+            
+            console.log('Main image deletion UI updated');
+        }
+    }
+    
+    // Function to delete main image directly (from main view)
+    async function deleteMainImageDirect() {
+        console.log('deleteMainImageDirect function called');
         
-        if (editForm.classList.contains('active')) {
-            editForm.classList.remove('active');
-            aboutPreview.classList.remove('edit-mode');
-            editButton.innerHTML = '<i class="fas fa-edit"></i><span>Edit Content</span>';
-        } else {
-            editForm.classList.add('active');
-            aboutPreview.classList.add('edit-mode');
-            editButton.innerHTML = '<i class="fas fa-times"></i><span>Cancel Edit</span>';
+        // Check if user is authenticated (session-based)
+        // The auth middleware will handle this on the server side
+        
+        if (confirm('Are you sure you want to delete the main image? This action cannot be undone.')) {
+            console.log('User confirmed deletion of main image');
+            
+            try {
+                // Create form data with deletion flag
+                const formData = new FormData();
+                formData.append('deleteMainImage', 'true');
+                formData.append('title', currentAbout.title);
+                formData.append('subtitle', currentAbout.subtitle);
+                formData.append('description', currentAbout.description);
+                formData.append('featureBoxes', JSON.stringify(currentAbout.featureBoxes));
+                
+                console.log('Sending main image delete request with data:', {
+                    deleteMainImage: 'true',
+                    title: currentAbout.title,
+                    subtitle: currentAbout.subtitle,
+                    description: currentAbout.description,
+                    featureBoxes: currentAbout.featureBoxes
+                });
+                
+                // Send delete request
+                const response = await fetch('/api/about', {
+                    method: 'PUT',
+                    body: formData,
+                    credentials: 'include'
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    console.log('Main image deleted successfully:', result);
+                    
+                    // Update UI
+                    document.getElementById('previewMainImage').src = '';
+                    document.getElementById('deleteMainImageDirectBtn').style.display = 'none';
+                    
+                    // Show success message
+                    alert('Main image deleted successfully!');
+                    
+                    // Reload the page to refresh all data
+                    location.reload();
+                } else {
+                    const errorData = await response.json();
+                    console.error('Server error response:', errorData);
+                    throw new Error(`Server error: ${errorData.error || 'Unknown error'}`);
+                }
+            } catch (error) {
+                console.error('Error deleting main image:', error);
+                alert(`Failed to delete image: ${error.message}`);
+            }
+        }
+    }
+
+    // Function to delete secondary image (in modal)
+    function deleteSecondaryImage() {
+        console.log('deleteSecondaryImage function called');
+        if (confirm('Are you sure you want to delete the secondary image? This action cannot be undone.')) {
+            console.log('User confirmed deletion of secondary image');
+            document.getElementById('deleteSecondaryImageFlag').value = 'true';
+            document.getElementById('currentSecondaryImage').style.display = 'none';
+            document.getElementById('deleteSecondaryImageBtn').style.display = 'none';
+            
+            // Show a placeholder or message
+            const currentImageContainer = document.getElementById('currentSecondaryImage').parentElement;
+            const placeholder = document.createElement('div');
+            placeholder.className = 'text-muted fst-italic';
+            placeholder.innerHTML = '<i class="fas fa-image me-2"></i>No image selected';
+            currentImageContainer.appendChild(placeholder);
+            
+            console.log('Secondary image deletion UI updated');
+        }
+    }
+    
+    // Function to delete secondary image directly (from main view)
+    async function deleteSecondaryImageDirect() {
+        console.log('deleteSecondaryImageDirect function called');
+        
+        // Check if user is authenticated (session-based)
+        // The auth middleware will handle this on the server side
+        
+        if (confirm('Are you sure you want to delete the secondary image? This action cannot be undone.')) {
+            console.log('User confirmed deletion of secondary image');
+            
+            try {
+                // Create form data with deletion flag
+                const formData = new FormData();
+                formData.append('deleteSecondaryImage', 'true');
+                formData.append('title', currentAbout.title);
+                formData.append('subtitle', currentAbout.subtitle);
+                formData.append('description', currentAbout.description);
+                formData.append('featureBoxes', JSON.stringify(currentAbout.featureBoxes));
+                
+                console.log('Sending secondary image delete request with data:', {
+                    deleteSecondaryImage: 'true',
+                    title: currentAbout.title,
+                    subtitle: currentAbout.subtitle,
+                    description: currentAbout.description,
+                    featureBoxes: currentAbout.featureBoxes
+                });
+                
+                // Send delete request
+                const response = await fetch('/api/about', {
+                    method: 'PUT',
+                    body: formData,
+                    credentials: 'include'
+                });
+                
+                if (response.ok) {
+                    result = await response.json();
+                    console.log('Secondary image deleted successfully:', result);
+                    
+                    // Update UI
+                    document.getElementById('previewSecondaryImage').src = '';
+                    document.getElementById('deleteSecondaryImageDirectBtn').style.display = 'none';
+                    
+                    // Show success message
+                    alert('Secondary image deleted successfully!');
+                    
+                    // Reload the page to refresh all data
+                    location.reload();
+                } else {
+                    const errorData = await response.json();
+                    console.error('Server error response:', errorData);
+                    throw new Error(`Server error: ${errorData.error || 'Unknown error'}`);
+                }
+            } catch (error) {
+                console.error('Error deleting secondary image:', error);
+                alert(`Failed to delete image: ${error.message}`);
+            }
         }
     }
   </script>

@@ -947,9 +947,17 @@
                 document.getElementById('aboutSubtitle').textContent = about.subtitle;
                 document.getElementById('aboutDescription').textContent = about.description;
 
-                // Update images
-                document.getElementById('aboutImage').src = about.mainImage;
-                document.querySelector('.about-two__image__two img').src = about.secondaryImage;
+                // Update images - handle both Cloudinary URLs and local paths
+                if (about.mainImage) {
+                    document.getElementById('aboutImage').src = about.mainImage;
+                    document.getElementById('aboutImage').alt = 'About Savanna Fibre';
+                }
+                
+                if (about.secondaryImage) {
+                    const secondaryImg = document.querySelector('.about-two__image__two img');
+                    secondaryImg.src = about.secondaryImage;
+                    secondaryImg.alt = 'Savanna Fibre Service';
+                }
 
                 // Update feature boxes
                 const featureBoxesContainer = document.querySelector('.about-two__content');
@@ -960,13 +968,22 @@
                     const boxElement = document.createElement('div');
                     boxElement.className = 'about-two__content__box';
                     let iconHtml = '';
+                    
+                    // Handle different icon types
                     if (box.icon && box.icon.startsWith('fa')) {
+                        // Font Awesome icons
+                        iconHtml = `<i class='${box.icon}' style='font-size:60px;color:#F79621;'></i>`;
+                    } else if (box.icon && box.icon.startsWith('icon-')) {
+                        // Custom icon font
                         iconHtml = `<i class='${box.icon}' style='font-size:60px;color:#F79621;'></i>`;
                     } else if (box.icon && box.icon.startsWith('<svg')) {
+                        // SVG icons
                         iconHtml = box.icon;
                     } else {
-                        iconHtml = '';
+                        // Default icon
+                        iconHtml = `<i class='icon-world' style='font-size:60px;color:#F79621;'></i>`;
                     }
+                    
                     boxElement.innerHTML = `
                         <div class="about-two__content__box__icon">
                             ${iconHtml}
@@ -980,9 +997,16 @@
                 });
             } catch (e) { 
                 console.error('Failed to load about info', e);
+                // Fallback to default content if API fails
+                console.log('Using default about content');
             }
         }
+        
+        // Load about section when page loads
         window.addEventListener('DOMContentLoaded', loadAboutSection);
+        
+        // Also try to load on window load as backup
+        window.addEventListener('load', loadAboutSection);
     </script>
     <!-- Cookie Consent Banner -->
     <div id="cookieConsentBanner" style="display:none; position:fixed; bottom:0; left:0; width:100%; background:#222; color:#fff; padding:18px 10px 18px 10px; z-index:99999; text-align:center; box-shadow:0 -2px 8px rgba(0,0,0,0.2); font-size:1rem;">

@@ -48,6 +48,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 
     <link rel="stylesheet" href="assets/vendors/bootstrap/css/bootstrap.min.css" />
@@ -80,9 +85,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
 
     <style>
+        :root {
+            --font-family: Inter, sans-serif;
+            --font-size: 16px;
+            --font-weight: 400;
+        }
+        
         /* General Section Styling */
         body {
-            font-family: Arial, sans-serif;
+            font-family: var(--font-family);
+            font-size: var(--font-size);
+            font-weight: var(--font-weight);
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
@@ -1219,6 +1232,49 @@ background-position: top left;
         banner.style.display = 'none';
         });
     });
+    </script>
+
+    <!-- Font Settings Integration -->
+    <script>
+      // Load and apply font settings from admin
+      async function loadAndApplyFontSettings() {
+        try {
+          const response = await fetch('/api/settings');
+          if (response.ok) {
+            const settings = await response.json();
+            applyFontSettings(settings);
+            console.log('Font settings applied from admin:', settings);
+          }
+        } catch (error) {
+          console.error('Error loading font settings:', error);
+        }
+      }
+
+      // Apply font settings to the page
+      function applyFontSettings(settings) {
+        const root = document.documentElement;
+        root.style.setProperty('--font-family', settings.fontFamily);
+        root.style.setProperty('--font-size', settings.fontSize);
+        root.style.setProperty('--font-weight', settings.fontWeight);
+        
+        // Apply to body and all elements
+        document.body.style.fontFamily = settings.fontFamily;
+        document.body.style.fontSize = settings.fontSize;
+        document.body.style.fontWeight = settings.fontWeight;
+        
+        // Apply to specific elements that might need it
+        const elements = document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, textarea, select');
+        elements.forEach(element => {
+          element.style.fontFamily = settings.fontFamily;
+          element.style.fontSize = settings.fontSize;
+          element.style.fontWeight = settings.fontWeight;
+        });
+      }
+
+      // Load font settings when page loads
+      document.addEventListener('DOMContentLoaded', () => {
+        loadAndApplyFontSettings();
+      });
     </script>
 </body>
 
