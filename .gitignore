@@ -6,10 +6,17 @@ yarn-error.log*
 package-lock.json
 yarn.lock
 
-# Environment variables
+# Environment variables - NEVER commit these!
 .env
 .env.local
+.env.development
+.env.production
+.env.test
 .env.*.local
+.env.*.backup
+.env.backup
+.env.save
+.env.old
 
 # Build output
 dist/
@@ -90,4 +97,17 @@ frontend/uswer/assets/
 .Spotlight-V100
 .Trashes
 ehthumbs.db
-Thumbs.db 
+Thumbs.db
+
+# Security and sensitive files
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+secrets.json
+secrets.yaml
+secrets.yml
+config.json
+config.yaml
+config.yml 
