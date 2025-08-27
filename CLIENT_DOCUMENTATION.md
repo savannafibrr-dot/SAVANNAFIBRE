@@ -65,6 +65,7 @@
 ### **Cloudinary (Image Storage)**
 - **Provider**: Cloudinary.com
 - **Account**: savannafibrr@gmail.com
+- **Login URL**: https://cloudinary.com/console
 - **Plan**: Free Tier (25GB storage, 25GB bandwidth/month)
 - **Features**: 
   - Automatic image optimization
@@ -72,14 +73,29 @@
   - CDN delivery worldwide
   - Automatic old image cleanup
   - Secure upload handling
+- **Management**: Access console to view all images, monitor usage, delete old files
 
 ---
 
 ## 🔐 Authentication & Security
 
+### **Admin Access & Login**
+- **Primary Admin Email**: savannafibrr@gmail.com
+- **Admin Panel URL**: https://savannafibre-wg67.onrender.com/admin
+- **Authentication Method**: Email/Password (savannafibrr@gmail.com)
+- **Session Management**: Secure session-based authentication
+- **Access Control**: Role-based permissions
+
+### **Login Procedure**
+1. **Navigate to**: https://savannafibre-wg67.onrender.com/admin
+2. **Enter Email**: savannafibrr@gmail.com
+3. **Enter Password**: [Your secure password]
+4. **Click**: "Sign In" button
+5. **Access**: Full admin dashboard with all features
+
 ### **User Management**
 - **Primary Admin Email**: savannafibrr@gmail.com
-- **Authentication Method**: Google Sign-In + Email/Password
+- **Authentication Method**: Email/Password authentication
 - **Session Management**: Secure session-based authentication
 - **Access Control**: Role-based permissions
 
@@ -310,10 +326,25 @@
 - **Render Dashboard**: https://dashboard.render.com
 - **Vercel Dashboard**: https://vercel.com/dashboard
 
-### **Service Accounts**
-- **Cloudinary**: https://cloudinary.com/console
+### **Service Accounts & Management**
+- **Cloudinary Console**: https://cloudinary.com/console
+  - **Account**: savannafibrr@gmail.com
+  - **Purpose**: Manage images, monitor storage usage
+  - **Access**: View all uploaded images, delete old files
+  
 - **MongoDB Atlas**: https://cloud.mongodb.com
+  - **Account**: savannafibrr@gmail.com
+  - **Purpose**: Monitor database performance, check connections
+  - **Access**: View database status, performance metrics
+  
+- **Render Dashboard**: https://dashboard.render.com
+  - **Account**: savannafibrr@gmail.com
+  - **Purpose**: Monitor website performance, check deployment status
+  - **Access**: View uptime, logs, performance metrics
+
+### **Development & Code**
 - **GitHub Repository**: https://github.com/savannafibrr-dot/SAVANNAFIBRE
+- **Vercel Dashboard**: https://vercel.com/dashboard
 
 ### **Support & Contact**
 - **Primary Email**: savannafibrr@gmail.com
@@ -387,20 +418,27 @@
 ## 🔍 Troubleshooting Guide
 
 ### **Common Issues**
-1. **Login Problems**
-   - Check email and password
-   - Clear browser cache
-   - Try different browser
+1. **Admin Login Problems**
+   - **Verify URL**: Ensure you're using https://savannafibre-wg67.onrender.com/admin
+   - **Check Credentials**: Email: savannafibrr@gmail.com, verify password
+   - **Clear Browser Cache**: Press Ctrl+Shift+Delete, clear cache and cookies
+   - **Try Different Browser**: Test with Chrome, Firefox, or Edge
+   - **Check Internet**: Ensure stable internet connection
+   - **Contact Support**: Email savannafibrr@gmail.com for immediate help
 
 2. **Image Upload Issues**
-   - Check file size and format
-   - Verify internet connection
-   - Check Cloudinary account status
+   - **Check File Size**: Maximum 10MB per image
+   - **Verify Format**: JPG, PNG, GIF, WebP only
+   - **Check Cloudinary**: Visit https://cloudinary.com/console to verify account status
+   - **Clear Cache**: Refresh page and try again
+   - **Contact Support**: If issues persist
 
 3. **Performance Issues**
-   - Check internet connection
-   - Clear browser cache
-   - Contact support if persistent
+   - **Check Internet**: Ensure stable connection
+   - **Clear Browser Cache**: Remove stored data
+   - **Try Different Device**: Test on mobile or different computer
+   - **Check Render Status**: Visit https://dashboard.render.com for service status
+   - **Contact Support**: Email savannafibrr@gmail.com if persistent
 
 ### **Support Escalation**
 1. **First Level**: Basic troubleshooting

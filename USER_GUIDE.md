@@ -13,11 +13,17 @@
 - **Email**: savannafibrr@gmail.com
 - **Password**: [Your secure password]
 
+### **Service Account Access**
+- **Cloudinary Console**: https://cloudinary.com/console (savannafibrr@gmail.com)
+- **MongoDB Atlas**: https://cloud.mongodb.com (savannafibrr@gmail.com)
+- **Render Dashboard**: https://dashboard.render.com (savannafibrr@gmail.com)
+
 ### **First Time Setup**
-1. Visit the admin panel URL
-2. Enter your email and password
-3. Click "Sign In"
-4. You'll see your dashboard
+1. Visit the admin panel URL: https://savannafibre-wg67.onrender.com/admin
+2. Enter your email: savannafibrr@gmail.com
+3. Enter your secure password
+4. Click "Sign In"
+5. You'll see your dashboard with statistics and quick actions
 
 ---
 
@@ -178,15 +184,51 @@
 
 ---
 
+## 🔐 Service Account Management
+
+### **Cloudinary (Image Storage)**
+- **Login URL**: https://cloudinary.com/console
+- **Email**: savannafibrr@gmail.com
+- **Purpose**: Manage uploaded images, view storage usage
+- **What You Can Do**:
+  - View all uploaded images
+  - Check storage usage (25GB free tier)
+  - Delete old/unused images
+  - Monitor bandwidth usage
+
+### **MongoDB Atlas (Database)**
+- **Login URL**: https://cloud.mongodb.com
+- **Email**: savannafibrr@gmail.com
+- **Purpose**: View database status, check connections
+- **What You Can Do**:
+  - Monitor database performance
+  - View connection status
+  - Check storage usage
+  - Access backup information
+
+### **Render (Hosting)**
+- **Login URL**: https://dashboard.render.com
+- **Email**: savannafibrr@gmail.com
+- **Purpose**: Monitor website performance, check deployment status
+- **What You Can Do**:
+  - View website uptime
+  - Check deployment logs
+  - Monitor performance metrics
+  - View error logs
+
+---
+
 ## 📞 Getting Help
 
 ### **Common Issues & Solutions**
 
 #### **Can't Login?**
-- Check email and password
-- Clear browser cache
-- Try different browser
-- Contact support: savannafibrr@gmail.com
+- **Check Credentials**: Verify email (savannafibrr@gmail.com) and password
+- **Clear Browser Cache**: Press Ctrl+Shift+Delete, clear cache and cookies
+- **Try Different Browser**: Test with Chrome, Firefox, or Edge
+- **Check URL**: Ensure you're using https://savannafibre-wg67.onrender.com/admin
+- **Reset Password**: Contact support if password needs reset
+- **Contact Support**: Email savannafibrr@gmail.com for immediate help
 
 #### **Images Not Uploading?**
 - Check file size (max 10MB)
@@ -272,6 +314,11 @@
 - **Admin Panel**: https://savannafibre-wg67.onrender.com/admin
 - **Main Website**: https://savannafibre.co.tz
 - **Support Email**: savannafibrr@gmail.com
+
+### **Service Account URLs**
+- **Cloudinary Console**: https://cloudinary.com/console
+- **MongoDB Atlas**: https://cloud.mongodb.com
+- **Render Dashboard**: https://dashboard.render.com
 
 ### **Keyboard Shortcuts**
 - **Ctrl + S**: Save forms (when available)
