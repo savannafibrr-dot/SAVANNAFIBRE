@@ -158,10 +158,10 @@
 
 ## 📞 Security Contacts
 
-- **Lead Developer**: [Your Name]
-- **System Admin**: [Admin Name]
-- **Security Officer**: [Security Contact]
-- **Emergency Contact**: [Emergency Number]
+- **Lead Developer**: Derrick
+- **System Admin**: admin
+- **Security Officer**: +254796030992
+- **Emergency Contact**: +25413794000
 
 ## 📚 Security Resources
 
