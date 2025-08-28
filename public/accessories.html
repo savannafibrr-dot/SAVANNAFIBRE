@@ -19,8 +19,12 @@
             padding: 0.5rem 0;
         }
         .navbar-brand img {
-            height: 40px;
+            height: 55px;
             width: auto;
+            transition: all 0.3s ease;
+        }
+        .navbar-brand:hover img {
+            transform: scale(1.05);
         }
         .navbar-toggler {
             border: 1px solid #ff6600;
@@ -61,6 +65,33 @@
             width: 20px;
             text-align: center;
         }
+        
+        /* Dropdown styling */
+        .dropdown-menu {
+            background: #3C1800;
+            border: 1px solid #4a1e00;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-top: 0.5rem;
+        }
+        
+        .dropdown-item {
+            color: #ffffff !important;
+            padding: 0.75rem 1rem;
+            transition: all 0.2s ease;
+        }
+        
+        .dropdown-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff !important;
+        }
+        
+        .dropdown-item i {
+            margin-right: 0.5rem;
+            width: auto;
+        }
+        
+
+        
         .accessory-image {
             width: 60px;
             height: 60px;
@@ -88,14 +119,6 @@
                 margin: 0.25rem 0;
             }
         }
-        @media (min-width: 992px) {
-            .navbar {
-                padding: 1rem;
-            }
-            .navbar-nav {
-                gap: 0.5rem;
-            }
-        }
         @media (min-width: 992px) and (max-width: 1199.98px) {
             .navbar {
                 padding: 0.5rem;
@@ -120,9 +143,12 @@
                 gap: 0.5rem;
             }
         }
+        
+        /* Prevent horizontal scroll */
         body {
             overflow-x: hidden;
         }
+        
         .container {
             max-width: 100%;
             padding-left: 15px;
@@ -133,8 +159,8 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="/dashboard">
-                <img src="/images/logo.png" alt="Savanna Fibre" height="40">
+            <a class="navbar-brand" href="/admin/dashboard">
+                <img src="/images/logo.svg" alt="Savanna Fibre" height="55">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -171,29 +197,33 @@
                             Accessories
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/banners">
-                            <i class="bi bi-images"></i>
-                            Banners
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots"></i>
+                            More
                         </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/about-admin.html">
-                            <i class="bi bi-info-circle"></i>
-                            About Admin
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/payments-admin.html">
-                            <i class="fa fa-money-bill"></i>
-                            Payments Admin
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/faq-admin.html">
-                            <i class="bi bi-question-circle"></i>
-                            FAQ Admin
-                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/admin/banners">
+                                <i class="bi bi-images me-2"></i>
+                                Banner Management
+                            </a></li>
+                            <li><a class="dropdown-item" href="/admin/about">
+                                <i class="bi bi-info-circle me-2"></i>
+                                About Admin
+                            </a></li>
+                            <li><a class="dropdown-item" href="/admin/payments">
+                                <i class="bi bi-credit-card me-2"></i>
+                                Payments Admin
+                            </a></li>
+                            <li><a class="dropdown-item" href="/admin/faq">
+                                <i class="bi bi-question-circle me-2"></i>
+                                FAQ Admin
+                            </a></li>
+                            <li><a class="dropdown-item" href="/admin/users">
+                                <i class="bi bi-people me-2"></i>
+                                Users
+                            </a></li>
+                        </ul>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
