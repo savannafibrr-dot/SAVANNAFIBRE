@@ -181,7 +181,7 @@ app.get('/banners', auth, (req, res) => {
 });
 
 app.get('/admin/accessories', auth, (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/accessories.html'));
+    res.sendFile(path.join(__dirname, '../public/add_accessories.html'));
 });
 
 // Serve all frontend static files
