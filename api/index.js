@@ -121,6 +121,7 @@ passport.deserializeUser(async (id, done) => {
 
 // Routes
 app.use('/api/auth', require('../routes/auth'));
+app.use('/api/sitemap', require('../routes/sitemap'));
 app.use('/api/plans', require('../routes/plans'));
 app.use('/api/shops', require('../routes/shops'));
 app.use('/api/coverage', require('../routes/coverage'));
