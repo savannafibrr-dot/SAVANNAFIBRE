@@ -194,6 +194,11 @@ app.get('/shops', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/shops.html'));
 });
 
+app.get('/sitemap', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/sitemap.xml'));
+});
+
+
 app.get('/coverage', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/coverage.html'));
 });
