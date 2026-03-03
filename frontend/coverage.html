@@ -1,58 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GXDVD1Y71E"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-GXDVD1Y71E');
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coverage || Savanna Fibre</title>
+    <title>Fibre Coverage Checker | Savanna Fibre</title>
+    <meta name="description" content="Check fibre internet availability in your area using Savanna Fibre coverage checker.">
+    <link rel="canonical" href="https://yourdomain.com/coverage">
+
+    <!-- Google Analytics (Prevent duplicate auto pageview) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GXDVD1Y71E"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-GXDVD1Y71E', { send_page_view: true });
+    </script>
+
     <link rel="icon" type="image/svg+xml" href="assets/preloader orange.svg" />
-    
+
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body { 
-            height: 100%; 
-            overflow: hidden;
+        :root {
+            --brand-primary: #f89621;
+            --brand-secondary: #f5a623;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
             background: #f8f9fa;
+            color: #222;
         }
-        #coverage-frame {
+
+        .page-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .coverage-wrapper {
+            position: relative;
             width: 100%;
-            height: 100vh;
-            border: none;
-            display: none;
+            min-height: 80vh;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
         }
+
         .loader {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(90deg, #f89621 0%, #f5a623 100%);
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.5s;
+            color: #fff;
+            transition: opacity .4s ease;
+            z-index: 2;
         }
+
         .loader.hidden {
             opacity: 0;
             pointer-events: none;
         }
-        .loader img {
-            height: 80px;
-            margin-bottom: 20px;
-        }
-        .loader p {
-            color: #fff;
-            font-family: 'Outfit', sans-serif;
-            font-size: 18px;
-            font-weight: 500;
-        }
+
         .spinner {
             width: 40px;
             height: 40px;
@@ -62,43 +74,88 @@
             animation: spin 1s linear infinite;
             margin-top: 20px;
         }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        iframe {
+            width: 100%;
+            height: 80vh;
+            border: none;
+            display: none;
+        }
+
+        .error-state {
+            display: none;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .error-state a {
+            color: var(--brand-primary);
+            font-weight: 600;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
 
-    <!-- Loading Screen -->
-    <div class="loader" id="loader">
-        <img src="Logo savanna6.svg" alt="Savanna Fibre">
-        <p>Loading Coverage Checker...</p>
-        <div class="spinner"></div>
+<div class="page-container">
+
+    <h1>Check Fibre Coverage in Your Area</h1>
+    <p>Use our real-time coverage checker to see if Savanna Fibre is available at your location.</p>
+
+    <div class="coverage-wrapper">
+
+        <div class="loader" id="loader" role="status" aria-live="polite">
+            <img src="Logo savanna6.svg" alt="Savanna Fibre Logo" height="70">
+            <p>Loading coverage checker...</p>
+            <div class="spinner"></div>
+        </div>
+
+        <iframe
+            id="coverage-frame"
+            src="https://savannafibre.site/mdu-fat-coverage/"
+            title="Savanna Fibre Coverage Checker"
+            sandbox="allow-scripts allow-forms allow-popups allow-geolocation"
+            loading="lazy"
+        ></iframe>
+
+        <div class="error-state" id="error-state">
+            <h2>Coverage tool failed to load.</h2>
+            <p>Please try again or open it directly:</p>
+            <p>
+                <a href="https://savannafibre.site/mdu-fat-coverage/" target="_blank" rel="noopener noreferrer">
+                    Open Coverage Checker
+                </a>
+            </p>
+        </div>
+
     </div>
 
-    <!-- Full Screen Iframe -->
-    <iframe 
-        id="coverage-frame" 
-        src="https://savannafibre.site/mdu-fat-coverage/" 
-        allow="geolocation"
-        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox allow-geolocation"
-    ></iframe>
+</div>
 
-    <script>
-        const frame = document.getElementById('coverage-frame');
-        const loader = document.getElementById('loader');
+<script>
+    const frame = document.getElementById('coverage-frame');
+    const loader = document.getElementById('loader');
+    const errorState = document.getElementById('error-state');
 
-        frame.onload = function() {
-            setTimeout(() => {
-                loader.classList.add('hidden');
-                frame.style.display = 'block';
-            }, 800);
-        };
+    let loaded = false;
 
-        // Fallback if load takes too long
-        setTimeout(() => {
+    frame.addEventListener('load', () => {
+        loaded = true;
+        loader.classList.add('hidden');
+        frame.style.display = 'block';
+    });
+
+    setTimeout(() => {
+        if (!loaded) {
             loader.classList.add('hidden');
-            frame.style.display = 'block';
-        }, 5000);
-    </script>
+            errorState.style.display = 'block';
+        }
+    }, 7000);
+</script>
 
 </body>
 </html>
