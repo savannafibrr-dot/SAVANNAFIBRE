@@ -2780,70 +2780,165 @@
     <!-- template js -->
     <script src="assets/js/ienet.js"></script>
 
-    <script>
-    async function loadFaqs() {
-      try {
-        const response = await fetch('/api/faqs');
-        const faqs = await response.json();
-
-        // Group by category and sort by order
-        const grouped = {};
-        faqs.forEach(faq => {
-          if (!grouped[faq.category]) grouped[faq.category] = { order: faq.order, faqs: [] };
-          grouped[faq.category].faqs.push(faq);
-        });
-
-        // Sort categories by order
-        const categories = Object.keys(grouped).sort((a, b) => grouped[a].order - grouped[b].order);
-
-        let html = '';
-        categories.forEach((category) => {
-          html += `
-            <div class="accrodion">
-              <div class="accrodion-title">
-                <h4>
-                  <span class="accrodion-title__icon"></span>
-                  ${category}
-                </h4>
-              </div>
-              <div class="accrodion-content" style="display:none;">
-                <div class="inner">
-                  ${grouped[category].faqs.map(faq => `
-                    <h5>${faq.question}</h5>
-                    <ul style="padding-left: 1.5em; margin: 0;">
-                      ${faq.answer.split(/\r?\n/).map(line => `<li>${line}</li>`).join('')}
-                    </ul>
-                    <br>
-                  `).join('')}
-                </div>
-              </div>
-            </div>
-          `;
-        });
-
-        document.getElementById('faq-dynamic').innerHTML = html;
-
-        // Accordion behavior
-        document.querySelectorAll('.accrodion-title').forEach((title, i) => {
-          title.onclick = function() {
-            document.querySelectorAll('.accrodion').forEach((acc, j) => {
-              if (i === j) {
-                acc.classList.add('active');
-                acc.querySelector('.accrodion-content').style.display = 'block';
-              } else {
-                acc.classList.remove('active');
-                acc.querySelector('.accrodion-content').style.display = 'none';
-              }
-            });
-          };
-        });
-      } catch (error) {
-        document.getElementById('faq-dynamic').innerHTML = '<p>Failed to load FAQs.</p>';
-      }
+<script>
+async function loadFaqs() {
+  const faqs = [
+    {
+      category: "Billing and Payment",
+      order: 1,
+      faqs: [
+        {
+          question: "How do I know my account number?",
+          answer: "You can call our customer care number to get assistance.\nYou can use our customer App (SavConnect) which can be downloaded from Play Store or a link provided at sales point."
+        },
+        {
+          question: "How do I pay for my monthly subscription?",
+          answer: "Payment can be made via (Mpesa, Mix by Yas & Airtel Money) — for more information check the how to pay link.\nPayment can also be made through our Savanna App."
+        },
+        {
+          question: "How do I Upgrade or Downgrade my Package?",
+          answer: "A request can be made through the USSD *148*65# and follow the process as indicated.\nYou can also request an upgrade by creating a ticket in our Savanna App — our support team will call and advise within 1hr.\nA request can also be made via our email support@savannafibre.co.tz."
+        }
+      ]
+    },
+    {
+      category: "Wi-Fi Username and Password",
+      order: 2,
+      faqs: [
+        {
+          question: "How do I change my Wi-Fi username and password?",
+          answer: "Login to modem via cable using a laptop. Default IP is normally set to 192.168.0.1. If you have previously changed this IP, run ipconfig on a terminal window to get the IP of your default gateway, then type the IP address on any web browser.\nYou can also change the credentials by logging into your Savanna App and following the steps provided."
+        }
+      ]
+    },
+    {
+      category: "Internet Service Issues",
+      order: 3,
+      faqs: [
+        {
+          question: "I am getting no connectivity on my device (A yellow triangle)",
+          answer: "Ensure your IP is set to acquire automatically: Network and Internet → Network and Sharing Center → Change Adapter Settings → Local Area Connection → Properties → Internet Protocol (TCP/IPv4) → Obtain IP Address Automatically.\nIf connecting via Wi-Fi, check that your wireless network key is correct (case-sensitive).\nCheck that you have good Wi-Fi signal strength.\nUse the 'Troubleshoot problems' option by right-clicking the network icon.\nIf using a cable, ensure it is tightly plugged in on your computer and router — try another cable if needed.\nRestart the modem (power off/on)."
+        },
+        {
+          question: "I am getting poor Wi-Fi signal",
+          answer: "Poor Wi-Fi signals may be caused by thick walls or steel structures in the home, interference from other devices (e.g. neighbouring routers, microwave ovens), or poor router placement.\nPlace the router in a central, elevated location — not inside glass compartments — with antennae in a vertical position.\nIf the issue persists, consider investing in a Wi-Fi extender to boost the signal."
+        },
+        {
+          question: "I am getting slow speed on my connection",
+          answer: "Ensure you have good Wi-Fi signal strength.\nClose background bandwidth-consuming programs such as automatic updates, antivirus updates, and torrent activity.\nStop heavy activity like streaming, downloading movies, or uploading large files.\nClose all browser tabs and disconnect other users from the network.\nKeep your Wi-Fi password secure to prevent unauthorised use.\nAfter an upgrade, resetting the modem (using the reset button at the back) may improve speeds — save settings before resetting.\nRun a speed test at http://speedtest.com, preferably via cable connection."
+        },
+        {
+          question: "I am unable to access the internet on my devices",
+          answer: "If using a cable, ensure it is tightly plugged into both your computer and the modem/router.\nIf using Wi-Fi, ensure the Wi-Fi button is switched on and the password is correct (case-sensitive).\nEnsure your IP is set to obtain automatically: for computers go to Network and Internet → Network Sharing Center → Change Adapter Settings → Local Area Connection → Properties → TCP/IPv4 → Obtain IP automatically. For phones, check DHCP under Advanced Options.\nAvoid looping cables between modem ports.\nRestart the modem (power off/on)."
+        },
+        {
+          question: "My modem is not powering on",
+          answer: "Check that the power adapter is plugged into a switched-on outlet.\nIf using a power extension, try a different slot.\nCheck that the power button on the modem is switched on (some have a switch at the back).\nTry a different power outlet.\nOnly use adapters purchased from Savanna shops to avoid equipment damage.\nIf the issue persists, visit one of our shops with the adapter for testing — the adapter or modem may be faulty."
+        },
+        {
+          question: "I am not able to open some websites",
+          answer: "Ensure no proxy is set up on your browser:\n• Firefox: Tools → Options → Advanced → Network → Connection → Settings → Use system proxy settings.\n• Safari: Preferences → Advanced → Change Settings → Automatic Proxy Configuration → Apply.\n• Chrome: Settings → Advanced → Network → Change proxy settings → LAN Settings → Automatically detect settings.\nConfirm the website URL is correctly typed. You can run a ping or traceroute to the site.\nEnsure DNS and IP settings are set to obtain automatically.\nIf the site is externally hosted, check with the domain host that your public IP has not been blacklisted."
+        }
+      ]
+    },
+    {
+      category: "Shifting / Moving Process",
+      order: 4,
+      faqs: [
+        {
+          question: "What is the procedure for moving?",
+          answer: "Shifting forms can be filled in on our website or using our Savanna App. Once submitted, our support team will respond within 2 hours."
+        },
+        {
+          question: "How long does the shifting process take?",
+          answer: "The process takes a maximum of 48 hours."
+        },
+        {
+          question: "How much does it cost to shift my services?",
+          answer: "Savanna will carry out the shifting process for free."
+        },
+        {
+          question: "Who is authorised to shift my service?",
+          answer: "An accredited Savanna Technician or installer who visits the premises with a copy of the shifting form."
+        },
+        {
+          question: "Can I get my own technician to shift my service?",
+          answer: "No. All you need to carry is the ONU and its power cable. Our accredited technicians will handle the rest."
+        }
+      ]
+    },
+    {
+      category: "Installation and Setup",
+      order: 5,
+      faqs: [
+        {
+          question: "How long does installation take?",
+          answer: "Once your registration is approved, installation is completed within the same day."
+        },
+        {
+          question: "What equipment is provided during installation?",
+          answer: "We provide a router and all necessary cables to ensure a seamless connection."
+        },
+        {
+          question: "Is there a fee for installation?",
+          answer: "No — installation is completely free."
+        }
+      ]
     }
+  ];
 
-    document.addEventListener('DOMContentLoaded', loadFaqs);
-    </script>
+  // Group by category and sort by order
+  const grouped = {};
+  faqs.forEach(cat => {
+    grouped[cat.category] = { order: cat.order, faqs: cat.faqs };
+  });
+
+  const categories = Object.keys(grouped).sort((a, b) => grouped[a].order - grouped[b].order);
+
+  let html = '';
+  categories.forEach((category) => {
+    html += `
+      <div class="accrodion">
+        <div class="accrodion-title">
+          <h4>
+            <span class="accrodion-title__icon"></span>
+            ${category}
+          </h4>
+        </div>
+        <div class="accrodion-content" style="display:none;">
+          <div class="inner">
+            ${grouped[category].faqs.map(faq => `
+              <h5>${faq.question}</h5>
+              <ul style="padding-left: 1.5em; margin: 0 0 1em 0;">
+                ${faq.answer.split(/\r?\n/).map(line => `<li>${line}</li>`).join('')}
+              </ul>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+  });
+
+  document.getElementById('faq-dynamic').innerHTML = html;
+
+  // Accordion behavior
+  document.querySelectorAll('.accrodion-title').forEach((title, i) => {
+    title.onclick = function () {
+      document.querySelectorAll('.accrodion').forEach((acc, j) => {
+        if (i === j) {
+          acc.classList.add('active');
+          acc.querySelector('.accrodion-content').style.display = 'block';
+        } else {
+          acc.classList.remove('active');
+          acc.querySelector('.accrodion-content').style.display = 'none';
+        }
+      });
+    };
+  });
+}
+
+document.addEventListener('DOMContentLoaded', loadFaqs);
+</script>
 
     <!-- Cookie Consent Banner -->
     <div id="cookieConsentBanner" style="display:none; position:fixed; bottom:0; left:0; width:100%; background:#222; color:#fff; padding:18px 10px 18px 10px; z-index:99999; text-align:center; box-shadow:0 -2px 8px rgba(0,0,0,0.2); font-size:1rem;">
